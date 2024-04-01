@@ -29,6 +29,8 @@ namespace Prototype
 
         private void Update()
         {
+            t += Time.deltaTime;
+
             if (m_factory.CurrentPlayerUnit == null)
                 return;
 
@@ -43,15 +45,15 @@ namespace Prototype
             m_Transform.LookAt(playerPos);
         }
 
+        
         private void OnCollisionStay(Collision collision)
         {
-            t += Time.deltaTime;
-
             if (t > damageInterval)
             {
-                t = 0;
+              
                 if (collision.collider.TryGetComponent<IDamageable>(out var damageable))
                 {
+                    t = 0;
                     damageable.DoDamage(1, gameObject);
                 }
             }

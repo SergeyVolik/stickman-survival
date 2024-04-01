@@ -11,10 +11,7 @@ public class DamageFeedback : MonoBehaviour
 
     private void Awake()
     {
-        damageFeedback.PlayFeedbacks();
-
-        m_HealthData = GetComponent<HealthData>();
-     
+        m_HealthData = GetComponent<HealthData>();    
     }
 
     private void OnEnable()
