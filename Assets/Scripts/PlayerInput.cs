@@ -18,6 +18,10 @@ public class PlayerInput : MonoBehaviour
     private void Awake()
     {
         m_Input = GetComponent<CustomCharacterController>();
+        GetComponent<HealthData>().onDeath += () =>
+        {
+            enabled = false;
+        };
 
         m_Transform = transform;
     }

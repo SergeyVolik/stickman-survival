@@ -25,7 +25,7 @@ namespace MoreMountains.Feedbacks
         private Color initCollor;
         public Ease EaseType;
         private Coroutine m_Coroutine;
-
+        public bool invert;
         protected override void CustomInitialization(MMF_Player owner)
         {
             base.CustomInitialization(owner);
@@ -71,10 +71,18 @@ namespace MoreMountains.Feedbacks
 
             float currentTime = 0;
 
+            if (invert)
+            {
+                Color temp = initialColor;
+                initialColor = flickerColor;
+                flickerColor = temp;
+            }
 
             while (currentTime < flickerDuration)
             {
                 float t = easeFunction(currentTime, flickerDuration, 0, 0);
+
+  
                 renderer.material.color = Color.Lerp(flickerColor, initialColor, t);
                 currentTime += Time.deltaTime;
                 yield return null;   

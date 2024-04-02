@@ -1,3 +1,4 @@
+using Prototype;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class CharacterGUnBehaviour : MonoBehaviour
     {
         m_Controller = GetComponent<CustomCharacterController>();
         m_CharacterAnimator = GetComponentInChildren<CharacterAnimatorV2>();
+        GetComponent<HealthData>().onDeath+=() => { enabled = false; };
+
         gun.owner = gameObject;
     }
 

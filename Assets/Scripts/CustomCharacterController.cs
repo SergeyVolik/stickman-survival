@@ -21,6 +21,8 @@ public class CustomCharacterController : MonoBehaviour, ICharacterInput
     public LayerMask CastMask;
     public Vector2 AimVector;
     public float castRadius;
+    public float rotationSpeed;
+
     public Vector2 MoveInput { get => m_MoveInput; set => m_MoveInput = value; }
     RaycastHit[] results;
 
@@ -47,18 +49,28 @@ public class CustomCharacterController : MonoBehaviour, ICharacterInput
         {
             int count = Physics.SphereCastNonAlloc(currentPos, castRadius, Vector3.up, results, 10, CastMask);
             IsAiming = count != 0;
-
-            for (int i = 0; i < count; i++)
+            if (IsAiming)
             {
-                var resourt = results[i];
-                var point = resourt.transform.position;
+                RaycastHit closest = default;
+                float closestDistance = float.MaxValue;
+
+                for (int i = 0; i < count; i++)
+                {
+                    var dist = Vector3.Distance(currentPos, results[i].point);
+
+                    if (dist < closestDistance)
+                    {
+                        closestDistance = dist;
+                        closest = results[i];
+                    }
+                }
+     
+                var point = closest.transform.position;
                 point.y = currentPos.y;
                 var vector = point - currentPos;
 
                 AimVector = new Vector2(vector.x, vector.z);
                 m_Transform.forward = vector.normalized;
-
-                break;
             }
         }
     }

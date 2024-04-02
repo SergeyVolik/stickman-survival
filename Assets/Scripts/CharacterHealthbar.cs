@@ -15,7 +15,8 @@ public class CharacterHealthbar : MonoBehaviour
         m_Health = GetComponent<HealthData>();
         m_Health.onHealthChanged += CharacterHealthbar_onHealthChanged;
         m_Camera = Camera.main;
-        
+
+        healthbar.TargetProgressBar.TextValueMultiplier = m_Health.maxHealth;
         healthbar.UpdateBar(m_Health.currentHealth, 0, m_Health.maxHealth, true);
     }
 

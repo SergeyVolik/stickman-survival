@@ -49,9 +49,8 @@ namespace Prototype
         private void OnCollisionStay(Collision collision)
         {
             if (t > damageInterval)
-            {
-              
-                if (collision.collider.TryGetComponent<IDamageable>(out var damageable))
+            {             
+                if (collision.collider.GetComponent<PlayerInput>() && collision.collider.TryGetComponent<IDamageable>(out var damageable))
                 {
                     t = 0;
                     damageable.DoDamage(1, gameObject);
