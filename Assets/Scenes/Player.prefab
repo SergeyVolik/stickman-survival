@@ -1256,6 +1256,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  canAim: 1
+  IsAiming: 0
+  CastMask:
+    serializedVersion: 2
+    m_Bits: 8
+  AimVector: {x: 0, y: 0}
+  castRadius: 4
 --- !u!1 &8760210740217448015
 GameObject:
   m_ObjectHideFlags: 0
