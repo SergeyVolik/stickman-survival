@@ -10,6 +10,7 @@ namespace Prototype
     {
         private PlayerSpawnFactory m_factory;
         private Rigidbody m_RB;
+        private CustomCharacterController m_CharContr;
         private Transform m_Transform;
 
         public float maxSpeed;
@@ -24,6 +25,7 @@ namespace Prototype
         private void Awake()
         {
             m_RB = GetComponent<Rigidbody>();
+            m_CharContr = GetComponent<CustomCharacterController>();
             m_Transform = transform;
         }
 
@@ -40,9 +42,7 @@ namespace Prototype
             selfPos.y = 0;
 
             var vector = (playerPos - selfPos).normalized;
-
-            m_RB.velocity = vector * maxSpeed;
-            m_Transform.LookAt(playerPos);
+            m_CharContr.MoveInput  = new Vector2(vector.x, vector.z);
         }
 
         

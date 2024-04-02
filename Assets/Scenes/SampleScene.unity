@@ -213,19 +213,28 @@ MonoBehaviour:
     m_RotationOrder: 4
   AnimateY: 1
   RemapYZero: {x: 0, y: 0}
-  RemapYOne: {x: 6, y: 6}
+  RemapYOne: {x: 3, y: 3}
   AnimateYCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 0.23659799
+      value: 0.6680722
+      inSlope: 1.5710533
+      outSlope: 1.5710533
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.14760977
+      outWeight: 0.08396096
     - serializedVersion: 3
       time: 1
       value: 1
@@ -272,7 +281,7 @@ MonoBehaviour:
   TargetCamera: {fileID: 0}
   AnimateScale: 1
   RemapScaleZero: {x: 0, y: 0}
-  RemapScaleOne: {x: 0.8, y: 0.8}
+  RemapScaleOne: {x: 0.5, y: 0.5}
   AnimateScaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -480,7 +489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &636343832
 Transform:
   m_ObjectHideFlags: 0
@@ -1569,11 +1578,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3700107891662163166, guid: 845dbd43db7d3b540af43d925531686d,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}

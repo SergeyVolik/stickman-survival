@@ -5,7 +5,7 @@ using Zenject;
 public class PlayerInput : MonoBehaviour
 {
     private PlayerInputReader m_reader;
-    private Rigidbody m_Rb;
+    private CustomCharacterController m_Input;
     private Transform m_Transform;
     public float speed;
 
@@ -17,7 +17,8 @@ public class PlayerInput : MonoBehaviour
 
     private void Awake()
     {
-        m_Rb = GetComponent<Rigidbody>();
+        m_Input = GetComponent<CustomCharacterController>();
+
         m_Transform = transform;
     }
 
@@ -25,10 +26,6 @@ public class PlayerInput : MonoBehaviour
     {
         var input = m_reader.ReadMoveInput();
 
-        var vector = new Vector3(input.x, 0, input.y);
-        m_Rb.velocity = vector * speed;
-
-        if(vector != Vector3.zero)
-            m_Transform.forward = vector;
+        m_Input.MoveInput = input;
     }
 }

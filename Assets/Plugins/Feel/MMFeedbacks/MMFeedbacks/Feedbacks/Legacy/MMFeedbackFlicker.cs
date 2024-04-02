@@ -145,6 +145,7 @@ namespace MoreMountains.Feedbacks
 			{
 				return;
 			}
+
 			for (int i = 0; i < MaterialIndexes.Length; i++)
 			{
 				_coroutines[i] = StartCoroutine(Flicker(BoundRenderer, i, _initialFlickerColors[i], FlickerColor, FlickerOctave, FeedbackDuration));
