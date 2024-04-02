@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CharacterAnimatorV2 : MonoBehaviour
@@ -35,5 +36,10 @@ public class CharacterAnimatorV2 : MonoBehaviour
             m_Animator.SetFloat("Turn", turnAmount, 0.1f, delta);
             m_Animator.SetFloat("Forward", forwardAmount, 0.1f, delta);
         }
+    }
+
+    internal void Shot()
+    {
+        m_Animator.SetTrigger("Shot");
     }
 }
