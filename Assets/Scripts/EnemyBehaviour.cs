@@ -13,7 +13,6 @@ namespace Prototype
         private CustomCharacterController m_CharContr;
         private Transform m_Transform;
 
-        public float maxSpeed;
         public float damageInterval = 0.3f;
         private float t;
         [Inject]

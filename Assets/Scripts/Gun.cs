@@ -5,7 +5,8 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public int damage;
-
+    public float pushForce;
+    public float killPushForce;
     [SerializeField]
     private MMF_Player feedback;
     [SerializeField]
@@ -16,11 +17,18 @@ public class Gun : MonoBehaviour
     {
         feedback?.PlayFeedbacks();
 
-        if (Physics.Raycast(projectileSpawnPoint.position, owner.transform.forward, out RaycastHit hit))
+        var shotVector = owner.transform.forward;
+
+        if (Physics.Raycast(projectileSpawnPoint.position, shotVector, out RaycastHit hit))
         {
             if (hit.collider.TryGetComponent<IDamageable>(out var damageable))
             {
-                damageable.DoDamage(damage, owner);
+                damageable.DoDamage(damage, gameObject);
+            }
+
+            if (hit.collider.TryGetComponent<Rigidbody>(out var rb))
+            {
+                rb.AddForce(shotVector * pushForce, mode: ForceMode.Force);
             }
         }
     }

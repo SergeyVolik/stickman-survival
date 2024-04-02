@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterGUnBehaviour : MonoBehaviour
+public class CharacterGunBehaviourV2 : MonoBehaviour
 {
     public Gun gun;
     public float shotInterval = 0.5f;
@@ -21,8 +21,7 @@ public class CharacterGUnBehaviour : MonoBehaviour
 
     private void Update()
     {
-
-        if (m_Controller.IsAiming)
+        if (m_Controller.HasTarget)
         {
             t += Time.deltaTime;
 
@@ -33,7 +32,8 @@ public class CharacterGUnBehaviour : MonoBehaviour
                 m_CharacterAnimator.Shot();
             }
         }
-        else {
+        else 
+        {
             t = 0;
         }
     }

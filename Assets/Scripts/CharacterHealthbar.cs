@@ -20,7 +20,7 @@ public class CharacterHealthbar : MonoBehaviour
         healthbar.UpdateBar(m_Health.currentHealth, 0, m_Health.maxHealth, true);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         UIRoot.forward = m_Camera.transform.forward;
     }

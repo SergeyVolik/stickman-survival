@@ -11,8 +11,9 @@ namespace Prototype
         public GameObject Source;
         public bool IsDamage => CurrentValue < PrevValue;
     }
+   
 
-    public class HealthData : MonoBehaviour, IResurrectable, IKillable, IDamageable, IHealable
+        public class HealthData : MonoBehaviour, IResurrectable, IKillable, IDamageable, IHealable
     {
         public int maxHealth = 10;   
         public int currentHealth = 10;
@@ -23,6 +24,8 @@ namespace Prototype
 
         public bool IsDead => currentHealth == 0;
 
+        public GameObject KilledBy => m_KilledBy;
+        private GameObject m_KilledBy;
         public bool HasMaxHealth()
         {
             return currentHealth == maxHealth;
@@ -58,6 +61,7 @@ namespace Prototype
 
             if (currentHealth == 0 && prev != 0)
             {
+                m_KilledBy = source;
                 onDeath.Invoke();
             }
         }
