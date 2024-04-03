@@ -2,39 +2,42 @@ using MoreMountains.Feedbacks;
 using Prototype;
 using UnityEngine;
 
-public class Gun : MonoBehaviour
+namespace Prototype
 {
-    public int damage;
-    public float pushForce;
-    public float killPushForce;
-    [SerializeField]
-    private MMF_Player feedback;
-    [SerializeField]
-    private Transform projectileSpawnPoint;
-
-    public GameObject owner;
-    public void Shot()
+    public class Gun : MonoBehaviour
     {
-        feedback?.PlayFeedbacks();
+        public int damage;
+        public float pushForce;
+        public float killPushForce;
+        [SerializeField]
+        private MMF_Player feedback;
+        [SerializeField]
+        private Transform projectileSpawnPoint;
 
-        var shotVector = owner.transform.forward;
-
-        if (Physics.Raycast(projectileSpawnPoint.position, shotVector, out RaycastHit hit))
+        public GameObject owner;
+        public void Shot()
         {
-            if (hit.collider.TryGetComponent<IDamageable>(out var damageable))
-            {
-                damageable.DoDamage(damage, gameObject);
-            }
+            feedback?.PlayFeedbacks();
 
-            if (hit.collider.TryGetComponent<Rigidbody>(out var rb))
+            var shotVector = owner.transform.forward;
+
+            if (Physics.Raycast(projectileSpawnPoint.position, shotVector, out RaycastHit hit))
             {
-                rb.AddForce(shotVector * pushForce, mode: ForceMode.Force);
+                if (hit.collider.TryGetComponent<IDamageable>(out var damageable))
+                {
+                    damageable.DoDamage(damage, gameObject);
+                }
+
+                if (hit.collider.TryGetComponent<Rigidbody>(out var rb))
+                {
+                    rb.AddForce(shotVector * pushForce, mode: ForceMode.Force);
+                }
             }
         }
-    }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawRay(new Ray {  origin = projectileSpawnPoint.position, direction = projectileSpawnPoint.forward });
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawRay(new Ray { origin = projectileSpawnPoint.position, direction = projectileSpawnPoint.forward });
+        }
     }
 }

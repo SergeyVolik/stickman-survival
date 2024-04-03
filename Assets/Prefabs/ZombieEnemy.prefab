@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1110967989422671854}
   - component: {fileID: 847806071761990317}
   m_Layer: 3
-  m_Name: Enemy
+  m_Name: ZombieEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 1282675239167010970}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.83, y: 0, z: 2.87}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -146,15 +146,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9763b6558c0abbb4fbfbe02e7c32425c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  accelerationSpeed: 7
+  speed: 0.8
+  accelerationSpeed: 3
   canAim: 0
   CastMask:
     serializedVersion: 2
     m_Bits: 0
   AimVector: {x: 0, y: 0}
-  castRadius: 0
+  aimDistance: 5
   rotationSpeed: 30
+  criticalDistanceChangeTarget: 0
 --- !u!114 &1110967989422671854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +429,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d22e99f6ee6f5c847af71fbb7f15a58d, type: 2}
+    - target: {fileID: 239331893339729194, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 02e6a587ea73b7549a9948880cd504bd, type: 2}
     m_RemovedComponents:
     - {fileID: 6478703630516778052, guid: 176658e06a6cf3042961b53d4592a617, type: 3}
     m_RemovedGameObjects: []
@@ -531,6 +537,10 @@ PrefabInstance:
     - target: {fileID: 448208, guid: f563a43ef6da8ce43b59040b834b597d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19853630, guid: f563a43ef6da8ce43b59040b834b597d, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19927622, guid: f563a43ef6da8ce43b59040b834b597d, type: 3}
       propertyPath: m_Materials.Array.size

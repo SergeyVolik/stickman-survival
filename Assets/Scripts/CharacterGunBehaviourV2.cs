@@ -3,38 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterGunBehaviourV2 : MonoBehaviour
+namespace Prototype
 {
-    public Gun gun;
-    public float shotInterval = 0.5f;
-    private CustomCharacterController m_Controller;
-    private CharacterAnimatorV2 m_CharacterAnimator;
-    float t;
-    private void Awake()
+    public class CharacterGunBehaviourV2 : MonoBehaviour
     {
-        m_Controller = GetComponent<CustomCharacterController>();
-        m_CharacterAnimator = GetComponentInChildren<CharacterAnimatorV2>();
-        GetComponent<HealthData>().onDeath+=() => { enabled = false; };
+        public Gun gun;
+        public float shotInterval = 0.5f;
+        private CustomCharacterController m_Controller;
+        private CharacterAnimatorV2 m_CharacterAnimator;
+        float t;
 
-        gun.owner = gameObject;
-    }
-
-    private void Update()
-    {
-        if (m_Controller.HasTarget)
+        private void Awake()
         {
-            t += Time.deltaTime;
+            m_Controller = GetComponent<CustomCharacterController>();
+            m_CharacterAnimator = GetComponentInChildren<CharacterAnimatorV2>();
+            GetComponent<HealthData>().onDeath += () => { enabled = false; };
 
-            if (t > shotInterval)
+            gun.owner = gameObject;
+        }
+
+        private void Update()
+        {
+            if (m_Controller.HasTarget)
+            {
+                t += Time.deltaTime;
+
+                if (t > shotInterval)
+                {
+                    t = 0;
+                    gun.Shot();
+                    m_CharacterAnimator.Shot();
+                }
+            }
+            else
             {
                 t = 0;
-                gun.Shot();
-                m_CharacterAnimator.Shot();
             }
-        }
-        else 
-        {
-            t = 0;
         }
     }
 }

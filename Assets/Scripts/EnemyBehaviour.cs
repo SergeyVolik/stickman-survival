@@ -8,7 +8,7 @@ namespace Prototype
 {
     public class EnemyBehaviour : MonoBehaviour
     {
-        private PlayerSpawnFactory m_factory;
+        private IPlayerFactory m_factory;
         private Rigidbody m_RB;
         private CustomCharacterController m_CharContr;
         private Transform m_Transform;
@@ -16,7 +16,7 @@ namespace Prototype
         public float damageInterval = 0.3f;
         private float t;
         [Inject]
-        void Construct(PlayerSpawnFactory factory)
+        void Construct(IPlayerFactory factory)
         {
             m_factory = factory;
         }

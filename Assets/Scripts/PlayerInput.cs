@@ -2,34 +2,37 @@ using Prototype;
 using UnityEngine;
 using Zenject;
 
-public class PlayerInput : MonoBehaviour
+namespace Prototype
 {
-    private PlayerInputReader m_reader;
-    private CustomCharacterController m_Input;
-    private Transform m_Transform;
-    public float speed;
-
-    [Inject]
-    void Construct(PlayerInputReader reader)
+    public class PlayerInput : MonoBehaviour
     {
-        m_reader = reader;
-    }
+        private PlayerInputReader m_reader;
+        private CustomCharacterController m_Input;
+        private Transform m_Transform;
+        public float speed;
 
-    private void Awake()
-    {
-        m_Input = GetComponent<CustomCharacterController>();
-        GetComponent<HealthData>().onDeath += () =>
+        [Inject]
+        void Construct(PlayerInputReader reader)
         {
-            enabled = false;
-        };
+            m_reader = reader;
+        }
 
-        m_Transform = transform;
-    }
+        private void Awake()
+        {
+            m_Input = GetComponent<CustomCharacterController>();
+            GetComponent<HealthData>().onDeath += () =>
+            {
+                enabled = false;
+            };
 
-    private void Update()
-    {
-        var input = m_reader.ReadMoveInput();
+            m_Transform = transform;
+        }
 
-        m_Input.MoveInput = input;
+        private void Update()
+        {
+            var input = m_reader.ReadMoveInput();
+
+            m_Input.MoveInput = input;
+        }
     }
 }

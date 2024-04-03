@@ -27,10 +27,9 @@ namespace Prototype
         }
 
         public void SpawnAtPosition(Vector3 spawnPos)
-        {         
+        {
             m_LastSpawnedPlayer = m_container.InstantiatePrefab(m_PlayerPrefab, spawnPos, Quaternion.identity, null);
             onPlayerSpawned.Invoke(m_LastSpawnedPlayer);
         }
     }
 }
-

@@ -2,33 +2,36 @@ using MoreMountains.Tools;
 using Prototype;
 using UnityEngine;
 
-public class CharacterHealthbar : MonoBehaviour
+namespace Prototype
 {
-    public MMHealthBar healthbar;
-    public Transform UIRoot;
-
-    private HealthData m_Health;
-    private Camera m_Camera;
-
-    private void Awake()
+    public class CharacterHealthbar : MonoBehaviour
     {
-        m_Health = GetComponent<HealthData>();
-        m_Health.onHealthChanged += CharacterHealthbar_onHealthChanged;
-        m_Camera = Camera.main;
+        public MMHealthBar healthbar;
+        public Transform UIRoot;
 
-        healthbar.TargetProgressBar.TextValueMultiplier = m_Health.maxHealth;
-        healthbar.UpdateBar(m_Health.currentHealth, 0, m_Health.maxHealth, true);
-    }
+        private HealthData m_Health;
+        private Camera m_Camera;
 
-    private void LateUpdate()
-    {
-        UIRoot.forward = m_Camera.transform.forward;
-    }
+        private void Awake()
+        {
+            m_Health = GetComponent<HealthData>();
+            m_Health.onHealthChanged += CharacterHealthbar_onHealthChanged;
+            m_Camera = Camera.main;
 
-    private void CharacterHealthbar_onHealthChanged(HealthChangeData obj)
-    {
-        bool show = m_Health.currentHealth == 0;
+            healthbar.TargetProgressBar.TextValueMultiplier = m_Health.maxHealth;
+            healthbar.UpdateBar(m_Health.currentHealth, 0, m_Health.maxHealth, true);
+        }
 
-        healthbar.UpdateBar(m_Health.currentHealth, 0, m_Health.maxHealth, show);
+        private void LateUpdate()
+        {
+            UIRoot.forward = m_Camera.transform.forward;
+        }
+
+        private void CharacterHealthbar_onHealthChanged(HealthChangeData obj)
+        {
+            bool show = m_Health.currentHealth == 0;
+
+            healthbar.UpdateBar(m_Health.currentHealth, 0, m_Health.maxHealth, show);
+        }
     }
 }
