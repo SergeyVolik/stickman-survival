@@ -575,6 +575,12 @@ MonoBehaviour:
   MainRigidbody: {fileID: 1223232288493838275}
   ForceSleep: 1
   AllowBlending: 1
+  <Head>k__BackingField: {fileID: 7735053402479989411}
+  <LeftLeg>k__BackingField: {fileID: 4308724575936011239}
+  <RightLeg>k__BackingField: {fileID: 7576835750615005689}
+  <Chest>k__BackingField: {fileID: 3089365097197517615}
+  <LeftArt>k__BackingField: {fileID: 4885762662953011892}
+  <RightArt>k__BackingField: {fileID: 686398628334862857}
 --- !u!1 &239331893332336266 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100032, guid: fa7f36c71b9e8fa4798df3a931c2fd92,

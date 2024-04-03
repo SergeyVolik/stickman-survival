@@ -1,10 +1,6 @@
 using DG.Tweening;
 using MoreMountains.Feedbacks;
-using MoreMountains.Tools;
 using Prototype;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class CharacterDeath : MonoBehaviour
@@ -33,7 +29,7 @@ public class CharacterDeath : MonoBehaviour
         {
             var vec = gun.owner.transform.forward;
 
-            var body = mMRagdoller.RagdollBodies[Random.Range(0, mMRagdoller.RagdollBodies.Length)];
+            var body = mMRagdoller.UpperParts[Random.Range(0, mMRagdoller.UpperParts.Length)];
             body.AddForce(vec * gun.killPushForce, mode: ForceMode.Force);
         }
 

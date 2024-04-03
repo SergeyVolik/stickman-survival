@@ -964,7 +964,7 @@ MonoBehaviour:
   AlwaysVisible: 1
   DisplayDurationOnHit: 1
   HideBarAtZero: 1
-  HideBarAtZeroDelay: 0.1
+  HideBarAtZeroDelay: 0.25
 --- !u!1 &8821616394053292206
 GameObject:
   m_ObjectHideFlags: 0

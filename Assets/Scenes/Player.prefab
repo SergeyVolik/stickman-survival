@@ -163,7 +163,6 @@ MonoBehaviour:
   speed: 3
   accelerationSpeed: 10
   canAim: 1
-  IsAiming: 0
   CastMask:
     serializedVersion: 2
     m_Bits: 8
@@ -184,6 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mMRagdoller: {fileID: 2686177631093199672}
   deathFeedback: {fileID: 2356897587566006869}
+  destroyDelay: 2
 --- !u!114 &996443456448605036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +260,141 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stickman_heads_sphere 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012681577176785751, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0043313233
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012681577176785751, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.07350023
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012681577176785751, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 9.313226e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466880171349435517, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0019308822
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466880171349435517, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.06094586
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466880171349435517, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.10094383
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000367242473416940, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.109160155
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000367242473416940, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.5304479
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000367242473416940, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.14537854
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835093737519452187, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.000000007450581
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835093737519452187, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.2638775
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835093737519452187, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.00000029802322
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177174368411172170, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.000000037252978
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177174368411172170, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.31198844
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177174368411172170, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.000000018626476
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663752227780601930, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.07521374
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663752227780601930, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.660568
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663752227780601930, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.00035311005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002499810314315730, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.00000002980234
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002499810314315730, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.31198826
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002499810314315730, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.0000000037252916
+      objectReference: {fileID: 0}
+    - target: {fileID: 8952170896320600491, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.109160066
+      objectReference: {fileID: 0}
+    - target: {fileID: 8952170896320600491, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.5304479
+      objectReference: {fileID: 0}
+    - target: {fileID: 8952170896320600491, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.14608482
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002152971250201441, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0019309418
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002152971250201441, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.06094584
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002152971250201441, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.101649925
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
