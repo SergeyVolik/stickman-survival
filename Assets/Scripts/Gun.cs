@@ -4,8 +4,15 @@ using UnityEngine;
 
 namespace Prototype
 {
+    public enum GunType
+    {
+        None = 0,
+        Handgun = 1,
+        AssaultRifle = 2,
+    }
     public class Gun : MonoBehaviour
     {
+        public GunType type = GunType.Handgun;
         public int damage;
         public float pushForce;
         public float killPushForce;
@@ -13,6 +20,7 @@ namespace Prototype
         private MMF_Player feedback;
         [SerializeField]
         private Transform projectileSpawnPoint;
+        public float shotInterval;
 
         public GameObject owner;
         public void Shot()

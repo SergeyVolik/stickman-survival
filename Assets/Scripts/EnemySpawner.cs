@@ -5,18 +5,17 @@ namespace Prototype
 {
     public class EnemySpawner : MonoBehaviour
     {
-        public GameObject EnemyPrefab;
-
         public Transform[] SpawnPoints;
 
         public float spawnInterval;
         public float spawnT;
-        private DiContainer m_Conteiner;
+
+        private EnemySpawnFactory m_spawnFactory;
 
         [Inject]
-        void Construct(DiContainer container)
+        void Construct(EnemySpawnFactory spawnFactory)
         {
-            m_Conteiner = container;
+            m_spawnFactory = spawnFactory;
         }
 
         private void Update()
@@ -27,7 +26,8 @@ namespace Prototype
             {
                 spawnT = 0;
                 var spawnPos = SpawnPoints[Random.Range(0, SpawnPoints.Length)].position;
-                m_Conteiner.InstantiatePrefab(EnemyPrefab, spawnPos, Quaternion.identity, null);
+                m_spawnFactory.SpawnZombie(spawnPos);
+                
             }
         }
     }

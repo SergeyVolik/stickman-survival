@@ -1,17 +1,27 @@
-using Prototype;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Prototype
 {
     public class CharacterGunBehaviourV2 : MonoBehaviour
     {
-        public Gun gun;
-        public float shotInterval = 0.5f;
+        public Gun currentGun;
         private CustomCharacterController m_Controller;
         private CharacterAnimatorV2 m_CharacterAnimator;
-        float t;
+        private float m_ShotT;
+        public Transform rightHand;
+        public event Action<Gun> onGunChanged = delegate { };
+        public void SpawnGun(GameObject gunPrefab)
+        {
+            if (currentGun)
+            {
+                GameObject.Destroy(currentGun.gameObject);
+            }
+            currentGun = GameObject.Instantiate(gunPrefab, rightHand).GetComponent<Gun>();
+            currentGun.owner = gameObject;
+            enabled = true;
+            onGunChanged.Invoke(currentGun);
+        }
 
         private void Awake()
         {
@@ -19,25 +29,27 @@ namespace Prototype
             m_CharacterAnimator = GetComponentInChildren<CharacterAnimatorV2>();
             GetComponent<HealthData>().onDeath += () => { enabled = false; };
 
-            gun.owner = gameObject;
+            if (currentGun == null)
+                enabled = false; 
         }
+
 
         private void Update()
         {
             if (m_Controller.HasTarget)
             {
-                t += Time.deltaTime;
+                m_ShotT += Time.deltaTime;
 
-                if (t > shotInterval)
+                if (m_ShotT > currentGun.shotInterval)
                 {
-                    t = 0;
-                    gun.Shot();
+                    m_ShotT = 0;
+                    currentGun.Shot();
                     m_CharacterAnimator.Shot();
                 }
             }
             else
             {
-                t = 0;
+                m_ShotT = 0;
             }
         }
     }

@@ -1,6 +1,7 @@
 using Prototype;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +16,7 @@ namespace Prototype
 
         public float damageInterval = 0.3f;
         private float t;
+        public float pushForce = 200;
         [Inject]
         void Construct(IPlayerFactory factory)
         {
@@ -53,6 +55,11 @@ namespace Prototype
                 {
                     t = 0;
                     damageable.DoDamage(1, gameObject);
+
+                    if (collision.collider.TryGetComponent<Rigidbody>(out var rb))
+                    {
+                        rb.AddForce(transform.forward * pushForce, mode: ForceMode.Force);
+                    }
                 }
             }
         }

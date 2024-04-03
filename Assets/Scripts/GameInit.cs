@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -26,8 +27,15 @@ namespace Prototype
     public class EnemySpawnFactory
     {
         GameObject _zombieEnemy;
-        
-        public EnemySpawnFactory(GameObject zombieEnemy) {
+        private DiContainer m_Conteiner;
+
+        public void SpawnZombie(Vector3 spawnPos)
+        {
+            m_Conteiner.InstantiatePrefab(_zombieEnemy, spawnPos, Quaternion.identity, null);
+        }
+
+        public EnemySpawnFactory(GameObject zombieEnemy, DiContainer container) {
+            m_Conteiner = container;
             _zombieEnemy = zombieEnemy;
         }
     }
@@ -42,9 +50,10 @@ namespace Prototype
 
         public override void InstallBindings()
         {
-            var spawnFactory = new EnemySpawnFactory(zombiePrefab);
+            var spawnFactory = new EnemySpawnFactory(zombiePrefab, Container);
             var input = new PlayerInputReader(Joystick);
             m_playerSpawnFactory = new PlayerSpawnFactory(PlayerPrefab, Container);
+
             Container.Bind<IPlayerFactory>().FromInstance(m_playerSpawnFactory);
             Container.Bind<PlayerInputReader>().FromInstance(input);
             Container.Bind<EnemySpawnFactory>().FromInstance(spawnFactory);
