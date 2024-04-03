@@ -87,6 +87,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CollectableHandgun
       objectReference: {fileID: 0}
+    - target: {fileID: 3292892241396639055, guid: 317d5c0c554b3704aa23f109cca956ce,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6177128256991415692, guid: 317d5c0c554b3704aa23f109cca956ce,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -100,27 +105,27 @@ PrefabInstance:
     - target: {fileID: 6177128256991415692, guid: 317d5c0c554b3704aa23f109cca956ce,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.27
       objectReference: {fileID: 0}
     - target: {fileID: 6177128256991415692, guid: 317d5c0c554b3704aa23f109cca956ce,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.72489727
       objectReference: {fileID: 0}
     - target: {fileID: 6177128256991415692, guid: 317d5c0c554b3704aa23f109cca956ce,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6177128256991415692, guid: 317d5c0c554b3704aa23f109cca956ce,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.6888571
       objectReference: {fileID: 0}
     - target: {fileID: 6177128256991415692, guid: 317d5c0c554b3704aa23f109cca956ce,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6177128256991415692, guid: 317d5c0c554b3704aa23f109cca956ce,
         type: 3}
@@ -130,7 +135,7 @@ PrefabInstance:
     - target: {fileID: 6177128256991415692, guid: 317d5c0c554b3704aa23f109cca956ce,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 87.079
       objectReference: {fileID: 0}
     - target: {fileID: 6177128256991415692, guid: 317d5c0c554b3704aa23f109cca956ce,
         type: 3}

@@ -8,8 +8,6 @@ namespace Prototype
     {
         private PlayerInputReader m_reader;
         private CustomCharacterController m_Input;
-        private Transform m_Transform;
-        public float speed;
 
         [Inject]
         void Construct(PlayerInputReader reader)
@@ -24,8 +22,6 @@ namespace Prototype
             {
                 enabled = false;
             };
-
-            m_Transform = transform;
         }
 
         private void Update()

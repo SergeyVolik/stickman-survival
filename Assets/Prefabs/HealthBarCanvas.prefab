@@ -559,7 +559,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  DecreasingDelay: 0.1
+  DecreasingDelay: 0.2
   LerpDecreasingDelayedBar: 1
   LerpDecreasingDelayedBarSpeed: 15
   LerpDecreasingDelayedBarDuration: 0.3
@@ -587,10 +587,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  IncreasingDelay: 0.1
+  IncreasingDelay: 0.2
   LerpIncreasingDelayedBar: 1
   LerpIncreasingDelayedBarSpeed: 15
-  LerpIncreasingDelayedBarDuration: 0.2
+  LerpIncreasingDelayedBarDuration: 0.4
   LerpIncreasingDelayedBarCurve:
     serializedVersion: 2
     m_Curve:
@@ -1048,7 +1048,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!1 &8856015644800024206
 GameObject:
   m_ObjectHideFlags: 0
