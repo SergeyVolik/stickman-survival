@@ -127,18 +127,17 @@ namespace Prototype
             var currentVel = m_Rb.velocity;
             currentVel.y = 0;
 
-
-          
             m_Rb.AddForce(moveVec3 * accelerationSpeed, mode: ForceMode.Acceleration);
 
-            if (Vector3.Dot(currentVel.normalized, moveVec3) < -0.8f)
+            //if (Vector3.Dot(currentVel.normalized, moveVec3) < -0.8f)
+            //{
+            //    m_Rb.velocity = Vector3.ClampMagnitude(m_Rb.velocity, speed * 10);
+            //}
+            //else
             {
-                m_Rb.velocity = Vector3.ClampMagnitude(m_Rb.velocity, speed*10);
-            }
-            else {
                 m_Rb.velocity = Vector3.ClampMagnitude(m_Rb.velocity, speed);
             }
-          
+
             m_Transform.rotation = newROtation;
         }
 
@@ -163,6 +162,17 @@ namespace Prototype
             }
 
             return (closest.rigidbody, closestDistance);
+        }
+
+        internal void BlockMovement()
+        {
+           enabled = false;
+           m_Rb.velocity = new Vector3();
+        }
+
+        internal void UnblockMovement()
+        {
+            enabled = true;
         }
     }
 }

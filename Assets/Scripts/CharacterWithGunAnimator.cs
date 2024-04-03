@@ -1,10 +1,9 @@
 using System;
 using UnityEngine;
-using static Zenject.CheatSheet;
 
 namespace Prototype
 {
-    public class CharacterAnimatorV2 : MonoBehaviour
+    public class CharacterWithGunAnimator : MonoBehaviour
     {
         private static readonly int IsAimHash = Animator.StringToHash("IsAim");
         private static readonly int TurnHash = Animator.StringToHash("Turn");

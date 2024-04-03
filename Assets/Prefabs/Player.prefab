@@ -107,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d995b95fd5899a4ba2251b236130a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
 --- !u!54 &1743369628696795946
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -162,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  accelerationSpeed: 10
+  accelerationSpeed: 30
   canAim: 1
   CastMask:
     serializedVersion: 2

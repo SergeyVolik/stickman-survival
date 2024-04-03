@@ -1,4 +1,3 @@
-using Prototype;
 using UnityEngine;
 using Zenject;
 

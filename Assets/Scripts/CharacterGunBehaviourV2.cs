@@ -7,7 +7,7 @@ namespace Prototype
     {
         public Gun currentGun;
         private CustomCharacterController m_Controller;
-        private CharacterAnimatorV2 m_CharacterAnimator;
+        private CharacterWithGunAnimator m_CharacterAnimator;
         private float m_ShotT;
         public Transform rightHand;
         public event Action<Gun> onGunChanged = delegate { };
@@ -26,7 +26,7 @@ namespace Prototype
         private void Awake()
         {
             m_Controller = GetComponent<CustomCharacterController>();
-            m_CharacterAnimator = GetComponentInChildren<CharacterAnimatorV2>();
+            m_CharacterAnimator = GetComponentInChildren<CharacterWithGunAnimator>();
             GetComponent<HealthData>().onDeath += () => { enabled = false; };
 
             if (currentGun == null)
