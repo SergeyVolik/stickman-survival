@@ -1,5 +1,6 @@
 using DG.Tweening;
 using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 using Prototype;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class CharacterDeath : MonoBehaviour
     public MMF_Player deathFeedback;
     private HealthData m_hData;
     public float destroyDelay = 2f;
+    public float moveUndergroundOffset = -1;
+    public float moveDuration = 1;
 
     private void Awake()
     {
@@ -35,7 +38,13 @@ public class CharacterDeath : MonoBehaviour
 
         DOVirtual.DelayedCall(2f, () =>
         {
-            GameObject.Destroy(gameObject);
+            var y = transform.position.y;
+            mMRagdoller.ForceKinematic();
+
+            transform.DOMoveY(y + moveUndergroundOffset, duration: moveDuration).OnComplete(() =>
+            {              
+                GameObject.Destroy(gameObject);
+            });         
         });
     }
 }

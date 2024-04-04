@@ -15,7 +15,6 @@ namespace Prototype
         void Construct(IPlayerFactory playerSpawner)
         {
             m_playerSpawner = playerSpawner;
-
             m_playerSpawner.onPlayerSpawned += M_playerSpawner_onPlayerSpawned;
         }
 

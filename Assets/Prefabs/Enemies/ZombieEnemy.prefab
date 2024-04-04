@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 9161427240111243866}
   - component: {fileID: 1110967989422671854}
   - component: {fileID: 847806071761990317}
-  - component: {fileID: 6518017216827189075}
   - component: {fileID: 784188471755786615}
   m_Layer: 3
   m_Name: ZombieEnemy
@@ -190,23 +189,8 @@ MonoBehaviour:
   mMRagdoller: {fileID: 3068313921791511839}
   deathFeedback: {fileID: 4606089290254781710}
   destroyDelay: 2
---- !u!114 &6518017216827189075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282675239167010970}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c591e0a3f135349b7de6d083babfb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageInterval: 0.3
-  pushForce: 200
-  damage: 1
-  onlyPlayerAttack: 1
-  owner: {fileID: 1282675239167010970}
+  moveunterGroundOffset: -1
+  moveDuration: 1
 --- !u!114 &784188471755786615
 MonoBehaviour:
   m_ObjectHideFlags: 0

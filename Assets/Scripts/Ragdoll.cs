@@ -23,6 +23,13 @@ namespace Prototype
         [field: SerializeField]
         public Rigidbody RightArt { get; private set; }
 
+        public void ForceKinematic()
+        {
+            foreach (var item in RagdollBodies)
+            {
+                item.isKinematic = true;
+            }
+        }
 
         protected override void Initialization()
         {

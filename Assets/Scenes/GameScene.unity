@@ -1252,7 +1252,7 @@ MonoBehaviour:
   - {fileID: 809438581}
   - {fileID: 1394222206}
   - {fileID: 261682152}
-  spawnInterval: 1
+  spawnInterval: 2
   spawnT: 0
 --- !u!1 &588714766
 GameObject:
