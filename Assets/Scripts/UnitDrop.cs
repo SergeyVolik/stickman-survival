@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Prototype;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ public class UnitDrop : MonoBehaviour
     }
 
     [Inject]
-    void Construct(TransferMoveManager moveManager)
+    void Construct(TransferMoveManager moveManager, WorldSpaceMessageFactory factory)
     {
         m_TransManager = moveManager;
     }
@@ -35,7 +36,8 @@ public class UnitDrop : MonoBehaviour
 
     private bool TryAddResource(GameObject obj)
     {
-        const int maxItems = 10;
+        float moveDuration = 1f;
+        float moveDelay = 2f;
 
         if (obj.TryGetComponent<IResourceHolder>(out var data))
         {
@@ -44,27 +46,15 @@ public class UnitDrop : MonoBehaviour
 
             foreach (var item in resources.ResourceIterator())
             {
-                data.Resources.AddResource(item.Key, item.Value);
-
-                int transferVisual = Mathf.Clamp(item.Value, 0, maxItems);
-
                 float pushForce = 7f;
-                for (int i = 0; i < transferVisual; i++)
+
+                for (int i = 0; i < item.Value; i++)
                 {
-                    var resourceObjectInstance = GameObjectPool.GetPoolObject(item.Key.Resource3dItem);
-
-                    resourceObjectInstance.transform.position = spawnPos;
-
-                    resourceObjectInstance.SetActive(true);
-
-                    var rb = resourceObjectInstance.GetComponent<Rigidbody>();
                     var initialVelocity = Vector3.up * pushForce;
 
-                    m_TransManager.Transfer3dObject(rb, spawnPos, initialVelocity, data.CenterPoint, moveDuration: 0.5f,
-                        onComplete: () =>
-                        {
-                            rb.GetComponent<PoolObject>().Release();
-                        });
+                    m_TransManager.TransferResource(spawnPos, initialVelocity, item.Key,
+                        moveDuration: moveDuration, moveDelay: moveDelay
+                        );
                 }
             }
 

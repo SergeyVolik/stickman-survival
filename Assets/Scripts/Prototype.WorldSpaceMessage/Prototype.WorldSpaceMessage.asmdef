@@ -1,11 +1,10 @@
 {
-    "name": "Prototype.Resources.UI",
+    "name": "Prototype.WorldSpaceMessage",
     "rootNamespace": "",
     "references": [
-        "GUID:85c2e2ea9c2a80f4aab8f6000efa974f",
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:07a6c9326f3d9fa4aa97f420c9a74fa9",
-        "GUID:8087d854c1f812e4b9a74437dfc524e0"
+        "GUID:ecc0374e64f03fd429066629e3aea004",
+        "GUID:5cb9c4e229bf9984ebfd3cd20f1ea0b4"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

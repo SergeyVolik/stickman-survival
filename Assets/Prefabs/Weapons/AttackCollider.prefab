@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageInterval: 0.3
-  pushForce: 200
+  pushForce: 300
   damage: 2
   onlyPlayerAttack: 1
   owner: {fileID: 0}

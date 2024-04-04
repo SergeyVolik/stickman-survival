@@ -12,6 +12,10 @@ public class ZombieBehaviour : MonoBehaviour
     public CollisionDamageBehaviour attackCollider;
     private bool m_Attaking;
 
+    public float minSpeed;
+    public float maxSpeed;
+
+
     [Inject]
     void Construct(IPlayerFactory factory)
     {
@@ -34,6 +38,10 @@ public class ZombieBehaviour : MonoBehaviour
         m_Animator.onDisableCollider += M_Animator_onDisableCollider;
         m_Animator.onEnableCollider += M_Animator_onEnableCollider;
 
+        
+        m_CharacterController.speed = Random.Range(minSpeed, maxSpeed);
+
+        m_Animator.SetMoveSpeed(m_CharacterController.speed);
         attackCollider.Deactivate();
         m_MoveToTarget.enabled = true;
         m_MoveToTarget.SetTarget(m_PlayerTransform);

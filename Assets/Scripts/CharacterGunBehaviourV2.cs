@@ -11,6 +11,7 @@ namespace Prototype
         private float m_ShotT;
         public Transform rightHand;
         public event Action<Gun> onGunChanged = delegate { };
+
         public void SpawnGun(GameObject gunPrefab)
         {
             if (currentGun)
@@ -19,7 +20,6 @@ namespace Prototype
             }
             currentGun = GameObject.Instantiate(gunPrefab, rightHand).GetComponent<Gun>();
             currentGun.owner = gameObject;
-            enabled = true;
             onGunChanged.Invoke(currentGun);
         }
 
@@ -27,15 +27,47 @@ namespace Prototype
         {
             m_Controller = GetComponent<CustomCharacterController>();
             m_CharacterAnimator = GetComponentInChildren<CharacterWithGunAnimator>();
-            GetComponent<HealthData>().onDeath += () => { enabled = false; };
-
-            if (currentGun == null)
-                enabled = false; 
+            var health = GetComponent<HealthData>();
+            health.onDeath += () => { enabled = false; };
+            health.onHealthChanged += Health_onHealthChanged;
         }
 
+        float stunAfterDamageDur = 1f;
+        bool stunned = false;
+        float stunT;
+        private void Health_onHealthChanged(HealthChangeData obj)
+        {
+            if (obj.IsDamage)
+            {
+                stunned = true;
+                stunT = 0;
+            }
+        }
 
         private void Update()
         {
+            if (stunned)
+            {
+                stunT += Time.deltaTime;
+
+                if (stunT > stunAfterDamageDur)
+                {
+                    stunned = false;
+                }
+
+                return;
+            }
+
+            if (currentGun)
+            {
+                m_Controller.aimDistance = currentGun.aimDistance;
+            }
+            else
+            {
+                m_Controller.aimDistance = 0;
+                return;
+            }
+
             if (m_Controller.HasTarget)
             {
                 m_ShotT += Time.deltaTime;

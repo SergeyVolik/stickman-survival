@@ -20,10 +20,9 @@ namespace Prototype
 
         private void M_HealthData_onHealthChanged(HealthChangeData obj)
         {
-            var diff = obj.PrevValue - obj.CurrentValue;
-
-            if (diff != 0)
+            if (obj.IsDamage)
             {
+                var diff = obj.PrevValue - obj.CurrentValue;       
                 damageFeedback.PlayFeedbacks(damageFeedback.transform.position, diff);
             }
         }

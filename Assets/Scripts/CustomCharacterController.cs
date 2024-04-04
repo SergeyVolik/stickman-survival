@@ -19,6 +19,7 @@ namespace Prototype
         private Transform m_Transform;
         public float speed = 2;
         public float accelerationSpeed = 30;
+        public float decelerationSpeed = 30;
         public bool canAim;
         public bool IsAiming { get; private set; }
         public bool HasTarget { get; private set; }
@@ -30,6 +31,10 @@ namespace Prototype
         public float criticalDistanceChangeTarget;
         public float swithTargetInterval = 0.5f;
         private float m_LastSwithTarget;
+
+        [SerializeField]
+        public Transform m_AimRangeCircle;
+
         public Vector2 MoveInput { get => m_MoveInput; set => m_MoveInput = value; }
         RaycastHit[] results;
 
@@ -44,113 +49,132 @@ namespace Prototype
 
         float noTargetT = 100;
         float resetAimStateIfNoTarget = 1f;
+        private bool m_MovementBlocked;
 
         private void Update()
-        {
-            float deltaTime = Time.deltaTime;
-
-            var normalized = MoveInput.normalized;
-            var moveVec = normalized;
-            var moveVec3 = new Vector3(moveVec.x, 0, moveVec.y);
-
-            noTargetT += deltaTime;
-            m_LastSwithTarget += deltaTime;
-
-            var currentPos = m_Transform.position;
-
-            Quaternion currentRotation = m_Transform.rotation;
-            Quaternion newROtation = currentRotation;
-
-            float rotaValue = Mathf.Clamp01(deltaTime * rotationSpeed);
-
-            if (IsAiming == false && MoveInput != Vector2.zero)
+        {         
+            if (!m_MovementBlocked)
             {
-                newROtation = Quaternion.Slerp(currentRotation, Quaternion.LookRotation(moveVec3), rotaValue);
-            }
-          
-            if (canAim)
-            {
-                //update target
+
+                float deltaTime = Time.deltaTime;
+
+                var normalized = MoveInput.normalized;
+
+                var moveVec3 = new Vector3(normalized.x, 0, normalized.y);
+
+                noTargetT += deltaTime;
+                m_LastSwithTarget += deltaTime;
+
+                var currentPos = m_Transform.position;
+
+                Quaternion currentRotation = m_Transform.rotation;
+                Quaternion newROtation = currentRotation;
+
+                float rotaValue = Mathf.Clamp01(deltaTime * rotationSpeed);
+
+                if (IsAiming == false && MoveInput != Vector2.zero)
                 {
-                    if (m_LastTargetUnit)
+                    newROtation = Quaternion.Slerp(currentRotation, Quaternion.LookRotation(moveVec3), rotaValue);
+                }
+
+                if (m_AimRangeCircle)
+                {
+                    m_AimRangeCircle.gameObject.SetActive(canAim);
+                    m_AimRangeCircle.localScale = Vector3.one * 2 * aimDistance;
+                }
+
+                if (canAim)
+                {
+                    //update target
                     {
-                        var dist = Vector3.Distance(m_LastTargetUnit.transform.position, currentPos);
-
-                        if (m_LastTargetUnit.IsDead)
+                        if (m_LastTargetUnit)
                         {
-                            m_LastTargetUnit = null;
+                            var dist = Vector3.Distance(m_LastTargetUnit.transform.position, currentPos);
+
+                            if (m_LastTargetUnit.IsDead)
+                            {
+                                m_LastTargetUnit = null;
+                            }
+                            else if (dist > aimDistance)
+                            {
+                                m_LastTargetUnit = null;
+                            }
+
+                            var data = GetTargetWithClosestDistance();
+
+                            Rigidbody newClosestUnit = null;
+                            if (data.closestDistance < criticalDistanceChangeTarget)
+                            {
+                                newClosestUnit = data.body;
+
+
+                            }
+
+                            if (newClosestUnit != null && m_LastSwithTarget > swithTargetInterval)
+                            {
+                                m_LastSwithTarget = 0;
+                                m_LastTargetUnit = newClosestUnit.transform.GetComponent<HealthData>();
+                            }
+
+                            HasTarget = m_LastTargetUnit != null;
                         }
-                        else if (dist > aimDistance)
+
+                        //change target
+                        if (!HasTarget)
                         {
-                            m_LastTargetUnit = null;
+                            var data = GetTargetWithClosestDistance();
+
+                            HasTarget = data.body;
+
+                            if (HasTarget)
+                            {
+                                noTargetT = 0;
+
+                                m_LastTargetUnit = data.body.transform.GetComponent<HealthData>();
+                            }
                         }
-
-                        var data = GetTargetWithClosestDistance();
-
-                        Rigidbody newClosestUnit = null;
-                        if (data.closestDistance < criticalDistanceChangeTarget)
-                        {
-                            newClosestUnit = data.body;
-
-                           
-                        }
-
-                        if (newClosestUnit != null && m_LastSwithTarget > swithTargetInterval)
-                        {
-                            m_LastSwithTarget = 0;
-                            m_LastTargetUnit = newClosestUnit.transform.GetComponent<HealthData>();
-                        }
-
-                        HasTarget = m_LastTargetUnit != null;
                     }
 
-                    //change target
-                    if (!HasTarget)
-                    {                       
-                        var data = GetTargetWithClosestDistance();
+                    //update aim data
+                    if (HasTarget)
+                    {
+                        var point = m_LastTargetUnit.transform.position;
 
-                        HasTarget = data.body;
+                        point.y = currentPos.y;
+                        var vector = point - currentPos;
 
-                        if (HasTarget)
-                        {
-                            noTargetT = 0;
-                           
-                            m_LastTargetUnit = data.body.transform.GetComponent<HealthData>();
-                        }
+                        AimVector = new Vector2(vector.x, vector.z);
+                        newROtation = Quaternion.Slerp(currentRotation, Quaternion.LookRotation(vector), rotaValue);
                     }
                 }
 
-                //update aim data
-                if (HasTarget)
+                IsAiming = HasTarget || noTargetT < resetAimStateIfNoTarget;
+
+                var currentVel = m_Rb.velocity;
+                currentVel.y = 0;
+               
+                m_Rb.velocity += moveVec3 * accelerationSpeed * deltaTime;
+
+                var vecl = m_Rb.velocity;
+
+                if (moveVec3 == Vector3.zero)
                 {
-                    var point = m_LastTargetUnit.transform.position;
+                    var deccVec = new Vector3(vecl.x, 0, vecl.z).normalized * decelerationSpeed * deltaTime;
 
-                    point.y = currentPos.y;
-                    var vector = point - currentPos;
-
-                    AimVector = new Vector2(vector.x, vector.z);
-                    newROtation = Quaternion.Slerp(currentRotation, Quaternion.LookRotation(vector), rotaValue);
+                    var newVel = vecl - deccVec;
+                    if (deccVec.magnitude > vecl.magnitude)
+                    {
+                        newVel = Vector3.zero;
+                    }
+                    
+                    m_Rb.velocity = newVel;
                 }
+
+                m_Transform.rotation = newROtation;
             }
 
-            IsAiming = HasTarget || noTargetT < resetAimStateIfNoTarget;
-
-            var currentVel = m_Rb.velocity;
-            currentVel.y = 0;
-
-            m_Rb.AddForce(moveVec3 * accelerationSpeed, mode: ForceMode.Acceleration);
             m_Rb.velocity = Vector3.ClampMagnitude(m_Rb.velocity, speed);
 
-            //if (Vector3.Dot(currentVel.normalized, moveVec3) < -0.8f)
-            //{
-            //    m_Rb.velocity = Vector3.ClampMagnitude(m_Rb.velocity, speed * 10);
-            //}
-            //else
-            {
-             
-            }
-
-            m_Transform.rotation = newROtation;
         }
 
         private (Rigidbody body, float closestDistance) GetTargetWithClosestDistance()
@@ -178,13 +202,13 @@ namespace Prototype
 
         internal void BlockMovement()
         {
-           enabled = false;
+            m_MovementBlocked = true;
            m_Rb.velocity = new Vector3();
         }
 
         internal void UnblockMovement()
         {
-            enabled = true;
+            m_MovementBlocked = false;
         }
     }
 }

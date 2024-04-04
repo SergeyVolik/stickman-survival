@@ -26,7 +26,7 @@ namespace Prototype
         [SerializeField]
         private Transform projectileSpawnPoint;
         public float shotInterval;
-
+        public float aimDistance = 3;
         public GameObject owner;
 
         public GameObject Owner => owner;

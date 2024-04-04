@@ -40,6 +40,16 @@ namespace Prototype
         }
     }
 
+    public class PlayerResourceUI 
+    {
+        public ResourceView UI;
+
+        public PlayerResourceUI(ResourceView ui)
+        {
+            UI = ui;
+        }
+    }
+
     public class GameInit : MonoInstaller
     {
         public GameObject PlayerPrefab;
@@ -49,21 +59,23 @@ namespace Prototype
         public GameObject zombiePrefab;
 
         public PlayerResources m_PlayerResources;
+
         public ResourceView m_PlayerResourcesView;
+        public WorldSpaceMessage m_WSMPrefab;
+        public TransferMoveManager m_Transfer;
 
         public override void InstallBindings()
         {
             var spawnFactory = new EnemySpawnFactory(zombiePrefab, Container);
             var input = new PlayerInputReader(Joystick);
             m_playerSpawnFactory = new PlayerSpawnFactory(PlayerPrefab, Container);
+            var wsm = new WorldSpaceMessageFactory(m_WSMPrefab);
 
             m_PlayerResourcesView.Bind(m_PlayerResources.resources);
 
-            var go = new GameObject();
-
-            var transfer = go.AddComponent<TransferMoveManager>();
-
-            Container.Bind<TransferMoveManager>().FromInstance(transfer);
+            Container.Bind<PlayerResourceUI>().FromInstance(new PlayerResourceUI(m_PlayerResourcesView));
+            Container.Bind<WorldSpaceMessageFactory>().FromInstance(wsm);
+            Container.Bind<TransferMoveManager>().FromInstance(m_Transfer);
             Container.Bind<IPlayerFactory>().FromInstance(m_playerSpawnFactory);
             Container.Bind<PlayerInputReader>().FromInstance(input);
             Container.Bind<PlayerResources>().FromInstance(m_PlayerResources);

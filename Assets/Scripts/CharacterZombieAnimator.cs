@@ -11,7 +11,18 @@ namespace Prototype
         private static readonly int AttackHash = Animator.StringToHash("Attack");
 
         private Animator m_Animator;
-        private CustomCharacterController m_CharacterInput;   
+
+        private Animator Animator
+        {
+            get
+            {
+                if (!m_Animator)
+                    m_Animator = GetComponent<Animator>();
+                return m_Animator;
+            }
+        }
+
+        private CustomCharacterController m_CharacterInput;
 
         private void Awake()
         {
@@ -28,7 +39,7 @@ namespace Prototype
                         m_Animator.SetTrigger(DamageHash);
                     }
                 };
-            }    
+            }
         }
 
         public event Action onAttackStarted = delegate { };
@@ -38,7 +49,7 @@ namespace Prototype
 
         public void Move(Vector2 vector)
         {
-            m_Animator.SetBool(MoveHash, vector != Vector2.zero);
+            Animator.SetBool(MoveHash, vector != Vector2.zero);
         }
 
         private void Update()
@@ -51,7 +62,7 @@ namespace Prototype
 
         public void Attack()
         {
-            m_Animator.SetTrigger(AttackHash);
+            Animator.SetTrigger(AttackHash);
         }
 
         public void AttackStarted()
@@ -72,6 +83,11 @@ namespace Prototype
         public void DisableCollider()
         {
             onDisableCollider.Invoke();
+        }
+
+        internal void SetMoveSpeed(float speed)
+        {
+            Animator.SetFloat("MoveSpeed", speed);
         }
     }
 }

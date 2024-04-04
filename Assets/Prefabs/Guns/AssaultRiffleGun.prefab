@@ -487,11 +487,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   damage: 4
-  pushForce: 100
+  pushForce: 400
   killPushForce: 3000
   feedback: {fileID: 3619861078487105805}
   projectileSpawnPoint: {fileID: 1195880227664757068}
   shotInterval: 0.2
+  aimDistance: 4
   owner: {fileID: 0}
 --- !u!1001 &1441080443240695578
 PrefabInstance:

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,11 +11,13 @@ namespace Prototype
         public Image spriteImage;
         private Tweener m_Tween;
 
+        public MMF_Player feedback;
+
         public void DoAnimation()
         {
-            m_Tween?.Kill();
-            transform.localScale = Vector3.one;
-            m_Tween = transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f);
+            feedback?.PlayFeedbacks();
+            //transform.localScale = Vector3.one;
+            //m_Tween = transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0.1f), 0.3f);
         }
 
         public void SetText(string value)

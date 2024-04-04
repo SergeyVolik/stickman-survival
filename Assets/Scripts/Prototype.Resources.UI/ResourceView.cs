@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -41,7 +42,7 @@ namespace Prototype
             }
         }
 
-        private void SetupUIItem(ResourceTypeSO type, int count)
+        private RectTransform SetupUIItem(ResourceTypeSO type, int count)
         {
             var uiItem = GameObject
                 .Instantiate(m_ResourceUIItemPrefab, transform)
@@ -51,6 +52,18 @@ namespace Prototype
 
             uiItem.SetSprite(type.resourceIcon, type.resourceColor);
             uiItems.Add(type, uiItem);
+
+            return uiItem.GetComponent<RectTransform>();
+        }
+
+        public ResourceUIItem GetResourceItemsByType(ResourceTypeSO resourceType)
+        {
+            if (!uiItems.TryGetValue(resourceType, out var value))
+            {
+                SetupUIItem(resourceType, 0);
+            }
+
+            return value;
         }
     }
 }

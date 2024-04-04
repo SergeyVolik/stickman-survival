@@ -71,8 +71,8 @@ namespace Prototype
 
                 var vector = m_ControllerTrans.InverseTransformDirection(new Vector3(m_CharacterInput.MoveInput.x, 0, m_CharacterInput.MoveInput.y)).normalized;
 
-                var forwardAmount = vector.z;
-                var turnAmount = vector.x;
+                var forwardAmount = vector.z * 10;
+                var turnAmount = vector.x * 10;
 
                 m_Animator.SetFloat(TurnHash, turnAmount, 0.1f, delta);
                 m_Animator.SetFloat(ForwardHash, forwardAmount, 0.1f, delta);

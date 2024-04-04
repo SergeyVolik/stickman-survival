@@ -4,56 +4,54 @@ using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using Zenject;
 
 namespace Prototype
 {
     public class TransferMoveManager : MonoBehaviour
     {
-        private class TransferItem
-        {
-            public float moveDelay;
-            public float scaleDelay;
-            public float scaleDuration;
-            public float moveTime;
-            public float scaleTime;
-
-            public float moveDuration;
-            public Transform moveableObject;
-            public Transform targetPoint;
-            public Action onCompletedCallback;
-            public EaseFunction easeFunction;
-            public Vector3 startPos;
-        }
-
-        private List<TransferItem> m_TransferItems;
-        private List<TransferItem> m_ToRemove;
+        public bool useCustomCurve;
+        public AnimationCurve customCurve;
+        private Camera m_Camera;
+        private PlayerResourceUI m_resourceUi;
+        private PlayerResources m_playerResources;
         const int INIT_CAP = 100;
 
         private void Awake()
         {
-            m_TransferItems = new List<TransferItem>(INIT_CAP);
-            m_ToRemove = new List<TransferItem>();
+            m_Camera = Camera.main;
         }
 
-        public void Transfer3dObject(
-           Rigidbody rb,
+        [Inject]
+        void Construct(PlayerResourceUI resourceUi, PlayerResources playerResources)
+        {
+            m_resourceUi = resourceUi;
+            m_playerResources = playerResources;
+        }
+
+        float CustomEaseFunction(float time, float duration, float overshootOrAmplitude, float period)
+        {
+            return customCurve.Evaluate(time / duration);
+        }
+
+        public void TransferResource(
            Vector3 startPosition,
            Vector3 initialVelocity,
-           Transform targetPoint,
-           float maxItemInnerRotAngle = 10,
+           ResourceTypeSO resourceType,
            float maxVectorAngleOffset = 10,
            float moveDelay = 1f,
-           float moveDuration = 1f,
-           Ease easeFunctionType = Ease.OutSine,
-           Action onComplete = null
+           float moveDuration = 1f
            )
         {
-            rb.transform.position = startPosition;
+            var resourceObjectInstance = GameObject.Instantiate(resourceType.Resource3dItem);
 
-            rb.angularVelocity = new Vector3(
-                UnityEngine.Random.Range(-maxItemInnerRotAngle, maxItemInnerRotAngle),
-                UnityEngine.Random.Range(-maxItemInnerRotAngle, maxItemInnerRotAngle),
-                UnityEngine.Random.Range(-maxItemInnerRotAngle, maxItemInnerRotAngle));
+            resourceObjectInstance.transform.position = startPosition;
+
+            resourceObjectInstance.SetActive(true);
+
+            var rb = resourceObjectInstance.GetComponent<Rigidbody>();
+
+            rb.transform.position = startPosition;
 
             //rotate RigidBody vector by angles
             var angle1 = quaternion.AxisAngle(math.forward(), UnityEngine.Random.Range(math.radians(-maxVectorAngleOffset), math.radians(maxVectorAngleOffset)));
@@ -62,66 +60,36 @@ namespace Prototype
 
             rb.velocity = velocityWithOffset;
 
-            float scaleDration = moveDuration / 2f;
-
-            var item = new TransferItem()
+            DOVirtual.DelayedCall(moveDelay, () =>
             {
-                moveableObject = rb.transform,
-                moveDelay = moveDelay,
-                scaleDelay = moveDelay + scaleDration,
-                scaleDuration = scaleDration,
-                moveDuration = moveDuration,
-                onCompletedCallback = onComplete,
-                targetPoint = targetPoint,
-                easeFunction = EaseManager.ToEaseFunction(easeFunctionType)
-            };
+                var uiTarget = m_resourceUi.UI.GetResourceItemsByType(resourceType);
+                var uiItem = GameObject.Instantiate(resourceType.Resource2dItem, m_resourceUi.UI.transform.parent);
 
-            m_TransferItems.Add(item);
+                SetScreenPositionFromWorldPosition(uiItem.GetComponent<RectTransform>(), rb.transform.position, m_Camera);
+                GameObject.Destroy(rb.gameObject);
+
+                var targetPos = uiTarget.spriteImage.transform.position;
+
+                var seq = DOTween.Sequence();
+                var duration = moveDuration * UnityEngine.Random.Range(0.8f, 1f);
+                seq.Insert(0, uiItem.transform.DOMoveX(targetPos.x, duration).SetEase(Ease.InCubic));
+                seq.Insert(0, uiItem.transform.DOMoveY(targetPos.y, duration).SetEase(Ease.Linear));
+
+                seq.OnComplete(() =>
+                {
+                    m_playerResources.resources.AddResource(resourceType, 1);
+
+                    GameObject.Destroy(uiItem);
+                });               
+            });
         }
 
-        private void Update()
+        void SetScreenPositionFromWorldPosition(RectTransform item, Vector3 worldPos, Camera camera)
         {
-            var deltaTIme = Time.deltaTime;
-
-            for (int i = 0; i < m_TransferItems.Count; i++)
-            {
-                var item = m_TransferItems[i];
-
-                item.moveDelay -= deltaTIme;
-                item.scaleDelay -= deltaTIme;
-
-                if (item.scaleDelay <= 0)
-                {
-                    item.scaleTime += deltaTIme;
-
-                }
-                if (item.moveDelay <= 0)
-                {
-                    item.moveTime += deltaTIme;
-                }
-                else
-                {
-                    item.startPos = item.moveableObject.position;
-                }
-
-                if (item.moveTime > item.moveDuration)
-                {
-                    m_ToRemove.Add(item);
-                }
-
-                var moveT = item.easeFunction(item.moveTime, item.moveDuration, 0, 0);
-                var scaleT = item.easeFunction(item.scaleTime, item.scaleDuration, 0, 0);
-                item.moveableObject.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, scaleT);
-                item.moveableObject.position = Vector3.Lerp(item.startPos, item.targetPoint.position, moveT);
-            }
-
-            foreach (var item in m_ToRemove)
-            {
-                item.onCompletedCallback?.Invoke();
-                m_TransferItems.Remove(item);
-            }
-
-            m_ToRemove.Clear();
+            var pos = worldPos;
+            var speenPos = camera.WorldToScreenPoint(pos);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)item.parent, speenPos, null, out var anchorPos);
+            item.anchoredPosition = anchorPos;
         }
     }
 }
