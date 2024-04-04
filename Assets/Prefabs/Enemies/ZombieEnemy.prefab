@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1110967989422671854}
   - component: {fileID: 847806071761990317}
   - component: {fileID: 784188471755786615}
+  - component: {fileID: 8779009633079900590}
   m_Layer: 3
   m_Name: ZombieEnemy
   m_TagString: Untagged
@@ -160,6 +161,7 @@ MonoBehaviour:
   aimDistance: 5
   rotationSpeed: 30
   criticalDistanceChangeTarget: 0
+  swithTargetInterval: 0.5
 --- !u!114 &1110967989422671854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +191,7 @@ MonoBehaviour:
   mMRagdoller: {fileID: 3068313921791511839}
   deathFeedback: {fileID: 4606089290254781710}
   destroyDelay: 2
-  moveunterGroundOffset: -1
+  moveUndergroundOffset: -1
   moveDuration: 1
 --- !u!114 &784188471755786615
 MonoBehaviour:
@@ -204,6 +206,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 6881351121733533180}
+--- !u!114 &8779009633079900590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282675239167010970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6db9695a58b03444a7b8f8c1a255e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+    m_InitResources:
+    - count: 5
+      resourceType: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a, type: 2}
 --- !u!1 &8626219136745507449
 GameObject:
   m_ObjectHideFlags: 0

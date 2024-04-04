@@ -10,7 +10,12 @@ namespace Prototype
         Handgun = 1,
         AssaultRifle = 2,
     }
-    public class Gun : MonoBehaviour
+
+    public interface IOwnable
+    {
+        public GameObject Owner { get; }
+    }
+    public class Gun : MonoBehaviour, IOwnable
     {
         public GunType type = GunType.Handgun;
         public int damage;
@@ -23,6 +28,9 @@ namespace Prototype
         public float shotInterval;
 
         public GameObject owner;
+
+        public GameObject Owner => owner;
+
         public void Shot()
         {
             feedback?.PlayFeedbacks();

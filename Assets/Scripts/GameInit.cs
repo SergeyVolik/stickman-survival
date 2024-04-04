@@ -48,14 +48,25 @@ namespace Prototype
 
         public GameObject zombiePrefab;
 
+        public PlayerResources m_PlayerResources;
+        public ResourceView m_PlayerResourcesView;
+
         public override void InstallBindings()
         {
             var spawnFactory = new EnemySpawnFactory(zombiePrefab, Container);
             var input = new PlayerInputReader(Joystick);
             m_playerSpawnFactory = new PlayerSpawnFactory(PlayerPrefab, Container);
 
+            m_PlayerResourcesView.Bind(m_PlayerResources.resources);
+
+            var go = new GameObject();
+
+            var transfer = go.AddComponent<TransferMoveManager>();
+
+            Container.Bind<TransferMoveManager>().FromInstance(transfer);
             Container.Bind<IPlayerFactory>().FromInstance(m_playerSpawnFactory);
             Container.Bind<PlayerInputReader>().FromInstance(input);
+            Container.Bind<PlayerResources>().FromInstance(m_PlayerResources);
             Container.Bind<EnemySpawnFactory>().FromInstance(spawnFactory);
         }
 

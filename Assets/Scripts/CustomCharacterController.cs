@@ -28,7 +28,8 @@ namespace Prototype
         public float aimDistance = 5f;
         public float rotationSpeed;
         public float criticalDistanceChangeTarget;
-
+        public float swithTargetInterval = 0.5f;
+        private float m_LastSwithTarget;
         public Vector2 MoveInput { get => m_MoveInput; set => m_MoveInput = value; }
         RaycastHit[] results;
 
@@ -53,6 +54,7 @@ namespace Prototype
             var moveVec3 = new Vector3(moveVec.x, 0, moveVec.y);
 
             noTargetT += deltaTime;
+            m_LastSwithTarget += deltaTime;
 
             var currentPos = m_Transform.position;
 
@@ -85,9 +87,18 @@ namespace Prototype
 
                         var data = GetTargetWithClosestDistance();
 
+                        Rigidbody newClosestUnit = null;
                         if (data.closestDistance < criticalDistanceChangeTarget)
                         {
-                            m_LastTargetUnit = data.body.transform.GetComponent<HealthData>();
+                            newClosestUnit = data.body;
+
+                           
+                        }
+
+                        if (newClosestUnit != null && m_LastSwithTarget > swithTargetInterval)
+                        {
+                            m_LastSwithTarget = 0;
+                            m_LastTargetUnit = newClosestUnit.transform.GetComponent<HealthData>();
                         }
 
                         HasTarget = m_LastTargetUnit != null;
@@ -128,6 +139,7 @@ namespace Prototype
             currentVel.y = 0;
 
             m_Rb.AddForce(moveVec3 * accelerationSpeed, mode: ForceMode.Acceleration);
+            m_Rb.velocity = Vector3.ClampMagnitude(m_Rb.velocity, speed);
 
             //if (Vector3.Dot(currentVel.normalized, moveVec3) < -0.8f)
             //{
@@ -135,7 +147,7 @@ namespace Prototype
             //}
             //else
             {
-                m_Rb.velocity = Vector3.ClampMagnitude(m_Rb.velocity, speed);
+             
             }
 
             m_Transform.rotation = newROtation;

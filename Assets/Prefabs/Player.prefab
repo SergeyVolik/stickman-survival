@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7127974738194730635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3418069556332390052}
+  m_Layer: 6
+  m_Name: Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3418069556332390052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127974738194730635}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.891, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6018111070822822493}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8149694439717538947
 GameObject:
   m_ObjectHideFlags: 0
@@ -19,6 +50,7 @@ GameObject:
   - component: {fileID: 8937531286367253963}
   - component: {fileID: 996443456448605036}
   - component: {fileID: 817382752408674446}
+  - component: {fileID: 1899397896299036655}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -43,6 +75,7 @@ Transform:
   - {fileID: 8920443194675818232}
   - {fileID: 1920417980804554891}
   - {fileID: 856347733397848991}
+  - {fileID: 3418069556332390052}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &6423992201626406647
@@ -161,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  accelerationSpeed: 30
+  accelerationSpeed: 20
   canAim: 1
   CastMask:
     serializedVersion: 2
@@ -170,6 +203,7 @@ MonoBehaviour:
   aimDistance: 5
   rotationSpeed: 30
   criticalDistanceChangeTarget: 2
+  swithTargetInterval: 1
 --- !u!114 &8937531286367253963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +219,8 @@ MonoBehaviour:
   mMRagdoller: {fileID: 2686177631093199672}
   deathFeedback: {fileID: 2356897587566006869}
   destroyDelay: 2
+  moveUndergroundOffset: -1
+  moveDuration: 1
 --- !u!114 &996443456448605036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +247,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab6370d0e8f14b4faca162777bf9600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1899397896299036655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8149694439717538947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ba432cdd695b74e8c666ded3732e14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CenterPoint>k__BackingField: {fileID: 3418069556332390052}
 --- !u!1001 &684678536583939239
 PrefabInstance:
   m_ObjectHideFlags: 0
