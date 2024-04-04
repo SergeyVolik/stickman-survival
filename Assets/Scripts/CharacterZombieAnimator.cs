@@ -1,3 +1,4 @@
+using Pathfinding;
 using System;
 using UnityEngine;
 
@@ -22,12 +23,12 @@ namespace Prototype
             }
         }
 
-        private CustomCharacterController m_CharacterInput;
+        private IAstarAI m_Path;
 
         private void Awake()
         {
             m_Animator = GetComponent<Animator>();
-            m_CharacterInput = GetComponentInParent<CustomCharacterController>();
+            m_Path = GetComponentInParent<IAstarAI>();
             var Health = GetComponentInParent<HealthData>();
 
             if (Health)
@@ -47,17 +48,9 @@ namespace Prototype
         public event Action onEnableCollider = delegate { };
         public event Action onDisableCollider = delegate { };
 
-        public void Move(Vector2 vector)
-        {
-            Animator.SetBool(MoveHash, vector != Vector2.zero);
-        }
-
         private void Update()
         {
-            var delta = Time.deltaTime;
-            Vector2 moveVec2d = m_CharacterInput.MoveInput;
-
-            Move(moveVec2d);
+            Animator.SetBool(MoveHash, !m_Path.reachedEndOfPath);
         }
 
         public void Attack()

@@ -26,7 +26,13 @@ public class CharacterDeath : MonoBehaviour
 
         GetComponent<Collider>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
-        GetComponent<CustomCharacterController>().enabled = false;
+
+        var controller = GetComponent<CustomCharacterController>();
+
+        if (controller)
+        {
+            controller.enabled = false;
+        }
 
         if (m_hData.KilledBy.TryGetComponent<Gun>(out var gun))
         {

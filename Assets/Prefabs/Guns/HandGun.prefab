@@ -317,11 +317,12 @@ MonoBehaviour:
         PlayMethod: 0
         PoolSize: 10
         StopSoundOnFeedbackStop: 1
-        MinVolume: 1
-        MaxVolume: 1
+        MinVolume: 0.5
+        MaxVolume: 0.5
         MinPitch: 0.9
         MaxPitch: 1.1
-        SfxAudioMixerGroup: {fileID: 0}
+        SfxAudioMixerGroup: {fileID: -3165942800488051908, guid: 7e984f512e89b60468e829489e8883e3,
+          type: 2}
         Priority: 128
         PanStereo: 0
         SpatialBlend: 0
@@ -488,7 +489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   damage: 5
-  pushForce: 700
+  pushForce: 400
   killPushForce: 3000
   feedback: {fileID: 3619861078487105805}
   projectileSpawnPoint: {fileID: 1195880227664757068}

@@ -10,12 +10,9 @@ namespace Prototype
 {
     public class TransferMoveManager : MonoBehaviour
     {
-        public bool useCustomCurve;
-        public AnimationCurve customCurve;
         private Camera m_Camera;
         private PlayerResourceUI m_resourceUi;
         private PlayerResources m_playerResources;
-        const int INIT_CAP = 100;
 
         private void Awake()
         {
@@ -29,10 +26,6 @@ namespace Prototype
             m_playerResources = playerResources;
         }
 
-        float CustomEaseFunction(float time, float duration, float overshootOrAmplitude, float period)
-        {
-            return customCurve.Evaluate(time / duration);
-        }
 
         public void TransferResource(
            Vector3 startPosition,

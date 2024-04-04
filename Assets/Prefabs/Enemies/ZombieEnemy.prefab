@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 8848157737999130337}
   - component: {fileID: 4912012780831121792}
   - component: {fileID: 3700107891662163166}
-  - component: {fileID: 1661090882350911814}
   - component: {fileID: 4698299136715669317}
   - component: {fileID: 2288049910505487483}
-  - component: {fileID: 9161427240111243866}
   - component: {fileID: 1110967989422671854}
   - component: {fileID: 847806071761990317}
   - component: {fileID: 784188471755786615}
   - component: {fileID: 8779009633079900590}
+  - component: {fileID: 9132971593662365141}
+  - component: {fileID: 4660621404845496486}
   m_Layer: 3
   m_Name: ZombieEnemy
   m_TagString: Untagged
@@ -96,22 +96,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1661090882350911814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282675239167010970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90290fbd0d456174387244827ed5afaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceToEnd: 1.2
-  target: {fileID: 0}
-  targetReached: 0
-  currentDistance: 0
 --- !u!114 &4698299136715669317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,31 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageFeedback: {fileID: 3423206210379428018}
---- !u!114 &9161427240111243866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282675239167010970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9763b6558c0abbb4fbfbe02e7c32425c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  accelerationSpeed: 20
-  decelerationSpeed: 1
-  canAim: 0
-  CastMask:
-    serializedVersion: 2
-    m_Bits: 0
-  AimVector: {x: 0, y: 0}
-  aimDistance: 5
-  rotationSpeed: 30
-  criticalDistanceChangeTarget: 0
-  swithTargetInterval: 0.5
-  m_AimRangeCircle: {fileID: 0}
 --- !u!114 &1110967989422671854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +185,76 @@ MonoBehaviour:
     m_InitResources:
     - count: 5
       resourceType: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a, type: 2}
+--- !u!114 &9132971593662365141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282675239167010970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &4660621404845496486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282675239167010970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
+  radius: 0.5
+  height: 2
+  canMove: 1
+  maxSpeed: 1
+  gravity: {x: NaN, y: NaN, z: NaN}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  centerOffsetCompatibility: NaN
+  repathRateCompatibility: NaN
+  canSearchCompability: 0
+  orientation: 0
+  enableRotation: 1
+  autoRepath:
+    mode: 2
+    period: 0.5
+    sensitivity: 10
+    maximumPeriod: 2
+    visualizeSensitivity: 0
+  targetCompatibility: {fileID: 0}
+  maxAcceleration: -2.5
+  rotationSpeed: 360
+  slowdownDistance: 0.6
+  pickNextWaypointDist: 2
+  endReachedDistance: 0.83
+  alwaysDrawGizmos: 0
+  slowWhenNotFacingTarget: 1
+  whenCloseToDestination: 0
+  constrainInsideGraph: 0
 --- !u!1 &8626219136745507449
 GameObject:
   m_ObjectHideFlags: 0
