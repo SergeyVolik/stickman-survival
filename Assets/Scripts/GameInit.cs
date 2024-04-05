@@ -59,11 +59,11 @@ namespace Prototype
         public GameObject zombiePrefab;
 
         public PlayerResources m_PlayerResources;
-
+        public Transform playerSpawnPoint;
         public ResourceView m_PlayerResourcesView;
         public WorldSpaceMessage m_WSMPrefab;
         public TransferMoveManager m_Transfer;
-
+        public CameraController CameraController;
         public override void InstallBindings()
         {
             var spawnFactory = new EnemySpawnFactory(zombiePrefab, Container);
@@ -73,6 +73,7 @@ namespace Prototype
 
             m_PlayerResourcesView.Bind(m_PlayerResources.resources);
 
+            Container.Bind<CameraController>().FromInstance(CameraController);
             Container.Bind<PlayerResourceUI>().FromInstance(new PlayerResourceUI(m_PlayerResourcesView));
             Container.Bind<WorldSpaceMessageFactory>().FromInstance(wsm);
             Container.Bind<TransferMoveManager>().FromInstance(m_Transfer);
@@ -84,7 +85,7 @@ namespace Prototype
 
         private void Awake()
         {
-            m_playerSpawnFactory.SpawnAtPosition(new Vector3());
+            m_playerSpawnFactory.SpawnAtPosition(playerSpawnPoint.position);
         }
     }
 }

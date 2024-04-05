@@ -1,18 +1,19 @@
 using Prototype;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectableGun : MonoBehaviour, ICollectable
+namespace Prototype
 {
-    public GameObject GunPrefab;
-
-    public void Collect(GameObject collecteBy)
+    public class CollectableGun : MonoBehaviour, ICollectable
     {
-        if (collecteBy.TryGetComponent<CharacterGunBehaviourV2>(out var behaviour))
+        public GameObject GunPrefab;
+
+        public void Collect(GameObject collecteBy)
         {
-            behaviour.SpawnGun(GunPrefab);
-            GameObject.Destroy(gameObject);
+            if (collecteBy.TryGetComponent<CharacterInventory>(out var behaviour))
+            {
+                behaviour.SetupWeapon(GunPrefab);
+                GameObject.Destroy(gameObject);
+            }
         }
     }
 }

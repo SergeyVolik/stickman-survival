@@ -35,11 +35,12 @@ namespace Prototype
                     }
                 };
             }
-                var gunBehaviour = GetComponentInParent<CharacterGunBehaviourV2>();
+
+            var gunBehaviour = GetComponentInParent<CharacterInventory>();
 
             if (gunBehaviour)
             {
-                gunBehaviour.onGunChanged += (gun) =>
+                gunBehaviour.onMainWeaponChanged += (gun) =>
                 {
                     if (gun == null)
                     {

@@ -5,36 +5,35 @@ namespace Prototype
 {
     public class CharacterGunBehaviourV2 : MonoBehaviour
     {
-        public Gun currentGun;
+        private CharacterInventory m_Inventory;
         private CustomCharacterController m_Controller;
         private CharacterWithGunAnimator m_CharacterAnimator;
         private float m_ShotT;
         public Transform rightHand;
-        public event Action<Gun> onGunChanged = delegate { };
-
-        public void SpawnGun(GameObject gunPrefab)
-        {
-            if (currentGun)
-            {
-                GameObject.Destroy(currentGun.gameObject);
-            }
-            currentGun = GameObject.Instantiate(gunPrefab, rightHand).GetComponent<Gun>();
-            currentGun.owner = gameObject;
-            onGunChanged.Invoke(currentGun);
-        }
 
         private void Awake()
         {
+            m_Inventory = GetComponent<CharacterInventory>();
+
+            m_Inventory.onMainWeaponChanged += M_Inventory_onGunChanged;
+
             m_Controller = GetComponent<CustomCharacterController>();
             m_CharacterAnimator = GetComponentInChildren<CharacterWithGunAnimator>();
             var health = GetComponent<HealthData>();
+
             health.onDeath += () => { enabled = false; };
             health.onHealthChanged += Health_onHealthChanged;
+        }
+
+        private void M_Inventory_onGunChanged(Gun obj)
+        {
+           //enabled = obj != null;
         }
 
         float stunAfterDamageDur = 1f;
         bool stunned = false;
         float stunT;
+
         private void Health_onHealthChanged(HealthChangeData obj)
         {
             if (obj.IsDamage)
@@ -58,13 +57,15 @@ namespace Prototype
                 return;
             }
 
+            var currentGun = m_Inventory.CurrentWeapon;
+
             if (currentGun)
             {
                 m_Controller.aimDistance = currentGun.aimDistance;
             }
             else
             {
-                m_Controller.aimDistance = 0;
+                m_Controller.aimDistance = 3;
                 return;
             }
 

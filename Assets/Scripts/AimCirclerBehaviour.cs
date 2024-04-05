@@ -3,53 +3,90 @@ using Prototype;
 using RobinGoodfellow.CircleGenerator;
 using UnityEngine;
 
-public class AimCirclerBehaviour : MonoBehaviour
+namespace Prototype
 {
-    [SerializeField]
-    public CircleGenerator m_AimCorclePrefab;
 
-    private CircleGenerator m_AimRangeCircle;
-
-    private Transform m_CircleTransform;
-    private Transform m_Transform;
-    public float rotationSpeed;
-
-    private void Awake()
+    public class AimCirclerBehaviour : MonoBehaviour
     {
-        m_AimRangeCircle = GameObject.Instantiate(m_AimCorclePrefab);
-        m_CircleTransform = m_AimRangeCircle.transform;
-        m_Transform = transform;
-        GetComponent<CharacterGunBehaviourV2>().onGunChanged += AimCirclerBehaviour_onGunChanged;
-        m_CircleTransform.gameObject.SetActive(false);
-    }
+        [SerializeField]
+        public CircleGenerator m_AimCorclePrefab;
 
-    bool m_Showed = false;
+        private CircleGenerator m_AimRangeCircle;
 
-    void Show()
-    {
-        if (m_Showed) return;
+        private Transform m_CircleTransform;
+        private MeshRenderer m_Renderer;
+        private Color m_StartColor;
+        private Transform m_Transform;
+        public float rotationSpeed;
 
-        m_Showed = true;
-        m_CircleTransform.gameObject.SetActive(true);
-        m_CircleTransform.localScale = Vector3.zero;
-        m_CircleTransform.DOScale(Vector3.one, 1f).SetEase(Ease.OutSine);
-    }
+        private void Awake()
+        {
+            m_AimRangeCircle = GameObject.Instantiate(m_AimCorclePrefab);
+            m_CircleTransform = m_AimRangeCircle.transform;
+          
+            m_Renderer = m_CircleTransform.GetComponent<MeshRenderer>();
+            m_StartColor = m_Renderer.material.color;
+          m_Transform = transform;
+            GetComponent<CharacterInventory>().onMainWeaponChanged += AimCirclerBehaviour_onGunChanged;
+            m_CircleTransform.gameObject.SetActive(false);
+        }
 
-    private void AimCirclerBehaviour_onGunChanged(Gun obj)
-    {
-        if (obj == null) return;
+        bool m_Showed = false;
+        private Sequence m_Hide;
+        private Sequence m_Show;
 
-        var circle = m_AimRangeCircle.CircleData;
-        circle.Radius = obj.aimDistance;
-        m_AimRangeCircle.CircleData = circle;
-        m_AimRangeCircle.Generate();
+        public void Show()
+        {
+            if (m_Showed) return;
 
-        Show();
-    }
+            m_Hide?.Kill();
 
-    private void Update()
-    {
-        m_CircleTransform.position = m_Transform.position + new Vector3(0, 0.01f, 0);
-        m_CircleTransform.Rotate(new Vector3(0, 0, Time.deltaTime * rotationSpeed));
+            enabled = true;
+            m_Showed = true;
+            m_CircleTransform.gameObject.SetActive(true);
+            m_CircleTransform.localScale = Vector3.zero;
+
+            var initColor = m_StartColor;
+            initColor.a = 0;
+
+            m_Renderer.material.color = initColor;
+
+            m_Show = DOTween.Sequence();
+
+            m_Show.Insert(0, m_Renderer.material.DOColor(m_StartColor, 1f).SetEase(Ease.OutSine));
+            m_Show.Insert(0, m_CircleTransform.DOScale(Vector3.one, 1f).SetEase(Ease.OutSine));
+        }
+
+        public void Hide()
+        { 
+            m_Showed = false;
+            var targetColor = m_StartColor;
+            targetColor.a = 0;
+
+            m_Hide = DOTween.Sequence();
+
+            m_Hide.Insert(0, m_Renderer.material.DOColor(targetColor, 1f).SetEase(Ease.OutSine));
+            m_Hide.Insert(0, m_CircleTransform.DOScale(Vector3.zero, 1f).SetEase(Ease.InSine));
+
+            m_Hide.OnComplete(() => {
+                enabled = false;
+            });
+        }
+
+        private void AimCirclerBehaviour_onGunChanged(Gun obj)
+        {
+            if (obj == null) return;
+
+            var circle = m_AimRangeCircle.CircleData;
+            circle.Radius = obj.aimDistance;
+            m_AimRangeCircle.CircleData = circle;
+            m_AimRangeCircle.Generate();
+        }
+
+        private void Update()
+        {
+            m_CircleTransform.position = m_Transform.position + new Vector3(0, 0.01f, 0);
+            m_CircleTransform.Rotate(new Vector3(0, 0, Time.deltaTime * rotationSpeed));
+        }
     }
 }
