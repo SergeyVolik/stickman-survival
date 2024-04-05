@@ -32,9 +32,6 @@ namespace Prototype
         public float swithTargetInterval = 0.5f;
         private float m_LastSwithTarget;
 
-        [SerializeField]
-        public Transform m_AimRangeCircle;
-
         public Vector2 MoveInput { get => m_MoveInput; set => m_MoveInput = value; }
         RaycastHit[] results;
 
@@ -75,12 +72,6 @@ namespace Prototype
                 if (IsAiming == false && MoveInput != Vector2.zero)
                 {
                     newROtation = Quaternion.Slerp(currentRotation, Quaternion.LookRotation(moveVec3), rotaValue);
-                }
-
-                if (m_AimRangeCircle)
-                {
-                    m_AimRangeCircle.gameObject.SetActive(canAim);
-                    m_AimRangeCircle.localScale = Vector3.one * 2 * aimDistance;
                 }
 
                 if (canAim)

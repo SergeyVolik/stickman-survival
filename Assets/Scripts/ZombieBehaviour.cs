@@ -37,11 +37,17 @@ public class ZombieBehaviour : MonoBehaviour
         m_Animator.onDisableCollider += M_Animator_onDisableCollider;
         m_Animator.onEnableCollider += M_Animator_onEnableCollider;
 
+        GetComponent<HealthData>().onDeath += ZombieBehaviour_onDeath;
 
         m_AiMovement.maxSpeed = Random.Range(minSpeed, maxSpeed);
 
         m_Animator.SetMoveSpeed(m_AiMovement.maxSpeed);
         attackCollider.Deactivate();
+    }
+
+    private void ZombieBehaviour_onDeath()
+    {
+        m_AiMovement.canMove = false;
     }
 
     private void M_Animator_onEnableCollider()
@@ -70,7 +76,9 @@ public class ZombieBehaviour : MonoBehaviour
     private void M_factory_onPlayerSpawned(GameObject obj)
     {
         m_PlayerTransform = obj.transform;
-        m_AiMovement.destination = m_PlayerTransform.position;
+
+        if(m_AiMovement != null)
+            m_AiMovement.destination = m_PlayerTransform.position;
     }
 
     private void Update()

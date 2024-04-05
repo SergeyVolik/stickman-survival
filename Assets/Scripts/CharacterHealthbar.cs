@@ -19,7 +19,7 @@ namespace Prototype
             m_Camera = Camera.main;
 
             healthbar.TargetProgressBar.TextValueMultiplier = m_Health.maxHealth;
-            healthbar.UpdateBar(m_Health.currentHealth, 0, m_Health.maxHealth, true);
+            healthbar.UpdateBar(m_Health.currentHealth, 0, m_Health.maxHealth, false);
         }
 
         private void LateUpdate()
@@ -29,7 +29,7 @@ namespace Prototype
 
         private void CharacterHealthbar_onHealthChanged(HealthChangeData obj)
         {
-            bool show = m_Health.currentHealth == 0;
+            bool show = m_Health.currentHealth != 0;
 
             healthbar.UpdateBar(m_Health.currentHealth, 0, m_Health.maxHealth, show);
         }

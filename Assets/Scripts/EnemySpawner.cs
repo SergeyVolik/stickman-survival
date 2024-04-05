@@ -9,7 +9,7 @@ namespace Prototype
 
         public float spawnInterval;
         public float spawnT;
-
+        public int perSpawn = 10;
         private EnemySpawnFactory m_spawnFactory;
 
         [Inject]
@@ -25,9 +25,14 @@ namespace Prototype
             if (spawnT > spawnInterval)
             {
                 spawnT = 0;
-                var spawnPos = SpawnPoints[Random.Range(0, SpawnPoints.Length)].position;
-                m_spawnFactory.SpawnZombie(spawnPos);
-                
+
+                for (int i = 0; i < perSpawn; i++)
+                {
+                    var spawnPos = SpawnPoints[Random.Range(0, SpawnPoints.Length)].position;
+                    m_spawnFactory.SpawnZombie(spawnPos);
+                }
+                enabled = false;
+
             }
         }
     }

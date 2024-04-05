@@ -488,8 +488,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   damage: 4
-  pushForce: 200
-  killPushForce: 3000
+  pushForce: 50
+  killPushForce: 1500
   feedback: {fileID: 3619861078487105805}
   projectileSpawnPoint: {fileID: 1195880227664757068}
   shotInterval: 0.2

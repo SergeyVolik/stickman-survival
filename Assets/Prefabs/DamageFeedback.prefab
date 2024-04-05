@@ -429,7 +429,7 @@ MonoBehaviour:
         DebugActive: 0
         FadeColor: {r: 1, g: 1, b: 1, a: 1}
         Renderer: {fileID: 0}
-        Duration: 1
+        Duration: 0.5
         EaseType: 3
         invert: 0
     - rid: 446011470479884288
