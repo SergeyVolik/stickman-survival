@@ -104,14 +104,17 @@ namespace Prototype
                 return;
             }
 
+            bool isMoveing = m_Controller.MoveInput != Vector2.zero;
+            float interval = isMoveing ? currentGun.moveShotInterval : currentGun.standingshotInterval;
+
             if (m_Controller.HasTarget)
             {
                 m_ShotT += Time.deltaTime;
 
-                if (m_ShotT > currentGun.shotInterval)
+                if (m_ShotT > interval)
                 {
                     m_ShotT = 0;
-                    currentGun.Shot();
+                    currentGun.Shot(isMoveing);
                     m_CharacterAnimator.Shot();
                 }
             }

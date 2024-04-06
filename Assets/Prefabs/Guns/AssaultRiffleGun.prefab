@@ -740,15 +740,20 @@ MonoBehaviour:
   hideOffset: {x: -0.115, y: -0.052, z: -0.04}
   hideRotation: {x: -52.141, y: 0, z: 0}
   type: 2
-  damage: 4
+  moveDamage: 3
   pushForce: 50
   killPushForce: 1000
+  moveShotInterval: 0.6
+  standingDamage: 4
+  standingshotInterval: 0.3
   m_ShotFeedback: {fileID: 3619861078487105805}
   m_EquipFeedback: {fileID: 3058504264451147335}
   projectileSpawnPoint: {fileID: 1195880227664757068}
-  shotInterval: 0.2
   aimDistance: 4
   owner: {fileID: 0}
+  physicsPlayer:
+    serializedVersion: 2
+    m_Bits: 72
 --- !u!1001 &1441080443240695578
 PrefabInstance:
   m_ObjectHideFlags: 0

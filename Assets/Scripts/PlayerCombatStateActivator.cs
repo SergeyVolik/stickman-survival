@@ -1,3 +1,4 @@
+using DG.Tweening;
 using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using Sirenix.OdinInspector;
@@ -16,6 +17,7 @@ namespace Prototype
         private MMF_Player combatFeedback;
         [SerializeField]
         private MMF_Player idleFeedback;
+        private CharacterCombatState m_CombatState;
 
         [Inject]
         void Construct(IPlayerFactory factory, CameraController camera)
@@ -27,13 +29,13 @@ namespace Prototype
 
         private void Factory_onPlayerSpawned(GameObject obj)
         {
-            var state = obj.GetComponent<CharacterCombatState>();
-            state.onCombatState += (value) =>
+            m_CombatState = obj.GetComponent<CharacterCombatState>();
+            m_CombatState.onCombatState += (value) =>
             {
                 UpdateState(value);
             };
 
-            UpdateState(state.InCombat);
+           
         }
 
         private void UpdateState(bool value)
@@ -50,7 +52,11 @@ namespace Prototype
 
         private void OnEnable()
         {
-            ActivateIdle();
+            DOVirtual.DelayedCall(0.1f, () =>
+            {
+                ActivateIdle();
+                UpdateState(m_CombatState.InCombat);
+            });         
         }
 
         private void ActivateCombat()
@@ -59,7 +65,7 @@ namespace Prototype
                 return;
 
             isInCombat = true;
-
+            Debug.Log("Player Combat");
             combatFeedback?.PlayFeedbacks();
             m_camera.ActivateCombatCamera();
         }
@@ -68,6 +74,7 @@ namespace Prototype
         {
             if (!isInCombat)
                 return;
+            Debug.Log("Player Idle");
 
             isInCombat = false;
 

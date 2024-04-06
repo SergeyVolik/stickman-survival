@@ -1,6 +1,7 @@
 using MoreMountains.Feedbacks;
 using Prototype;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Prototype
 {
@@ -25,9 +26,17 @@ namespace Prototype
         public Vector3 hideRotation;
 
         public GunType type = GunType.Handgun;
-        public int damage;
+
+        [FormerlySerializedAs("damage")]
+        public int moveDamage;
         public float pushForce;
         public float killPushForce;
+        [FormerlySerializedAs("shotInterval")]
+        public float moveShotInterval = 1;
+
+        public int standingDamage;
+        public float standingshotInterval = 1;
+
         [SerializeField]
         private MMF_Player m_ShotFeedback;
 
@@ -36,10 +45,10 @@ namespace Prototype
 
         [SerializeField]
         private Transform projectileSpawnPoint;
-        public float shotInterval;
+       
         public float aimDistance = 3;
         public GameObject owner;
-
+        public LayerMask physicsPlayer;
         public GameObject Owner => owner;
 
         public void SetupInHands(Transform hand)
@@ -59,17 +68,17 @@ namespace Prototype
             trans.localRotation = Quaternion.Euler(hideRotation);
         }
 
-        public void Shot()
+        public void Shot(bool isMoveing)
         {
             m_ShotFeedback?.PlayFeedbacks();
 
             var shotVector = owner.transform.forward;
 
-            if (Physics.Raycast(projectileSpawnPoint.position, shotVector, out RaycastHit hit))
+            if (Physics.Raycast(projectileSpawnPoint.position, shotVector, out RaycastHit hit, 100f, physicsPlayer))
             {
                 if (hit.collider.TryGetComponent<IDamageable>(out var damageable))
                 {
-                    damageable.DoDamage(damage, gameObject);
+                    damageable.DoDamage(isMoveing ? moveDamage : standingDamage, gameObject);
                 }
 
                 if (hit.collider.TryGetComponent<Rigidbody>(out var rb))

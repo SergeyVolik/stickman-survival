@@ -1,8 +1,3 @@
-using DG.Tweening;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Prototype
@@ -12,40 +7,14 @@ namespace Prototype
         public Vector2 MoveInput { get; set; }
     }
 
-    public enum CharacterState
-    {
-        None,
-        Idle,
-        Move,
-        Aiming
-    }
-
     public class CustomCharacterController : MonoBehaviour, ICharacterInput
     {
         private Vector2 m_MoveInput;
-        private Rigidbody m_Rb;
+        private CharacterController m_Rb;
         private Transform m_Transform;
         public float speed = 2;
         public float accelerationSpeed = 30;
         public float decelerationSpeed = 30;
-
-        private CharacterState characterState;
-        public CharacterState CharacterState
-        {
-            get
-            {
-                return characterState;
-            }
-            private set
-            {
-                if (characterState != value)
-                {
-                    characterState = value;
-                    onCharacterStateChanged.Invoke(characterState);
-                }
-            }
-        }
-        public event Action<CharacterState> onCharacterStateChanged = delegate { };
 
         public bool canAim;
         public bool IsAiming { get; private set; }
@@ -64,7 +33,7 @@ namespace Prototype
 
         private void Awake()
         {
-            m_Rb = GetComponent<Rigidbody>();
+            m_Rb = GetComponent<CharacterController>();
             m_Transform = transform;
             results = new RaycastHit[10];
         }
@@ -163,42 +132,8 @@ namespace Prototype
             }
 
             IsAiming = HasTarget || noTargetT < resetAimStateIfNoTarget;
-
-            if (IsAiming)
-            {
-                CharacterState = CharacterState.Aiming;
-            }
-            else if (MoveInput != Vector2.zero)
-            {
-                CharacterState = CharacterState.Move;
-            }
-            else
-            {
-                CharacterState = CharacterState.Idle;
-            }
-
-            var currentVel = m_Rb.velocity;
-            currentVel.y = 0;
-
-            m_Rb.velocity += moveVec3 * accelerationSpeed * deltaTime;
-
-            var vecl = m_Rb.velocity;
-
-            if (moveVec3 == Vector3.zero)
-            {
-                var deccVec = new Vector3(vecl.x, 0, vecl.z).normalized * decelerationSpeed * deltaTime;
-
-                var newVel = vecl - deccVec;
-                if (deccVec.magnitude > vecl.magnitude)
-                {
-                    newVel = Vector3.zero;
-                }
-
-                m_Rb.velocity = newVel;
-            }
-
+            m_Rb.SimpleMove(moveVec3 * speed);
             m_Transform.rotation = newROtation;
-            m_Rb.velocity = Vector3.ClampMagnitude(m_Rb.velocity, speed);
         }
 
         private (Rigidbody body, float closestDistance) GetTargetWithClosestDistance()

@@ -309,8 +309,11 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 7194387096102864527}
         DebugActive: 0
-        Sfx: {fileID: 8300000, guid: e6a455d6479c94839a0ef45a30089b17, type: 3}
-        RandomSfx: []
+        Sfx: {fileID: 0}
+        RandomSfx:
+        - {fileID: 8300000, guid: e6a455d6479c94839a0ef45a30089b17, type: 3}
+        - {fileID: 8300000, guid: f35c236fc97db4309b80d8b34da60785, type: 3}
+        - {fileID: 8300000, guid: cfb3f31a3e4974faab3ecce1e8eb035f, type: 3}
         TestPlayButton:
           ButtonText: Debug Play Sound
         TestStopButton:
@@ -318,11 +321,12 @@ MonoBehaviour:
         PlayMethod: 0
         PoolSize: 10
         StopSoundOnFeedbackStop: 1
-        MinVolume: 1
-        MaxVolume: 1
+        MinVolume: 2
+        MaxVolume: 2
         MinPitch: 1
-        MaxPitch: 1
-        SfxAudioMixerGroup: {fileID: 0}
+        MaxPitch: 1.1
+        SfxAudioMixerGroup: {fileID: -3165942800488051908, guid: 7e984f512e89b60468e829489e8883e3,
+          type: 2}
         Priority: 128
         PanStereo: 0
         SpatialBlend: 0

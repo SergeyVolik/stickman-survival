@@ -12,7 +12,6 @@ public class CharacterDeath : MonoBehaviour
     public float destroyDelay = 2f;
     public float moveUndergroundOffset = -1;
     public float moveDuration = 1;
-
     private void Awake()
     {
         m_hData = GetComponent<HealthData>();
@@ -22,17 +21,22 @@ public class CharacterDeath : MonoBehaviour
     private void HData_onDeath()
     {
         mMRagdoller.Ragdolling = true;
+
+        var collider = GetComponent<Collider>();
         deathFeedback?.PlayFeedbacks();
 
-        GetComponent<Collider>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
+        if (collider)
+            collider.enabled = false;
+        var rb = GetComponent<Rigidbody>();
+
+        if (rb)
+            rb.isKinematic = true;
 
         var controller = GetComponent<CustomCharacterController>();
 
         if (controller)
-        {
             controller.enabled = false;
-        }
+
 
         if (m_hData.KilledBy.TryGetComponent<Gun>(out var gun))
         {
@@ -53,9 +57,9 @@ public class CharacterDeath : MonoBehaviour
             mMRagdoller.ForceKinematic();
 
             transform.DOMoveY(y + moveUndergroundOffset, duration: moveDuration).OnComplete(() =>
-            {              
+            {
                 GameObject.Destroy(gameObject);
-            });         
+            });
         });
     }
 }

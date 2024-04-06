@@ -33,7 +33,7 @@ namespace Prototype
             ActivateIdleCamera();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (m_PlayerFactory.CurrentPlayerUnit)
             {
