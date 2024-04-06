@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 1899397896299036655}
   - component: {fileID: 8682018990571089836}
   - component: {fileID: 967979111307682332}
+  - component: {fileID: 3383560311096541628}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -267,7 +268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081699e5f9adc4f47bb1df5517c1e77f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightHand: {fileID: 8241530161396705359}
 --- !u!114 &817382752408674446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +324,23 @@ MonoBehaviour:
   rightHand: {fileID: 8241530161396705359}
   handgunHidePoint: {fileID: 3951446365864870959}
   rifleHidePoint: {fileID: 2745537080347356902}
+--- !u!114 &3383560311096541628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8149694439717538947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0980c309b1966554e8451cfed94ca7be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_InCombat: 0
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  checkEnemyRadius: 5
 --- !u!1 &8899039506050042948
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +594,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 239331893332336260, guid: 176658e06a6cf3042961b53d4592a617,
         type: 3}
-      insertIndex: -1
+      insertIndex: 4
       addedObject: {fileID: 2362828054263872005}
   m_SourcePrefab: {fileID: 100100000, guid: 176658e06a6cf3042961b53d4592a617, type: 3}
 --- !u!4 &779739108893443649 stripped

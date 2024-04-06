@@ -9,7 +9,12 @@ namespace Prototype
         private CustomCharacterController m_Controller;
         private CharacterWithGunAnimator m_CharacterAnimator;
         private float m_ShotT;
-        public Transform rightHand;
+
+        float stunAfterDamageDur = 1f;
+        bool stunned = false;
+        float stunT;
+        private AimCirclerBehaviour m_AimCircle;
+        private CharacterCombatState m_CombatState;
 
         private void Awake()
         {
@@ -23,16 +28,40 @@ namespace Prototype
 
             health.onDeath += () => { enabled = false; };
             health.onHealthChanged += Health_onHealthChanged;
+         
+            m_AimCircle = GetComponent<AimCirclerBehaviour>();
+
+            m_CombatState = GetComponent<CharacterCombatState>();
+
+            m_CombatState.onCombatState += (value) =>
+            {
+                UpdateCombatState(value);
+            };
+
+            UpdateCombatState(m_CombatState.InCombat);
+        }
+
+        private void UpdateCombatState(bool value)
+        {
+            if (m_Inventory.HasGun())
+            {
+                if (value)
+                {
+                    m_AimCircle?.Show();
+                    m_Inventory.ActiveLastWeapon();
+                }
+                else
+                {
+                    m_AimCircle?.Hide();
+                    m_Inventory.HideCurrentWeapon();
+                }
+            }
         }
 
         private void M_Inventory_onGunChanged(Gun obj)
         {
            //enabled = obj != null;
         }
-
-        float stunAfterDamageDur = 1f;
-        bool stunned = false;
-        float stunT;
 
         private void Health_onHealthChanged(HealthChangeData obj)
         {
@@ -59,13 +88,19 @@ namespace Prototype
 
             var currentGun = m_Inventory.CurrentWeapon;
 
+            if (m_CombatState.InCombat && !currentGun && m_Inventory.HasGunInInventory())
+            {
+                m_Inventory.ActiveLastWeapon();
+                m_AimCircle.Show();
+            }
+
             if (currentGun)
             {
                 m_Controller.aimDistance = currentGun.aimDistance;
             }
             else
             {
-                m_Controller.aimDistance = 3;
+                m_Controller.aimDistance = 0;
                 return;
             }
 

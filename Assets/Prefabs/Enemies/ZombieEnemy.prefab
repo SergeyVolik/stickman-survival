@@ -524,6 +524,21 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: 9.313226e-10
       objectReference: {fileID: 0}
+    - target: {fileID: 1281434462902827830, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: outlineColor.b
+      value: 0.2979263
+      objectReference: {fileID: 0}
+    - target: {fileID: 1281434462902827830, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: outlineColor.g
+      value: 0.2979263
+      objectReference: {fileID: 0}
+    - target: {fileID: 1281434462902827830, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: outlineColor.r
+      value: 0.9716981
+      objectReference: {fileID: 0}
     - target: {fileID: 1466880171349435517, guid: 176658e06a6cf3042961b53d4592a617,
         type: 3}
       propertyPath: m_ConnectedAnchor.x

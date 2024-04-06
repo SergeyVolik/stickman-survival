@@ -78,6 +78,16 @@ namespace Prototype
             return null;
         }
 
+        public bool HasGun()
+        {
+            return CurrentWeapon || m_PrevWeapon;
+        }
+
+        public bool HasGunInInventory()
+        {
+            return m_PrevWeapon;
+        }
+
         [Button]
         public void HideCurrentWeapon()
         {

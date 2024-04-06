@@ -83,7 +83,12 @@ namespace Prototype
             Container.Bind<EnemySpawnFactory>().FromInstance(spawnFactory);
         }
 
-        private void Awake()
+        public override void Start()
+        {
+            base.Start();
+        }
+
+        private void OnEnable()
         {
             m_playerSpawnFactory.SpawnAtPosition(playerSpawnPoint.position);
         }

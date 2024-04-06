@@ -42,6 +42,11 @@ public class CharacterDeath : MonoBehaviour
             body.AddForce(vec * gun.killPushForce, mode: ForceMode.Force);
         }
 
+        if (mMRagdoller.TryGetComponent<Outline>(out var outline))
+        {
+            GameObject.Destroy(outline);
+        }
+
         DOVirtual.DelayedCall(2f, () =>
         {
             var y = transform.position.y;

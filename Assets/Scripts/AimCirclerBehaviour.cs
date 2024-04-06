@@ -10,7 +10,7 @@ namespace Prototype
     {
         [SerializeField]
         public CircleGenerator m_AimCorclePrefab;
-
+        private bool m_Awaked;
         private CircleGenerator m_AimRangeCircle;
 
         private Transform m_CircleTransform;
@@ -21,12 +21,17 @@ namespace Prototype
 
         private void Awake()
         {
+            if (m_Awaked)
+                return;
+
+            m_Awaked = true;
+
             m_AimRangeCircle = GameObject.Instantiate(m_AimCorclePrefab);
             m_CircleTransform = m_AimRangeCircle.transform;
           
             m_Renderer = m_CircleTransform.GetComponent<MeshRenderer>();
             m_StartColor = m_Renderer.material.color;
-          m_Transform = transform;
+            m_Transform = transform;
             GetComponent<CharacterInventory>().onMainWeaponChanged += AimCirclerBehaviour_onGunChanged;
             m_CircleTransform.gameObject.SetActive(false);
         }
@@ -37,6 +42,8 @@ namespace Prototype
 
         public void Show()
         {
+            Awake();
+
             if (m_Showed) return;
 
             m_Hide?.Kill();
@@ -58,7 +65,11 @@ namespace Prototype
         }
 
         public void Hide()
-        { 
+        {
+            Awake();
+
+            m_Show?.Kill();
+
             m_Showed = false;
             var targetColor = m_StartColor;
             targetColor.a = 0;

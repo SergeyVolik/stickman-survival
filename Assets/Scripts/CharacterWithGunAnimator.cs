@@ -48,12 +48,14 @@ namespace Prototype
                         return;
                     }
 
+                    m_CharacterInput.canAim = gun != null;
                     m_Animator.SetInteger(GunTypeHash, (int)gun.type);
                 };
             }
 
             m_ControllerTrans = m_CharacterInput.transform;
         }
+
         public void Move(Vector2 vector)
         {
             m_Animator.SetBool(MoveHash, vector != Vector2.zero);

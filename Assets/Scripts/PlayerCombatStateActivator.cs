@@ -7,15 +7,11 @@ using Zenject;
 
 namespace Prototype
 {
-    public class CombatStateActivator : MonoBehaviour
+    public class PlayerCombatStateActivator : MonoBehaviour
     {      
         private IPlayerFactory m_PlayerFactory;
         private CameraController m_camera;
-        private CharacterState m_CurrentState;
-        public float timeToIdle;
-        public float noCombatT;
         private bool isInCombat = true;
-
         [SerializeField]
         private MMF_Player combatFeedback;
         [SerializeField]
@@ -31,32 +27,30 @@ namespace Prototype
 
         private void Factory_onPlayerSpawned(GameObject obj)
         {
-            obj.GetComponent<CustomCharacterController>().onCharacterStateChanged += (state) =>
+            var state = obj.GetComponent<CharacterCombatState>();
+            state.onCombatState += (value) =>
             {
-                m_CurrentState = state;
+                UpdateState(value);
             };
+
+            UpdateState(state.InCombat);
         }
 
-        private void Awake()
+        private void UpdateState(bool value)
         {
-            ActivateIdle();
-        }
-
-        private void Update()
-        {
-            if(m_CurrentState == CharacterState.Aiming)
+            if (value)
             {
                 ActivateCombat();
-                noCombatT = 0;
-                return;
             }
-
-            noCombatT += Time.deltaTime;
-
-            if (isInCombat && noCombatT > timeToIdle)
+            else
             {
                 ActivateIdle();
             }
+        }
+
+        private void OnEnable()
+        {
+            ActivateIdle();
         }
 
         private void ActivateCombat()
@@ -65,12 +59,6 @@ namespace Prototype
                 return;
 
             isInCombat = true;
-
-            if (m_PlayerFactory.CurrentPlayerUnit)
-            {
-                m_PlayerFactory.CurrentPlayerUnit.GetComponent<AimCirclerBehaviour>().Show();
-                m_PlayerFactory.CurrentPlayerUnit.GetComponent<CharacterInventory>().ActiveLastWeapon();
-            }
 
             combatFeedback?.PlayFeedbacks();
             m_camera.ActivateCombatCamera();
@@ -83,11 +71,6 @@ namespace Prototype
 
             isInCombat = false;
 
-            if (m_PlayerFactory.CurrentPlayerUnit)
-            {
-                m_PlayerFactory.CurrentPlayerUnit.GetComponent<AimCirclerBehaviour>().Hide();
-                m_PlayerFactory.CurrentPlayerUnit.GetComponent<CharacterInventory>().HideCurrentWeapon();
-            }
             idleFeedback?.PlayFeedbacks();
 
             m_camera.ActivateIdleCamera();
