@@ -1,5 +1,8 @@
+using DG.Tweening;
 using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
 
@@ -7,6 +10,7 @@ namespace Prototype
 {
     public class Chest : MonoBehaviour
     {
+        public ResourceContainer[] lootTicksItems;
         public PhysicsCallbacks trigger;
         public float openDuration;
         private float openT;
@@ -14,16 +18,24 @@ namespace Prototype
         private Collider m_triggerdObject;
         bool continueOpening;
         bool isOpened;
-      
-        private TransferMoveManager m_movManager;
 
-        public Animator chestAnimator;
+        public int lootTicks => lootTicksItems.Length;
+        public int executedLootTicks;
+        public float finalDropDelay;
+
       
 
         [SerializeField]
         private Image m_OpenStateImage;
         private DropExecutor m_Drop;
-        public MMF_Player openFeedback;
+
+        public MMF_Player startLootingFeedback;
+        public MMF_Player endLootingFeedback;
+        public MMF_Player lootTickFeedback;
+        public MMF_Player lootEndedFeedback;
+
+        private CharacterWithGunAnimator m_CharAnimator;
+        
         private void Awake()
         {
             m_Drop = GetComponent<DropExecutor>();
@@ -38,7 +50,20 @@ namespace Prototype
                 return;
 
             continueOpening = false;
+            ResetCharacterData();
+        }
+
+        private void ResetCharacterData()
+        {
             m_triggerdObject = null;
+
+            if (m_CharAnimator)
+            {
+                m_CharAnimator.StartLooting(false);
+                m_CharAnimator = null;
+            }
+
+            endLootingFeedback?.PlayFeedbacks();
         }
 
         private void Trigger_onTriggerEnter(Collider obj)
@@ -46,8 +71,21 @@ namespace Prototype
             if (isOpened)
                 return;
 
-            m_ResHolder = obj.GetComponent<IResourceHolder>();
+            if (obj.TryGetComponent<CharacterCombatState>(out var combat))
+            {
+                if (combat.InCombat)
+                    return;
+            }
 
+            m_CharAnimator = obj.GetComponentInChildren<CharacterWithGunAnimator>();
+
+            if (m_CharAnimator)
+            {
+                m_CharAnimator.StartLooting(true);
+            }
+
+            m_ResHolder = obj.GetComponent<IResourceHolder>();
+            startLootingFeedback?.PlayFeedbacks();
 
             if (m_ResHolder == null)
             {
@@ -65,29 +103,30 @@ namespace Prototype
 
             openT += Time.deltaTime;
 
-            m_OpenStateImage.fillAmount = openT / openDuration;
+            m_OpenStateImage.fillAmount = (openT / openDuration) / lootTicks + executedLootTicks / (float)lootTicks;
 
             if (openT >= openDuration)
             {
-                OpenInternal();
+                LootTickFinished();
             }
         }
 
-        private void OpenInternal()
+        private void LootTickFinished()
         {
-            continueOpening = false;
-            isOpened = true;
-           
-            m_OpenStateImage.gameObject.SetActive(false);
-            chestAnimator.SetTrigger("Open");
-        }
+            lootTickFeedback?.PlayFeedbacks();
+            m_Drop.ExecuteDrop(m_triggerdObject.gameObject, lootTicksItems[executedLootTicks]);
 
-        private void OpenAfterAnimation()
-        {
-            openFeedback?.PlayFeedbacks();
-            m_Drop.ExecuteDrop(m_triggerdObject.gameObject);
+            executedLootTicks++;
+            openT = 0;
+
+            if (executedLootTicks == lootTicks)
+            {
+                m_OpenStateImage.gameObject.SetActive(false);
+                continueOpening = false;
+                isOpened = true;
+                ResetCharacterData();
+                lootEndedFeedback?.PlayFeedbacks();
+            }
         }
     }
 }
-
-

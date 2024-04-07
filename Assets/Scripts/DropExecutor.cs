@@ -7,6 +7,7 @@ namespace Prototype
 {
     public class DropExecutor : MonoBehaviour
     {
+        public Vector3 dropVectorRotation = new Vector3(0, 0, 0);
         public ResourceContainer resources;
         private TransferMoveManager m_movManager;
         public Transform dropPoint;
@@ -20,7 +21,18 @@ namespace Prototype
 
         public void ExecuteDrop(GameObject dropTarget)
         {
-            DropHelper.TryDrop(dropTarget, RealDroppoint.position, resources, m_movManager);
+            DropHelper.TryDrop(dropTarget, RealDroppoint.position, resources, m_movManager, GetDropVector());
+        }
+
+        public void ExecuteDrop(GameObject dropTarget, ResourceContainer resources)
+        {
+            DropHelper.TryDrop(dropTarget, RealDroppoint.position, resources, m_movManager, GetDropVector());
+        }
+
+        private Vector3 GetDropVector() => Quaternion.Euler(dropVectorRotation.x, dropVectorRotation.y, dropVectorRotation.z) * transform.up;
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawRay(new Ray {  origin = RealDroppoint.position, direction = GetDropVector() });
         }
     }
 }

@@ -20,12 +20,16 @@ namespace MoreMountains.Feedbacks
         [MMFInspectorGroup("Flicker", true, 0, false, true)]
         public Color FadeColor = new Color(1f, 1f, 1f, 1f);
         public Renderer Renderer;
+        public Renderer[] AdditionalRenderers;
+
+        public Color[] AdditionalInitColors;
         public float Duration = 1f;
         private EaseFunction easeFunction;
         private Color initCollor;
         public Ease EaseType;
         private Coroutine m_Coroutine;
         public bool invert;
+
         protected override void CustomInitialization(MMF_Player owner)
         {
             base.CustomInitialization(owner);
@@ -35,6 +39,16 @@ namespace MoreMountains.Feedbacks
 
             easeFunction = EaseManager.ToEaseFunction(EaseType);
             initCollor = Renderer.material.color;
+
+            if (AdditionalRenderers != null)
+            {
+                AdditionalInitColors = new Color[AdditionalRenderers.Length];
+
+                for (int i = 0; i < AdditionalInitColors.Length; i++)
+                {
+                    AdditionalInitColors[i] = AdditionalRenderers[i].material.color;
+                }
+            }
         }
 
         protected override void CustomPlayFeedback(Vector3 position, float feedbacksIntensity = 1.0f)
@@ -62,6 +76,11 @@ namespace MoreMountains.Feedbacks
                 return;
 
             Renderer.material.color = initCollor;
+
+            for (int i = 0; i < AdditionalInitColors.Length; i++)
+            {
+                AdditionalRenderers[i].material.color = AdditionalInitColors[i];
+            }
             // your stop code goes here
         }
 
@@ -84,7 +103,15 @@ namespace MoreMountains.Feedbacks
 
   
                 renderer.material.color = Color.Lerp(flickerColor, initialColor, t);
+
+                for (int i = 0; i < AdditionalInitColors.Length; i++)
+                {
+                    AdditionalRenderers[i].material.color = Color.Lerp(flickerColor, AdditionalInitColors[i], t);
+                }
+
                 currentTime += Time.deltaTime;
+
+
                 yield return null;   
             }
 

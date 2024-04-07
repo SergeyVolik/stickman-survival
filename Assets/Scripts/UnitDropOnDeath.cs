@@ -7,7 +7,7 @@ namespace Prototype
 {
     public static class DropHelper
     {
-        public static bool TryDrop(GameObject obj, Vector3 spawnPos, ResourceContainer resources, TransferMoveManager transManager, int maxDropElementsPerResource = 5)
+        public static bool TryDrop(GameObject obj, Vector3 spawnPos, ResourceContainer resources, TransferMoveManager transManager, Vector3 dropVector, int maxDropElementsPerResource = 5)
         {
             float moveDuration = 1f;
             float moveDelay = 2f;
@@ -28,7 +28,7 @@ namespace Prototype
                     for (int i = 0; i < dropObjects; i++)
                     {
                         int toDrop = itemPerDrop;
-                        var initialVelocity = Vector3.up * pushForce;
+                        var initialVelocity = dropVector * pushForce;
 
                         if (i == dropObjects - 1 && finalDrop < item.Value)
                         {
@@ -44,6 +44,11 @@ namespace Prototype
             }
 
             return false;
+        }
+
+        public static bool TryDrop(GameObject obj, Vector3 spawnPos, ResourceContainer resources, TransferMoveManager transManager, int maxDropElementsPerResource = 5)
+        {
+            return TryDrop(obj, spawnPos, resources, transManager, Vector3.up, maxDropElementsPerResource);
         }
     }
 

@@ -92,12 +92,12 @@ namespace Prototype
 
         public void Clear()
         {
-            m_ResourceDic.Clear();
+            ResourceDic.Clear();
         }
 
         public int GetResource(ResourceTypeSO resourceType)
         {
-            m_ResourceDic.TryGetValue(resourceType, out int result);
+            ResourceDic.TryGetValue(resourceType, out int result);
             return result;
         }
 
@@ -105,7 +105,7 @@ namespace Prototype
         {
             var container = new ResourceContainer();
 
-            foreach (var item in m_ResourceDic)
+            foreach (var item in ResourceDic)
             {
                 container.SetResource(item.Key, item.Value);
             }

@@ -18,3 +18,5 @@ MonoBehaviour:
     type: 3}
   Resource2dItem: {fileID: 5197773500834160301, guid: 632689c54bd81f94893a5f77eb673bdf,
     type: 3}
+  ResourceUIItem: {fileID: 4489881299229850732, guid: 2c97531d60116ca4d97add333b68f6cf,
+    type: 3}

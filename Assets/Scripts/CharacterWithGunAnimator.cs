@@ -9,6 +9,9 @@ namespace Prototype
         private static readonly int TurnHash = Animator.StringToHash("Turn");
         private static readonly int ForwardHash = Animator.StringToHash("Forward");
         private static readonly int ShotHash = Animator.StringToHash("Shot");
+        private static readonly int OpeningHash = Animator.StringToHash("Opening");
+        private static readonly int StartOpeningHash = Animator.StringToHash("StartOpening");
+
 
         private static readonly int MoveHash = Animator.StringToHash("Move");
         private static readonly int DamageHash = Animator.StringToHash("Damage");
@@ -85,6 +88,16 @@ namespace Prototype
         internal void Shot()
         {
             m_Animator.SetTrigger(ShotHash);
+        }
+
+        internal void StartLooting(bool value)
+        {
+            m_Animator.SetBool(OpeningHash, value);
+
+            if (value)
+            {
+                m_Animator.SetTrigger(StartOpeningHash);
+            }
         }
     }
 }

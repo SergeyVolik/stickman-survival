@@ -10,8 +10,6 @@ namespace Prototype
     {
         private ResourceContainer m_Resources;
 
-        public GameObject m_ResourceUIItemPrefab;
-
         public Dictionary<ResourceTypeSO, ResourceUIItem> uiItems = new Dictionary<ResourceTypeSO, ResourceUIItem>();
 
         public void Bind(ResourceContainer resources)
@@ -45,7 +43,7 @@ namespace Prototype
         private RectTransform SetupUIItem(ResourceTypeSO type, int count)
         {
             var uiItem = GameObject
-                .Instantiate(m_ResourceUIItemPrefab, transform)
+                .Instantiate(type.ResourceUIItem, transform)
                 .GetComponent<ResourceUIItem>();
 
             uiItem.SetText(TextUtils.IntToText(count));
