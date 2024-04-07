@@ -501,8 +501,14 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  wallLayers:
+    serializedVersion: 2
+    m_Bits: 51200
   checkEnemyRadius: 7
+  seeEnemyTimeToStart: 0.1
+  m_SeeEnemyTime: 0
   timeToEndCombat: 2
+  m_NoEnemiesT: 0
 --- !u!143 &6593962959880225077
 CharacterController:
   m_ObjectHideFlags: 0

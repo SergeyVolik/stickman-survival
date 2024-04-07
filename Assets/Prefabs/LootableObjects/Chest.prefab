@@ -116,7 +116,6 @@ Transform:
   - {fileID: 9012975470940645248}
   - {fileID: 85326043808638901}
   - {fileID: 7585596556661386297}
-  - {fileID: 1407938778150562052}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &602863012248937857
@@ -183,10 +182,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b67bf7522bc934fa7f2629ee98b2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropVectorRotation: {x: 33.79, y: 0, z: 0}
+  dropVectorRotation: {x: 10, y: 0, z: 0}
   resources:
     m_InitResources: []
   dropPoint: {fileID: 2625983635044651810}
+  pushForce: 7
 --- !u!95 &2218826178393095638
 Animator:
   serializedVersion: 5
@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 3524575401602895585}
   - component: {fileID: 3342249817038575293}
   m_Layer: 0
-  m_Name: ChestOpenFeedback
+  m_Name: LootEnededFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -637,7 +637,7 @@ MonoBehaviour:
         m_Calls: []
   DebugActive: 0
   FeedbacksList:
-  - rid: 446011545880363008
+  - rid: 446011560967798790
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -645,12 +645,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 446011545880363008
-      type: {class: MMF_Particles, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
+    - rid: 446011560967798790
+      type: {class: MMF_ParticlesInstantiation, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
       data:
         Active: 1
-        UniqueID: -1054704588
-        Label: Particles Play
+        UniqueID: 1323611888
+        Label: Particles Instantiation
         ChannelMode: 0
         Channel: 0
         MMChannelDefinition: {fileID: 0}
@@ -714,13 +714,23 @@ MonoBehaviour:
         Owner: {fileID: 3342249817038575293}
         DebugActive: 0
         Mode: 0
-        EmitCount: 100
-        BoundParticleSystem: {fileID: 1407938778131072150}
-        RandomParticleSystems: []
-        MoveToPosition: 0
-        ActivateOnPlay: 0
-        StopSystemOnInit: 1
-        DeclaredDuration: 0
+        ObjectPoolSize: 5
+        MutualizePools: 0
+        ParentTransform: {fileID: 0}
+        CachedRecycle: 1
+        ParticlesPrefab: {fileID: 19807556, guid: 1e9dc57b9c268e84dbb8ede9289e1474,
+          type: 3}
+        RandomParticlePrefabs: []
+        ForceSetActiveOnPlay: 0
+        StopOnReset: 0
+        DeclaredDuration: 1
+        PositionMode: 0
+        InstantiateParticlesPosition: {fileID: 0}
+        TargetWorldPosition: {x: 0, y: 0, z: 0}
+        Offset: {x: 0, y: 0, z: 0}
+        NestParticles: 1
+        ApplyRotation: 0
+        ApplyScale: 0
         ForceSimulationSpeed: 0
         ForcedSimulationSpeed: {x: 0.1, y: 1}
 --- !u!1 &5558924297201646362
@@ -734,6 +744,7 @@ GameObject:
   - component: {fileID: 3264773916421427340}
   - component: {fileID: 4548999986989777591}
   - component: {fileID: 2929882055840050013}
+  - component: {fileID: 337740902199568932}
   m_Layer: 0
   m_Name: ChestV3_Loot
   m_TagString: Untagged
@@ -806,6 +817,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &337740902199568932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558924297201646362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &5867089567496022912
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,6 +846,7 @@ GameObject:
   - component: {fileID: 2365171876810115}
   - component: {fileID: 5541133728930816499}
   - component: {fileID: 7937809656222841664}
+  - component: {fileID: 5471137341469625369}
   m_Layer: 0
   m_Name: ChestV3_Top
   m_TagString: Untagged
@@ -889,6 +919,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5471137341469625369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5867089567496022912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7321414960829157255
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +948,7 @@ GameObject:
   - component: {fileID: 6880230025735151761}
   - component: {fileID: 5972646794679285937}
   - component: {fileID: 81629614726764078}
+  - component: {fileID: 1665012304560117846}
   m_Layer: 0
   m_Name: ChestV3
   m_TagString: Untagged
@@ -975,6 +1024,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1665012304560117846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7321414960829157255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7601397859163043201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,7 +1501,7 @@ MonoBehaviour:
         Axis: 3
         AnimateScaleDuration: 0.3
         RemapCurveZero: 1
-        RemapCurveOne: 2
+        RemapCurveOne: 1.4
         Offset: 0
         AnimateCurve:
           serializedVersion: 2
@@ -1511,7 +1578,7 @@ MonoBehaviour:
         RandomizeDuration: 0
         RandomDurationMultiplier: {x: 0.5, y: 2}
         UseRange: 0
-        RangeDistance: 5
+        RangeDistance: 3
         UseRangeFalloff: 0
         RangeFalloff:
           serializedVersion: 2
@@ -1541,11 +1608,11 @@ MonoBehaviour:
         Owner: {fileID: 5434373633767443134}
         DebugActive: 0
         TargetShaker: {fileID: 8035886832396192961}
-        Duration: 0.3
+        Duration: 0.4
         ResetShakerValuesAfterShake: 1
         ResetTargetValuesAfterShake: 1
-        ShakeSpeed: 20
-        ShakeRange: 50
+        ShakeSpeed: 5
+        ShakeRange: 10
         ShakeMainDirection: {x: 0, y: 1, z: 0}
         RandomizeDirection: 0
         ShakeAltDirection: {x: 0, y: 1, z: 0}
@@ -1617,8 +1684,8 @@ MonoBehaviour:
   Mode: 0
   TargetTransform: {fileID: 895053170532107675}
   TargetRectTransform: {fileID: 0}
-  ShakeSpeed: 20
-  ShakeRange: 50
+  ShakeSpeed: 10
+  ShakeRange: 20
   ShakeMainDirection: {x: 0, y: 1, z: 0}
   RandomizeDirection: 0
   ShakeAltDirection: {x: 0, y: 1, z: 0}
@@ -1674,6 +1741,7 @@ GameObject:
   - component: {fileID: 4438217651741542218}
   - component: {fileID: 1862661298294251660}
   - component: {fileID: 9051782789509003923}
+  - component: {fileID: 2003730859760756446}
   m_Layer: 0
   m_Name: ChestV3_Lock
   m_TagString: Untagged
@@ -1746,6 +1814,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2003730859760756446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8506460627737838815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8887735297107178945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1878,89 +1964,4 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7103246032834942213, guid: c041039ddf439aa4ab6c0dabd8520860,
     type: 3}
   m_PrefabInstance: {fileID: 700100912140877357}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1407938778150877650
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 8955858478767225419}
-    m_Modifications:
-    - target: {fileID: 110638, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: m_Name
-      value: ChestAppearYellow
-      objectReference: {fileID: 0}
-    - target: {fileID: 479446, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 479446, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.495
-      objectReference: {fileID: 0}
-    - target: {fileID: 479446, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 479446, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 479446, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 479446, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 479446, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 479446, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 479446, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 479446, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19807556, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19876698, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19945764, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19975674, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1e9dc57b9c268e84dbb8ede9289e1474, type: 3}
---- !u!198 &1407938778131072150 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19807556, guid: 1e9dc57b9c268e84dbb8ede9289e1474,
-    type: 3}
-  m_PrefabInstance: {fileID: 1407938778150877650}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1407938778150562052 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 479446, guid: 1e9dc57b9c268e84dbb8ede9289e1474,
-    type: 3}
-  m_PrefabInstance: {fileID: 1407938778150877650}
   m_PrefabAsset: {fileID: 0}

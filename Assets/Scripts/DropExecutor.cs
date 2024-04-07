@@ -12,7 +12,7 @@ namespace Prototype
         private TransferMoveManager m_movManager;
         public Transform dropPoint;
         private Transform RealDroppoint => dropPoint ? dropPoint : transform;
-
+        public float pushForce = 7f;
         [Inject]
         void Construct(TransferMoveManager movManager)
         {
@@ -21,12 +21,12 @@ namespace Prototype
 
         public void ExecuteDrop(GameObject dropTarget)
         {
-            DropHelper.TryDrop(dropTarget, RealDroppoint.position, resources, m_movManager, GetDropVector());
+            DropHelper.TryDrop(dropTarget, RealDroppoint.position, resources, m_movManager, GetDropVector(), pushForce: pushForce);
         }
 
         public void ExecuteDrop(GameObject dropTarget, ResourceContainer resources)
         {
-            DropHelper.TryDrop(dropTarget, RealDroppoint.position, resources, m_movManager, GetDropVector());
+            DropHelper.TryDrop(dropTarget, RealDroppoint.position, resources, m_movManager, GetDropVector(), pushForce: pushForce);
         }
 
         private Vector3 GetDropVector() => Quaternion.Euler(dropVectorRotation.x, dropVectorRotation.y, dropVectorRotation.z) * transform.up;

@@ -35,13 +35,21 @@ namespace Prototype
         public MMF_Player lootEndedFeedback;
 
         private CharacterWithGunAnimator m_CharAnimator;
-        
+        private Outline[] m_Outlines;
+
         private void Awake()
         {
             m_Drop = GetComponent<DropExecutor>();
 
             trigger.onTriggerEnter += Trigger_onTriggerEnter;
             trigger.onTriggerExit += Trigger_onTriggerExit;
+
+            m_Outlines = GetComponentsInChildren<Outline>();
+
+            foreach (var item in m_Outlines)
+            {
+                item.enabled = false;
+            }
         }
 
         private void Trigger_onTriggerExit(Collider obj)
@@ -55,6 +63,11 @@ namespace Prototype
 
         private void ResetCharacterData()
         {
+            foreach (var item in m_Outlines)
+            {
+                item.enabled = false;
+            }
+
             m_triggerdObject = null;
 
             if (m_CharAnimator)
@@ -94,6 +107,11 @@ namespace Prototype
 
             m_triggerdObject = obj;
             continueOpening = true;
+
+            foreach (var item in m_Outlines)
+            {
+                item.enabled = true;
+            }
         }
 
         private void Update()

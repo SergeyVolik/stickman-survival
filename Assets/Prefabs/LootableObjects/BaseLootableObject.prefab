@@ -802,6 +802,7 @@ MonoBehaviour:
   resources:
     m_InitResources: []
   dropPoint: {fileID: 4541467903594677464}
+  pushForce: 5
 --- !u!1001 &584342656021960548
 PrefabInstance:
   m_ObjectHideFlags: 0
