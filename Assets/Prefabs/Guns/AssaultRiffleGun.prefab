@@ -740,12 +740,12 @@ MonoBehaviour:
   hideOffset: {x: -0.115, y: -0.052, z: -0.04}
   hideRotation: {x: -52.141, y: 0, z: 0}
   type: 2
-  moveDamage: 3
-  pushForce: 50
+  moveDamage: 4
+  pushForce: 30
   killPushForce: 1000
-  moveShotInterval: 0.6
-  standingDamage: 4
-  standingshotInterval: 0.3
+  moveShotInterval: 0.15
+  standingDamage: 6
+  standingshotInterval: 0.1
   m_ShotFeedback: {fileID: 3619861078487105805}
   m_EquipFeedback: {fileID: 3058504264451147335}
   projectileSpawnPoint: {fileID: 1195880227664757068}

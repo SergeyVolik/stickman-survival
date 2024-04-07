@@ -1,3 +1,5 @@
+using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -5,7 +7,7 @@ namespace Prototype
 {
     public static class DropHelper
     {
-        public static bool TryDrop(GameObject obj, Vector3 spawnPos, ResourceContainer resources, TransferMoveManager transManager)
+        public static bool TryDrop(GameObject obj, Vector3 spawnPos, ResourceContainer resources, TransferMoveManager transManager, int maxDropElementsPerResource = 5)
         {
             float moveDuration = 1f;
             float moveDelay = 2f;
@@ -18,13 +20,23 @@ namespace Prototype
                 {
                     float pushForce = 7f;
 
-                    for (int i = 0; i < item.Value; i++)
+                    bool needDivItems = maxDropElementsPerResource < item.Value;
+                    int dropObjects = needDivItems ? maxDropElementsPerResource : item.Value;
+                    int itemPerDrop = item.Value / dropObjects;
+
+                    int finalDrop = itemPerDrop * dropObjects;
+                    for (int i = 0; i < dropObjects; i++)
                     {
+                        int toDrop = itemPerDrop;
                         var initialVelocity = Vector3.up * pushForce;
 
+                        if (i == dropObjects - 1 && finalDrop < item.Value)
+                        {
+                            toDrop = item.Value - finalDrop + itemPerDrop;
+                        }
+
                         transManager.TransferResource(spawnPos, initialVelocity, item.Key,
-                            moveDuration: moveDuration, moveDelay: moveDelay
-                            );
+                            moveDuration: moveDuration, moveDelay: moveDelay, resourceNumber: toDrop);
                     }
                 }
 
@@ -69,7 +81,7 @@ namespace Prototype
             }
         }
 
-      
+
     }
 
 }

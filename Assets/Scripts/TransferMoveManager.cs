@@ -33,7 +33,8 @@ namespace Prototype
            ResourceTypeSO resourceType,
            float maxVectorAngleOffset = 10,
            float moveDelay = 1f,
-           float moveDuration = 1f
+           float moveDuration = 1f,
+            int resourceNumber = 1
            )
         {
             var resourceObjectInstance = GameObject.Instantiate(resourceType.Resource3dItem);
@@ -70,7 +71,7 @@ namespace Prototype
 
                 seq.OnComplete(() =>
                 {
-                    m_playerResources.resources.AddResource(resourceType, 1);
+                    m_playerResources.resources.AddResource(resourceType, resourceNumber);
 
                     GameObject.Destroy(uiItem);
                 });               
