@@ -51,7 +51,7 @@ namespace Prototype
             var uiItem = GameObject
                 .Instantiate(m_ResourceUIItemPrefab, itemParent)
                 .GetComponent<RquiredResourceUIItem>();
-       
+            uiItem.transform.SetAsFirstSibling();
             uiItems.Add(type, uiItem);
             uiItem.SetSprite(type.resourceIcon, type.resourceColor);
             UpdateResourceUI(type, count);

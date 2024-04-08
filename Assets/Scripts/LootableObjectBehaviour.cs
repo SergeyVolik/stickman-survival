@@ -1,14 +1,10 @@
-using DG.Tweening;
 using MoreMountains.Feedbacks;
-using MoreMountains.Tools;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
-using Zenject;
 
 namespace Prototype
 {
-    public class Chest : MonoBehaviour
+    public class LootableObjectBehaviour : MonoBehaviour
     {
         public ResourceContainer[] lootTicksItems;
         public PhysicsCallbacks trigger;
@@ -22,8 +18,6 @@ namespace Prototype
         public int lootTicks => lootTicksItems.Length;
         public int executedLootTicks;
         public float finalDropDelay;
-
-      
 
         [SerializeField]
         private Image m_OpenStateImage;

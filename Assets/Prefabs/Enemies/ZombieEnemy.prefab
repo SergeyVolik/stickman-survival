@@ -78,7 +78,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282675239167010970}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   drawGizmos: 1
-  detailedGizmos: 0
+  detailedGizmos: 1
   startEndModifier:
     addPoints: 0
     exactStartPoint: 3
@@ -749,6 +749,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DamageFeedback (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 648596470158595942, guid: bb326513e3ac4244e89d05680c049aff,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.691
       objectReference: {fileID: 0}
     - target: {fileID: 5224354332415530821, guid: bb326513e3ac4244e89d05680c049aff,
         type: 3}
