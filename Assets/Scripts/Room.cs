@@ -6,7 +6,7 @@ public class Room : MonoBehaviour
     public PhysicsCallbacks rootTrigger;
 
     public Wall[] doDeactivateAfterEnterRoom;
-
+    public bool activateWithRoomTrigger;
     private void Awake()
     {
         rootTrigger.onTriggerEnter += RootTrigger_onTriggerEnter;
@@ -15,23 +15,39 @@ public class Room : MonoBehaviour
 
     private void RootTrigger_onTriggerExit(Collider obj)
     {
+        if (!activateWithRoomTrigger)
+            return;
+
         if (obj.GetComponent<PlayerInput>())
         {
-            foreach (var item in doDeactivateAfterEnterRoom)
-            {
-                item.Show();
-            }
+            HideRoom();
+        }
+    }
+
+    public void ShowRoom()
+    {
+        foreach (var item in doDeactivateAfterEnterRoom)
+        {
+            item.Show();
         }
     }
 
     private void RootTrigger_onTriggerEnter(Collider obj)
     {
+        if (!activateWithRoomTrigger)
+            return;
+
         if (obj.GetComponent<PlayerInput>())
         {
-            foreach (var item in doDeactivateAfterEnterRoom)
-            {
-                item.Hide();
-            }
+            ShowRoom();
+        }
+    }
+
+    public void HideRoom()
+    {
+        foreach (var item in doDeactivateAfterEnterRoom)
+        {
+            item.Hide();
         }
     }
 }

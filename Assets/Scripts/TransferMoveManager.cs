@@ -54,6 +54,8 @@ namespace Prototype
 
             rb.velocity = velocityWithOffset;
 
+            var uiTarget = m_resourceUi.UI.GetResourceItemsByType(resourceType);
+
             DOVirtual.DelayedCall(moveDelay, () =>
             {
                 var uiTarget = m_resourceUi.UI.GetResourceItemsByType(resourceType);
@@ -68,7 +70,7 @@ namespace Prototype
                 var duration = moveDuration * UnityEngine.Random.Range(0.8f, 1f);
                 seq.Insert(0, uiItem.transform.DOMoveX(targetPos.x, duration).SetEase(Ease.InCubic));
                 seq.Insert(0, uiItem.transform.DOMoveY(targetPos.y, duration).SetEase(Ease.Linear));
-
+                seq.Insert(duration*0.9f, uiItem.transform.DOScale(0, duration * 0.1f).SetEase(Ease.Linear));
                 seq.OnComplete(() =>
                 {
                     m_playerResources.resources.AddResource(resourceType, resourceNumber);

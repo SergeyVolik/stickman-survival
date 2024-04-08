@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b67bf7522bc934fa7f2629ee98b2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropVectorRotation: {x: 10, y: 0, z: 0}
+  dropVectorRotation: {x: 0, y: 0, z: 0}
   resources:
     m_InitResources: []
   dropPoint: {fileID: 2625983635044651810}

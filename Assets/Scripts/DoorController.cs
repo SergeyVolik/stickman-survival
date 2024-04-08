@@ -1,30 +1,23 @@
 using MoreMountains.Feedbacks;
-using Prototype;
 using UnityEngine;
 
-public class DoorController : MonoBehaviour
+namespace Prototype
 {
-    public Animator doorAnimator;
-    public PhysicsCallbacks physicsCallbacks;
-    public bool isOpened;
-    private void Awake()
+    public class DoorController : MonoBehaviour
     {
-        physicsCallbacks.onTriggerEnter += PhysicsCallbacks_onTriggerEnter;
-    }
-    public MMF_Player doorOpenedFeedback;
-    public void OpenDoor()
-    {
-        doorAnimator.SetTrigger("Open");
-        doorOpenedFeedback?.PlayFeedbacks();
-    }
+        public Animator doorAnimator;
+        public bool isOpened;
+        public MMF_Player doorOpenedFeedback;
 
-    private void PhysicsCallbacks_onTriggerEnter(Collider obj)
-    {
-        if (isOpened)
-            return;
+        public void OpenDoor()
+        {
+            if (isOpened)
+                return;
 
-        isOpened = true;
+            isOpened = true;
 
-        OpenDoor();
+            doorAnimator.SetTrigger("Open");
+            doorOpenedFeedback?.PlayFeedbacks();
+        }
     }
 }

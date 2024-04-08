@@ -1,19 +1,20 @@
-using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 
 namespace Prototype
 {
     public class RequiredResourceView : MonoBehaviour
     {
+        public Transform itemParent;
         private ResourceContainer m_CurrentResources;
         private ResourceContainer m_RequiredResources;
 
         public GameObject m_ResourceUIItemPrefab;
 
-        public Dictionary<ResourceTypeSO, ResourceUIItem> uiItems = new Dictionary<ResourceTypeSO, ResourceUIItem>();
+        public Dictionary<ResourceTypeSO, RquiredResourceUIItem> uiItems = new Dictionary<ResourceTypeSO, RquiredResourceUIItem>();
 
+        public event Action<ResourceTypeSO, RquiredResourceUIItem> onItemAdded = delegate { };
         public void Bind(ResourceContainer required, ResourceContainer current)
         {
             m_CurrentResources = current;
@@ -48,13 +49,14 @@ namespace Prototype
         private void SetupUIItem(ResourceTypeSO type, int count)
         {
             var uiItem = GameObject
-                .Instantiate(m_ResourceUIItemPrefab, transform)
-                .GetComponent<ResourceUIItem>();
-
+                .Instantiate(m_ResourceUIItemPrefab, itemParent)
+                .GetComponent<RquiredResourceUIItem>();
+       
             uiItems.Add(type, uiItem);
             uiItem.SetSprite(type.resourceIcon, type.resourceColor);
             UpdateResourceUI(type, count);
-            
+
+            onItemAdded.Invoke(type, uiItem);
         }
     }
 }

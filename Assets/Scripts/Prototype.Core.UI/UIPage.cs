@@ -105,5 +105,9 @@ namespace Prototype.UI
         {
             UINavigationManager.GetInstance().Navigate(this, additive);
         }
+        public void PopPage()
+        {
+            UINavigationManager.GetInstance().Pop();
+        }
     }
 }

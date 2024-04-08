@@ -17,7 +17,6 @@ namespace Prototype
         }
     }
 
-
     [System.Serializable]
     public class ResourceContainer : IEquatable<ResourceContainer>
     {
@@ -120,7 +119,6 @@ namespace Prototype
 
             int equalItems = 0;
 
-
             foreach (var item in ResourceDic)
             {
                var count = other.GetResource(item.Key);
@@ -128,7 +126,6 @@ namespace Prototype
                 if(count == item.Value)
                     equalItems++;
             }
-
 
             return equalItems == ResourceDic.Count;
         }

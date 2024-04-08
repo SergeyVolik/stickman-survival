@@ -64,6 +64,7 @@ namespace Prototype
         public WorldSpaceMessage m_WSMPrefab;
         public TransferMoveManager m_Transfer;
         public CameraController CameraController;
+        public WorldToScreenUIManager WorldToScreenUIManager;
         public override void InstallBindings()
         {
             var spawnFactory = new EnemySpawnFactory(zombiePrefab, Container);
@@ -73,6 +74,7 @@ namespace Prototype
 
             m_PlayerResourcesView.Bind(m_PlayerResources.resources);
 
+            Container.Bind<WorldToScreenUIManager>().FromInstance(WorldToScreenUIManager);
             Container.Bind<CameraController>().FromInstance(CameraController);
             Container.Bind<PlayerResourceUI>().FromInstance(new PlayerResourceUI(m_PlayerResourcesView));
             Container.Bind<WorldSpaceMessageFactory>().FromInstance(wsm);

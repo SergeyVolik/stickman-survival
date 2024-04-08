@@ -40,7 +40,7 @@ namespace Prototype
             }
         }
 
-        private RectTransform SetupUIItem(ResourceTypeSO type, int count)
+        private ResourceUIItem SetupUIItem(ResourceTypeSO type, int count)
         {
             var uiItem = GameObject
                 .Instantiate(type.ResourceUIItem, transform)
@@ -51,14 +51,14 @@ namespace Prototype
             uiItem.SetSprite(type.resourceIcon, type.resourceColor);
             uiItems.Add(type, uiItem);
 
-            return uiItem.GetComponent<RectTransform>();
+            return uiItem;
         }
 
         public ResourceUIItem GetResourceItemsByType(ResourceTypeSO resourceType)
         {
             if (!uiItems.TryGetValue(resourceType, out var value))
             {
-                SetupUIItem(resourceType, 0);
+                value = SetupUIItem(resourceType, 0);
             }
 
             return value;

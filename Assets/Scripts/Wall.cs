@@ -10,7 +10,7 @@ namespace Prototype
         {
             foreach (GameObject part in HideParts)
             {
-                part.SetActive(false);
+                part.SetActive(true);
             }
         }
 
@@ -18,7 +18,7 @@ namespace Prototype
         {
             foreach (GameObject part in HideParts)
             {
-                part.SetActive(true);
+                part.SetActive(false);
             }
         }
     }
