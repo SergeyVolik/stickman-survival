@@ -62,7 +62,7 @@ namespace Prototype
         public Transform playerSpawnPoint;
         public ResourceView m_PlayerResourcesView;
         public WorldSpaceMessage m_WSMPrefab;
-        public TransferMoveManager m_Transfer;
+        public ResourceTransferManager m_Transfer;
         public CameraController CameraController;
         public WorldToScreenUIManager WorldToScreenUIManager;
         public override void InstallBindings()
@@ -78,7 +78,7 @@ namespace Prototype
             Container.Bind<CameraController>().FromInstance(CameraController);
             Container.Bind<PlayerResourceUI>().FromInstance(new PlayerResourceUI(m_PlayerResourcesView));
             Container.Bind<WorldSpaceMessageFactory>().FromInstance(wsm);
-            Container.Bind<TransferMoveManager>().FromInstance(m_Transfer);
+            Container.Bind<ResourceTransferManager>().FromInstance(m_Transfer);
             Container.Bind<IPlayerFactory>().FromInstance(m_playerSpawnFactory);
             Container.Bind<PlayerInputReader>().FromInstance(input);
             Container.Bind<PlayerResources>().FromInstance(m_PlayerResources);

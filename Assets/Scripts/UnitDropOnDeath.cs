@@ -8,7 +8,7 @@ namespace Prototype
     public static class DropHelper
     {
         public static bool TryDrop(GameObject obj, Vector3 spawnPos, ResourceContainer resources,
-            TransferMoveManager transManager, Vector3 dropVector, int maxDropElementsPerResource = 5, float pushForce = 7f)
+            ResourceTransferManager transManager, Vector3 dropVector, int maxDropElementsPerResource = 5, float pushForce = 7f)
         {
             float moveDuration = 1f;
             float moveDelay = 2f;
@@ -45,7 +45,7 @@ namespace Prototype
             return false;
         }
 
-        public static bool TryDrop(GameObject obj, Vector3 spawnPos, ResourceContainer resources, TransferMoveManager transManager, int maxDropElementsPerResource = 5, float pushForce = 7f)
+        public static bool TryDrop(GameObject obj, Vector3 spawnPos, ResourceContainer resources, ResourceTransferManager transManager, int maxDropElementsPerResource = 5, float pushForce = 7f)
         {
             return TryDrop(obj, spawnPos, resources, transManager, Vector3.up, maxDropElementsPerResource, pushForce);
         }
@@ -55,7 +55,7 @@ namespace Prototype
     {
         public ResourceContainer resources;
         private HealthData m_Health;
-        private TransferMoveManager m_TransManager;
+        private ResourceTransferManager m_TransManager;
 
         private void Awake()
         {
@@ -68,7 +68,7 @@ namespace Prototype
         }
 
         [Inject]
-        void Construct(TransferMoveManager moveManager, WorldSpaceMessageFactory factory)
+        void Construct(ResourceTransferManager moveManager, WorldSpaceMessageFactory factory)
         {
             m_TransManager = moveManager;
         }

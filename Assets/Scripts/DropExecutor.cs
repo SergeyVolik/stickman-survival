@@ -9,12 +9,12 @@ namespace Prototype
     {
         public Vector3 dropVectorRotation = new Vector3(0, 0, 0);
         public ResourceContainer resources;
-        private TransferMoveManager m_movManager;
+        private ResourceTransferManager m_movManager;
         public Transform dropPoint;
         private Transform RealDroppoint => dropPoint ? dropPoint : transform;
         public float pushForce = 7f;
         [Inject]
-        void Construct(TransferMoveManager movManager)
+        void Construct(ResourceTransferManager movManager)
         {
             m_movManager = movManager;
         }

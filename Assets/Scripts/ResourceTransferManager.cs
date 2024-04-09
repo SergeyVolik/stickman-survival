@@ -1,14 +1,11 @@
 using DG.Tweening;
-using DG.Tweening.Core.Easing;
-using System;
-using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using Zenject;
 
 namespace Prototype
 {
-    public class TransferMoveManager : MonoBehaviour
+    public class ResourceTransferManager : MonoBehaviour
     {
         private Camera m_Camera;
         private PlayerResourceUI m_resourceUi;
@@ -67,10 +64,10 @@ namespace Prototype
                 var targetPos = uiTarget.spriteImage.transform.position;
 
                 var seq = DOTween.Sequence();
-                var duration = moveDuration * UnityEngine.Random.Range(0.8f, 1f);
+                var duration = moveDuration * UnityEngine.Random.Range(0.9f, 1f);
                 seq.Insert(0, uiItem.transform.DOMoveX(targetPos.x, duration).SetEase(Ease.InCubic));
                 seq.Insert(0, uiItem.transform.DOMoveY(targetPos.y, duration).SetEase(Ease.Linear));
-                seq.Insert(duration*0.9f, uiItem.transform.DOScale(0, duration * 0.1f).SetEase(Ease.Linear));
+                //seq.Insert(duration, uiItem.transform.DOScale(0, 0.3f).SetEase(Ease.OutCubic));
                 seq.OnComplete(() =>
                 {
                     m_playerResources.resources.AddResource(resourceType, resourceNumber);
