@@ -1,5 +1,4 @@
 using MoreMountains.Feedbacks;
-using Prototype;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -17,18 +16,13 @@ namespace Prototype
         public GameObject Owner { get; }
     }
 
-    public class Gun : MonoBehaviour, IOwnable
+    public class Gun : BaseWeapon, IOwnable
     {
-        public Vector3 handOffset;
-        public Vector3 handRotation;
-
-        public Vector3 hideOffset;
-        public Vector3 hideRotation;
-
         public GunType type = GunType.Handgun;
 
         [FormerlySerializedAs("damage")]
         public int moveDamage;
+
         public float pushForce;
         public float killPushForce;
         [FormerlySerializedAs("shotInterval")]
@@ -47,25 +41,13 @@ namespace Prototype
         private Transform projectileSpawnPoint;
        
         public float aimDistance = 3;
-        public GameObject owner;
+
         public LayerMask physicsPlayer;
-        public GameObject Owner => owner;
 
-        public void SetupInHands(Transform hand)
+        public override void SetupInHands(Transform hand)
         {
-            var trans = transform;
-            trans.parent = hand;
-            trans.localPosition = handOffset;
-            trans.localRotation = Quaternion.Euler(handRotation);
+            base.SetupInHands(hand);
             m_EquipFeedback?.PlayFeedbacks();
-        }
-
-        public void SetupInHidePoint(Transform hidePoint)
-        {
-            var trans = transform;
-            trans.parent = hidePoint;
-            trans.localPosition = hideOffset;
-            trans.localRotation = Quaternion.Euler(hideRotation);
         }
 
         public void Shot(bool isMoveing)

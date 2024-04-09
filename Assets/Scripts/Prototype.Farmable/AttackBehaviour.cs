@@ -4,10 +4,8 @@ namespace Prototype
 {
     public class AttackBehaviour : MonoBehaviour
     {
-        public Weapon[] weapons;
-
         private Transform m_Transform;
-
+        private CharacterInventory m_Inventory;
         [SerializeField]
         public LayerMask m_AttackableLayer;
         private Collider[] m_CastedColliders;
@@ -27,12 +25,7 @@ namespace Prototype
         {
             m_Transform = transform;
 
-            foreach (Weapon weapon in weapons)
-            {
-                weapon.transform.localScale = Vector3.zero;
-                weapon.Owner = gameObject;
-            }
-
+            m_Inventory = GetComponent<CharacterInventory>();
             m_CastedColliders = new Collider[20];
             
             m_CharAnimator = GetComponentInChildren<CharacterAnimator>();
@@ -52,6 +45,7 @@ namespace Prototype
                 m_Attaking = false;
                 M_CharAnimator_onDisableHitBox();
                 m_CharAnimator.ResetAttack();
+                m_Inventory.HideMeleeWeapon();
             }
         }
 
@@ -60,13 +54,13 @@ namespace Prototype
             if (m_CurrentWeapon)
             {
                 m_CurrentWeapon.EnableHitBox(false);
-                m_CurrentWeapon.HideWeapon();
+                //m_CurrentWeapon.HideWeapon();
             }
         }
 
         private void M_CharAnimator_onEnableHitBox()
         {
-            m_CurrentWeapon.ShowWeapon();
+            //m_CurrentWeapon.ShowWeapon();
             m_CurrentWeapon.EnableHitBox(true);
         }
 
@@ -77,18 +71,12 @@ namespace Prototype
 
         private void M_CharAnimator_onBeginAttack()
         {
-            m_CurrentWeapon.ShowWeapon();
+            //m_CurrentWeapon.ShowWeapon();
         }
 
         private Weapon GetWeaponByType(WeaponType type)
         {
-            foreach (var item in weapons)
-            {
-                if (item.Type == type)
-                    return item;
-            }
-
-            return null;
+           return m_Inventory.ActivateMeleeWeapon(type);
         }
 
         private void FixedUpdate()

@@ -19,20 +19,16 @@ namespace Prototype
         private void Awake()
         {
             m_Inventory = GetComponent<CharacterInventory>();
-
             m_Inventory.onMainWeaponChanged += M_Inventory_onGunChanged;
-
             m_Controller = GetComponent<CustomCharacterController>();
             m_CharacterAnimator = GetComponentInChildren<CharacterWithGunAnimator>();
-            var health = GetComponent<HealthData>();
 
+            var health = GetComponent<HealthData>();
             health.onDeath += () => { enabled = false; };
             health.onHealthChanged += Health_onHealthChanged;
          
             m_AimCircle = GetComponent<AimCirclerBehaviour>();
-
             m_CombatState = GetComponent<CharacterCombatState>();
-
             m_CombatState.onCombatState += (value) =>
             {
                 UpdateCombatState(value);
@@ -48,12 +44,12 @@ namespace Prototype
                 if (value)
                 {
                     m_AimCircle?.Show();
-                    m_Inventory.ActiveLastWeapon();
+                    m_Inventory.ActiveLastGun();
                 }
                 else
                 {
                     m_AimCircle?.Hide();
-                    m_Inventory.HideCurrentWeapon();
+                    m_Inventory.HideCurrentGun();
                 }
             }
         }
@@ -86,11 +82,11 @@ namespace Prototype
                 return;
             }
 
-            var currentGun = m_Inventory.CurrentWeapon;
+            var currentGun = m_Inventory.CurrentGun;
 
             if (m_CombatState.InCombat && !currentGun && m_Inventory.HasGunInInventory())
             {
-                m_Inventory.ActiveLastWeapon();
+                m_Inventory.ActiveLastGun();
                 m_AimCircle.Show();
             }
 

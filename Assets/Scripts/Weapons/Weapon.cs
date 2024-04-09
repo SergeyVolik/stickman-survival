@@ -11,12 +11,9 @@ namespace Prototype
         Crutch
     }
 
-    public class Weapon : MonoBehaviour, IOwnable
+    public class Weapon : BaseWeapon, IOwnable
     {
         public WeaponType Type;
-
-        [field: SerializeField]
-        public GameObject Owner { get; set; }
 
         public int damage;
         public TrailRenderer Trail;
@@ -24,16 +21,12 @@ namespace Prototype
 
         private Transform m_Transform;
 
-        private TweenerCore<Vector3, Vector3, VectorOptions> m_DeactivateTween;
-        private TweenerCore<Vector3, Vector3, VectorOptions> m_ShowTween;
-
         private void Awake()
         {
             m_Transform = transform;
             m_HitBox = GetComponent<Collider>();
            
             ActivateTrail(false);
-            m_DeactivateTween.Pause();
         }
 
         public void ActivateTrail(bool activate)
@@ -51,24 +44,16 @@ namespace Prototype
             ActivateTrail(enable);
         }
 
-        public void HideWeapon()
-        {          
-             m_DeactivateTween = m_Transform
-                .DOScale(Vector3.zero, 0.2f)
-                .OnComplete(() => {
-               
-            }).OnStart(() => {
-                m_ShowTween?.Kill();
-            }).SetDelay(1f);
+        public void HideWeapon(bool disable = true)
+        {
+            gameObject.SetActive(!disable);
+            EnableHitBox(false);
+            ActivateTrail(false);
         }
 
         public void ShowWeapon()
         {
-            m_DeactivateTween?.Kill();
-
-            float activateDuration = 0.2f;
-            m_ShowTween = m_Transform.DOScale(Vector3.one, activateDuration).SetEase(Ease.InSine).OnComplete(() => {               
-            });
+            gameObject.SetActive(true);
         }
 
         private void OnTriggerEnter(Collider other)
