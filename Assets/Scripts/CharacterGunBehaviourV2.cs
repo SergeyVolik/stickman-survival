@@ -19,7 +19,7 @@ namespace Prototype
         private void Awake()
         {
             m_Inventory = GetComponent<CharacterInventory>();
-            m_Inventory.onMainWeaponChanged += M_Inventory_onGunChanged;
+            m_Inventory.onGunChanged += M_Inventory_onMainWeaponChanged;
             m_Controller = GetComponent<CustomCharacterController>();
             m_CharacterAnimator = GetComponentInChildren<CharacterWithGunAnimator>();
 
@@ -37,6 +37,14 @@ namespace Prototype
             UpdateCombatState(m_CombatState.InCombat);
         }
 
+        private void M_Inventory_onMainWeaponChanged(Gun obj)
+        {
+            if (obj)
+            {
+                m_Controller.aimDistance = obj.aimDistance;
+            }
+        }
+
         private void UpdateCombatState(bool value)
         {
             if (m_Inventory.HasGun())
@@ -52,11 +60,6 @@ namespace Prototype
                     m_Inventory.HideCurrentGun();
                 }
             }
-        }
-
-        private void M_Inventory_onGunChanged(Gun obj)
-        {
-           //enabled = obj != null;
         }
 
         private void Health_onHealthChanged(HealthChangeData obj)

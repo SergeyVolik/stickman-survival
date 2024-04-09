@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Prototype
 {
-    public class AttackBehaviour : MonoBehaviour
+    public class MeleeAttackBehaviour : MonoBehaviour
     {
         private Transform m_Transform;
         private CharacterInventory m_Inventory;
@@ -35,7 +35,7 @@ namespace Prototype
             m_CharAnimator.onEnableHitBox += M_CharAnimator_onEnableHitBox;
             m_CharAnimator.onDisableHitBox += M_CharAnimator_onDisableHitBox;
 
-            m_Controller = GetComponent<CustomCharacterController>();
+            m_Controller = GetComponent<CustomCharacterController>();            
         }
 
         private void InterruptAttack()
@@ -54,13 +54,11 @@ namespace Prototype
             if (m_CurrentWeapon)
             {
                 m_CurrentWeapon.EnableHitBox(false);
-                //m_CurrentWeapon.HideWeapon();
             }
         }
 
         private void M_CharAnimator_onEnableHitBox()
         {
-            //m_CurrentWeapon.ShowWeapon();
             m_CurrentWeapon.EnableHitBox(true);
         }
 
@@ -71,7 +69,7 @@ namespace Prototype
 
         private void M_CharAnimator_onBeginAttack()
         {
-            //m_CurrentWeapon.ShowWeapon();
+          
         }
 
         private Weapon GetWeaponByType(WeaponType type)

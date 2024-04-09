@@ -32,7 +32,7 @@ namespace Prototype
             m_Renderer = m_CircleTransform.GetComponent<MeshRenderer>();
             m_StartColor = m_Renderer.material.color;
             m_Transform = transform;
-            GetComponent<CharacterInventory>().onMainWeaponChanged += AimCirclerBehaviour_onGunChanged;
+            GetComponent<CharacterInventory>().onGunChanged += AimCirclerBehaviour_onGunChanged;
             m_CircleTransform.gameObject.SetActive(false);
         }
 

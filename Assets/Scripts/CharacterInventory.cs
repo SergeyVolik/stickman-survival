@@ -20,7 +20,7 @@ namespace Prototype
         private Weapon[] m_MeleeWeaponsInstances;
         public Weapon CurrentMeleeWeapon { get; private set; }
 
-        public event Action<Gun> onMainWeaponChanged = delegate { };
+        public event Action<Gun> onGunChanged = delegate { };
 
         public Transform rightHand;
 
@@ -105,7 +105,7 @@ namespace Prototype
                 CurrentGun = GameObject.Instantiate(gunPrefab, rightHand).GetComponent<Gun>();
                 CurrentGun.owner = gameObject;
                 CurrentGun.SetupInHands(rightHand);
-                onMainWeaponChanged.Invoke(CurrentGun);
+                onGunChanged.Invoke(CurrentGun);
             }
             else
             {
@@ -113,7 +113,7 @@ namespace Prototype
                 m_PrevWeapon.owner = gameObject;
                 m_PrevWeapon.SetupInHidePoint(GetHidePoint(m_PrevWeapon.type));
 
-                onMainWeaponChanged.Invoke(null);
+                onGunChanged.Invoke(null);
             }
         }
 
@@ -154,7 +154,7 @@ namespace Prototype
             m_PrevWeapon = CurrentGun;
             m_PrevWeapon.SetupInHidePoint(GetHidePoint(m_PrevWeapon.type));
             CurrentGun = null;
-            onMainWeaponChanged.Invoke(null);
+            onGunChanged.Invoke(null);
         }
 
         [Button]
@@ -167,7 +167,7 @@ namespace Prototype
 
             CurrentGun = m_PrevWeapon;
             CurrentGun.SetupInHands(rightHand);
-            onMainWeaponChanged.Invoke(CurrentGun);
+            onGunChanged.Invoke(CurrentGun);
         }
     }
 }

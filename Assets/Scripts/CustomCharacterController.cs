@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Prototype
@@ -19,6 +20,8 @@ namespace Prototype
         public bool canAim;
         public bool IsAiming { get; private set; }
         public bool IsMoving => MoveInput != Vector2.zero;
+
+        [field:SerializeField]
         public bool HasTarget { get; private set; }
 
         public LayerMask CastMask;
@@ -29,6 +32,7 @@ namespace Prototype
         public float swithTargetInterval = 0.5f;
         private float m_LastSwithTarget;
         public bool standingOnlyAim = false;
+
         public Vector2 MoveInput { get => m_MoveInput; set => m_MoveInput = value; }
         RaycastHit[] results;
 

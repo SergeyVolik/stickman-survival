@@ -43,7 +43,7 @@ namespace Prototype
 
             if (gunBehaviour)
             {
-                gunBehaviour.onMainWeaponChanged += (gun) =>
+                gunBehaviour.onGunChanged += (gun) =>
                 {
                     if (gun == null)
                     {
