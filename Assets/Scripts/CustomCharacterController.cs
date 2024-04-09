@@ -21,7 +21,7 @@ namespace Prototype
         public bool IsAiming { get; private set; }
         public bool IsMoving => MoveInput != Vector2.zero;
 
-        [field:SerializeField]
+        [field: SerializeField]
         public bool HasTarget { get; private set; }
 
         public LayerMask CastMask;
@@ -43,14 +43,31 @@ namespace Prototype
             results = new RaycastHit[10];
         }
 
-        HealthData m_LastTargetUnit;
+        public HealthData CurrentTargetHealth
+        {
+            get;
+            private set;
+        }
+        public Transform CurrentTarget
+        {
+            get;
+            private set;
+        }
 
         float noTargetT = 100;
         float resetAimStateIfNoTarget = 1f;
 
-        
+        void UpdateTarget(Transform targetNew)
+        {
+            CurrentTargetHealth = targetNew.GetComponent<HealthData>();
+            if (CurrentTargetHealth)
+            {
+                CurrentTarget = targetNew;
+            }
+        }
+
         private void Update()
-        {         
+        {
             float deltaTime = Time.deltaTime;
             var normalizedMove = MoveInput.normalized;
             var moveVec3 = new Vector3(normalizedMove.x, 0, normalizedMove.y);
@@ -76,17 +93,17 @@ namespace Prototype
             {
                 //update target
                 {
-                    if (m_LastTargetUnit)
+                    if (CurrentTargetHealth)
                     {
-                        var dist = Vector3.Distance(m_LastTargetUnit.transform.position, currentPos);
+                        var dist = Vector3.Distance(CurrentTargetHealth.transform.position, currentPos);
 
-                        if (m_LastTargetUnit.IsDead)
+                        if (CurrentTargetHealth.IsDead)
                         {
-                            m_LastTargetUnit = null;
+                            CurrentTargetHealth = null;
                         }
                         else if (dist > aimDistance)
                         {
-                            m_LastTargetUnit = null;
+                            CurrentTargetHealth = null;
                         }
 
                         var data = GetTargetWithClosestDistance();
@@ -95,17 +112,17 @@ namespace Prototype
                         if (data.closestDistance < criticalDistanceChangeTarget)
                         {
                             newClosestUnit = data.body;
-
-
                         }
 
                         if (newClosestUnit != null && m_LastSwithTarget > swithTargetInterval)
                         {
                             m_LastSwithTarget = 0;
-                            m_LastTargetUnit = newClosestUnit.transform.GetComponent<HealthData>();
+
+                            UpdateTarget(newClosestUnit.transform);
+                          
                         }
 
-                        HasTarget = m_LastTargetUnit != null;
+                        HasTarget = CurrentTargetHealth != null;
                     }
 
                     //change target
@@ -119,7 +136,7 @@ namespace Prototype
                         {
                             noTargetT = 0;
 
-                            m_LastTargetUnit = data.body.transform.GetComponent<HealthData>();
+                            UpdateTarget(data.body.transform);
                         }
                     }
                 }
@@ -127,7 +144,7 @@ namespace Prototype
                 //update aim data
                 if (HasTarget)
                 {
-                    var point = m_LastTargetUnit.transform.position;
+                    var point = CurrentTargetHealth.transform.position;
 
                     point.y = currentPos.y;
                     var vector = point - currentPos;
@@ -136,7 +153,7 @@ namespace Prototype
                     newROtation = Quaternion.Slerp(currentRotation, Quaternion.LookRotation(vector), rotaValue);
                 }
             }
-            else 
+            else
             {
                 HasTarget = false;
                 noTargetT = resetAimStateIfNoTarget + 1;

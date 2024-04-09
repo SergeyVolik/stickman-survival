@@ -13,6 +13,7 @@ namespace Prototype
         float stunAfterDamageDur = 1f;
         bool stunned = false;
         float stunT;
+        private Transform m_Transform;
         private AimCirclerBehaviour m_AimCircle;
         private CharacterCombatState m_CombatState;       
 
@@ -26,7 +27,8 @@ namespace Prototype
             var health = GetComponent<HealthData>();
             health.onDeath += () => { enabled = false; };
             health.onHealthChanged += Health_onHealthChanged;
-         
+
+            m_Transform = transform;
             m_AimCircle = GetComponent<AimCirclerBehaviour>();
             m_CombatState = GetComponent<CharacterCombatState>();
             m_CombatState.onCombatState += (value) =>
@@ -41,7 +43,11 @@ namespace Prototype
         {
             if (obj)
             {
-                m_Controller.aimDistance = obj.aimDistance;
+                m_Controller.aimDistance = obj.aimDistance + 1;
+            }
+            else 
+            {
+                m_Controller.aimDistance = 0;
             }
         }
 
@@ -93,21 +99,19 @@ namespace Prototype
                 m_AimCircle.Show();
             }
 
-            if (currentGun)
-            {
-                m_Controller.aimDistance = currentGun.aimDistance;
-            }
-            else
-            {
-                m_Controller.aimDistance = 0;
-                return;
-            }
-
             bool isMoveing = m_Controller.MoveInput != Vector2.zero;
             float interval = isMoveing ? currentGun.moveShotInterval : currentGun.standingshotInterval;
 
             if (m_Controller.HasTarget)
             {
+                var targetPos = m_Controller.CurrentTarget.position;
+                var distance = Vector3.Distance(m_Transform.position, targetPos);
+
+                if (distance > currentGun.aimDistance)
+                {
+                    return;
+                }
+
                 m_ShotT += Time.deltaTime;
 
                 if (m_ShotT > interval)

@@ -1,8 +1,42 @@
 using System;
+using System.Linq;
+using Unity.Collections;
 using UnityEngine;
 
 namespace Prototype
 {
+    public static class PhysicsHelper
+    {
+        public static int GetAllTargetWithoutWalls(Transform castFrom, RaycastHit[] sphereCastHits, float castRadius, LayerMask sphereCastLayer, LayerMask wallLayer, float yOffset = 0)
+        {
+            var selfPos = castFrom.position;
+            selfPos.y += yOffset;
+
+            NativeList<RaycastHit> noWallHits = new NativeList<RaycastHit>(Allocator.Temp);
+
+            var count = Physics.SphereCastNonAlloc(selfPos, castRadius, Vector3.up, sphereCastHits, float.MaxValue, sphereCastLayer);
+
+            for (int i = 0; i < count; i++)
+            {
+                var targetPos = sphereCastHits[i].transform.position;
+                targetPos.y += yOffset;
+                var vector = targetPos - selfPos;
+
+                if (!Physics.Raycast(selfPos, vector.normalized, castRadius, wallLayer))
+                {
+                    noWallHits.Add(sphereCastHits[i]);
+                }
+            }
+
+            for (int i = 0; i < noWallHits.Length; i++)
+            {
+                sphereCastHits[i] = noWallHits[i];
+            }
+
+            return noWallHits.Length;
+        }
+    }
+
     public class CharacterCombatState : MonoBehaviour
     {
         public event Action<bool> onCombatState = delegate { };
@@ -55,25 +89,7 @@ namespace Prototype
 
         private void FixedUpdate()
         {
-            var selfPos = m_Transfrom.position;
-            selfPos.y += 0.5f;
-
-            var count = Physics.SphereCastNonAlloc(selfPos, checkEnemyRadius, Vector3.up, m_RaycastHits, float.MaxValue, enemyLayerMask);
-            bool seeAnyEnemy = false;
-
-            for (int i = 0; i < count; i++)
-            {
-                var targetPos = m_RaycastHits[i].transform.position;
-                targetPos.y += 0.5f;
-                var vector = targetPos - selfPos;
-
-                if (!Physics.Raycast(selfPos, vector.normalized, checkEnemyRadius, wallLayers))
-                {
-                    Debug.DrawLine(selfPos, targetPos, Color.green);
-                    seeAnyEnemy = true;
-                    break;
-                }
-            }
+            bool seeAnyEnemy = PhysicsHelper.GetAllTargetWithoutWalls(m_Transfrom, m_RaycastHits, checkEnemyRadius, enemyLayerMask, wallLayers, 0.5f) != 0;
 
             bool hasEnemiesFInished = seeEnemyTimeToStart < m_SeeEnemyTime;
          

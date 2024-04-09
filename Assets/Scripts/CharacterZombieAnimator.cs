@@ -48,9 +48,9 @@ namespace Prototype
         public event Action onEnableCollider = delegate { };
         public event Action onDisableCollider = delegate { };
 
-        private void Update()
+        public void SetMove(bool isMoving)
         {
-            Animator.SetBool(MoveHash, !m_Path.reachedEndOfPath);
+            Animator.SetBool(MoveHash, isMoving);
         }
 
         public void Attack()

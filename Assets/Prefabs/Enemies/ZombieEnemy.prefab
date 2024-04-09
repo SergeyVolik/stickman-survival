@@ -170,6 +170,14 @@ MonoBehaviour:
   attackCollider: {fileID: 6881351121733533180}
   minSpeed: 1
   maxSpeed: 2
+  checkTargetDistance: 4
+  isTargetDetected: 0
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  wallLayerMask:
+    serializedVersion: 2
+    m_Bits: 116736
 --- !u!114 &8779009633079900590
 MonoBehaviour:
   m_ObjectHideFlags: 0
