@@ -104,6 +104,7 @@ namespace Prototype
                 float closestDist = float.MaxValue;
                 FarmableObject closestFarmable = null;
                 var currentPos = m_Transform.position;
+
                 for (int i = 0; i < count; i++)
                 {
                     var collider = m_CastedColliders[i];

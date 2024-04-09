@@ -8,16 +8,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1373034991031291354, guid: cf3e27cbd94dd134795712f7e35cc341,
-        type: 3}
-      propertyPath: managedReferences[446011494053183488].RandomSfx.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1373034991031291354, guid: cf3e27cbd94dd134795712f7e35cc341,
-        type: 3}
-      propertyPath: managedReferences[446011494053183488].RandomSfx.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 292aad821b16948af9cba9deaca16525, type: 3}
     - target: {fileID: 5197773500834160300, guid: cf3e27cbd94dd134795712f7e35cc341,
         type: 3}
       propertyPath: m_Pivot.x
@@ -121,14 +111,29 @@ PrefabInstance:
     - target: {fileID: 5197773500834160301, guid: cf3e27cbd94dd134795712f7e35cc341,
         type: 3}
       propertyPath: m_Name
-      value: StoneResourceUIItem
+      value: Key2ResourceUIItem
       objectReference: {fileID: 0}
     - target: {fileID: 5197773501488976900, guid: cf3e27cbd94dd134795712f7e35cc341,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7bc328310d9911548b642c23efb8eed0,
+      objectReference: {fileID: 21300000, guid: 91963cef5ae0e1141bf9e095f8507435,
         type: 3}
+    - target: {fileID: 5197773501488976900, guid: cf3e27cbd94dd134795712f7e35cc341,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197773501488976900, guid: cf3e27cbd94dd134795712f7e35cc341,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197773501488976900, guid: cf3e27cbd94dd134795712f7e35cc341,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

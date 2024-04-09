@@ -746,7 +746,7 @@ MonoBehaviour:
   pushForce: 700
   killPushForce: 3500
   moveShotInterval: 0.8
-  standingDamage: 40
+  standingDamage: 25
   standingshotInterval: 0.5
   m_ShotFeedback: {fileID: 3619861078487105805}
   m_EquipFeedback: {fileID: 4830534582482902916}

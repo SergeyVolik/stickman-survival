@@ -86,12 +86,16 @@ namespace Prototype
 
         [SerializeField]
         float m_NoEnemiesT;
+        private bool hasEnemiesFInished;
 
         private void FixedUpdate()
         {
             bool seeAnyEnemy = PhysicsHelper.GetAllTargetWithoutWalls(m_Transfrom, m_RaycastHits, checkEnemyRadius, enemyLayerMask, wallLayers, 0.5f) != 0;
 
-            bool hasEnemiesFInished = seeEnemyTimeToStart < m_SeeEnemyTime;
+            if (!hasEnemiesFInished)
+            {
+                hasEnemiesFInished = seeEnemyTimeToStart < m_SeeEnemyTime;
+            }
          
             if (seeAnyEnemy)
             {
@@ -108,7 +112,14 @@ namespace Prototype
                 m_NoEnemiesT += Time.fixedDeltaTime;
             }
 
+          
             bool noEnemiesFinished = m_NoEnemiesT < timeToEndCombat;
+
+            if (!noEnemiesFinished && hasEnemiesFInished)
+            {
+                hasEnemiesFInished = false;
+            }
+
             InCombat = noEnemiesFinished || hasEnemiesFInished;
         }
     }

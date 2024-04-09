@@ -28,6 +28,7 @@ namespace Prototype
             m_HitBox = GetComponent<Collider>();
            
             ActivateTrail(false);
+            EnableHitBox(false);
         }
 
         public void ActivateTrail(bool activate)
@@ -41,9 +42,6 @@ namespace Prototype
 
         public void EnableHitBox(bool enable)
         {
-            if (!m_Showed)
-                return;
-
             m_HitBox.enabled = enable;
             ActivateTrail(enable);
         }
