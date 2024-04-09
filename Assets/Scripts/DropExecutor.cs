@@ -26,6 +26,9 @@ namespace Prototype
 
         public void ExecuteDrop(GameObject dropTarget, ResourceContainer resources)
         {
+            if (dropTarget == null)
+                return;
+
             DropHelper.TryDrop(dropTarget, RealDroppoint.position, resources, m_movManager, GetDropVector(), pushForce: pushForce);
         }
 

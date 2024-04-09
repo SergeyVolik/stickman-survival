@@ -24,6 +24,9 @@ public class WorldToScreenUIManager : MonoBehaviour
 
     public WordlToScreenUIItem Register(WordlToScreenUIItem item)
     {
+        item.item.anchorMax = new Vector2(0.5f, 0.5f);
+        item.item.anchorMin = new Vector2(0.5f, 0.5f);
+
         m_Items.Add(item);
         return item;
     }

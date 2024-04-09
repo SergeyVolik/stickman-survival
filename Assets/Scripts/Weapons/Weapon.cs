@@ -61,7 +61,7 @@ namespace Prototype
             if (Owner == other.gameObject)
                 return;
         
-            if (other.TryGetComponent<FarmableObject>(out var farmable))
+            if (other.TryGetComponent<FarmableObject>(out var farmable) && farmable.enabled)
             {
                 if (farmable.RequiredWeapon == Type)
                 {

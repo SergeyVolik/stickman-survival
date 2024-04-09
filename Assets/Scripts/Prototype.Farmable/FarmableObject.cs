@@ -32,6 +32,10 @@ namespace Prototype
 
         [SerializeField]
         private ResourceContainer m_StartResource;
+
+        [SerializeField]
+        private ResourceContainer m_OnDeathDrop;
+
         private ResourceContainer m_ArlreadyDroppedResources;
         private ResourceContainer m_ToDrop;
         private HealthData m_Health;
@@ -51,6 +55,11 @@ namespace Prototype
             m_DropExecutor = GetComponent<DropExecutor>();
         }
 
+        private void OnEnable()
+        {
+            
+        }
+
         private void M_Health_onResurrected()
         {
             m_PartsParent.localScale = new Vector3(1, 0, 1);
@@ -60,8 +69,16 @@ namespace Prototype
 
         private void M_Health_onDeath()
         {
-            if (m_DeathParticle != null)
+            var target = m_Health.KilledBy;
+            if (m_Health.KilledBy.TryGetComponent<IOwnable>(out var owner))
             {
+                target = owner.Owner;
+            }
+
+            m_DropExecutor.ExecuteDrop(target, m_OnDeathDrop);
+
+            if (m_DeathParticle != null)
+            {               
                 m_DeathParticle.Play();
             }
         }
