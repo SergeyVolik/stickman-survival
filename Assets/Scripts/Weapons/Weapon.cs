@@ -20,6 +20,7 @@ namespace Prototype
         private Collider m_HitBox;
 
         private Transform m_Transform;
+        private bool m_Showed;
 
         private void Awake()
         {
@@ -40,12 +41,16 @@ namespace Prototype
 
         public void EnableHitBox(bool enable)
         {
+            if (!m_Showed)
+                return;
+
             m_HitBox.enabled = enable;
             ActivateTrail(enable);
         }
 
         public void HideWeapon(bool disable = true)
         {
+            m_Showed = false;
             gameObject.SetActive(!disable);
             EnableHitBox(false);
             ActivateTrail(false);
@@ -53,6 +58,7 @@ namespace Prototype
 
         public void ShowWeapon()
         {
+            m_Showed = true;
             gameObject.SetActive(true);
         }
 

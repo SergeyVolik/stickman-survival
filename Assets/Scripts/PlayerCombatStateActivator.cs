@@ -33,9 +33,7 @@ namespace Prototype
             m_CombatState.onCombatState += (value) =>
             {
                 UpdateState(value);
-            };
-
-           
+            }; 
         }
 
         private void UpdateState(bool value)
@@ -65,7 +63,7 @@ namespace Prototype
                 return;
 
             isInCombat = true;
-            Debug.Log("Player Combat");
+            //Debug.Log("Player Combat");
             combatFeedback?.PlayFeedbacks();
             m_camera.ActivateCombatCamera();
         }
@@ -74,12 +72,10 @@ namespace Prototype
         {
             if (!isInCombat)
                 return;
-            Debug.Log("Player Idle");
+            //Debug.Log("Player Idle");
 
             isInCombat = false;
-
             idleFeedback?.PlayFeedbacks();
-
             m_camera.ActivateIdleCamera();
         }
     }

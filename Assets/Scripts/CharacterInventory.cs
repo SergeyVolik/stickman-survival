@@ -58,7 +58,7 @@ namespace Prototype
                 if (item.Type == type)
                 {
                     findedWeapon = item;
-                    findedWeapon.gameObject.SetActive(true);
+                    findedWeapon.ShowWeapon();
                     findedWeapon.SetupInHands(rightHand);               
                 }
             }

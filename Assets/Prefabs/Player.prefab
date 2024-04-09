@@ -120,8 +120,8 @@ Transform:
   m_GameObject: {fileID: 3562248024557348271}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 1.114}
-  m_LocalScale: {x: 2.346141, y: 1, z: 1.286194}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalScale: {x: 2.5, y: 1, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6018111070822822493}
@@ -486,7 +486,7 @@ MonoBehaviour:
     m_Bits: 8
   AimVector: {x: 0, y: 0}
   aimDistance: 5
-  rotationSpeed: 30
+  rotationSpeed: 10
   criticalDistanceChangeTarget: 2
   swithTargetInterval: 1
   standingOnlyAim: 1

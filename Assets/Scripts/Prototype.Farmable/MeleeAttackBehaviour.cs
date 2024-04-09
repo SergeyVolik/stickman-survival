@@ -16,8 +16,6 @@ namespace Prototype
 
         private Weapon m_CurrentWeapon;
 
-        public bool attackOnStanding;
-        public bool rotateToTarget;
         private CustomCharacterController m_Controller;
         private bool m_Attaking;
 
@@ -79,9 +77,9 @@ namespace Prototype
 
         private void FixedUpdate()
         {
-            bool canAttack = attackOnStanding && !m_Controller.IsMoving || !attackOnStanding;
+            bool canAttack = !m_Controller.IsMoving;
 
-            if (attackOnStanding && m_Controller.IsMoving)
+            if (m_Controller.IsMoving)
             {
                 InterruptAttack();
             }
@@ -103,34 +101,46 @@ namespace Prototype
                     castTrans.rotation,
                     m_AttackableLayer);
 
-                Vector3 targetPos = Vector3.zero;
+                float closestDist = float.MaxValue;
+                FarmableObject closestFarmable = null;
+                var currentPos = m_Transform.position;
                 for (int i = 0; i < count; i++)
                 {
                     var collider = m_CastedColliders[i];
 
-                    if (collider.TryGetComponent<FarmableObject>(out var farmableObj))
+                    if (collider.TryGetComponent<FarmableObject>(out var farmableObj) && farmableObj.enabled)
                     {
-                        m_CurrentWeapon = GetWeaponByType(farmableObj.RequiredWeapon);
-                        m_CharAnimator.AttackTrigger();
-                        m_Attaking = true;
-                        targetPos = farmableObj.transform.position;
+                        var dist = Vector3.Distance(collider.transform.position, currentPos);
+
+                        if (closestDist > dist)
+                        {
+                            closestDist = dist;
+                            closestFarmable = farmableObj;
+                        }
                     }
                 }
 
-                if (count == 0)
+                if (closestFarmable)
+                {
+                    m_CurrentWeapon = GetWeaponByType(closestFarmable.RequiredWeapon);
+                    m_CharAnimator.AttackTrigger();
+                    m_Attaking = true;
+                    var targetPos = closestFarmable.transform.position;
+
+                    //rotate
+                    var point = targetPos;
+                    point.y = currentPos.y;
+                    var vector = point - currentPos;
+                    const float rotationSpeed = 10f;
+
+                    float rotaValue = Mathf.Clamp01(Time.deltaTime * rotationSpeed);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vector), rotaValue);
+                }
+                else
                 {
                     m_CharAnimator.ResetAttack();
                 }
-                else if (rotateToTarget)
-                {
-                    var point = targetPos;
-                    var currentPos = transform.position;
-                    point.y = currentPos.y;
-                    var vector = point - currentPos;
-
-                    float rotaValue = Mathf.Clamp01(Time.deltaTime * 10);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vector), rotaValue);
-                }
+ 
             }
         }
     }
