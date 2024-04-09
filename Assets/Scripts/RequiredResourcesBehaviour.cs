@@ -1,4 +1,6 @@
 using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using Prototype;
 using System;
 using UnityEngine;
@@ -24,6 +26,8 @@ namespace Prototype
 
         public event Action onFinished = delegate { };
         public UnityEvent onFinishedUI;
+        private TweenerCore<Vector3, Vector3, VectorOptions> m_HideUiTween;
+
         [Inject]
         void Construct(WorldToScreenUIManager wts, PlayerResources playerResources)
         {
@@ -90,7 +94,7 @@ namespace Prototype
 
         private void DeactuvateUI(Action callback = null)
         {
-            m_requiredResourceUIViewInstance.transform.DOScale(0, 0.5f)
+            m_HideUiTween = m_requiredResourceUIViewInstance.transform.DOScale(0, 0.5f)
                 .SetEase(Ease.InBack)
                 .OnComplete(() =>
                 {
@@ -102,6 +106,7 @@ namespace Prototype
 
         private void ActuvateUI()
         {
+            m_HideUiTween?.Kill();
             if (m_BindHandle == null)
             {
                 m_BindHandle = m_wts.Register(new WordlToScreenUIItem

@@ -36,23 +36,14 @@ namespace Prototype
         private ResourceContainer m_ToDrop;
         private HealthData m_Health;
         private Collider m_Collider;
-        private TransferMoveManager m_TransManager;
-        int m_PrevActivateParts;
         private DropExecutor m_DropExecutor;
 
-        [Inject]
-        void Construct(TransferMoveManager transManager, WorldSpaceMessageFactory wsmFactory)
-        {
-            m_TransManager = transManager;
-        }
-      
         private void Awake()
         {
             m_Health = GetComponent<HealthData>();
             m_Collider = GetComponent<Collider>();
             m_ArlreadyDroppedResources = new ResourceContainer();
             m_ToDrop = new ResourceContainer();
-            m_PrevActivateParts = m_Parts.Length;
             m_Health.onHealthChanged += M_Health_onHealthChaged;
             m_Health.onDeath += M_Health_onDeath;
             m_Health.onResurrected += M_Health_onResurrected;
@@ -77,11 +68,9 @@ namespace Prototype
 
         private void M_Health_onHealthChaged(HealthChangeData obj)
         {
-            var currentHealthPercent = m_Health.currentHealth / (float)m_Health.maxHealth;
             UpdateObjectParts();
 
             m_Collider.enabled = !m_Health.IsDead;
-            m_PartsParent.DOPunchScale(new Vector3(0, -0.3f, 0), 0.15f);
 
             if (obj.Source != null && obj.IsDamage)
             {
@@ -144,9 +133,6 @@ namespace Prototype
                         m_PartRemoveParticle.Play();
                     }
                 }
-
-
-                m_PrevActivateParts = ActiveParts;
             }
         }
 

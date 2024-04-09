@@ -66,8 +66,7 @@ namespace Prototype
 
             if (m_CharAnimator)
             {
-                m_CharAnimator.StartLooting(false);
-                m_CharAnimator = null;
+                m_CharAnimator.EndLooting();
             }
 
             endLootingFeedback?.PlayFeedbacks();
@@ -88,7 +87,7 @@ namespace Prototype
 
             if (m_CharAnimator)
             {
-                m_CharAnimator.StartLooting(true);
+                m_CharAnimator.StartLooting();
             }
 
             m_ResHolder = obj.GetComponent<IResourceHolder>();

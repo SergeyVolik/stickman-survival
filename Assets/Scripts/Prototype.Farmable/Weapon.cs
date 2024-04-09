@@ -25,6 +25,7 @@ namespace Prototype
         private Transform m_Transform;
 
         private TweenerCore<Vector3, Vector3, VectorOptions> m_DeactivateTween;
+        private TweenerCore<Vector3, Vector3, VectorOptions> m_ShowTween;
 
         private void Awake()
         {
@@ -51,12 +52,13 @@ namespace Prototype
         }
 
         public void HideWeapon()
-        {
-           
-            m_DeactivateTween = m_Transform
+        {          
+             m_DeactivateTween = m_Transform
                 .DOScale(Vector3.zero, 0.2f)
                 .OnComplete(() => {
                
+            }).OnStart(() => {
+                m_ShowTween?.Kill();
             }).SetDelay(1f);
         }
 
@@ -65,7 +67,7 @@ namespace Prototype
             m_DeactivateTween?.Kill();
 
             float activateDuration = 0.2f;
-            m_Transform.DOScale(Vector3.one, activateDuration).SetEase(Ease.InSine).OnComplete(() => {               
+            m_ShowTween = m_Transform.DOScale(Vector3.one, activateDuration).SetEase(Ease.InSine).OnComplete(() => {               
             });
         }
 

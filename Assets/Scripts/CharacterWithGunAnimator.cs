@@ -90,14 +90,15 @@ namespace Prototype
             m_Animator.SetTrigger(ShotHash);
         }
 
-        internal void StartLooting(bool value)
+        internal void EndLooting()
         {
-            m_Animator.SetBool(OpeningHash, value);
+            m_Animator.SetBool(OpeningHash, false);
+        }
 
-            if (value)
-            {
-                m_Animator.SetTrigger(StartOpeningHash);
-            }
+        internal void StartLooting()
+        {
+            m_Animator.SetBool(OpeningHash, true);
+            m_Animator.SetTrigger(StartOpeningHash);
         }
     }
 }

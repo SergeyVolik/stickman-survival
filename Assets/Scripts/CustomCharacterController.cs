@@ -18,6 +18,7 @@ namespace Prototype
 
         public bool canAim;
         public bool IsAiming { get; private set; }
+        public bool IsMoving => MoveInput != Vector2.zero;
         public bool HasTarget { get; private set; }
 
         public LayerMask CastMask;
@@ -27,7 +28,7 @@ namespace Prototype
         public float criticalDistanceChangeTarget;
         public float swithTargetInterval = 0.5f;
         private float m_LastSwithTarget;
-
+        public bool standingOnlyAim = false;
         public Vector2 MoveInput { get => m_MoveInput; set => m_MoveInput = value; }
         RaycastHit[] results;
 
@@ -65,7 +66,9 @@ namespace Prototype
                 newROtation = Quaternion.Slerp(currentRotation, Quaternion.LookRotation(moveVec3), rotaValue);
             }
 
-            if (canAim)
+            var needAim = standingOnlyAim && MoveInput == Vector2.zero || !standingOnlyAim;
+
+            if (canAim && needAim)
             {
                 //update target
                 {
@@ -120,7 +123,6 @@ namespace Prototype
                 //update aim data
                 if (HasTarget)
                 {
-
                     var point = m_LastTargetUnit.transform.position;
 
                     point.y = currentPos.y;
@@ -130,8 +132,13 @@ namespace Prototype
                     newROtation = Quaternion.Slerp(currentRotation, Quaternion.LookRotation(vector), rotaValue);
                 }
             }
+            else 
+            {
+                HasTarget = false;
+                noTargetT = resetAimStateIfNoTarget + 1;
+            }
 
-            IsAiming = HasTarget || noTargetT < resetAimStateIfNoTarget;
+            IsAiming = HasTarget || noTargetT <= resetAimStateIfNoTarget;
             m_Rb.SimpleMove(moveVec3 * speed);
             m_Transform.rotation = newROtation;
         }

@@ -14,7 +14,7 @@ namespace Prototype
         bool stunned = false;
         float stunT;
         private AimCirclerBehaviour m_AimCircle;
-        private CharacterCombatState m_CombatState;
+        private CharacterCombatState m_CombatState;       
 
         private void Awake()
         {

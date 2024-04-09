@@ -52,13 +52,13 @@ namespace Prototype
         public void OnBeginAttack()
         {
             onBeginAttack.Invoke();
-            m_Animator.SetBool(IsAttackingBoolHash, true);
+            //m_Animator.SetBool(IsAttackingBoolHash, true);
         }
 
         public void OnEndAttack()
         {
             onEndAttack.Invoke();
-            m_Animator.SetBool(IsAttackingBoolHash, false);
+            //m_Animator.SetBool(IsAttackingBoolHash, false);
         }
 
         public void OnEnableHitBox()
