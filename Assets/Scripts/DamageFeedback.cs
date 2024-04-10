@@ -23,7 +23,9 @@ namespace Prototype
             if (obj.IsDamage)
             {
                 var diff = obj.PrevValue - obj.CurrentValue;       
-                damageFeedback.PlayFeedbacks(damageFeedback.transform.position, diff);
+                damageFeedback.PlayFeedbacks(damageFeedback.transform.position);
+
+                damageFeedback.GetFeedbackOfType<MMF_FloatingText>().Value = diff.ToString();
             }
         }
     }

@@ -18,8 +18,10 @@ GameObject:
   - component: {fileID: 784188471755786615}
   - component: {fileID: 8779009633079900590}
   - component: {fileID: 9132971593662365141}
-  - component: {fileID: 4660621404845496486}
   - component: {fileID: 8506036965265844151}
+  - component: {fileID: 7844103313989067654}
+  - component: {fileID: 9023029212417317437}
+  - component: {fileID: 1194683310575499144}
   m_Layer: 3
   m_Name: ZombieEnemy
   m_TagString: Untagged
@@ -111,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 200
   currentHealth: 200
+  <IsDamageable>k__BackingField: 1
 --- !u!114 &2288049910505487483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +181,7 @@ MonoBehaviour:
     m_Bits: 64
   wallLayerMask:
     serializedVersion: 2
-    m_Bits: 116736
+    m_Bits: 51200
 --- !u!114 &8779009633079900590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +226,7 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &4660621404845496486
+--- !u!114 &8506036965265844151
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,7 +235,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1282675239167010970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+  m_Script: {fileID: 11500000, guid: 77f586f285b3847808d79083bd19ef1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  unwrap: 1
+  splitAtEveryPortal: 0
+--- !u!114 &7844103313989067654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282675239167010970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce11ea984e202491d9271f53021d8b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
@@ -256,16 +274,16 @@ MonoBehaviour:
     maximumPeriod: 2
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
-  maxAcceleration: -2.5
+  acceleration: 5
   rotationSpeed: 360
-  slowdownDistance: 0.6
-  pickNextWaypointDist: 2
+  slowdownTime: 0.5
   endReachedDistance: 1
-  alwaysDrawGizmos: 0
+  wallForce: 3
+  wallDist: 1
+  funnelSimplification: 0
   slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
-  constrainInsideGraph: 0
---- !u!114 &8506036965265844151
+  animCompatibility: {fileID: 0}
+--- !u!114 &9023029212417317437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -274,12 +292,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1282675239167010970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f586f285b3847808d79083bd19ef1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 48a4862040c3e7741913cd9246ed094d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 1
-  unwrap: 1
-  splitAtEveryPortal: 0
+  <RequiredWeapon>k__BackingField: 0
+--- !u!114 &1194683310575499144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282675239167010970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0524552b9f8749a4792c12bf4eb1abc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6484363818494222209
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +979,11 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 1282675239167010970}
+    - target: {fileID: 3532980471641024308, guid: 50ddd18413fa1854788c4c159c420c2e,
+        type: 3}
+      propertyPath: damage
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

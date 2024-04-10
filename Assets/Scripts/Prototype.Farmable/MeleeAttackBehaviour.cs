@@ -102,28 +102,31 @@ namespace Prototype
                     m_AttackableLayer);
 
                 float closestDist = float.MaxValue;
-                FarmableObject closestFarmable = null;
+                HealthData closestFarmable = null;
+
                 var currentPos = m_Transform.position;
+                Collider closestCollider = null;
 
                 for (int i = 0; i < count; i++)
                 {
                     var collider = m_CastedColliders[i];
 
-                    if (collider.TryGetComponent<FarmableObject>(out var farmableObj) && farmableObj.enabled)
+                    if (collider.TryGetComponent<HealthData>(out var farmableObj) && farmableObj.enabled)
                     {
                         var dist = Vector3.Distance(collider.transform.position, currentPos);
 
                         if (closestDist > dist)
                         {
+                            closestCollider = collider;
                             closestDist = dist;
                             closestFarmable = farmableObj;
                         }
                     }
                 }
 
-                if (closestFarmable)
+                if (closestCollider && closestCollider.TryGetComponent<IRequiredMeleeWeapon>(out var requiredData))
                 {
-                    m_CurrentWeapon = GetWeaponByType(closestFarmable.RequiredWeapon);
+                    m_CurrentWeapon = GetWeaponByType(requiredData.RequiredWeapon);
                     m_CharAnimator.AttackTrigger();
                     m_Attaking = true;
                     var targetPos = closestFarmable.transform.position;
@@ -141,7 +144,6 @@ namespace Prototype
                 {
                     m_CharAnimator.ResetAttack();
                 }
- 
             }
         }
     }

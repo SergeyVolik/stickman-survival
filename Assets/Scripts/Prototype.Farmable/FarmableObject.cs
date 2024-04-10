@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 namespace Prototype
 {
     [RequireComponent(typeof(HealthData))]
-    public class FarmableObject : MonoBehaviour
+    public class FarmableObject : MonoBehaviour, IRequiredMeleeWeapon
     {
         [SerializeField]
         private WeaponType m_RequiredWeapon;
@@ -53,11 +53,6 @@ namespace Prototype
             m_Health.onResurrected += M_Health_onResurrected;
 
             m_DropExecutor = GetComponent<DropExecutor>();
-        }
-
-        private void OnEnable()
-        {
-            
         }
 
         private void M_Health_onResurrected()

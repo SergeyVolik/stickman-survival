@@ -11,11 +11,11 @@ namespace Prototype
         public GameObject Source;
         public bool IsDamage => CurrentValue < PrevValue;
     }
-   
 
-        public class HealthData : MonoBehaviour, IResurrectable, IKillable, IDamageable, IHealable
+
+    public class HealthData : MonoBehaviour, IResurrectable, IKillable, IDamageable, IHealable
     {
-        public int maxHealth = 10;   
+        public int maxHealth = 10;
         public int currentHealth = 10;
 
         public event Action<HealthChangeData> onHealthChanged = delegate { };
@@ -25,6 +25,14 @@ namespace Prototype
         public bool IsDead => currentHealth == 0;
 
         public GameObject KilledBy => m_KilledBy;
+
+        [field: SerializeField]
+        public bool IsDamageable
+        {
+            get;
+            set;
+        } = true;
+
         private GameObject m_KilledBy;
         public bool HasMaxHealth()
         {
@@ -68,6 +76,9 @@ namespace Prototype
 
         public void DoDamage(int damage, GameObject source)
         {
+            if (!IsDamageable)
+                return;
+
             ChangeHealth(-damage, source);
         }
 

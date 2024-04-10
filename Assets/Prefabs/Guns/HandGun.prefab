@@ -743,7 +743,7 @@ MonoBehaviour:
   hideRotation: {x: 0, y: 0, z: 0}
   type: 1
   moveDamage: 15
-  pushForce: 700
+  pushForce: 15
   killPushForce: 3500
   moveShotInterval: 0.8
   standingDamage: 25

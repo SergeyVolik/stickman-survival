@@ -1,6 +1,7 @@
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 namespace Prototype
@@ -21,6 +22,7 @@ namespace Prototype
 
         private Transform m_Transform;
         private bool m_Showed;
+        public float pushForce;
 
         private void Awake()
         {
@@ -65,11 +67,17 @@ namespace Prototype
             if (Owner == other.gameObject)
                 return;
         
-            if (other.TryGetComponent<FarmableObject>(out var farmable) && farmable.enabled)
+            if (other.TryGetComponent<IRequiredMeleeWeapon>(out var required))
             {
-                if (farmable.RequiredWeapon == Type)
+                if (required.RequiredWeapon == Type)
                 {
                     other.GetComponent<IDamageable>().DoDamage(damage, gameObject);
+                }
+
+                if (other.TryGetComponent<IPushable>(out var rb))
+                {
+                    var vector = other.transform.position - Owner.transform.position;
+                    rb.Push(vector.normalized * pushForce);
                 }
             }
         }

@@ -50,22 +50,24 @@ namespace Prototype
             m_EquipFeedback?.PlayFeedbacks();
         }
 
-        public void Shot(bool isMoveing)
+        public void Shot(bool isMoving)
         {
             m_ShotFeedback?.PlayFeedbacks();
 
             var shotVector = owner.transform.forward;
+            var shotPos = owner.transform.position;
+            shotPos.y += 0.5f;
 
-            if (Physics.Raycast(projectileSpawnPoint.position, shotVector, out RaycastHit hit, 100f, physicsPlayer))
+            if (Physics.Raycast(shotPos, shotVector, out RaycastHit hit, 100f, physicsPlayer))
             {
                 if (hit.collider.TryGetComponent<IDamageable>(out var damageable))
                 {
-                    damageable.DoDamage(isMoveing ? moveDamage : standingDamage, gameObject);
+                    damageable.DoDamage(isMoving ? moveDamage : standingDamage, gameObject);
                 }
 
-                if (hit.collider.TryGetComponent<Rigidbody>(out var rb))
+                if (hit.collider.TryGetComponent<IPushable>(out var rb))
                 {
-                    rb.AddForce(shotVector * pushForce, mode: ForceMode.Force);
+                    rb.Push(shotVector * pushForce);
                 }
             }
         }

@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class FarmableStackObjects : MonoBehaviour
 {
-    public FarmableObject[] farmableStack;
+    public HealthData[] stackableObjects;
 
     private void Awake()
     {
-        if (farmableStack.Length <= 1)
+        if (stackableObjects.Length <= 1)
             return;
 
-        for (int i = 0; i < farmableStack.Length; i++)
+        for (int i = 0; i < stackableObjects.Length; i++)
         {
-            farmableStack[i].enabled = false;
+            stackableObjects[i].IsDamageable = false;
         }
 
-        farmableStack[0].enabled = true;
+        stackableObjects[0].IsDamageable = true;
 
-        for (int i = 0; i < farmableStack.Length - 1; i++)
+        for (int i = 0; i < stackableObjects.Length - 1; i++)
         {
             int index = i + 1;
-            farmableStack[i].GetComponent<HealthData>().onDeath += () =>
+            stackableObjects[i].onDeath += () =>
             {
-                farmableStack[index].enabled = true;
+                stackableObjects[index].IsDamageable = true;
             };
         }
     }

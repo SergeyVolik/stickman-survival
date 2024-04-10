@@ -742,7 +742,7 @@ MonoBehaviour:
   hideRotation: {x: -52.141, y: 0, z: 0}
   type: 2
   moveDamage: 4
-  pushForce: 70
+  pushForce: 5
   killPushForce: 1000
   moveShotInterval: 0.15
   standingDamage: 10

@@ -49,10 +49,6 @@ namespace Prototype
         public float checkEnemyRadius = 5f;
         private Transform m_Transfrom;
         RaycastHit[] m_RaycastHits;
-        public float seeEnemyTimeToStart;
-
-        [SerializeField]
-        private float m_SeeEnemyTime;
         public bool InCombat
         {
             get
@@ -86,41 +82,23 @@ namespace Prototype
 
         [SerializeField]
         float m_NoEnemiesT;
-        private bool hasEnemiesFInished;
 
         private void FixedUpdate()
         {
             bool seeAnyEnemy = PhysicsHelper.GetAllTargetWithoutWalls(m_Transfrom, m_RaycastHits, checkEnemyRadius, enemyLayerMask, wallLayers, 0.5f) != 0;
 
-            if (!hasEnemiesFInished)
-            {
-                hasEnemiesFInished = seeEnemyTimeToStart < m_SeeEnemyTime;
-            }
-         
             if (seeAnyEnemy)
-            {
-                if (hasEnemiesFInished)
-                {
-                    m_NoEnemiesT = 0;
-                }
-
-                m_SeeEnemyTime += Time.fixedDeltaTime;
+            {               
+                m_NoEnemiesT = 0;
             }
             else
             {
-                m_SeeEnemyTime = 0;
                 m_NoEnemiesT += Time.fixedDeltaTime;
             }
-
-          
+      
             bool noEnemiesFinished = m_NoEnemiesT < timeToEndCombat;
 
-            if (!noEnemiesFinished && hasEnemiesFInished)
-            {
-                hasEnemiesFInished = false;
-            }
-
-            InCombat = noEnemiesFinished || hasEnemiesFInished;
+            InCombat = noEnemiesFinished;
         }
     }
 }

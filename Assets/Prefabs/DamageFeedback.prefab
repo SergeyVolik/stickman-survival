@@ -204,7 +204,7 @@ MonoBehaviour:
         DebugActive: 0
         Intensity: 1
         Value: 100
-        UseIntensityAsValue: 1
+        UseIntensityAsValue: 0
         RoundingMethod: 0
         ForceColor: 0
         AnimateColorGradient:
@@ -434,6 +434,8 @@ MonoBehaviour:
         DebugActive: 0
         FadeColor: {r: 1, g: 1, b: 1, a: 1}
         Renderer: {fileID: 0}
+        AdditionalRenderers: []
+        AdditionalInitColors: []
         Duration: 1
         EaseType: 3
         invert: 0

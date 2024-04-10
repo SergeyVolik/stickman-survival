@@ -25,6 +25,8 @@ namespace Prototype
         public bool HasTarget { get; private set; }
 
         public LayerMask CastMask;
+        public LayerMask WallMask;
+
         public Vector2 AimVector;
         public float aimDistance = 5f;
         public float rotationSpeed;
@@ -168,7 +170,7 @@ namespace Prototype
         {
             Vector3 currentPos = m_Transform.position;
 
-            int count = Physics.SphereCastNonAlloc(currentPos, aimDistance, Vector3.up, results, 10, CastMask);
+            int count =  PhysicsHelper.GetAllTargetWithoutWalls(m_Transform, results, aimDistance, CastMask, WallMask, 0.5f);
 
             RaycastHit closest = default;
             float closestDistance = float.MaxValue;

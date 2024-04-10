@@ -44,7 +44,7 @@ namespace Prototype
             m_RaycastHits = new RaycastHit[5];
             m_Transfrom = transform;
 
-            m_Animator.SetMove(false);
+            m_AiMovement.destination = m_Transfrom.position;
         }
 
         private void Health_onHealthChanged(HealthChangeData obj)
@@ -85,6 +85,8 @@ namespace Prototype
 
         private void Update()
         {
+            m_Animator.SetMove(!m_AiMovement.reachedDestination);
+
             if (m_Attaking)
             {
                 AttackState();
@@ -102,20 +104,19 @@ namespace Prototype
         private void ÑhasePlayerState()
         {            
             if (m_AiMovement.reachedDestination)
-            {
-              
+            {          
                 m_Animator.Attack();
                 M_Animator_onAttackStarted();
                 return;
             }
 
-            m_Animator.SetMove(true);
+          
             m_AiMovement.destination = m_TargetTransform.position;           
         }
 
         private void AttackState()
         {
-            m_Animator.SetMove(false);
+           
         }
 
         private void FindTargetState()

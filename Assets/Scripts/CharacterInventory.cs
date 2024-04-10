@@ -141,6 +141,11 @@ namespace Prototype
             return CurrentGun || m_PrevWeapon;
         }
 
+        public bool GunIsActive()
+        {
+            return CurrentGun;
+        }
+
         public bool HasGunInInventory()
         {
             return m_PrevWeapon;

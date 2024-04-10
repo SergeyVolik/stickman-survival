@@ -93,11 +93,16 @@ namespace Prototype
 
             var currentGun = m_Inventory.CurrentGun;
 
+
             if (m_CombatState.InCombat && !currentGun && m_Inventory.HasGunInInventory())
             {
                 m_Inventory.ActiveLastGun();
                 m_AimCircle.Show();
             }
+            currentGun = m_Inventory.CurrentGun;
+
+            if (currentGun == null)
+                return;
 
             bool isMoveing = m_Controller.MoveInput != Vector2.zero;
             float interval = isMoveing ? currentGun.moveShotInterval : currentGun.standingshotInterval;

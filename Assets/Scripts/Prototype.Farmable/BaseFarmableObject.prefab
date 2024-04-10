@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 155359121806028041}
   - component: {fileID: 6233512498309735930}
   - component: {fileID: 7767603478630930005}
+  - component: {fileID: 5351040282832118341}
+  - component: {fileID: 1872605975683227277}
   m_Layer: 16
   m_Name: BaseFarmableObject
   m_TagString: Untagged
@@ -82,8 +84,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c0b2180a8dafa4b9eae244b1021013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  currentHealth: 10
+  maxHealth: 100
+  currentHealth: 100
 --- !u!114 &5729490904841968019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +105,8 @@ MonoBehaviour:
   m_PartsParent: {fileID: 0}
   m_Parts: []
   m_StartResource:
+    m_InitResources: []
+  m_OnDeathDrop:
     m_InitResources: []
 --- !u!65 &155359121806028041
 BoxCollider:
@@ -155,6 +159,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageFeedback: {fileID: 8657791506074185943}
+--- !u!114 &5351040282832118341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325258845627080027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0777fbf0ceb2a6340ad580b7fd1cc0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opentag: 0
+  closedtag: 1
+--- !u!114 &1872605975683227277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325258845627080027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bee0a6fa1f5d4f4db481219040523c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  graphMask:
+    value: -1
+  type: 0
+  mesh: {fileID: 0}
+  rectangleSize: {x: 1, y: 1}
+  circleRadius: 1
+  circleResolution: 6
+  height: 1
+  meshScale: 1
+  center: {x: 0, y: 0, z: 0}
+  updateDistance: 0.4
+  isDual: 0
+  cutsAddedGeom: 1
+  updateRotationDistance: 10
+  useRotationAndScale: 0
 --- !u!1 &8781452849313972400
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +877,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194387096102864527, guid: bb326513e3ac4244e89d05680c049aff,
         type: 3}
+      propertyPath: managedReferences[446011429891604483].RandomSfx.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194387096102864527, guid: bb326513e3ac4244e89d05680c049aff,
+        type: 3}
       propertyPath: managedReferences[446011602199379969].AnimateScaleDuration
       value: 0.2
       objectReference: {fileID: 0}
@@ -934,6 +985,21 @@ PrefabInstance:
       propertyPath: managedReferences[446011602199379972].Timing.NumberOfRepeats
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7194387096102864527, guid: bb326513e3ac4244e89d05680c049aff,
+        type: 3}
+      propertyPath: managedReferences[446011429891604483].RandomSfx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d21bb180934c4750a88d2b5148467e9, type: 3}
+    - target: {fileID: 7194387096102864527, guid: bb326513e3ac4244e89d05680c049aff,
+        type: 3}
+      propertyPath: managedReferences[446011429891604483].RandomSfx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: f2df404e0aa2343fda3a088cbae0ec1a, type: 3}
+    - target: {fileID: 7194387096102864527, guid: bb326513e3ac4244e89d05680c049aff,
+        type: 3}
+      propertyPath: managedReferences[446011429891604483].RandomSfx.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ecf85b167cc547beb5e448c3084fd7f, type: 3}
     - target: {fileID: 7194387096102864527, guid: bb326513e3ac4244e89d05680c049aff,
         type: 3}
       propertyPath: managedReferences[446011602199379969].Timing.CooldownDuration

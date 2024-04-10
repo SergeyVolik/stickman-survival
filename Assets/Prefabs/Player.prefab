@@ -422,8 +422,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c0b2180a8dafa4b9eae244b1021013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  currentHealth: 10
+  maxHealth: 100
+  currentHealth: 100
+  <IsDamageable>k__BackingField: 1
 --- !u!114 &4454921134034323516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,6 +485,9 @@ MonoBehaviour:
   CastMask:
     serializedVersion: 2
     m_Bits: 8
+  WallMask:
+    serializedVersion: 2
+    m_Bits: 51200
   AimVector: {x: 0, y: 0}
   aimDistance: 5
   rotationSpeed: 10
@@ -574,8 +578,8 @@ MonoBehaviour:
   m_StartGunPrefab: {fileID: 7329773849400430372, guid: 8a83bcfbd4c5cc14a9baf9f7353c65cd,
     type: 3}
   m_MeleeWeaponsPrefabs:
-  - {fileID: 4983514561438256645, guid: 75411634916ebce4d995ef699342fcb0, type: 3}
   - {fileID: 4983514561438256645, guid: b4c0a58b98b71224da9b2a04ee7c39d4, type: 3}
+  - {fileID: 4983514561438256645, guid: 75411634916ebce4d995ef699342fcb0, type: 3}
   m_MeleeWeaponsInstances: []
   rightHand: {fileID: 8241530161396705359}
   handgunHidePoint: {fileID: 3951446365864870959}
@@ -600,8 +604,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 51200
   checkEnemyRadius: 7
-  seeEnemyTimeToStart: 0.1
-  m_SeeEnemyTime: 0
   timeToEndCombat: 2
   m_NoEnemiesT: 0
 --- !u!143 &6593962959880225077
@@ -658,10 +660,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AttackableLayer:
     serializedVersion: 2
-    m_Bits: 65536
+    m_Bits: 65544
   m_CastCollider: {fileID: 816127465039287746}
-  attackOnStanding: 1
-  rotateToTarget: 1
 --- !u!114 &6574410010503779108
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -245,6 +245,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
+      propertyPath: managedReferences[446011429891604483].Sfx
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011429891604483].Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011429891604483].MaxPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011429891604483].MinPitch
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011429891604483].MaxVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011429891604483].MinVolume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
       propertyPath: managedReferences[446011602199379972].ShakeSpeed
       value: 20
       objectReference: {fileID: 0}
@@ -270,6 +300,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
+      propertyPath: managedReferences[446011429891604483].RandomSfx.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
       propertyPath: managedReferences[446011602199379969].AnimateScaleDuration
       value: 0.3
       objectReference: {fileID: 0}
@@ -288,6 +323,21 @@ PrefabInstance:
       propertyPath: managedReferences[446011602199379972].ShakeMainDirection.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011429891604483].RandomSfx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0d21bb180934c4750a88d2b5148467e9, type: 3}
+    - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011429891604483].RandomSfx.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d761cbd3d012843919eaa563a15a4a91, type: 3}
+    - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011429891604483].RandomSfx.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: d761cbd3d012843919eaa563a15a4a91, type: 3}
     - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: managedReferences[446011602199379972].RandomizeDirectionOnPlay
