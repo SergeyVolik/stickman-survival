@@ -22,10 +22,9 @@ namespace Prototype
         {
             if (obj.IsDamage)
             {
-                var diff = obj.PrevValue - obj.CurrentValue;       
-                damageFeedback.PlayFeedbacks(damageFeedback.transform.position);
-
+                var diff = obj.PrevValue - obj.CurrentValue;
                 damageFeedback.GetFeedbackOfType<MMF_FloatingText>().Value = diff.ToString();
+                damageFeedback.PlayFeedbacks(damageFeedback.transform.position); 
             }
         }
     }

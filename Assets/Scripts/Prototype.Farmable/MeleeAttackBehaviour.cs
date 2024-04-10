@@ -2,7 +2,34 @@ using UnityEngine;
 
 namespace Prototype
 {
-    public class MeleeAttackBehaviour : MonoBehaviour
+    public interface IState
+    {
+        public bool IsActive { get; }
+        public void Enter();
+        public void Exit();
+    }
+
+    public abstract class BaseState : MonoBehaviour, IState
+    {
+        public bool IsActive { get; protected set; }
+
+        public virtual void Enter()
+        {
+            IsActive = true;
+        }
+
+        public virtual void Exit()
+        {
+            IsActive = false;
+        }
+
+        public void OnUpdate()
+        {
+            
+        }
+    }
+
+    public class MeleeAttackBehaviour : BaseState
     {
         private Transform m_Transform;
         private CharacterInventory m_Inventory;
@@ -12,12 +39,19 @@ namespace Prototype
         private CharacterAnimator m_CharAnimator;
 
         [SerializeField]
-        public BoxCollider m_CastCollider;
+        public float m_AttackRange = 1.5f;
 
         private Weapon m_CurrentWeapon;
 
         private CustomCharacterController m_Controller;
         private bool m_Attaking;
+        private Collider m_TargetCollider;
+        private float m_HastTargetTime;
+
+        public bool IsAttaking => m_Attaking;
+        public bool HasTarget => m_HastTargetTime + 0.1f > Time.time;
+
+        public bool blockAttack;
 
         private void Awake()
         {
@@ -25,18 +59,17 @@ namespace Prototype
 
             m_Inventory = GetComponent<CharacterInventory>();
             m_CastedColliders = new Collider[20];
-            
-            m_CharAnimator = GetComponentInChildren<CharacterAnimator>();
 
+            m_CharAnimator = GetComponentInChildren<CharacterAnimator>();
             m_CharAnimator.onBeginAttack += M_CharAnimator_onBeginAttack;
             m_CharAnimator.onEndAttack += M_CharAnimator_onEndAttack;
             m_CharAnimator.onEnableHitBox += M_CharAnimator_onEnableHitBox;
             m_CharAnimator.onDisableHitBox += M_CharAnimator_onDisableHitBox;
 
-            m_Controller = GetComponent<CustomCharacterController>();            
+            m_Controller = GetComponent<CustomCharacterController>();
         }
 
-        private void InterruptAttack()
+        public void InterruptAttack()
         {
             if (m_Attaking)
             {
@@ -62,17 +95,17 @@ namespace Prototype
 
         private void M_CharAnimator_onEndAttack()
         {
-            
+
         }
 
         private void M_CharAnimator_onBeginAttack()
         {
-          
+
         }
 
-        private Weapon GetWeaponByType(WeaponType type)
+        private Weapon ActivateWeapon(WeaponType type)
         {
-           return m_Inventory.ActivateMeleeWeapon(type);
+            return m_Inventory.ActivateMeleeWeapon(type);
         }
 
         private void FixedUpdate()
@@ -84,28 +117,22 @@ namespace Prototype
                 InterruptAttack();
             }
 
+            HealthData closestFarmable = null;
+
+            var currentPos = m_Transform.position;
+            m_TargetCollider = null;
+
             if (canAttack)
             {
-                var castTrans = m_CastCollider.transform;
-
-                var transScale = m_CastCollider.transform.lossyScale;
-                var boxSize = m_CastCollider.size;
-
-                var size = new Vector3(boxSize.x * transScale.x, boxSize.y * transScale.y, boxSize.z * transScale.z);
-                var halfSize = size / 2f;
-
-                int count = Physics.OverlapBoxNonAlloc(
-                    castTrans.position + m_CastCollider.center,
-                    halfSize,
-                    m_CastedColliders,
-                    castTrans.rotation,
+                var castPos = currentPos;
+                castPos.y += 0.5f;
+                int count = Physics.OverlapSphereNonAlloc(
+                    currentPos,
+                    m_AttackRange,
+                    m_CastedColliders,                   
                     m_AttackableLayer);
 
                 float closestDist = float.MaxValue;
-                HealthData closestFarmable = null;
-
-                var currentPos = m_Transform.position;
-                Collider closestCollider = null;
 
                 for (int i = 0; i < count; i++)
                 {
@@ -117,33 +144,39 @@ namespace Prototype
 
                         if (closestDist > dist)
                         {
-                            closestCollider = collider;
+                            m_TargetCollider = collider;
+                            m_HastTargetTime = Time.time;
                             closestDist = dist;
                             closestFarmable = farmableObj;
                         }
                     }
                 }
+            }
 
-                if (closestCollider && closestCollider.TryGetComponent<IRequiredMeleeWeapon>(out var requiredData))
-                {
-                    m_CurrentWeapon = GetWeaponByType(requiredData.RequiredWeapon);
-                    m_CharAnimator.AttackTrigger();
-                    m_Attaking = true;
-                    var targetPos = closestFarmable.transform.position;
+            if (blockAttack)
+            {
+                return;
+            }
 
-                    //rotate
-                    var point = targetPos;
-                    point.y = currentPos.y;
-                    var vector = point - currentPos;
-                    const float rotationSpeed = 10f;
+            if (m_TargetCollider && m_TargetCollider.TryGetComponent<IRequiredMeleeWeapon>(out var requiredData))
+            {
+                m_CurrentWeapon = ActivateWeapon(requiredData.RequiredWeapon);
+                m_CharAnimator.AttackTrigger();
+                m_Attaking = true;
+                var targetPos = closestFarmable.transform.position;
+                //rotate
+                var point = targetPos;
+                point.y = currentPos.y;
+                var vector = point - currentPos;
+                const float rotationSpeed = 10f;
 
-                    float rotaValue = Mathf.Clamp01(Time.deltaTime * rotationSpeed);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vector), rotaValue);
-                }
-                else
-                {
-                    m_CharAnimator.ResetAttack();
-                }
+                float rotaValue = Mathf.Clamp01(Time.deltaTime * rotationSpeed);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(vector), rotaValue);
+            }
+            else
+            {
+                m_CharAnimator.ResetAttack();
+                m_TargetCollider = null;
             }
         }
     }

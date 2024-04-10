@@ -42,8 +42,8 @@ public class CharacterDeath : MonoBehaviour
         {
             var vec = gun.owner.transform.forward;
 
-            var body = mMRagdoller.UpperParts[Random.Range(0, mMRagdoller.UpperParts.Length)];
-            body.AddForce(vec * gun.killPushForce, mode: ForceMode.Force);
+            var body = mMRagdoller.Chest;
+            body.AddForce(vec * gun.killPushForce, mode: ForceMode.Impulse);
         }
 
         if (mMRagdoller.TryGetComponent<Outline>(out var outline))

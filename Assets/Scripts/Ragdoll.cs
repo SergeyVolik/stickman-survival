@@ -31,6 +31,11 @@ namespace Prototype
             }
         }
 
+        public Rigidbody GetRandomUpper()
+        {
+            return UpperParts[Random.Range(0, UpperParts.Length)];
+        }
+
         protected override void Initialization()
         {
             base.Initialization();

@@ -15,7 +15,8 @@ namespace Prototype
         float stunT;
         private Transform m_Transform;
         private AimCirclerBehaviour m_AimCircle;
-        private CharacterCombatState m_CombatState;       
+        private CharacterCombatState m_CombatState;
+        public bool blockAttack;
 
         private void Awake()
         {
@@ -77,11 +78,18 @@ namespace Prototype
             }
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
+            if (blockAttack)
+            {
+                return;
+            }
+
+            var deltaTime = Time.fixedDeltaTime;
+
             if (stunned)
             {
-                stunT += Time.deltaTime;
+                stunT += deltaTime;
 
                 if (stunT > stunAfterDamageDur)
                 {
@@ -117,7 +125,7 @@ namespace Prototype
                     return;
                 }
 
-                m_ShotT += Time.deltaTime;
+                m_ShotT += deltaTime;
 
                 if (m_ShotT > interval)
                 {

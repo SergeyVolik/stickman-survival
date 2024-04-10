@@ -1,30 +1,73 @@
-using Prototype;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class FarmableStackObjects : MonoBehaviour
+namespace Prototype
 {
-    public HealthData[] stackableObjects;
-
-    private void Awake()
+    [System.Serializable]
+    public class FarmableStackItem
     {
-        if (stackableObjects.Length <= 1)
-            return;
+        public HealthData[] damageable;
+        private int deadTargets;
+        public event Action onAllDead = delegate { };
 
-        for (int i = 0; i < stackableObjects.Length; i++)
+        public void Setup()
         {
-            stackableObjects[i].IsDamageable = false;
+            foreach (var item in damageable)
+            {
+                item.onDeath += () =>
+                {
+                    deadTargets++;
+
+                    if (deadTargets == damageable.Length)
+                        onAllDead.Invoke();
+                };
+            }
         }
 
-        stackableObjects[0].IsDamageable = true;
-
-        for (int i = 0; i < stackableObjects.Length - 1; i++)
+        public void SetAllDamageable(bool enable)
         {
-            int index = i + 1;
-            stackableObjects[i].onDeath += () =>
+            foreach (var item in damageable) {
+                item.IsDamageable = enable;
+            }
+        }
+    }
+
+    public class FarmableStackObjects : MonoBehaviour
+    {
+        public FarmableStackItem[] stackableObjects;
+
+        public UnityEvent onAllKilled;
+        private int killed;
+
+        private void Awake()
+        {
+            if (stackableObjects.Length <= 1)
+                return;
+
+            for (int i = 0; i < stackableObjects.Length; i++)
             {
-                stackableObjects[index].IsDamageable = true;
-            };
+                stackableObjects[i].Setup();
+                stackableObjects[i].onAllDead += () => { 
+
+                    killed++;
+                    if (killed == stackableObjects.Length)
+                        onAllKilled.Invoke();
+                };
+
+                stackableObjects[i].SetAllDamageable(false);
+            }
+
+            stackableObjects[0].SetAllDamageable(true);
+
+            for (int i = 0; i < stackableObjects.Length - 1; i++)
+            {
+                int index = i + 1;
+                stackableObjects[i].onAllDead += () =>
+                {
+                    stackableObjects[index].SetAllDamageable(true);       
+                };
+            }
         }
     }
 }

@@ -51,6 +51,8 @@ namespace Prototype
 
         public Weapon ActivateMeleeWeapon(WeaponType type)
         {
+            HideCurrentGun();
+
             Weapon findedWeapon = null;
 
             foreach (var item in m_MeleeWeaponsInstances)

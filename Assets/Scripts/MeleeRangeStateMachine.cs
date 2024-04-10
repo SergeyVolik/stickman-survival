@@ -1,7 +1,7 @@
 using Prototype;
 using UnityEngine;
 
-public class MeleeRangeStateController : MonoBehaviour
+public class MeleeRangeStateMachine : MonoBehaviour
 {
     private MeleeAttackBehaviour m_MeleeAttack;
     private CustomCharacterController m_Controller;
@@ -16,12 +16,18 @@ public class MeleeRangeStateController : MonoBehaviour
         m_Inventory = GetComponent<CharacterInventory>();
         var m_Combat = GetComponent<CharacterCombatState>();
 
-        //m_MeleeAttack.enabled = true;
-        //m_GunBehaviour.enabled = false;
     }
 
     private void Update()
     {
-        //m_MeleeAttack.enabled = !m_Inventory.GunIsActive();
+        if (m_MeleeAttack.HasTarget)
+        {
+            m_MeleeAttack.blockAttack = false;
+            m_GunBehaviour.blockAttack = true;
+        }
+        else {
+            m_MeleeAttack.blockAttack = true;
+            m_GunBehaviour.blockAttack = false;
+        }
     }
 }
