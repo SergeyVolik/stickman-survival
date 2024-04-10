@@ -8,7 +8,7 @@ namespace Prototype
     public class ResourceTransferManager : MonoBehaviour
     {
         private Camera m_Camera;
-        private PlayerResourceUI m_resourceUi;
+        private PlayerResourcesView m_resourceUi;
         private PlayerResources m_playerResources;
 
         private void Awake()
@@ -17,7 +17,7 @@ namespace Prototype
         }
 
         [Inject]
-        void Construct(PlayerResourceUI resourceUi, PlayerResources playerResources)
+        void Construct(PlayerResourcesView resourceUi, PlayerResources playerResources)
         {
             m_resourceUi = resourceUi;
             m_playerResources = playerResources;
@@ -51,12 +51,12 @@ namespace Prototype
 
             rb.velocity = velocityWithOffset;
 
-            var uiTarget = m_resourceUi.UI.GetResourceItemsByType(resourceType);
+            var uiTarget = m_resourceUi.GetResourceItemsByType(resourceType);
 
             DOVirtual.DelayedCall(moveDelay, () =>
             {
-                var uiTarget = m_resourceUi.UI.GetResourceItemsByType(resourceType);
-                var uiItem = GameObject.Instantiate(resourceType.Resource2dItem, m_resourceUi.UI.transform.parent);
+                var uiTarget = m_resourceUi.GetResourceItemsByType(resourceType);
+                var uiItem = GameObject.Instantiate(resourceType.Resource2dItem, m_resourceUi.transform.parent);
 
                 SetScreenPositionFromWorldPosition(uiItem.GetComponent<RectTransform>(), rb.transform.position, m_Camera);
                 GameObject.Destroy(rb.gameObject);

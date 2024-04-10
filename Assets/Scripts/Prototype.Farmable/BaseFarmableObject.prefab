@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 7767603478630930005}
   - component: {fileID: 5351040282832118341}
   - component: {fileID: 1872605975683227277}
+  - component: {fileID: 1744709014885584073}
   m_Layer: 16
   m_Name: BaseFarmableObject
   m_TagString: Untagged
@@ -86,6 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
+  <IsDamageable>k__BackingField: 1
 --- !u!114 &5729490904841968019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +203,22 @@ MonoBehaviour:
   cutsAddedGeom: 1
   updateRotationDistance: 10
   useRotationAndScale: 0
+--- !u!114 &1744709014885584073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7325258845627080027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea72ab34a97670d49b16a1898f426b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid:
+    serializedGuid: 56b97937-e768-4237-a512-a783272dab02
+  savePosition: 1
+  saveActiveState: 1
 --- !u!1 &8781452849313972400
 GameObject:
   m_ObjectHideFlags: 0

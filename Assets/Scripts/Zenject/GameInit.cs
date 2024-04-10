@@ -40,16 +40,6 @@ namespace Prototype
         }
     }
 
-    public class PlayerResourceUI 
-    {
-        public ResourceView UI;
-
-        public PlayerResourceUI(ResourceView ui)
-        {
-            UI = ui;
-        }
-    }
-
     public class GameInit : MonoInstaller
     {
         public GameObject PlayerPrefab;
@@ -58,13 +48,13 @@ namespace Prototype
 
         public GameObject zombiePrefab;
 
-        public PlayerResources m_PlayerResources;
         public Transform playerSpawnPoint;
-        public ResourceView m_PlayerResourcesView;
+        public PlayerResourcesView m_PlayerResourcesView;
         public WorldSpaceMessage m_WSMPrefab;
         public ResourceTransferManager m_Transfer;
         public CameraController CameraController;
         public WorldToScreenUIManager WorldToScreenUIManager;
+
         public override void InstallBindings()
         {
             var spawnFactory = new EnemySpawnFactory(zombiePrefab, Container);
@@ -72,16 +62,13 @@ namespace Prototype
             m_playerSpawnFactory = new PlayerSpawnFactory(PlayerPrefab, Container);
             var wsm = new WorldSpaceMessageFactory(m_WSMPrefab);
 
-            m_PlayerResourcesView.Bind(m_PlayerResources.resources);
-
             Container.Bind<WorldToScreenUIManager>().FromInstance(WorldToScreenUIManager);
             Container.Bind<CameraController>().FromInstance(CameraController);
-            Container.Bind<PlayerResourceUI>().FromInstance(new PlayerResourceUI(m_PlayerResourcesView));
+            Container.Bind<PlayerResourcesView>().FromInstance(m_PlayerResourcesView);
             Container.Bind<WorldSpaceMessageFactory>().FromInstance(wsm);
             Container.Bind<ResourceTransferManager>().FromInstance(m_Transfer);
             Container.Bind<IPlayerFactory>().FromInstance(m_playerSpawnFactory);
             Container.Bind<PlayerInputReader>().FromInstance(input);
-            Container.Bind<PlayerResources>().FromInstance(m_PlayerResources);
             Container.Bind<EnemySpawnFactory>().FromInstance(spawnFactory);
         }
 

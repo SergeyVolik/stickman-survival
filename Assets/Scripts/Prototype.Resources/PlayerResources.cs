@@ -13,10 +13,4 @@ namespace Prototype
 
         public ResourceContainer resources;
     }
-
-    [System.Serializable]
-    public class GameResources
-    {
-        public ResourceTypeSO[] Value;
-    }
 }

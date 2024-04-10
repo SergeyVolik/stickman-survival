@@ -1257,6 +1257,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 6dfb6e7e-b68b-4f38-887c-4f52fcf8d612
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1380,6 +1385,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farmable Wood (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770459143851169688, guid: 45cd8898d3a1af243800a66c6b87bafc,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 674bcbbe-c26d-4155-bbd6-690f3468774c
       objectReference: {fileID: 0}
     - target: {fileID: 7318718227083489478, guid: 45cd8898d3a1af243800a66c6b87bafc,
         type: 3}
@@ -2390,6 +2400,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 2dec7e81-e73d-4b4e-b80e-9aa2b75506ed
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2457,6 +2472,11 @@ PrefabInstance:
         type: 3}
       propertyPath: uniqueID
       value: 6753109918571967032
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504915164958308824, guid: 087dbdea6b77dad4696c21b82a6a4280,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 422319b8-8cd2-4372-91e7-55b75c5eec7c
       objectReference: {fileID: 0}
     - target: {fileID: 5565616005280344138, guid: 087dbdea6b77dad4696c21b82a6a4280,
         type: 3}
@@ -2573,7 +2593,6 @@ Transform:
   - {fileID: 2071107042}
   - {fileID: 806075662}
   - {fileID: 1781052307}
-  - {fileID: 751295367}
   - {fileID: 1417110716}
   - {fileID: 1480848961}
   - {fileID: 384249216}
@@ -2721,6 +2740,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmable Box (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: b2caf9e9-325d-4a8a-89ef-c4a92b6923b6
+      objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
       propertyPath: uniqueID
@@ -2819,6 +2843,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: bbb60fc6-5efb-4560-bf85-b0399aecf939
       objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
@@ -2939,12 +2968,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97384384}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.415373, y: 0, z: 0, w: 0.9096512}
+  m_LocalRotation: {x: 0.415373, y: -0, z: -0, w: 0.9096512}
   m_LocalPosition: {x: 0, y: 12.6, z: -10.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 860259630}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &98254514
 GameObject:
@@ -4529,6 +4558,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 7f022d9a-38be-476d-a03f-ff6a1b9117eb
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5589,6 +5623,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: e3ee38e7-bcff-40b9-af0c-84e58a20aa56
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6159,6 +6198,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 8ff18c9b-feb0-4b00-b21f-d89e11521a3b
       objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
@@ -7182,6 +7226,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: a0898ed1-93b8-4aac-bf19-25b5c5b56717
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7257,6 +7306,11 @@ PrefabInstance:
       propertyPath: uniqueID
       value: 3425735589685741992
       objectReference: {fileID: 0}
+    - target: {fileID: 3504915164958308824, guid: 087dbdea6b77dad4696c21b82a6a4280,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 3ea4ac37-5e04-45a3-a084-a0e7ad782aba
+      objectReference: {fileID: 0}
     - target: {fileID: 5565616005280344138, guid: 087dbdea6b77dad4696c21b82a6a4280,
         type: 3}
       propertyPath: m_Name
@@ -7323,6 +7377,134 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 218730493}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &232317974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 232317975}
+  - component: {fileID: 232317976}
+  m_Layer: 0
+  m_Name: PlayerFeedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &232317975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232317974}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &232317976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232317974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Feedbacks: []
+  InitializationMode: 2
+  AutoInitialization: 1
+  SafeMode: 3
+  Direction: 0
+  AutoChangeDirectionOnEnd: 0
+  AutoPlayOnStart: 0
+  AutoPlayOnEnable: 0
+  ForceTimescaleMode: 0
+  ForcedTimescaleMode: 1
+  DurationMultiplier: 1
+  RandomizeDuration: 0
+  RandomDurationMultiplier: {x: 0.5, y: 1.5}
+  DisplayFullDurationDetails: 0
+  PlayerTimescaleMode: 1
+  OnlyPlayIfWithinRange: 0
+  RangeCenter: {fileID: 0}
+  RangeDistance: 5
+  UseRangeFalloff: 0
+  RangeFalloff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  RemapRangeFalloff: {x: 0, y: 1}
+  IgnoreRangeEvents: 0
+  CooldownDuration: 0
+  InitialDelay: 0
+  CanPlay: 1
+  CanPlayWhileAlreadyPlaying: 1
+  ChanceToPlay: 100
+  FeedbacksIntensity: 1
+  Events:
+    TriggerMMFeedbacksEvents: 0
+    TriggerUnityEvents: 1
+    OnPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    OnPause:
+      m_PersistentCalls:
+        m_Calls: []
+    OnResume:
+      m_PersistentCalls:
+        m_Calls: []
+    OnRevert:
+      m_PersistentCalls:
+        m_Calls: []
+    OnComplete:
+      m_PersistentCalls:
+        m_Calls: []
+    OnRestoreInitialValues:
+      m_PersistentCalls:
+        m_Calls: []
+    OnSkipToTheEnd:
+      m_PersistentCalls:
+        m_Calls: []
+  DebugActive: 0
+  FeedbacksList: []
+  KeepPlayModeChanges: 0
+  PerformanceMode: 0
+  StopFeedbacksOnDisable: 0
+  PlayCount: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &232503652
 GameObject:
   m_ObjectHideFlags: 0
@@ -7566,6 +7748,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ZombieEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 513c9c2f-ec76-4106-ae25-d128b01722ac
       objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
@@ -8656,6 +8843,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: b1a3a5e1-fc1b-4fa4-898d-89062f00246b
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9008,6 +9200,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farmable Box (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 2f769510-2208-414e-8d9d-ea2b45631e9c
       objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
@@ -10050,6 +10247,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 07813623-00ea-4ff9-9313-81c5f03e9529
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10651,6 +10853,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmable Box (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 97b30cfd-d936-4473-80a3-16fe6806b441
+      objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
       propertyPath: uniqueID
@@ -11027,6 +11234,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmable Box (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: d3c21660-02df-4c90-81fe-4564c4326565
+      objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
       propertyPath: uniqueID
@@ -11125,6 +11337,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: e7e39996-42a3-4e93-9eb5-8802f34674d4
       objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
@@ -12252,6 +12469,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: bc82ab50-98c2-46be-a38c-f7521dfd3c65
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12325,6 +12547,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ZombieEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 31f987d8-d403-4a57-aa31-7787eed3c25e
       objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
@@ -12726,6 +12953,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farmable Box (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: a117eb70-628d-4197-b936-ae6b6b12b1eb
       objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
@@ -13788,6 +14020,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: cb447659-1f12-49b1-8626-7ff3b3988ec4
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13932,6 +14169,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: c8db9ef7-b088-4d34-9be8-ef33a7177c6f
       objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
@@ -14955,6 +15197,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 6c312a24-6c36-43fd-a884-b644fb77118c
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15090,6 +15337,11 @@ PrefabInstance:
         type: 3}
       propertyPath: uniqueID
       value: 3935400744364983706
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504915164958308824, guid: 087dbdea6b77dad4696c21b82a6a4280,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: e8e286e3-f7d0-41aa-830b-900a351c2001
       objectReference: {fileID: 0}
     - target: {fileID: 5565616005280344138, guid: 087dbdea6b77dad4696c21b82a6a4280,
         type: 3}
@@ -16184,6 +16436,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: eab2b219-810a-47c3-a1a7-8f8f86f198f8
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16525,6 +16782,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmable Wood (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 4770459143851169688, guid: 45cd8898d3a1af243800a66c6b87bafc,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 5ce8792d-baf5-4dfd-ae99-70da7db3cc09
+      objectReference: {fileID: 0}
     - target: {fileID: 7318718227083489478, guid: 45cd8898d3a1af243800a66c6b87bafc,
         type: 3}
       propertyPath: uniqueID
@@ -16725,11 +16987,8 @@ MonoBehaviour:
   Joystick: {fileID: 2120823617}
   zombiePrefab: {fileID: 1282675239167010970, guid: 845dbd43db7d3b540af43d925531686d,
     type: 3}
-  m_PlayerResources:
-    resources:
-      m_InitResources: []
   playerSpawnPoint: {fileID: 171262870}
-  m_PlayerResourcesView: {fileID: 794397911}
+  m_PlayerResourcesView: {fileID: 794397913}
   m_WSMPrefab: {fileID: 7992831679333375622, guid: e3f3042afd3e879458c1e9b8535296e0,
     type: 3}
   m_Transfer: {fileID: 1538927618}
@@ -17065,6 +17324,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmable Box (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: cf54c0fc-7e08-4f95-a666-94053bd8eb42
+      objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
       propertyPath: uniqueID
@@ -17081,12 +17345,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2563876731102814614, guid: 630eedebb8178e44c9f00bdcce6867ba,
     type: 3}
   m_PrefabInstance: {fileID: 747569447}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &751295367 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5607319201175319931, guid: de396556aa2c35141afc382ac7a33f7c,
-    type: 3}
-  m_PrefabInstance: {fileID: 4513203915739666544}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &776307931
 GameObject:
@@ -17162,8 +17420,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 794397910}
-  - component: {fileID: 794397911}
   - component: {fileID: 794397912}
+  - component: {fileID: 794397913}
   m_Layer: 5
   m_Name: PlayerResourceView
   m_TagString: Untagged
@@ -17190,18 +17448,6 @@ RectTransform:
   m_AnchoredPosition: {x: -177.98926, y: -94.894}
   m_SizeDelta: {x: 287.8252, y: 127.79}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &794397911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794397909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eb2941e751a157489c1b73f869af531, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &794397912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17228,6 +17474,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &794397913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794397909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4acfa54de75e3428b7cf8ee15cf5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &797522325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17290,6 +17548,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farmable Wood (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770459143851169688, guid: 45cd8898d3a1af243800a66c6b87bafc,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 4dbcda81-3bc3-4e2d-b52c-9b8392293b79
       objectReference: {fileID: 0}
     - target: {fileID: 7318718227083489478, guid: 45cd8898d3a1af243800a66c6b87bafc,
         type: 3}
@@ -17474,6 +17737,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farmable Wood (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770459143851169688, guid: 45cd8898d3a1af243800a66c6b87bafc,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 8477eb3a-8fd4-4927-ba01-32eb0aa99160
       objectReference: {fileID: 0}
     - target: {fileID: 7318718227083489478, guid: 45cd8898d3a1af243800a66c6b87bafc,
         type: 3}
@@ -18599,6 +18867,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 8148b053-4b25-49e1-806a-18a68790e201
       objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
@@ -19740,6 +20013,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: aab8e59c-6edf-4459-8a6f-4ec9c9019066
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19801,6 +20079,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 855501831}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &860259629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 860259630}
+  m_Layer: 0
+  m_Name: CameraSettings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &860259630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860259629}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1234772971}
+  - {fileID: 2031736884}
+  - {fileID: 97384388}
+  - {fileID: 1009796887}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &866029609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20106,6 +20419,11 @@ PrefabInstance:
         type: 3}
       propertyPath: uniqueID
       value: 3390260211938073024
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504915164958308824, guid: 087dbdea6b77dad4696c21b82a6a4280,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 7ae09a45-8f2e-421e-a128-8d01cc90f2a8
       objectReference: {fileID: 0}
     - target: {fileID: 5565616005280344138, guid: 087dbdea6b77dad4696c21b82a6a4280,
         type: 3}
@@ -21271,6 +21589,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: f6da837f-b6d3-408d-9b19-8d7c32a52da9
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21338,6 +21661,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -21451,6 +21775,50 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1001 &974785071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22444,6 +22812,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 08a133dc-14f7-415e-b040-27cb18334ff1
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22898,13 +23271,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009796886}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 636343832}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 860259630}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1015246576
 GameObject:
@@ -24281,6 +24654,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: d70364f4-44de-44b5-b56b-8f1db5b3318e
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24903,6 +25281,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farmable Box (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 126e8685-3843-45a4-bec5-b336eabcfb0a
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25908,6 +26291,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 6fb787d6-69a1-4d77-9b45-cd55c9ccb91d
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26127,6 +26515,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farmable Box (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: aa79bff0-4641-4cf6-b65f-aa33dd68face
       objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
@@ -27243,6 +27636,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 01cf6401-3466-49aa-b9e5-9aa47fd57425
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27598,6 +27996,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieEnemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 832da23b-6a95-47a4-b2e6-c5648780c100
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27871,12 +28274,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234772969}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 10.584633, y: -9.742312, z: 5.6524754}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 860259630}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1247897013
 GameObject:
@@ -28055,6 +28458,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmable Box (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: da4e6445-68a7-46f6-897f-060a511c4199
+      objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
       propertyPath: uniqueID
@@ -28211,6 +28619,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farmable Box (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: cea95049-6b2e-4c07-be4a-967896165807
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29302,6 +29715,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 24b4c427-c44d-4397-bcb0-376c3c0c3da8
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29556,6 +29974,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: e5f92807-68e7-40c0-841a-e32ce3d5ec2f
       objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
@@ -30735,6 +31158,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 16c49e73-d467-4ed9-9f5c-4839629af5a0
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31873,6 +32301,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 3cd854df-1124-4f8e-8782-c7293982f91f
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32045,6 +32478,11 @@ PrefabInstance:
         type: 3}
       propertyPath: uniqueID
       value: 5915347592345932897
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504915164958308824, guid: 087dbdea6b77dad4696c21b82a6a4280,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 6b9e2a38-de27-4213-aab4-111eacdb4219
       objectReference: {fileID: 0}
     - target: {fileID: 5565616005280344138, guid: 087dbdea6b77dad4696c21b82a6a4280,
         type: 3}
@@ -32307,6 +32745,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farmable Box (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 96cfc39e-cb93-4778-a845-0b12f6edfbc9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33413,6 +33856,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 0af337da-c7e5-4e7c-83c3-9b6b244a13c3
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33486,6 +33934,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ZombieEnemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 2a887b73-fb72-4185-a331-56d62186bf7e
       objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
@@ -33694,6 +34147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: f35ea420-e3a8-40ee-b52e-30659288a746
       objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
@@ -34013,6 +34471,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmable Box (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 2d6a3222-ca43-43ad-8ebb-258d83c4685d
+      objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
       propertyPath: uniqueID
@@ -34156,6 +34619,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farmable Box (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: ed6a7e25-cf83-4f68-a812-db35779094fd
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35205,6 +35673,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 2f24e011-140c-4d10-83b8-58740f804aab
       objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
@@ -36438,6 +36911,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: e20df4a6-0aaa-4e65-82b0-817391e31155
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -36970,6 +37448,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmable Wood (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4770459143851169688, guid: 45cd8898d3a1af243800a66c6b87bafc,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 12b74905-fa89-4638-ae87-18e583fb3852
+      objectReference: {fileID: 0}
     - target: {fileID: 7318718227083489478, guid: 45cd8898d3a1af243800a66c6b87bafc,
         type: 3}
       propertyPath: uniqueID
@@ -37035,6 +37518,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -7.168
+      objectReference: {fileID: 0}
+    - target: {fileID: 1677197787884792641, guid: bb3c7da43fa46a54ba922ba7714095c6,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: a5d61699-64d8-49ac-95e2-a6c81e2e50a1
       objectReference: {fileID: 0}
     - target: {fileID: 7699014619657878227, guid: bb3c7da43fa46a54ba922ba7714095c6,
         type: 3}
@@ -37571,6 +38059,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farmable Wood (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770459143851169688, guid: 45cd8898d3a1af243800a66c6b87bafc,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: e79ee82c-139f-4505-8f7d-6d331aae181c
       objectReference: {fileID: 0}
     - target: {fileID: 7318718227083489478, guid: 45cd8898d3a1af243800a66c6b87bafc,
         type: 3}
@@ -38581,6 +39074,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 13ad572d-469f-4545-a67c-7926e6216ed9
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -39036,6 +39534,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farmable Wood (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770459143851169688, guid: 45cd8898d3a1af243800a66c6b87bafc,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: e639d050-1802-41fd-8562-82a3cf0c3cee
       objectReference: {fileID: 0}
     - target: {fileID: 7318718227083489478, guid: 45cd8898d3a1af243800a66c6b87bafc,
         type: 3}
@@ -40338,6 +40841,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: e0cc60d2-70bf-47ac-8687-673eb5229306
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -40522,6 +41030,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmable Box (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: c9c5bd5a-05c4-4e64-ac30-8b5bb4b08833
+      objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
       propertyPath: uniqueID
@@ -40639,6 +41152,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmable Wood (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4770459143851169688, guid: 45cd8898d3a1af243800a66c6b87bafc,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: e078320f-18dc-48aa-9e15-d07dce85778c
+      objectReference: {fileID: 0}
     - target: {fileID: 7318718227083489478, guid: 45cd8898d3a1af243800a66c6b87bafc,
         type: 3}
       propertyPath: uniqueID
@@ -40655,6 +41173,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1909770198}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2001870047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2001870048}
+  - component: {fileID: 2001870049}
+  m_Layer: 0
+  m_Name: LocationSaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2001870048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001870047}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2001870049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001870047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fba471f92b20cf843a62bd2b19c608f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SaveKey: Location
 --- !u!1001 &2008074937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41648,6 +42211,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7307660749050714651, guid: 845dbd43db7d3b540af43d925531686d,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: d0debe10-d604-498b-a8ac-45a359019d67
+      objectReference: {fileID: 0}
     - target: {fileID: 8848157737999130337, guid: 845dbd43db7d3b540af43d925531686d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -41878,6 +42446,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmable Wood (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4770459143851169688, guid: 45cd8898d3a1af243800a66c6b87bafc,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: fc7f3e4f-8b08-4351-b3d4-b8af1caa660f
+      objectReference: {fileID: 0}
     - target: {fileID: 7318718227083489478, guid: 45cd8898d3a1af243800a66c6b87bafc,
         type: 3}
       propertyPath: uniqueID
@@ -41921,12 +42494,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031736883}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.415373, y: 0, z: 0, w: 0.9096512}
+  m_LocalRotation: {x: 0.415373, y: -0, z: -0, w: 0.9096512}
   m_LocalPosition: {x: 0, y: 19.5, z: -16.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 860259630}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2031736885
 MonoBehaviour:
@@ -42099,6 +42672,11 @@ PrefabInstance:
         type: 3}
       propertyPath: uniqueID
       value: 8985336136146668370
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504915164958308824, guid: 087dbdea6b77dad4696c21b82a6a4280,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 728d6886-5057-4dda-a3e7-db0fdd63fd7a
       objectReference: {fileID: 0}
     - target: {fileID: 5565616005280344138, guid: 087dbdea6b77dad4696c21b82a6a4280,
         type: 3}
@@ -42339,6 +42917,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Farmable Wood (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770459143851169688, guid: 45cd8898d3a1af243800a66c6b87bafc,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 6ebee9cb-664e-4e8c-8443-4db80ccb26d8
       objectReference: {fileID: 0}
     - target: {fileID: 7318718227083489478, guid: 45cd8898d3a1af243800a66c6b87bafc,
         type: 3}
@@ -42941,6 +43524,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmable Box
       objectReference: {fileID: 0}
+    - target: {fileID: 5542673954860444798, guid: 630eedebb8178e44c9f00bdcce6867ba,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: bc31957b-f63d-4641-897b-50d8cbc0f3d2
+      objectReference: {fileID: 0}
     - target: {fileID: 7732351510100282144, guid: 630eedebb8178e44c9f00bdcce6867ba,
         type: 3}
       propertyPath: uniqueID
@@ -43103,84 +43691,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c0b2180a8dafa4b9eae244b1021013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &4513203915739666544
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 80628720}
-    m_Modifications:
-    - target: {fileID: 5607319201175319931, guid: de396556aa2c35141afc382ac7a33f7c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 5607319201175319931, guid: de396556aa2c35141afc382ac7a33f7c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5607319201175319931, guid: de396556aa2c35141afc382ac7a33f7c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -11.79
-      objectReference: {fileID: 0}
-    - target: {fileID: 5607319201175319931, guid: de396556aa2c35141afc382ac7a33f7c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.41187426
-      objectReference: {fileID: 0}
-    - target: {fileID: 5607319201175319931, guid: de396556aa2c35141afc382ac7a33f7c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5607319201175319931, guid: de396556aa2c35141afc382ac7a33f7c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.91124076
-      objectReference: {fileID: 0}
-    - target: {fileID: 5607319201175319931, guid: de396556aa2c35141afc382ac7a33f7c,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5607319201175319931, guid: de396556aa2c35141afc382ac7a33f7c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5607319201175319931, guid: de396556aa2c35141afc382ac7a33f7c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 131.355
-      objectReference: {fileID: 0}
-    - target: {fileID: 5607319201175319931, guid: de396556aa2c35141afc382ac7a33f7c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6859259645052545281, guid: de396556aa2c35141afc382ac7a33f7c,
-        type: 3}
-      propertyPath: m_Name
-      value: Farmable Fridge
-      objectReference: {fileID: 0}
-    - target: {fileID: 6859259645052545281, guid: de396556aa2c35141afc382ac7a33f7c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8438423861049650633, guid: de396556aa2c35141afc382ac7a33f7c,
-        type: 3}
-      propertyPath: m_PartsParent
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: de396556aa2c35141afc382ac7a33f7c, type: 3}
 --- !u!1001 &8250124595264172660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43394,6 +43904,11 @@ PrefabInstance:
       propertyPath: uniqueID
       value: 7638679343422132913
       objectReference: {fileID: 0}
+    - target: {fileID: 3504915164958308824, guid: 087dbdea6b77dad4696c21b82a6a4280,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: c396504a-a0f8-43d5-a605-1093bb807e38
+      objectReference: {fileID: 0}
     - target: {fileID: 5565616005280344138, guid: 087dbdea6b77dad4696c21b82a6a4280,
         type: 3}
       propertyPath: m_Name
@@ -43487,6 +44002,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 6.014
       objectReference: {fileID: 0}
+    - target: {fileID: 1677197787884792641, guid: bb3c7da43fa46a54ba922ba7714095c6,
+        type: 3}
+      propertyPath: guid.serializedGuid
+      value: 2222db0f-f25e-470e-aa71-00576090ca78
+      objectReference: {fileID: 0}
     - target: {fileID: 7699014619657878227, guid: bb3c7da43fa46a54ba922ba7714095c6,
         type: 3}
       propertyPath: m_Name
@@ -43553,6 +44073,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 674712991}
   - {fileID: 793886073}
+  - {fileID: 2001870048}
+  - {fileID: 232317975}
   - {fileID: 1328930434}
   - {fileID: 254723472}
   - {fileID: 1538927619}
@@ -43565,11 +44087,8 @@ SceneRoots:
   - {fileID: 500751168}
   - {fileID: 339563361}
   - {fileID: 596223646}
-  - {fileID: 1234772971}
-  - {fileID: 2031736884}
-  - {fileID: 97384388}
-  - {fileID: 1009796887}
   - {fileID: 963194228}
+  - {fileID: 860259630}
   - {fileID: 588714767}
   - {fileID: 2016981001}
   - {fileID: 1829001046}

@@ -118,6 +118,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.postprocessing": {
       "version": "3.4.0",
       "depth": 0,
@@ -242,6 +249,13 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "searous.serializableguid": {
+      "version": "git@github.com:SergeyVolik/Unity.SerializableGuid.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "4fc027cb717912f55159aecf514d02d6a12baecf"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

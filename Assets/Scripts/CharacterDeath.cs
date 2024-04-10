@@ -58,7 +58,7 @@ public class CharacterDeath : MonoBehaviour
 
             transform.DOMoveY(y + moveUndergroundOffset, duration: moveDuration).OnComplete(() =>
             {
-                GameObject.Destroy(gameObject);
+                gameObject.SetActive(false);
             });
         });
     }
