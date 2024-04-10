@@ -10,7 +10,7 @@ namespace Prototype
     public class FarmableObject : MonoBehaviour, IRequiredMeleeWeapon
     {
         [SerializeField]
-        private WeaponType m_RequiredWeapon;
+        private MeleeWeaponType m_RequiredWeapon;
 
         [SerializeField]
         private ParticleSystem m_HitParticle;
@@ -21,7 +21,7 @@ namespace Prototype
         [SerializeField]
         private ParticleSystem m_PartRemoveParticle;
 
-        public WeaponType RequiredWeapon => m_RequiredWeapon;
+        public MeleeWeaponType RequiredWeapon => m_RequiredWeapon;
 
         [SerializeField]
         private Transform m_PartsParent;

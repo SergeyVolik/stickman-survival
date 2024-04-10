@@ -1,0 +1,18 @@
+{
+    "name": "Prototype.Weapon",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8087d854c1f812e4b9a74437dfc524e0",
+        "GUID:f8e81e376b95d1c4696f8ec80c5983ab",
+        "GUID:07a6c9326f3d9fa4aa97f420c9a74fa9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

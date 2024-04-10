@@ -1,20 +1,16 @@
-using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 namespace Prototype
 {
-    public enum WeaponType
+    public enum MeleeWeaponType
     {
         Axe,
         Crutch
     }
 
-    public class Weapon : BaseWeapon, IOwnable
+    public class MeleeWeapon : BaseWeapon, IOwnable
     {
-        public WeaponType Type;
+        public MeleeWeaponType Type;
 
         public int damage;
         public TrailRenderer Trail;

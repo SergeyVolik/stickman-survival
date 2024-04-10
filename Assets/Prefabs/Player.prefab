@@ -522,8 +522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a48f9bd2239db148bee6eaf8e70edca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StartGunPrefab: {fileID: 7329773849400430372, guid: 8a83bcfbd4c5cc14a9baf9f7353c65cd,
-    type: 3}
+  m_StartGunPrefab: {fileID: 0}
   m_MeleeWeaponsPrefabs:
   - {fileID: 4983514561438256645, guid: b4c0a58b98b71224da9b2a04ee7c39d4, type: 3}
   - {fileID: 4983514561438256645, guid: 75411634916ebce4d995ef699342fcb0, type: 3}

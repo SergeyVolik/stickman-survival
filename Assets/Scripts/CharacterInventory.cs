@@ -14,11 +14,11 @@ namespace Prototype
         private GameObject m_StartGunPrefab;
 
         [SerializeField]
-        private Weapon[] m_MeleeWeaponsPrefabs;
+        private MeleeWeapon[] m_MeleeWeaponsPrefabs;
 
         [SerializeField]
-        private Weapon[] m_MeleeWeaponsInstances;
-        public Weapon CurrentMeleeWeapon { get; private set; }
+        private MeleeWeapon[] m_MeleeWeaponsInstances;
+        public MeleeWeapon CurrentMeleeWeapon { get; private set; }
 
         public event Action<Gun> onGunChanged = delegate { };
 
@@ -29,10 +29,10 @@ namespace Prototype
 
         private void Awake()
         {
-            m_MeleeWeaponsInstances = new Weapon[m_MeleeWeaponsPrefabs.Length];
+            m_MeleeWeaponsInstances = new MeleeWeapon[m_MeleeWeaponsPrefabs.Length];
             for (int i = 0; i < m_MeleeWeaponsInstances.Length; i++)
             {
-                var weapon = GameObject.Instantiate(m_MeleeWeaponsPrefabs[i], rifleHidePoint).GetComponent<Weapon>();
+                var weapon = GameObject.Instantiate(m_MeleeWeaponsPrefabs[i], rifleHidePoint).GetComponent<MeleeWeapon>();
                 m_MeleeWeaponsInstances[i] = weapon;
 
                 weapon.HideWeapon();               
@@ -49,11 +49,11 @@ namespace Prototype
             SetupWeapon(m_StartGunPrefab);
         }
 
-        public Weapon ActivateMeleeWeapon(WeaponType type)
+        public MeleeWeapon ActivateMeleeWeapon(MeleeWeaponType type)
         {
             HideCurrentGun();
 
-            Weapon findedWeapon = null;
+            MeleeWeapon findedWeapon = null;
 
             foreach (var item in m_MeleeWeaponsInstances)
             {

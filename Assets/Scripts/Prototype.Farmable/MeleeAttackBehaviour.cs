@@ -41,7 +41,7 @@ namespace Prototype
         [SerializeField]
         public float m_AttackRange = 1.5f;
 
-        private Weapon m_CurrentWeapon;
+        private MeleeWeapon m_CurrentWeapon;
 
         private CustomCharacterController m_Controller;
         private bool m_Attaking;
@@ -103,7 +103,7 @@ namespace Prototype
 
         }
 
-        private Weapon ActivateWeapon(WeaponType type)
+        private MeleeWeapon ActivateWeapon(MeleeWeaponType type)
         {
             return m_Inventory.ActivateMeleeWeapon(type);
         }

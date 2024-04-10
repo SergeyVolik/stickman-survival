@@ -4,12 +4,12 @@ namespace Prototype
 {
     public interface IRequiredMeleeWeapon
     {
-        public WeaponType RequiredWeapon { get; }
+        public MeleeWeaponType RequiredWeapon { get; }
     }
 
     public class RequiredMeleeWeapon : MonoBehaviour, IRequiredMeleeWeapon
     {
         [field: SerializeField]
-        public WeaponType RequiredWeapon { get; private set; }
+        public MeleeWeaponType RequiredWeapon { get; private set; }
     }
 }
