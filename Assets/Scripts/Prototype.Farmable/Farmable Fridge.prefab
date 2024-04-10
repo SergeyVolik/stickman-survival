@@ -70,13 +70,13 @@ PrefabInstance:
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_StartResource.m_InitResources.Array.data[0].count
-      value: 40
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_StartResource.m_InitResources.Array.data[0].resourceType
       value: 
-      objectReference: {fileID: 11400000, guid: 05f855fffb8cb5449aa06ca6e0028d8e,
+      objectReference: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a,
         type: 2}
     - target: {fileID: 7325258845627080027, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}

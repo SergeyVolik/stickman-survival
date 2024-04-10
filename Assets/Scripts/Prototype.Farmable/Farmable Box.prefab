@@ -221,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_OnDeathDrop.m_InitResources.Array.data[0].count
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}

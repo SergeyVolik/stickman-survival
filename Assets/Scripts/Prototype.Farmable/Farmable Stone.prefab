@@ -174,14 +174,30 @@ PrefabInstance:
       objectReference: {fileID: 8830717482050034706}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
+      propertyPath: m_OnDeathDrop.m_InitResources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
       propertyPath: m_StartResource.m_InitResources.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
-      propertyPath: m_StartResource.m_InitResources.Array.data[0].count
-      value: 40
+      propertyPath: m_OnDeathDrop.m_InitResources.Array.data[0].count
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: m_StartResource.m_InitResources.Array.data[0].count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: m_OnDeathDrop.m_InitResources.Array.data[0].resourceType
+      value: 
+      objectReference: {fileID: 11400000, guid: 468e25e280aec0c48a0e4dd15de33f3b,
+        type: 2}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_StartResource.m_InitResources.Array.data[0].resourceType
