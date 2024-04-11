@@ -14,6 +14,7 @@ namespace Prototype
     {
         public bool saveActiveState = true;
 
+        [field:SerializeField]
         public SerializableGuid Id { get; set; } = SerializeableGuidHelper.NewGuid();
 
         public void LoadComponent(GameObjectSave data)

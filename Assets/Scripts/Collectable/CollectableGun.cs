@@ -1,4 +1,3 @@
-using Prototype;
 using UnityEngine;
 
 namespace Prototype
@@ -12,7 +11,7 @@ namespace Prototype
             if (collecteBy.TryGetComponent<CharacterInventory>(out var behaviour))
             {
                 behaviour.SetupWeapon(GunPrefab);
-                GameObject.Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }
