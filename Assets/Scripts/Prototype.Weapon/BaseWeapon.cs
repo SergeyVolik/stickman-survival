@@ -18,8 +18,11 @@ namespace Prototype
 
         const Ease showEase = Ease.OutCubic;
         const Ease hideEase = Ease.OutCubic;
+
+        public bool IsInHands { get; private set; } 
         public virtual void SetupInHands(Transform hand)
         {
+            IsInHands = true;
             var trans = transform;
             trans.parent = hand;
             //trans.localPosition = handOffset;
@@ -31,6 +34,7 @@ namespace Prototype
 
         public void SetupInHidePoint(Transform hidePoint)
         {
+            IsInHands = false;
             var trans = transform;
             trans.parent = hidePoint;
 

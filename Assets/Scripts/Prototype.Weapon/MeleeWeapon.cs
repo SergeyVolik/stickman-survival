@@ -13,6 +13,7 @@ namespace Prototype
         public MeleeWeaponType Type;
 
         public int damage;
+        public int level = 1;
         public TrailRenderer Trail;
         private Collider m_HitBox;
 

@@ -52,7 +52,7 @@ namespace Prototype
             }
         }
 
-        private void InstantiateWeapon(MeleeWeapon meleePrefab)
+        private MeleeWeapon InstantiateWeapon(MeleeWeapon meleePrefab)
         {
             var weapon = GameObject.Instantiate(meleePrefab, rifleHidePoint).GetComponent<MeleeWeapon>();
             m_MeleeWeaponsInstances.Add(weapon);
@@ -61,11 +61,36 @@ namespace Prototype
 
             weapon.SetupInHidePoint(rifleHidePoint);
             weapon.owner = gameObject;
+
+            return weapon;
         }
 
         public void SetupMeleeWeapon(MeleeWeapon meleeWeaponPrefab)
         {
-            InstantiateWeapon(meleeWeaponPrefab);
+            MeleeWeapon toRemove = null;
+
+            foreach (var item in m_MeleeWeaponsInstances)
+            {
+                if (meleeWeaponPrefab.Type == item.Type)
+                {
+                    toRemove = item;
+                    break;
+                }
+            }
+
+            var weapon = InstantiateWeapon(meleeWeaponPrefab);
+
+            if (toRemove)
+            {
+                if (toRemove.IsInHands)
+                {
+                    weapon.SetupInHands(rightHand);
+                    weapon.ShowWeapon();
+                }
+
+                m_MeleeWeaponsInstances.Remove(toRemove);
+                GameObject.Destroy(toRemove.gameObject);
+            }
 
             if (m_MeleeWeaponsInstances.Count == 1)
             {
