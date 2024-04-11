@@ -10,7 +10,7 @@ namespace Prototype
         public static bool TryDrop(GameObject obj, Vector3 spawnPos, ResourceContainer resources,
             ResourceTransferManager transManager, Vector3 dropVector, int maxDropElementsPerResource = 5, float pushForce = 7f)
         {
-            float moveDuration = 1f;
+            float moveDuration = 0.5f;
             float moveDelay = 2f;
 
             if (obj.TryGetComponent<IResourceHolder>(out var data))

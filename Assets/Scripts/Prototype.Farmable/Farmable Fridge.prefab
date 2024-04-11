@@ -28,6 +28,11 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.042620614
       objectReference: {fileID: 0}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492687].BoundRenderer
+      value: 
+      objectReference: {fileID: 4376992587426471219}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_Parts.Array.size
@@ -266,6 +271,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: fridge_001 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5835457333726851891, guid: a457d02d5bf10c9459386d5931ca3a94,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835457333726851891, guid: a457d02d5bf10c9459386d5931ca3a94,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f2276941796e4946a56eb2e2ea001d3, type: 2}
     m_RemovedComponents:
     - {fileID: 8096941387360403775, guid: a457d02d5bf10c9459386d5931ca3a94, type: 3}
     m_RemovedGameObjects: []
@@ -281,6 +296,12 @@ GameObject:
 --- !u!4 &3239529925925758556 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4661394233312364636, guid: a457d02d5bf10c9459386d5931ca3a94,
+    type: 3}
+  m_PrefabInstance: {fileID: 7801789360158682624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4376992587426471219 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5835457333726851891, guid: a457d02d5bf10c9459386d5931ca3a94,
     type: 3}
   m_PrefabInstance: {fileID: 7801789360158682624}
   m_PrefabAsset: {fileID: 0}

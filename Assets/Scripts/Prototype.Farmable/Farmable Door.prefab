@@ -69,6 +69,11 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.00056126027
       objectReference: {fileID: 0}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492687].BoundRenderer
+      value: 
+      objectReference: {fileID: 1243044670439834399}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_PartsParent
@@ -257,6 +262,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
+      propertyPath: managedReferences[446011653118492680].BoundRenderer
+      value: 
+      objectReference: {fileID: 1243044670439834399}
+    - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
       propertyPath: managedReferences[446011602199379972].RandomizeDirection
       value: 1
       objectReference: {fileID: 0}
@@ -428,6 +438,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: door_001
       objectReference: {fileID: 0}
+    - target: {fileID: 8618556498945797905, guid: 29da025a34eaa5d4eabe6fac544b245d,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8618556498945797905, guid: 29da025a34eaa5d4eabe6fac544b245d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f2276941796e4946a56eb2e2ea001d3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -442,6 +462,12 @@ Transform:
 --- !u!1 &738822312273240778 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7826058823715770052, guid: 29da025a34eaa5d4eabe6fac544b245d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7411638505195842574}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1243044670439834399 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8618556498945797905, guid: 29da025a34eaa5d4eabe6fac544b245d,
     type: 3}
   m_PrefabInstance: {fileID: 7411638505195842574}
   m_PrefabAsset: {fileID: 0}
