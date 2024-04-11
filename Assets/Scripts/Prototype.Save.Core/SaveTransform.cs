@@ -1,27 +1,42 @@
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Prototype
 {
     [System.Serializable]
-    public class TransformSave
+    public class TransformSave : ISaveComponentData
     {
         public Vector3S position;
         public QuaternionS rotation;
         public Vector3S localScale;
+        public SerializableGuid Id { get; set; }
     }
 
     [DisallowMultipleComponent]
-    public class SaveTransform : MonoBehaviour, ISaveable<TransformSave>, ISceneSaveComponent
+    public class SaveTransform : MonoBehaviour, ISceneSaveComponent<TransformSave>
     {
+        [field: SerializeField]
+        public SerializableGuid Id { get; set; } = SerializeableGuidHelper.NewGuid();
+
         public bool savePosition = true;
         public bool saveRotation = true;
         public bool saveScale = true;
 
-        public void Load(TransformSave data)
+        public TransformSave SaveComponent()
         {
-            if (data == null)
-                return;
+            var tran = transform;
 
+            return new TransformSave
+            {
+                position = tran.position,
+                rotation = tran.rotation,
+                localScale = tran.localScale,
+            };
+        }
+
+        public void LoadComponent(TransformSave data)
+        {
+            Debug.Log("Load Transform");
             var tran = transform;
 
             if (savePosition)
@@ -38,34 +53,6 @@ namespace Prototype
             {
                 tran.localScale = data.localScale;
             }
-        }
-
-        public void LoadObject(object data)
-        {
-            if (data is TransformSave transSave)
-            {
-                Load(transSave);
-            }
-        }
-
-        public object SaveObject()
-        {
-            return Save();
-        }
-
-        public TransformSave Save()
-        {
-            if (savePosition == false)
-                return null;
-
-            var tran = transform;
-
-            return new TransformSave
-            {
-                position = tran.position,
-                rotation = tran.rotation,
-                localScale = tran.localScale,
-            };
         }
     }
 }

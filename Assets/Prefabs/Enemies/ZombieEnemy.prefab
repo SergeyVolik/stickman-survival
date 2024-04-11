@@ -323,8 +323,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid:
     serializedGuid: ccfbf34f-218a-48d7-8ce0-25f8a7bc020b
-  savePosition: 1
-  saveActiveState: 1
 --- !u!1 &6484363818494222209
 GameObject:
   m_ObjectHideFlags: 0

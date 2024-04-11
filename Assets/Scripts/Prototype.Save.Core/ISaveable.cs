@@ -1,14 +1,14 @@
 namespace Prototype
 {
-    public interface ISaveable<T>
+    public interface ISaveComponentData
     {
-        public T Save();
-        public void Load(T data);
+        public SerializableGuid Id { get; set; }
     }
 
-    public interface ISceneSaveComponent
+    public interface ISceneSaveComponent<T> where T : ISaveComponentData
     {
-        public object SaveObject();
-        public void LoadObject(object data);
+        public SerializableGuid Id { get; set; }
+        public T SaveComponent();
+        public void LoadComponent(T data);
     }
 }

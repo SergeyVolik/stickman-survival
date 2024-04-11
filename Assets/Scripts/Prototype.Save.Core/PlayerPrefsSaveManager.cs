@@ -7,7 +7,9 @@ namespace Prototype
     {
         public void SerializedData(T data, string key)
         {
-            PlayerPrefs.SetString(key, JsonConvert.SerializeObject(data));
+            var str = JsonConvert.SerializeObject(data);
+            Debug.Log(str);
+            PlayerPrefs.SetString(key, str);
         }
 
         public T DerializedData(string key)

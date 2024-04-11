@@ -1,36 +1,62 @@
 using System.Collections.Generic;
-using UnityEngine.Assertions;
+using System.Linq;
+using UnityEngine;
 
 namespace Prototype
 {
     public static class SaveHelper
     {
-        public static void LoadItem<T>(Dictionary<SerializableGuid, T> saveObj, IEnumerable<SaveableObject> saveableObjects)
+        public static void LoadComponent<T, T2>(T loadCompData) where T : ISaveComponentData where T2 : MonoBehaviour, ISceneSaveComponent<T>
         {
-            foreach (var item in saveableObjects)
-            {
-                var guid = item.guid;
+            IEnumerable<ISceneSaveComponent<T>> components = GameObject.FindObjectsByType<T2>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+           
+            var comp = components.FirstOrDefault((item) => loadCompData.Id == item.Id);
 
-                if (item.TryGetComponent<ISaveable<T>>(out var recSave))
+            if (comp != null)
+            {
+                comp.LoadComponent(loadCompData);
+            }           
+        }
+
+        public static void LoadComponents<T, T2>(IEnumerable<T> loadData) where T : ISaveComponentData where T2 : MonoBehaviour, ISceneSaveComponent<T>
+        {
+            IEnumerable<ISceneSaveComponent<T>> components = GameObject.FindObjectsByType<T2>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            foreach (var loadCompData in loadData)
+            {
+                var comp = components.FirstOrDefault((item) => {
+                    Debug.Log($"{loadCompData.Id.ToString()} == {item.Id.ToString()}");
+                    return loadCompData.Id == item.Id; 
+                });
+
+                if (comp != null)
                 {
-                    if (saveObj.TryGetValue(guid, out var data))
-                        recSave.Load(data);
+                    comp.LoadComponent(loadCompData);
                 }
             }
         }
 
-        public static void SaveItem<T>(Dictionary<SerializableGuid, T> saveObj, IEnumerable<SaveableObject> saveableObjects)
+        public static List<T> SaveComponents<T, T2>() where T : ISaveComponentData where T2 : MonoBehaviour, ISceneSaveComponent<T>
         {
-            foreach (var item in saveableObjects)
-            {
-                var guid = item.guid;
+            IEnumerable<ISceneSaveComponent<T>> components = GameObject.FindObjectsByType<T2>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
-                if (item.TryGetComponent<ISaveable<T>>(out var comp))
-                {
-                    Assert.IsTrue(saveObj.TryGetValue(guid, out var obj) == false, $"guid conflict name:{item.gameObject.name} id:{item.gameObject.GetInstanceID()}");
-                    saveObj.Add(guid, comp.Save());
-                }
+            List<T> saves = new List<T>();
+
+            foreach (var item in components)
+            {
+                var save = item.SaveComponent();
+                save.Id = item.Id;
+                saves.Add(save);
             }
+
+            return saves;
+        }
+
+        public static T SaveComponent<T, T2>() where T : ISaveComponentData where T2 : MonoBehaviour, ISceneSaveComponent<T>
+        {
+            ISceneSaveComponent<T> components = GameObject.FindObjectOfType<T2>(true);
+            var save = components.SaveComponent();
+            save.Id = components.Id;
+            return save;
         }
     }
 }

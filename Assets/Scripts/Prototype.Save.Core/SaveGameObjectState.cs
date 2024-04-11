@@ -1,18 +1,22 @@
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Prototype
 {
     [System.Serializable]
-    public class GameObjectSave
+    public class GameObjectSave : ISaveComponentData
     {
         public bool activeSelf;
+        public SerializableGuid Id { get; set; }
     }
 
-    public class SaveGameObjectState : MonoBehaviour, ISaveable<GameObjectSave>, ISceneSaveComponent
+    public class SaveGameObjectState : MonoBehaviour, ISceneSaveComponent<GameObjectSave>
     {
         public bool saveActiveState = true;
 
-        public void Load(GameObjectSave data)
+        public SerializableGuid Id { get; set; } = SerializeableGuidHelper.NewGuid();
+
+        public void LoadComponent(GameObjectSave data)
         {
             if (data == null)
                 return;
@@ -20,15 +24,7 @@ namespace Prototype
             gameObject.SetActive(data.activeSelf);
         }
 
-        public void LoadObject(object data)
-        {
-            if (data is GameObjectSave saveData)
-            {
-                Load(saveData);
-            }
-        }
-
-        public GameObjectSave Save()
+        public GameObjectSave SaveComponent()
         {
             if (saveActiveState == false)
                 return null;
@@ -37,11 +33,6 @@ namespace Prototype
             {
                 activeSelf = gameObject.activeSelf,
             };
-        }
-
-        public object SaveObject()
-        {
-            return Save();
         }
     }
 }
