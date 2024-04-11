@@ -8,6 +8,9 @@ namespace Prototype
 
     public class AimCirclerBehaviour : MonoBehaviour
     {
+        private const float ShowDuration = 1f;
+        private const float HideDuration = 1f;
+
         [SerializeField]
         public CircleGenerator m_AimCorclePrefab;
         private bool m_Awaked;
@@ -17,7 +20,12 @@ namespace Prototype
         private MeshRenderer m_Renderer;
         private Color m_StartColor;
         private Transform m_Transform;
+
+        public float showAnimRotationSpeed = 30;
         public float rotationSpeed;
+        public float currentRotationSpeed;
+        public Ease showEase;
+        public Ease hideEase;
 
         private void Awake()
         {
@@ -25,6 +33,7 @@ namespace Prototype
                 return;
 
             m_Awaked = true;
+            currentRotationSpeed = rotationSpeed;
 
             m_AimRangeCircle = GameObject.Instantiate(m_AimCorclePrefab);
             m_CircleTransform = m_AimRangeCircle.transform;
@@ -47,7 +56,7 @@ namespace Prototype
             if (m_Showed) return;
 
             m_Hide?.Kill();
-
+            currentRotationSpeed = showAnimRotationSpeed;
             enabled = true;
             m_Showed = true;
             m_CircleTransform.gameObject.SetActive(true);
@@ -60,8 +69,10 @@ namespace Prototype
 
             m_Show = DOTween.Sequence();
 
-            m_Show.Insert(0, m_Renderer.material.DOColor(m_StartColor, 1f).SetEase(Ease.OutSine));
-            m_Show.Insert(0, m_CircleTransform.DOScale(Vector3.one, 1f).SetEase(Ease.OutSine));
+            m_Show.Insert(0, m_Renderer.material.DOColor(m_StartColor, ShowDuration));
+            m_Show.Insert(0, m_CircleTransform.DOScale(Vector3.one, ShowDuration));
+            m_Show.Insert(0, DOTween.To(() => currentRotationSpeed, (v) => currentRotationSpeed = v, rotationSpeed, ShowDuration))
+                .SetEase(showEase);
         }
 
         public void Hide()
@@ -76,9 +87,10 @@ namespace Prototype
 
             m_Hide = DOTween.Sequence();
 
-            m_Hide.Insert(0, m_Renderer.material.DOColor(targetColor, 1f).SetEase(Ease.OutSine));
-            m_Hide.Insert(0, m_CircleTransform.DOScale(Vector3.zero, 1f).SetEase(Ease.InSine));
-
+            m_Hide.Insert(0, m_Renderer.material.DOColor(targetColor, HideDuration));
+            m_Hide.Insert(0, m_CircleTransform.DOScale(Vector3.zero, HideDuration));
+            m_Hide.Insert(0, DOTween.To(() => currentRotationSpeed, (v) => currentRotationSpeed = v, showAnimRotationSpeed, HideDuration));
+            m_Hide.SetEase(hideEase);
             m_Hide.OnComplete(() => {
                 enabled = false;
             });
@@ -97,7 +109,7 @@ namespace Prototype
         private void Update()
         {
             m_CircleTransform.position = m_Transform.position + new Vector3(0, 0.01f, 0);
-            m_CircleTransform.Rotate(new Vector3(0, 0, Time.deltaTime * rotationSpeed));
+            m_CircleTransform.Rotate(new Vector3(0, 0, Time.deltaTime * currentRotationSpeed));
         }
     }
 }

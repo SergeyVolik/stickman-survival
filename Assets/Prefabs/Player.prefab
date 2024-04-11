@@ -510,7 +510,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AimCorclePrefab: {fileID: 3965783190269019694, guid: b9223963401bfc141997476685a3e83d,
     type: 3}
+  showAnimRotationSpeed: -250
   rotationSpeed: -25
+  currentRotationSpeed: 0
+  showEase: 3
+  hideEase: 3
 --- !u!114 &967979111307682332
 MonoBehaviour:
   m_ObjectHideFlags: 0
