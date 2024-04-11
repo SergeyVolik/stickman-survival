@@ -527,10 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_StartGunPrefab: {fileID: 0}
-  m_MeleeWeaponsPrefabs:
-  - {fileID: 4983514561438256645, guid: b4c0a58b98b71224da9b2a04ee7c39d4, type: 3}
-  - {fileID: 4983514561438256645, guid: 75411634916ebce4d995ef699342fcb0, type: 3}
-  m_MeleeWeaponsInstances: []
+  m_MeleeWeaponsPrefabs: []
   rightHand: {fileID: 8241530161396705359}
   handgunHidePoint: {fileID: 3951446365864870959}
   rifleHidePoint: {fileID: 2745537080347356902}

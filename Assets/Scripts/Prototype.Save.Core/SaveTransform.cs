@@ -13,7 +13,7 @@ namespace Prototype
     }
 
     [DisallowMultipleComponent]
-    public class SaveTransform : MonoBehaviour, ISceneSaveComponent<TransformSave>
+    public class SaveTransform : SaveableObject, ISceneSaveComponent<TransformSave>
     {
         [field: SerializeField]
         public SerializableGuid Id { get; set; } = SerializeableGuidHelper.NewGuid();

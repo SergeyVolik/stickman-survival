@@ -1,6 +1,3 @@
-using Newtonsoft.Json;
-using UnityEngine;
-
 namespace Prototype
 {
     [System.Serializable]
@@ -10,12 +7,9 @@ namespace Prototype
         public SerializableGuid Id { get; set; }
     }
 
-    public class SaveGameObjectState : MonoBehaviour, ISceneSaveComponent<GameObjectSave>
+    public class SaveGameObjectState : SaveableObject, ISceneSaveComponent<GameObjectSave>
     {
         public bool saveActiveState = true;
-
-        [field:SerializeField]
-        public SerializableGuid Id { get; set; } = SerializeableGuidHelper.NewGuid();
 
         public void LoadComponent(GameObjectSave data)
         {

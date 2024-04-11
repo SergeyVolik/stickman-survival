@@ -7,20 +7,18 @@ namespace Prototype
 {
     public class UpdateNavmeshAfterDeath : MonoBehaviour
     {
-        private NavmeshCut bounds;
-        public int opentag = 0;
-        public int closedtag = 1;
+        private NavmeshCut navMeshCut;
 
         private void Awake()
         {
-            bounds = GetComponent<NavmeshCut>();
+            navMeshCut = GetComponent<NavmeshCut>();
           
             var heath = GetComponent<HealthData>();
 
             heath.onDeath += () =>
             {
-                bounds.rectangleSize = new Vector2();
-                bounds.ForceUpdate();
+                navMeshCut.rectangleSize = new Vector2();
+                navMeshCut.ForceUpdate();
             };
         }
     }

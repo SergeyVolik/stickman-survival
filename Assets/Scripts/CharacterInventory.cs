@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Prototype
@@ -16,8 +17,8 @@ namespace Prototype
         [SerializeField]
         private MeleeWeapon[] m_MeleeWeaponsPrefabs;
 
-        [SerializeField]
-        private MeleeWeapon[] m_MeleeWeaponsInstances;
+       
+        private List<MeleeWeapon> m_MeleeWeaponsInstances;
         public MeleeWeapon CurrentMeleeWeapon { get; private set; }
 
         public event Action<Gun> onGunChanged = delegate { };
@@ -29,24 +30,48 @@ namespace Prototype
 
         private void Awake()
         {
-            m_MeleeWeaponsInstances = new MeleeWeapon[m_MeleeWeaponsPrefabs.Length];
-            for (int i = 0; i < m_MeleeWeaponsInstances.Length; i++)
-            {
-                var weapon = GameObject.Instantiate(m_MeleeWeaponsPrefabs[i], rifleHidePoint).GetComponent<MeleeWeapon>();
-                m_MeleeWeaponsInstances[i] = weapon;
-
-                weapon.HideWeapon();               
-                weapon.SetupInHidePoint(rifleHidePoint);
-                weapon.owner = gameObject;
-            }
-
-            CurrentMeleeWeapon = m_MeleeWeaponsInstances[0];
-            m_MeleeWeaponsInstances[0].ShowWeapon();
+            InitMeleeWeapons();
+            SetupGun(m_StartGunPrefab);
         }
 
-        private void Start()
+        private void InitMeleeWeapons()
         {
-            SetupWeapon(m_StartGunPrefab);
+            m_MeleeWeaponsInstances = new List<MeleeWeapon>();
+
+            if (m_MeleeWeaponsPrefabs.Length != 0)
+            {
+                for (int i = 0; i < m_MeleeWeaponsPrefabs.Length; i++)
+                {
+                    var meleePrefab = m_MeleeWeaponsPrefabs[i];
+
+                    InstantiateWeapon(meleePrefab);
+                }
+
+                CurrentMeleeWeapon = m_MeleeWeaponsInstances[0];
+                m_MeleeWeaponsInstances[0].ShowWeapon();
+            }
+        }
+
+        private void InstantiateWeapon(MeleeWeapon meleePrefab)
+        {
+            var weapon = GameObject.Instantiate(meleePrefab, rifleHidePoint).GetComponent<MeleeWeapon>();
+            m_MeleeWeaponsInstances.Add(weapon);
+
+            weapon.HideWeapon();
+
+            weapon.SetupInHidePoint(rifleHidePoint);
+            weapon.owner = gameObject;
+        }
+
+        public void SetupMeleeWeapon(MeleeWeapon meleeWeaponPrefab)
+        {
+            InstantiateWeapon(meleeWeaponPrefab);
+
+            if (m_MeleeWeaponsInstances.Count == 1)
+            {
+                CurrentMeleeWeapon = m_MeleeWeaponsInstances[0];
+                m_MeleeWeaponsInstances[0].ShowWeapon();
+            }
         }
 
         public MeleeWeapon ActivateMeleeWeapon(MeleeWeaponType type)
@@ -85,7 +110,7 @@ namespace Prototype
             }
         }
 
-        public void SetupWeapon(GameObject gunPrefab)
+        public void SetupGun(GameObject gunPrefab)
         {
             if (gunPrefab == null)
                 return;
@@ -175,6 +200,23 @@ namespace Prototype
             CurrentGun = m_PrevWeapon;
             CurrentGun.SetupInHands(rightHand);
             onGunChanged.Invoke(CurrentGun);
+        }
+
+        internal bool HasAnyMeleeWeapon()
+        {
+            return m_MeleeWeaponsInstances.Count > 0;
+        }
+
+        internal bool HasMeleeWeaponByType(MeleeWeaponType type)
+        {
+            foreach (var item in m_MeleeWeaponsInstances)
+            {
+                if (item.Type == type)
+                    return
+                        true;
+            }
+
+            return false;
         }
     }
 }

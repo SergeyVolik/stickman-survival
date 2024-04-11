@@ -8,6 +8,12 @@ namespace Prototype
         private CameraController m_Camera;
         public float cameraXOffset;
 
+        [Inject]
+        void Construct(CameraController controller)
+        {
+            m_Camera = controller;
+        }
+
         private void Awake()
         {
             var callbacks = GetComponent<PhysicsCallbacks>();
@@ -18,17 +24,13 @@ namespace Prototype
         private void Callbacks_onTriggerExit(Collider obj)
         {
             m_Camera.RemoveOffset(gameObject);
+            Debug.Log("Camera Trigger Exit");
         }
 
         private void CameraForceOffset_onTriggerEnter(Collider obj)
         {
             m_Camera.FourceOffset(gameObject, cameraXOffset);
-        }
-
-        [Inject]
-        void Construct(CameraController controller)
-        {
-            m_Camera = controller;
-        }
+            Debug.Log("Camera Trigger Enter");
+        }  
     }
 }

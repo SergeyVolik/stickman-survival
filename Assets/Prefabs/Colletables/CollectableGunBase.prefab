@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4191315323513466179}
   - component: {fileID: 2197824975227612250}
   - component: {fileID: -8431560442093066479}
+  - component: {fileID: 2659359369098604856}
   m_Layer: 0
   m_Name: CollectableGunBase
   m_TagString: Untagged
@@ -82,7 +83,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c383acf8c6fb32d488991b43e83369d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Id>k__BackingField:
+    Part1: 1737947655
+    Part2: 1088072717
+    Part3: 691365554
+    Part4: 2133421248
   saveActiveState: 1
+--- !u!95 &2659359369098604856
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3292892241396639055}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 09b0e36b9c71cc945b967078e7513495, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6378613399236188918
 GameObject:
   m_ObjectHideFlags: 0

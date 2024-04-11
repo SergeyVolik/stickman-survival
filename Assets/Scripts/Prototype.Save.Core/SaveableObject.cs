@@ -1,20 +1,18 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
 #endif
 
 namespace Prototype
 {
     [DisallowMultipleComponent]
-    public class SaveableObject : MonoBehaviour
+    public abstract class SaveableObject : MonoBehaviour, ISaveGuid
     {
-        public SerializableGuid guid;
+        [field: SerializeField]
+        public SerializableGuid Id { get; set; } = SerializeableGuidHelper.NewGuid();
 
         private void OnValidate()
         {
-            HasConflicts(guid, gameObject);
+            HasConflicts(Id, gameObject);
         }
 
         public static bool HasConflicts(SerializableGuid guid, GameObject go)
@@ -24,7 +22,7 @@ namespace Prototype
             int count = 0;
             foreach (var item in allItems)
             {
-                if (item.guid == guid)
+                if (item.Id == guid)
                 {
                     count++;
                 }
@@ -41,7 +39,7 @@ namespace Prototype
 
         public void GenGuid()
         {
-            guid = System.Guid.NewGuid();
+            Id = System.Guid.NewGuid();
         }
     }
 }

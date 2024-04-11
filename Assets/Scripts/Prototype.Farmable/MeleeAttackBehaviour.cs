@@ -110,7 +110,7 @@ namespace Prototype
 
         private void FixedUpdate()
         {
-            bool canAttack = !m_Controller.IsMoving;
+            bool canAttack = !m_Controller.IsMoving && m_Inventory.HasAnyMeleeWeapon();
 
             if (m_Controller.IsMoving)
             {
@@ -160,6 +160,11 @@ namespace Prototype
 
             if (m_TargetCollider && m_TargetCollider.TryGetComponent<IRequiredMeleeWeapon>(out var requiredData))
             {
+                if (!m_Inventory.HasMeleeWeaponByType(requiredData.RequiredWeapon))
+                {
+                    return;
+                }
+
                 m_CurrentWeapon = ActivateWeapon(requiredData.RequiredWeapon);
                 m_CharAnimator.AttackTrigger();
                 m_Attaking = true;

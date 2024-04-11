@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace Prototype
 {
-    public static class SaveLoadEdiorHelper
+    public static class SaveLoadEditorHelper
     {
-
         [MenuItem("Prototype/GeneteteSaveableGuids")]
         public static void GeneteteSaveableGuids()
         {
@@ -29,7 +28,7 @@ namespace Prototype
             bool hasConflicts = false;
             foreach (var obj in objs)
             {
-                if (SaveableObject.HasConflicts(obj.guid, obj.gameObject))
+                if (SaveableObject.HasConflicts(obj.Id, obj.gameObject))
                 {
                     hasConflicts = true;
                 }
