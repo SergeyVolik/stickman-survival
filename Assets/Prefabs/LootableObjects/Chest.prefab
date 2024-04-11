@@ -84,9 +84,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8955858478767225419}
-  - component: {fileID: 602863012248937857}
-  - component: {fileID: 522934855337213472}
-  - component: {fileID: 1393068322551672388}
   - component: {fileID: 2218826178393095638}
   m_Layer: 0
   m_Name: Chest
@@ -118,75 +115,6 @@ Transform:
   - {fileID: 7585596556661386297}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &602863012248937857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034424883727088150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c45e9e3c6aa212d438bf0f44d45d34d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lootTicksItems:
-  - m_InitResources:
-    - count: 5
-      resourceType: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a, type: 2}
-  - m_InitResources:
-    - count: 10
-      resourceType: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a, type: 2}
-  - m_InitResources:
-    - count: 10
-      resourceType: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a, type: 2}
-  trigger: {fileID: 4442082667809890130}
-  openDuration: 2
-  executedLootTicks: 0
-  finalDropDelay: 0
-  m_OpenStateImage: {fileID: 4383526104825407352}
-  startLootingFeedback: {fileID: 2904488414654377276}
-  endLootingFeedback: {fileID: 5546894588803620062}
-  lootTickFeedback: {fileID: 5434373633767443134}
-  lootEndedFeedback: {fileID: 3342249817038575293}
---- !u!65 &522934855337213472
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034424883727088150}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.9763964, y: 0.66440827, z: 0.5218146}
-  m_Center: {x: 0.011801809, y: 0.41362426, z: 0.02845495}
---- !u!114 &1393068322551672388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034424883727088150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b67bf7522bc934fa7f2629ee98b2da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dropVectorRotation: {x: 0, y: 0, z: 0}
-  resources:
-    m_InitResources: []
-  dropPoint: {fileID: 2625983635044651810}
-  pushForce: 7
 --- !u!95 &2218826178393095638
 Animator:
   serializedVersion: 5
@@ -1947,18 +1875,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c041039ddf439aa4ab6c0dabd8520860, type: 3}
---- !u!114 &4442082667809890130 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3752115003343184255, guid: c041039ddf439aa4ab6c0dabd8520860,
-    type: 3}
-  m_PrefabInstance: {fileID: 700100912140877357}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3277f39711f251640af4f589535c4192, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &7720452548393511720 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7103246032834942213, guid: c041039ddf439aa4ab6c0dabd8520860,

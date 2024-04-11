@@ -24,7 +24,7 @@ namespace Prototype
             foreach (var loadCompData in loadData)
             {
                 var comp = components.FirstOrDefault((item) => {
-                    Debug.Log($"{loadCompData.Id.ToString()} == {item.Id.ToString()}");
+                    //Debug.Log($"{loadCompData.Id.ToString()} == {item.Id.ToString()}");
                     return loadCompData.Id == item.Id; 
                 });
 

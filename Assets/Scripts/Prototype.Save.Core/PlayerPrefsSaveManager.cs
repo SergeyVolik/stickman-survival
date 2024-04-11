@@ -8,7 +8,6 @@ namespace Prototype
         public void SerializedData(T data, string key)
         {
             var str = JsonConvert.SerializeObject(data);
-            Debug.Log(str);
             PlayerPrefs.SetString(key, str);
         }
 

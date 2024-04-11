@@ -24,6 +24,7 @@ namespace Prototype
             {
                 var diff = obj.PrevValue - obj.CurrentValue;
                 damageFeedback.GetFeedbackOfType<MMF_FloatingText>().Value = diff.ToString();
+                damageFeedback.ResetFeedbacks();
                 damageFeedback.PlayFeedbacks(damageFeedback.transform.position); 
             }
         }

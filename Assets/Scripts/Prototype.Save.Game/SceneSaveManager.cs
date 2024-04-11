@@ -16,16 +16,12 @@ namespace Prototype
 
         public override void LoadPass(SceneSaveData sceneSaveData)
         {
-            Debug.Log($"Scene Load {SaveKey}");
-
             SaveHelper.LoadComponents<TransformSave, SaveTransform>(sceneSaveData.TransSave);
             SaveHelper.LoadComponents<GameObjectSave, SaveGameObjectState>(sceneSaveData.GoSave);
         }
 
         public override void SavePass(SceneSaveData sceneSaveData)
         {
-            Debug.Log($"Scene Save {SaveKey}");
-
             sceneSaveData.TransSave = SaveHelper.SaveComponents<TransformSave, SaveTransform>();
             sceneSaveData.GoSave = SaveHelper.SaveComponents<GameObjectSave, SaveGameObjectState>();
         }

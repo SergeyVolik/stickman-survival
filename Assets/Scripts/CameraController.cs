@@ -1,13 +1,19 @@
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using Zenject;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace Prototype
 {
     public class CameraController : MonoBehaviour
     {
         [SerializeField] private Transform m_CameraTarget;
-
         public float lookAheadSpeed;
         public float lookAheadOffset;
 
@@ -21,6 +27,8 @@ namespace Prototype
         public GameObject idleVCamera;
 
         private IPlayerFactory m_PlayerFactory;
+        private GameObject m_CurrentCamera;
+        private TweenerCore<Vector3, Vector3, VectorOptions> m_SetOffsetTween;
 
         [Inject]
         public void Construct(IPlayerFactory factory)
@@ -54,6 +62,8 @@ namespace Prototype
 
             combatVCamera.SetActive(true);
             idleVCamera.SetActive(false);
+
+            m_CurrentCamera = combatVCamera;
         }
 
         [Button]
@@ -64,6 +74,47 @@ namespace Prototype
 
             combatVCamera.SetActive(false);
             idleVCamera.SetActive(true);
+            m_CurrentCamera = idleVCamera;
+        }
+
+        public class ForceOffsetData
+        {
+            public GameObject source;
+            public float offset;
+        }
+        public List<ForceOffsetData> forcedOffsets = new List<ForceOffsetData>();
+        public void FourceOffset(GameObject source, float value)
+        {
+            forcedOffsets.Add(new ForceOffsetData { source = source, offset = value });
+
+            SetXOffset(idleVCamera, value);
+            SetXOffset(combatVCamera, value);
+        }
+
+        private void SetXOffset(GameObject cam, float value)
+        {
+            if (cam == null)
+                return;
+            var follow = cam.GetComponent<CinemachineFollow>();
+            var followOffset = follow.FollowOffset;
+            followOffset.x = value;
+
+            m_SetOffsetTween = DOTween.To(() => follow.FollowOffset, (v) => follow.FollowOffset = v, followOffset, 1f).SetEase(Ease.OutSine);
+        }
+
+        internal void RemoveOffset(GameObject source)
+        {
+            forcedOffsets.RemoveAll((data) => data.source == source);
+
+            float offset = 0;
+
+            if (forcedOffsets.Count != 0)
+            {
+                offset = forcedOffsets[forcedOffsets.Count-1].offset;
+            }
+
+            SetXOffset(idleVCamera, offset);
+            SetXOffset(combatVCamera, offset);
         }
     }
 }
