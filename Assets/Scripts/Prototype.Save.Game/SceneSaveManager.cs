@@ -8,6 +8,7 @@ namespace Prototype
     {
         public List<TransformSave> TransSave = new List<TransformSave>();
         public List<GameObjectSave> GoSave = new List<GameObjectSave>();
+        public List<ResourceRecyclingSave> RecycleSave = new List<ResourceRecyclingSave>();
     }
 
     public class SceneSaveManager : PlayerPrefsSaveManager<SceneSaveData>
@@ -18,12 +19,14 @@ namespace Prototype
         {
             SaveHelper.LoadComponents<TransformSave, SaveTransform>(sceneSaveData.TransSave);
             SaveHelper.LoadComponents<GameObjectSave, SaveGameObjectState>(sceneSaveData.GoSave);
+            SaveHelper.LoadComponents<ResourceRecyclingSave, ResourceRecycling>(sceneSaveData.RecycleSave);
         }
 
         public override void SavePass(SceneSaveData sceneSaveData)
         {
             sceneSaveData.TransSave = SaveHelper.SaveComponents<TransformSave, SaveTransform>();
             sceneSaveData.GoSave = SaveHelper.SaveComponents<GameObjectSave, SaveGameObjectState>();
+            sceneSaveData.RecycleSave = SaveHelper.SaveComponents<ResourceRecyclingSave, ResourceRecycling>();
         }
 
         private void Start()

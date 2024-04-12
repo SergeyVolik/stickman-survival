@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22dfce7983eb81544aeeb94dd55e3716, type: 3}
-  m_Name: Coin Resource
+  m_Name: Lumber Resource
   m_EditorClassIdentifier: 
-  resourceIcon: {fileID: -1136330797, guid: a5e645d0b2507ac42807ef8e886f7d45, type: 3}
+  resourceIcon: {fileID: 21300000, guid: b1950d8a9bd272a48a1a279c1ec84d42, type: 3}
   resourceColor: {r: 1, g: 1, b: 1, a: 1}
-  Resource3dItem: {fileID: 4246904120169299878, guid: ae9f586fe42c7fc4eb40e6a5f01a85f4,
+  Resource3dItem: {fileID: 4246904120169299878, guid: 94face6f6ef35514ab82948e93d65638,
     type: 3}
-  Resource2dItem: {fileID: 8454572935505140459, guid: c72c0e5ba5bf5934d8d4039ab706b5ce,
+  Resource2dItem: {fileID: 4669044850730164844, guid: d44ac90c413ba9941bfb281a832ef6d9,
     type: 3}
-  ResourceUIItem: {fileID: 4489881299229850732, guid: 2c97531d60116ca4d97add333b68f6cf,
+  ResourceUIItem: {fileID: 4489881299229850732, guid: 3d2247b6d54cf8748bfdde2f05fa084b,
     type: 3}

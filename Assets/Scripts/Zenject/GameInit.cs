@@ -54,7 +54,7 @@ namespace Prototype
         public ResourceTransferManager m_Transfer;
         public CameraController CameraController;
         public WorldToScreenUIManager WorldToScreenUIManager;
-
+        public ActivateByDistanceToPlayerManager ActivateByDistanceToPlayerManager;
         public override void InstallBindings()
         {
             var spawnFactory = new EnemySpawnFactory(zombiePrefab, Container);
@@ -62,6 +62,7 @@ namespace Prototype
             m_playerSpawnFactory = new PlayerSpawnFactory(PlayerPrefab, Container);
             var wsm = new WorldSpaceMessageFactory(m_WSMPrefab);
 
+            Container.Bind<ActivateByDistanceToPlayerManager>().FromInstance(ActivateByDistanceToPlayerManager);
             Container.Bind<WorldToScreenUIManager>().FromInstance(WorldToScreenUIManager);
             Container.Bind<CameraController>().FromInstance(CameraController);
             Container.Bind<PlayerResourcesView>().FromInstance(m_PlayerResourcesView);
