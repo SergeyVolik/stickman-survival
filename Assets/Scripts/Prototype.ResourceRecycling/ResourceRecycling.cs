@@ -9,8 +9,14 @@ namespace Prototype
     public class ResourceRecyclingSave : ISaveComponentData
     {
         public int itemToRecycle;
-
+        public DateTime startTime;
+        public DateTime endTime;
         public SerializableGuid Id { get; set; }
+
+        public override string ToString()
+        {
+            return $"starttime: {startTime} endtime: {endTime} itemToRecycle: {itemToRecycle}";
+        }
     }
 
     public class ResourceRecycling : SaveableObject, ISceneSaveComponent<ResourceRecyclingSave>
@@ -22,87 +28,123 @@ namespace Prototype
         public int itemsToDestResource = 1;
 
         private PlayerResources m_PlayerResources;
-        private IPlayerFactory m_PlayerFactory;
-
         private WorldToScreenUIManager m_wtsManager;
-        private ActivateByDistanceToPlayerManager m_actManager;
-        private WorldSpaceMessageFactory m_wpsFactory;
 
-        [SerializeField]
-        private RecycleUI m_UIPrefab;
+        [SerializeField] private RecycleUI m_UIPrefab;
+        [SerializeField] private RecycleProcessViewUI m_UIRecycleViewUiPrefab;
         private RecycleUI m_UIInstance;
-
-        [SerializeField]
-        private RecycleProcessViewUI m_UIRecycleViewUiPrefab;
+        private bool m_Awaked;
         private RecycleProcessViewUI m_UIRecycleViewInstance;
-
+        public PhysicsCallbacks playerTrigger;
         private WordlToScreenUIItem m_WorldToScreenHandle;
-        private ActivateableByDistance m_ActByDistHandle;
-        [SerializeField]
-        private Transform m_UiBindPoint;
-
-        [SerializeField]
-        private Transform m_WorldMessageSpawnPoint;
-
+        [SerializeField] private Transform m_UiBindPoint;
         public float distanceToActivateUI = 2f;
-
         [Min(0.01f)]
         public float recycleItemDuration = 1f;
         public int itemToRecycle;
-        public float recycleT;
         private WordlToScreenUIItem m_WorldToScreenHandle2;
 
-        public event Action onProcessUpdatedChanged = delegate { };
+        public bool IsTimerFinished() => m_EndRecyclingTime <= DateTime.Now;
+
+        private DateTime m_StartRecyclingTime;
+        private DateTime m_EndRecyclingTime;
+
+        public string GetTimerText()
+        {
+            var timeToEnd = m_EndRecyclingTime - DateTime.Now;
+
+            if (timeToEnd.Hours != 0)
+            {
+                return $"{timeToEnd.Hours}h {timeToEnd.Minutes}m ";
+            }
+            else if (timeToEnd.Minutes != 0)
+            {
+                return $"{timeToEnd.Minutes}m {timeToEnd.Seconds}s ";
+            }
+            else if (timeToEnd.Seconds != 0)
+            {
+                return $"{timeToEnd.Seconds}s ";
+            }
+            
+            return "0s";
+        }
+
+        public float GetProgress01()
+        {
+            var totalDuration = m_EndRecyclingTime - m_StartRecyclingTime;
+            var timeToEnd = m_EndRecyclingTime - DateTime.Now;
+
+            return (float) (1 -(timeToEnd.TotalSeconds / totalDuration.TotalSeconds));
+        }
 
         [Inject]
         public void Construct(
              PlayerResources resources,
-             IPlayerFactory playerFactory,
-             WorldToScreenUIManager wtsManager,
-             ActivateByDistanceToPlayerManager actManager,
-             WorldSpaceMessageFactory wpsFactory)
+             WorldToScreenUIManager wtsManager)
         {
             m_PlayerResources = resources;
-            m_PlayerFactory = playerFactory;
             m_wtsManager = wtsManager;
-            m_actManager = actManager;
-            m_wpsFactory = wpsFactory;
         }
-
-        public float GetCurrentProcessProgress() => recycleT / recycleItemDuration;
 
         private void Awake()
         {
-            m_UIRecycleViewInstance = GameObject.Instantiate(m_UIRecycleViewUiPrefab, m_wtsManager.Root);
-            m_UIInstance = GameObject.Instantiate(m_UIPrefab, m_wtsManager.Root);
-
-            m_UIInstance.Deactivate();
-        }
-
-
-        private void Update()
-        {
-            if (itemToRecycle == 0)
+            if (m_Awaked)
                 return;
 
-            recycleT += Time.deltaTime;
+            m_Awaked = true;
+            m_UIRecycleViewInstance = GameObject.Instantiate(m_UIRecycleViewUiPrefab, m_wtsManager.Root);
+            m_UIInstance = GameObject.Instantiate(m_UIPrefab, m_wtsManager.Root);
+            m_UIRecycleViewInstance.Deactivate();
+            m_UIInstance.Deactivate();
 
-            if (recycleT > recycleItemDuration)
+            m_UIRecycleViewInstance.Bind(this);
+
+            SetupTrigger();
+
+            m_UIInstance.m_TransferButton.onClick.AddListener(() =>
             {
-                recycleT = 0;
-                itemToRecycle--;
+                int nextRecicle = (int)(m_UIInstance.m_Slider.value);
+                m_PlayerResources.resources.RemoveResource(sourceResource, nextRecicle * itemsToDestResource);
+                itemToRecycle = nextRecicle;
+                m_StartRecyclingTime = DateTime.Now;
+                m_EndRecyclingTime = m_StartRecyclingTime + TimeSpan.FromSeconds(itemToRecycle * recycleItemDuration);
+                m_UIInstance.Deactivate();
+                m_UIRecycleViewInstance.Activate();
+            });
 
-                m_wpsFactory.SpawnAtPosition(m_WorldMessageSpawnPoint.position, "+1", destinationResource.resourceIcon);
+            m_UIInstance.m_Slider.onValueChanged.AddListener((v) =>
+            {
+                Resources_onResourceChanged(null, 0);
+            });           
+        }
 
-                m_PlayerResources.resources.AddResource(destinationResource, 1);
-            }
+        public void ProcessFinish()
+        {
+            m_PlayerResources.resources.AddResource(destinationResource, itemToRecycle);
+            itemToRecycle = 0;
 
-            onProcessUpdatedChanged.Invoke();
+            m_UIRecycleViewInstance.Deactivate();
+        }
+
+        private void SetupTrigger()
+        {
+            playerTrigger.onTriggerEnter += (col) =>
+            {
+                if(IsTimerFinished())
+                    m_UIInstance.Activate();
+            };
+
+            playerTrigger.onTriggerExit += (col) =>
+            {
+                if (IsTimerFinished())
+                    m_UIInstance.Deactivate();
+            };
         }
 
         private void OnEnable()
         {
-            m_UIRecycleViewInstance.Bind(this);
+            m_PlayerResources.resources.onResourceChanged += Resources_onResourceChanged;
+            Resources_onResourceChanged(null, 0);
 
             m_WorldToScreenHandle2 = m_wtsManager.Register(new WordlToScreenUIItem
             {
@@ -115,45 +157,18 @@ namespace Prototype
                 worldPositionTransform = m_UiBindPoint,
                 item = m_UIInstance.GetComponent<RectTransform>()
             });
-
-            m_ActByDistHandle = m_actManager.Register(new ActivateableByDistance
-            {
-                DistanceObj = m_UiBindPoint,
-                DistanceToActivate = distanceToActivateUI,
-                ItemToActivate = m_UIInstance
-            });
-
-            m_UIInstance.m_TransferButton.onClick.AddListener(() =>
-            {
-                int nextRecicle = (int)(m_UIInstance.m_Slider.value);
-
-                itemToRecycle += nextRecicle;
-                m_PlayerResources.resources.RemoveResource(sourceResource, nextRecicle * itemsToDestResource);
-            });
-
-            m_UIInstance.m_Slider.onValueChanged.AddListener((v) =>
-            {
-                Resources_onResourceChanged(null, 0);
-            });
-
-            m_PlayerResources.resources.onResourceChanged += Resources_onResourceChanged;
-            Resources_onResourceChanged(null, 0);
-
-            m_UIRecycleViewInstance.gameObject.SetActive(true);
-            m_UIInstance.gameObject.SetActive(true);
         }
 
         private void OnDisable()
         {
-            if(m_UIRecycleViewInstance)
+            if (m_UIRecycleViewInstance)
                 m_UIRecycleViewInstance.gameObject.SetActive(false);
 
-            if(m_UIInstance)
+            if (m_UIInstance)
                 m_UIInstance.gameObject.SetActive(false);
 
             m_wtsManager.Unregister(m_WorldToScreenHandle2);
             m_wtsManager.Unregister(m_WorldToScreenHandle);
-            m_actManager.Unregister(m_ActByDistHandle);
 
             m_PlayerResources.resources.onResourceChanged -= Resources_onResourceChanged;
         }
@@ -185,9 +200,14 @@ namespace Prototype
 
         public ResourceRecyclingSave SaveComponent()
         {
-            return new ResourceRecyclingSave { 
-                 itemToRecycle = itemToRecycle
+            var item = new ResourceRecyclingSave
+            {
+                itemToRecycle = itemToRecycle,
+                startTime = m_StartRecyclingTime,
+                endTime = m_EndRecyclingTime,
             };
+
+            return item;
         }
 
         public void LoadComponent(ResourceRecyclingSave data)
@@ -196,6 +216,16 @@ namespace Prototype
                 return;
 
             itemToRecycle = data.itemToRecycle;
+            m_StartRecyclingTime = data.startTime;
+            m_EndRecyclingTime = data.endTime;
+
+            Awake();
+
+            if (!IsTimerFinished())
+            {
+                m_UIInstance.Deactivate();
+                m_UIRecycleViewInstance.Activate();
+            }
         }
     }
 }
