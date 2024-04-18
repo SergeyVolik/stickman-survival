@@ -18366,6 +18366,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 747569447}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &770399029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4378642510856034541, guid: c3d65a3c04fbd044c8bd1456c9c8899e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1531809215}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &776307931
 GameObject:
   m_ObjectHideFlags: 0
@@ -22877,7 +22883,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.415373, y: 0, z: 0, w: 0.9096512}
-  m_LocalPosition: {x: 0, y: 19.5, z: -16.9}
+  m_LocalPosition: {x: 0, y: 12.6, z: -10.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37545,7 +37551,7 @@ PrefabInstance:
     - target: {fileID: 4378642510856034541, guid: c3d65a3c04fbd044c8bd1456c9c8899e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6045109446666461834, guid: c3d65a3c04fbd044c8bd1456c9c8899e,
         type: 3}
@@ -37664,7 +37670,11 @@ PrefabInstance:
         type: 3}
       insertIndex: 0
       addedObject: {fileID: 1166227415}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4378642510856034541, guid: c3d65a3c04fbd044c8bd1456c9c8899e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1531809221}
   m_SourcePrefab: {fileID: 100100000, guid: c3d65a3c04fbd044c8bd1456c9c8899e, type: 3}
 --- !u!224 &1531809216 stripped
 RectTransform:
@@ -37672,6 +37682,20 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1531809215}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1531809221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770399029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc49db8b714409848bb28dbaf12b31ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 8560501140102815604, guid: 4ac10c98d27c1eb48b59aa8d0c6efc6e,
+    type: 3}
 --- !u!1 &1538927617
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Prototype
@@ -11,12 +12,11 @@ namespace Prototype
     public class MeleeWeapon : BaseWeapon, IOwnable
     {
         public MeleeWeaponType Type;
-
         public int damage;
+        public float damageMult = 1;
         public int level = 1;
         public TrailRenderer Trail;
         private Collider m_HitBox;
-
         private Transform m_Transform;
         private bool m_Showed;
         public float pushForce;
@@ -68,7 +68,7 @@ namespace Prototype
             {
                 if (required.RequiredWeapon == Type)
                 {
-                    other.GetComponent<IDamageable>().DoDamage(damage, gameObject);
+                    other.GetComponent<IDamageable>().DoDamage((int)(damage * damageMult), gameObject);
                 }
 
                 if (other.TryGetComponent<IPushable>(out var rb))
@@ -77,6 +77,11 @@ namespace Prototype
                     rb.Push(vector.normalized * pushForce);
                 }
             }
+        }
+
+        public void SetDamageMult(float newDamageMult)
+        {
+            damageMult = newDamageMult;
         }
     }
 }

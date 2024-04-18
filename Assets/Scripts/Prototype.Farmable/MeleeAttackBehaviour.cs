@@ -168,6 +168,7 @@ namespace Prototype
                 }
                 m_CharAnimator.SetAttackSpeed(m_Stats.attackSpeedMult);
                 m_CurrentWeapon = ActivateWeapon(requiredData.RequiredWeapon);
+                m_CurrentWeapon.SetDamageMult(m_Stats.meleeWeaponDamageMult);
                 m_CharAnimator.AttackTrigger();
                 m_Attaking = true;
                 var targetPos = closestFarmable.transform.position;
