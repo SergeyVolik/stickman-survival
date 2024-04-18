@@ -20,14 +20,15 @@ public class MeleeRangeStateMachine : MonoBehaviour
 
     private void Update()
     {
-        if (m_MeleeAttack.HasTarget)
+        if (m_GunBehaviour.HasAimTarget())
+        {
+            m_MeleeAttack.blockAttack = true;
+            m_GunBehaviour.blockAttack = false;
+        }
+        else if (m_MeleeAttack.HasTarget)
         {
             m_MeleeAttack.blockAttack = false;
             m_GunBehaviour.blockAttack = true;
-        }
-        else {
-            m_MeleeAttack.blockAttack = true;
-            m_GunBehaviour.blockAttack = false;
         }
     }
 }

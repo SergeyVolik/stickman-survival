@@ -14,14 +14,14 @@ namespace Prototype
         public event Action onEndAttack;
         public event Action onEnableHitBox;
         public event Action onDisableHitBox;
-
     }
 
-    public class CharacterAnimator : MonoBehaviour, IMeleeCharacterAnimator
+    public class MeleeCharacterAnimator : MonoBehaviour, IMeleeCharacterAnimator
     {
         private Animator m_Animator;
 
         private static readonly int AttackTriggerHash = Animator.StringToHash("Attack");
+        private static readonly int AttackSpeedHash = Animator.StringToHash("MeleeAttackSpeed");
         private static readonly int IsAttackingBoolHash = Animator.StringToHash("IsAttacking");
    
         public event Action onBeginAttack = delegate { };
@@ -32,6 +32,11 @@ namespace Prototype
         private void Awake()
         {
             m_Animator = GetComponent<Animator>();
+        }
+
+        public void SetAttackSpeed(float attackSpeed)
+        {
+            m_Animator.SetFloat(AttackSpeedHash, attackSpeed);
         }
 
         public void AttackTrigger()

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Prototype
 {
     public class CharacterGunBehaviourV2 : MonoBehaviour
-    {
+    { 
         private CharacterInventory m_Inventory;
         private CustomCharacterController m_Controller;
         private CharacterWithGunAnimator m_CharacterAnimator;
@@ -44,11 +44,7 @@ namespace Prototype
         {
             if (obj)
             {
-                m_Controller.aimDistance = obj.aimDistance + 1;
-            }
-            else 
-            {
-                m_Controller.aimDistance = 0;
+                m_Controller.aimDistance = obj.aimDistance;
             }
         }
 
@@ -79,12 +75,7 @@ namespace Prototype
         }
 
         private void FixedUpdate()
-        {
-            if (blockAttack)
-            {
-                return;
-            }
-
+        {          
             var deltaTime = Time.fixedDeltaTime;
 
             if (stunned)
@@ -101,6 +92,10 @@ namespace Prototype
 
             var currentGun = m_Inventory.CurrentGun;
 
+            if (blockAttack)
+            {
+                return;
+            }
 
             if (m_CombatState.InCombat && !currentGun && m_Inventory.HasGunInInventory())
             {
@@ -115,16 +110,8 @@ namespace Prototype
             bool isMoveing = m_Controller.MoveInput != Vector2.zero;
             float interval = isMoveing ? currentGun.moveShotInterval : currentGun.standingshotInterval;
 
-            if (m_Controller.HasTarget)
-            {
-                var targetPos = m_Controller.CurrentTarget.position;
-                var distance = Vector3.Distance(m_Transform.position, targetPos);
-
-                if (distance > currentGun.aimDistance)
-                {
-                    return;
-                }
-
+            if (HasTargetShot())
+            {              
                 m_ShotT += deltaTime;
 
                 if (m_ShotT > interval)
@@ -136,8 +123,37 @@ namespace Prototype
             }
             else
             {
+
                 m_ShotT = 0;
             }
+        }
+        public bool HasAimTarget()
+        {
+            return m_Controller.HasTarget;
+        }
+
+        public bool HasTargetShot()
+        {
+            if (m_Controller.HasTarget)
+            {
+                var gun = m_Inventory.GetGun();
+
+                var targetPos = m_Controller.CurrentTarget.position;
+                var distance = Vector3.Distance(m_Transform.position, targetPos);
+
+
+                if (gun == null)
+                    return false;
+
+                if (distance > gun.aimDistance)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

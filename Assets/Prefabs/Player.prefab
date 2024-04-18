@@ -327,6 +327,8 @@ GameObject:
   - component: {fileID: 9111963927411729914}
   - component: {fileID: 1077552434872861827}
   - component: {fileID: 6574410010503779108}
+  - component: {fileID: 1170309407179146836}
+  - component: {fileID: 6821031684393056125}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -384,6 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageFeedback: {fileID: 1279294226058806676}
+  deathFeedback: {fileID: 0}
 --- !u!114 &4163425190508128530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,8 +529,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a48f9bd2239db148bee6eaf8e70edca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StartGunPrefab: {fileID: 0}
-  m_MeleeWeaponsPrefabs: []
+  m_StartGunPrefab: {fileID: 7329773849400430372, guid: 8a83bcfbd4c5cc14a9baf9f7353c65cd,
+    type: 3}
+  m_MeleeWeaponsPrefabs:
+  - {fileID: 4983514561438256645, guid: b4c0a58b98b71224da9b2a04ee7c39d4, type: 3}
   rightHand: {fileID: 8241530161396705359}
   handgunHidePoint: {fileID: 3951446365864870959}
   rifleHidePoint: {fileID: 2745537080347356902}
@@ -622,6 +627,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d48018fdd45c9429956b11fa4ea0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1170309407179146836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8149694439717538947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 045343aadc557d347a3523fe96c524ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6821031684393056125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8149694439717538947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3390e180d5778924f901ce1abfa149be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSpeedMult: 1
 --- !u!1 &8899039506050042948
 GameObject:
   m_ObjectHideFlags: 0

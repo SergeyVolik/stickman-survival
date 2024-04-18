@@ -13,10 +13,10 @@ namespace Prototype
         private bool m_InCombat;
         public LayerMask enemyLayerMask;
         public LayerMask wallLayers;
-
         public float checkEnemyRadius = 5f;
         private Transform m_Transfrom;
         RaycastHit[] m_RaycastHits;
+
         public bool InCombat
         {
             get

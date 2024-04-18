@@ -36,6 +36,7 @@ namespace Prototype
         public bool standingOnlyAim = false;
 
         public Vector2 MoveInput { get => m_MoveInput; set => m_MoveInput = value; }
+
         RaycastHit[] results;
 
         private void Awake()
@@ -119,19 +120,17 @@ namespace Prototype
                         if (newClosestUnit != null && m_LastSwithTarget > swithTargetInterval)
                         {
                             m_LastSwithTarget = 0;
-
-                            UpdateTarget(newClosestUnit.transform);
-                          
+                            UpdateTarget(newClosestUnit.transform);                          
                         }
-
                         HasTarget = CurrentTargetHealth != null;
+                        //Debug.Log($"HasTarget {HasTarget}");
                     }
 
                     //change target
                     if (!HasTarget)
                     {
+                        //Debug.Log("Change Target");
                         var data = GetTargetWithClosestDistance();
-
                         HasTarget = data.body;
 
                         if (HasTarget)

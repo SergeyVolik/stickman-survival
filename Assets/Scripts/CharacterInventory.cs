@@ -7,7 +7,7 @@ namespace Prototype
 {
     public class CharacterInventory : MonoBehaviour
     {
-        private Gun m_PrevWeapon;
+        private Gun m_PrevGun;
 
         public Gun CurrentGun { get; private set; }
 
@@ -140,9 +140,9 @@ namespace Prototype
             if (gunPrefab == null)
                 return;
 
-            if (m_PrevWeapon)
+            if (m_PrevGun)
             {
-                GameObject.Destroy(m_PrevWeapon.gameObject);
+                GameObject.Destroy(m_PrevGun.gameObject);
             }
 
             bool hasActiveWeapon = CurrentGun != null;
@@ -161,9 +161,9 @@ namespace Prototype
             }
             else
             {
-                m_PrevWeapon = GameObject.Instantiate(gunPrefab, rightHand).GetComponent<Gun>();
-                m_PrevWeapon.owner = gameObject;
-                m_PrevWeapon.SetupInHidePoint(GetHidePoint(m_PrevWeapon.type));
+                m_PrevGun = GameObject.Instantiate(gunPrefab, rightHand).GetComponent<Gun>();
+                m_PrevGun.owner = gameObject;
+                m_PrevGun.SetupInHidePoint(GetHidePoint(m_PrevGun.type));
 
                 onGunChanged.Invoke(null);
             }
@@ -190,7 +190,7 @@ namespace Prototype
 
         public bool HasGun()
         {
-            return CurrentGun || m_PrevWeapon;
+            return CurrentGun || m_PrevGun;
         }
 
         public bool GunIsActive()
@@ -198,9 +198,10 @@ namespace Prototype
             return CurrentGun;
         }
 
+        public Gun GetGun() => CurrentGun ? CurrentGun : m_PrevGun;
         public bool HasGunInInventory()
         {
-            return m_PrevWeapon;
+            return m_PrevGun;
         }
 
         [Button]
@@ -208,8 +209,8 @@ namespace Prototype
         {
             if (CurrentGun == null) return;
 
-            m_PrevWeapon = CurrentGun;
-            m_PrevWeapon.SetupInHidePoint(GetHidePoint(m_PrevWeapon.type));
+            m_PrevGun = CurrentGun;
+            m_PrevGun.SetupInHidePoint(GetHidePoint(m_PrevGun.type));
             CurrentGun = null;
             onGunChanged.Invoke(null);
         }
@@ -217,12 +218,12 @@ namespace Prototype
         [Button]
         public void ActiveLastGun()
         {
-            if (m_PrevWeapon == null)
+            if (m_PrevGun == null)
                 return;
 
             HideMeleeWeapon();
 
-            CurrentGun = m_PrevWeapon;
+            CurrentGun = m_PrevGun;
             CurrentGun.SetupInHands(rightHand);
             onGunChanged.Invoke(CurrentGun);
         }

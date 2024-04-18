@@ -36,7 +36,8 @@ namespace Prototype
         [SerializeField]
         public LayerMask m_AttackableLayer;
         private Collider[] m_CastedColliders;
-        private CharacterAnimator m_CharAnimator;
+        private CharacterStats m_Stats;
+        private MeleeCharacterAnimator m_CharAnimator;
 
         [SerializeField]
         public float m_AttackRange = 1.5f;
@@ -60,7 +61,8 @@ namespace Prototype
             m_Inventory = GetComponent<CharacterInventory>();
             m_CastedColliders = new Collider[20];
 
-            m_CharAnimator = GetComponentInChildren<CharacterAnimator>();
+            m_Stats = GetComponent<CharacterStats>();
+            m_CharAnimator = GetComponentInChildren<MeleeCharacterAnimator>();
             m_CharAnimator.onBeginAttack += M_CharAnimator_onBeginAttack;
             m_CharAnimator.onEndAttack += M_CharAnimator_onEndAttack;
             m_CharAnimator.onEnableHitBox += M_CharAnimator_onEnableHitBox;
@@ -164,7 +166,7 @@ namespace Prototype
                 {
                     return;
                 }
-
+                m_CharAnimator.SetAttackSpeed(m_Stats.attackSpeedMult);
                 m_CurrentWeapon = ActivateWeapon(requiredData.RequiredWeapon);
                 m_CharAnimator.AttackTrigger();
                 m_Attaking = true;
