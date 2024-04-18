@@ -46,8 +46,13 @@ namespace Prototype
 
         public bool IsTimerFinished() => m_EndRecyclingTime <= DateTime.Now;
 
+        private bool IsClaimed() => itemToRecycle == 0 && IsTimerFinished();
+
+        private bool NeedActivateTrigger() => IsClaimed();
+
         private DateTime m_StartRecyclingTime;
         private DateTime m_EndRecyclingTime;
+        private bool m_PlayerInside;
 
         public string GetTimerText()
         {
@@ -124,19 +129,26 @@ namespace Prototype
             itemToRecycle = 0;
 
             m_UIRecycleViewInstance.Deactivate();
+
+            if (m_PlayerInside)
+            {
+                m_UIInstance.Activate();
+            }
         }
 
         private void SetupTrigger()
         {
             playerTrigger.onTriggerEnter += (col) =>
             {
-                if(IsTimerFinished())
+                m_PlayerInside = true;
+                if(NeedActivateTrigger())
                     m_UIInstance.Activate();
             };
 
             playerTrigger.onTriggerExit += (col) =>
             {
-                if (IsTimerFinished())
+                m_PlayerInside = false;
+                if (NeedActivateTrigger())
                     m_UIInstance.Deactivate();
             };
         }
