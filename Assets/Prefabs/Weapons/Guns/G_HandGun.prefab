@@ -744,7 +744,7 @@ MonoBehaviour:
   type: 1
   moveDamage: 15
   pushForce: 15
-  killPushForce: 100
+  killPushForce: 35
   moveShotInterval: 0.8
   standingDamage: 35
   standingshotInterval: 0.5
