@@ -69,6 +69,11 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.00056126027
       objectReference: {fileID: 0}
+    - target: {fileID: 1782858043616050393, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492687].BoundRenderer
+      value: 
+      objectReference: {fileID: 1243044670439834399}
     - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: managedReferences[446011653118492687].BoundRenderer

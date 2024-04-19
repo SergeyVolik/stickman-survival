@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 using static UnityEngine.Rendering.DebugUI;
@@ -14,6 +15,8 @@ namespace Prototype
     public class CameraController : MonoBehaviour
     {
         [SerializeField] private Transform m_CameraTarget;
+
+       private Transform m_ForceCameraTarget;
         public float lookAheadSpeed;
         public float lookAheadOffset;
 
@@ -37,7 +40,7 @@ namespace Prototype
         }
 
         private void Awake()
-        {
+        {           
             ActivateIdleCamera();
         }
 
@@ -45,12 +48,19 @@ namespace Prototype
         {
             if (m_PlayerFactory.CurrentPlayerUnit)
             {
-                var uniTrans = m_PlayerFactory.CurrentPlayerUnit.transform;
-                var unitPos = uniTrans.position;
-                var unitForward = uniTrans.forward;
-                var offset = unitForward * m_CurrentlookAheadOffset;
+                if (m_ForceCameraTarget)
+                {
+                    var unitPos = m_ForceCameraTarget.position;
+                    m_CameraTarget.position = Vector3.Lerp(m_CameraTarget.position, unitPos, Time.deltaTime * m_CurrentlookAheadSpeed);
+                }
+                else {
+                    var uniTrans = m_PlayerFactory.CurrentPlayerUnit.transform;
+                    var unitPos = uniTrans.position;
+                    var unitForward = uniTrans.forward;
+                    var offset = unitForward * m_CurrentlookAheadOffset;
 
-                m_CameraTarget.position = Vector3.Lerp(m_CameraTarget.position, unitPos + offset, Time.deltaTime * m_CurrentlookAheadSpeed);
+                    m_CameraTarget.position = Vector3.Lerp(m_CameraTarget.position, unitPos + offset, Time.deltaTime * m_CurrentlookAheadSpeed);
+                }             
             }
         }
 
@@ -115,6 +125,31 @@ namespace Prototype
 
             SetXOffset(idleVCamera, offset);
             SetXOffset(combatVCamera, offset);
+        }
+
+        private Stack<Transform> m_ForcedTargets = new Stack<Transform>();
+        public void PushTarget(Transform newTarget)
+        {
+            m_ForceCameraTarget = newTarget;
+            m_ForcedTargets.Push(newTarget);
+        }
+        public void PushTargetWithDuration(Transform newTarget, float duration)
+        {
+            m_ForceCameraTarget = newTarget;
+            m_ForcedTargets.Push(newTarget);
+
+            DOVirtual.DelayedCall(duration, () =>
+            {
+                PopTarget();
+            });
+        }
+        public void PopTarget()
+        {
+            m_ForcedTargets.Pop();
+
+            if (m_ForcedTargets.Count == 0)
+                m_ForceCameraTarget = null;
+            else m_ForceCameraTarget = m_ForcedTargets.Peek();
         }
     }
 }

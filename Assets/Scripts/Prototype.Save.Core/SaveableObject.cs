@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Prototype
 {
-    [DisallowMultipleComponent]
     public abstract class SaveableObject : MonoBehaviour, ISaveGuid
     {
         [field: SerializeField]

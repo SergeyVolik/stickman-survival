@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Prototype
@@ -5,6 +6,8 @@ namespace Prototype
     public class CollectableWeapon : MonoBehaviour, ICollectable
     {
         public GameObject GunPrefab;
+
+        public event Action onCollected;
 
         public void Collect(GameObject collecteBy)
         {
@@ -18,6 +21,7 @@ namespace Prototype
                 {
                     behaviour.SetupMeleeWeapon(GunPrefab.GetComponent<MeleeWeapon>());
                 }
+                onCollected?.Invoke();
                 gameObject.SetActive(false);
             }
         }
