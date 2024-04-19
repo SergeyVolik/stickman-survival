@@ -17,13 +17,10 @@ namespace Prototype
         public int level = 1;
         public TrailRenderer Trail;
         private Collider m_HitBox;
-        private Transform m_Transform;
-        private bool m_Showed;
         public float pushForce;
 
         private void Awake()
         {
-            m_Transform = transform;
             m_HitBox = GetComponent<Collider>();
            
             ActivateTrail(false);
@@ -47,7 +44,6 @@ namespace Prototype
 
         public void HideWeapon(bool disable = true)
         {
-            m_Showed = false;
             gameObject.SetActive(!disable);
             EnableHitBox(false);
             ActivateTrail(false);
@@ -55,7 +51,6 @@ namespace Prototype
 
         public void ShowWeapon()
         {
-            m_Showed = true;
             gameObject.SetActive(true);
         }
 
@@ -63,20 +58,27 @@ namespace Prototype
         {
             if (Owner == other.gameObject)
                 return;
-        
-            if (other.TryGetComponent<IRequiredMeleeWeapon>(out var required))
+
+            var damageable = other.GetComponent<IDamageable>();
+
+            if (damageable == null || !damageable.IsDamageable)
+                return;
+
+            if (!other.TryGetComponent<IRequiredMeleeWeapon>(out var required))
             {
-                if (required.RequiredWeapon == Type)
-                {
-                    other.GetComponent<IDamageable>().DoDamage((int)(damage * damageMult), gameObject);
-                }
+                return;
+            }
+               
+            if (required.Validate(level, Type))
+            {
+                other.GetComponent<IDamageable>().DoDamage((int)(damage * damageMult), gameObject);
 
                 if (other.TryGetComponent<IPushable>(out var rb))
                 {
                     var vector = other.transform.position - Owner.transform.position;
                     rb.Push(vector.normalized * pushForce);
                 }
-            }
+            }     
         }
 
         public void SetDamageMult(float newDamageMult)

@@ -1,3 +1,5 @@
+using MoreMountains.Feedbacks;
+using Prototype.Ads;
 using System;
 using UnityEngine;
 using Zenject;
@@ -55,6 +57,7 @@ namespace Prototype
         public CameraController CameraController;
         public WorldToScreenUIManager WorldToScreenUIManager;
         public ActivateByDistanceToPlayerManager ActivateByDistanceToPlayerManager;
+        public AdsManager AdsManager;
         public override void InstallBindings()
         {
             var spawnFactory = new EnemySpawnFactory(zombiePrefab, Container);
@@ -62,6 +65,7 @@ namespace Prototype
             m_playerSpawnFactory = new PlayerSpawnFactory(PlayerPrefab, Container);
             var wsm = new WorldSpaceMessageFactory(m_WSMPrefab);
 
+            Container.Bind<IAdsPlayer>().FromInstance(AdsManager);
             Container.Bind<ActivateByDistanceToPlayerManager>().FromInstance(ActivateByDistanceToPlayerManager);
             Container.Bind<WorldToScreenUIManager>().FromInstance(WorldToScreenUIManager);
             Container.Bind<CameraController>().FromInstance(CameraController);

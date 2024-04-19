@@ -80,6 +80,8 @@ MonoBehaviour:
       m_InitResources:
       - count: 1000
         resourceType: {fileID: 11400000, guid: 05f855fffb8cb5449aa06ca6e0028d8e, type: 2}
+      - count: 1000
+        resourceType: {fileID: 11400000, guid: 468e25e280aec0c48a0e4dd15de33f3b, type: 2}
   m_ResourceTypesSO: {fileID: 11400000, guid: f2bd7ba2345ec5c41aa81beaa063359f, type: 2}
 --- !u!1 &6461089056158308130
 GameObject:

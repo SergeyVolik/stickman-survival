@@ -233,7 +233,7 @@ namespace Prototype
 
             Awake();
 
-            if (!IsTimerFinished())
+            if (!IsClaimed())
             {
                 m_UIInstance.Deactivate();
                 m_UIRecycleViewInstance.Activate();

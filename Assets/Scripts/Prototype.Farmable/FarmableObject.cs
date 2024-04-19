@@ -1,7 +1,6 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
-using Zenject;
-using Unity.Mathematics;
 using UnityEngine.Serialization;
 
 namespace Prototype
@@ -23,6 +22,9 @@ namespace Prototype
 
         public MeleeWeaponType RequiredWeapon => m_RequiredWeapon;
 
+        [field: SerializeField]
+        public int RequiredWeaponLevel { get; set; }
+
         [SerializeField]
         private Transform m_PartsParent;
 
@@ -41,6 +43,8 @@ namespace Prototype
         private HealthData m_Health;
         private Collider m_Collider;
         private DropExecutor m_DropExecutor;
+
+        public event Action onMeleeWeaponFailed = delegate { };
 
         private void Awake()
         {
@@ -180,6 +184,22 @@ namespace Prototype
             }
 
             return false;
+        }
+
+        public bool Validate(int level, MeleeWeaponType weaponType)
+        {
+            if (RequiredWeaponLevel > level)
+            {
+                onMeleeWeaponFailed.Invoke();
+                return false;
+            }
+
+            if (weaponType > m_RequiredWeapon)
+            {
+                onMeleeWeaponFailed.Invoke();
+                return false;
+            }
+            return true;
         }
     }
 }
