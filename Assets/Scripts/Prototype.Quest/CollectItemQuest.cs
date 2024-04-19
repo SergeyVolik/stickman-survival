@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 using Zenject;
@@ -10,14 +11,19 @@ namespace Prototype
         public string QuestDescription { get; }
 
         public event Action onQuestFinished;
+        public event Action onQuestChanged;
+
+        public bool IsFinished();
+        public void UpdateQuest();
         public void FinishQuest();
 
-        public GameObject GetQuestTargetObject();
+        public Transform GetQuestTargetObject();
     }
 
     public abstract class BaseQuest : MonoBehaviour, IQuest
     {
         public event Action onQuestFinished;
+        public event Action onQuestChanged;
         [SerializeField]
         private GameObject questUI;
         private CameraController m_cameraContr;
@@ -31,9 +37,13 @@ namespace Prototype
 
         public virtual void FinishQuest()
         {
-            onQuestFinished.Invoke();
+            onQuestFinished?.Invoke();
         }
 
+        public virtual void UpdateQuest()
+        {
+            onQuestChanged?.Invoke();
+        }
         [Inject]
         void Construct(CameraController cameraContr)
         {
@@ -44,14 +54,11 @@ namespace Prototype
         {
             m_CurrentQuestUI = GameObject.Instantiate(questUI, questUISpawnPoint);
             var questUIItem = m_CurrentQuestUI.GetComponent<BaseQuestUI>();
-            questUIItem.GetComponent<BaseQuestUI>().Bind(this);
+            questUIItem.GetComponent<BaseQuestUI>().Bind(this); 
 
-            questUIItem.showTargetButton.onClick.AddListener(() => {
-                var traget = GetQuestTargetObject();
-                if (traget)
-                {
-                    m_cameraContr.PushTargetWithDuration(traget.transform, 2f);
-                }
+            questUIItem.showTargetButton.onClick.AddListener(() => {             
+                    m_cameraContr.PushTargetWithDuration(GetQuestTargetObject(), 2f);
+                
             });
         }
 
@@ -63,28 +70,41 @@ namespace Prototype
         protected virtual void Awake()
         { }
 
-        public virtual GameObject GetQuestTargetObject()
+        public virtual Transform GetQuestTargetObject()
         {
             return null;
         }
+
+        public abstract bool IsFinished();
     }
 
     public class CollectItemQuest : BaseQuest, IQuest
     {
         public GameObject CollectableObjectInstance;
 
+        bool finished = false;
         protected override void Awake()
         {
             base.Awake();
             CollectableObjectInstance.GetComponent<ICollectable>().onCollected += CollectItemQuest_onCollected;
         }
-        public override GameObject GetQuestTargetObject()
+        public override Transform GetQuestTargetObject()
         {
-            return CollectableObjectInstance;
+            if(CollectableObjectInstance == null)
+                return null;
+
+            return CollectableObjectInstance.transform;
         }
+
         private void CollectItemQuest_onCollected()
         {
+            finished = true;
             FinishQuest();
+        }
+
+        public override bool IsFinished()
+        {
+            return finished;
         }
     }
 }

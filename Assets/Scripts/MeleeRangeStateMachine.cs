@@ -20,7 +20,7 @@ public class MeleeRangeStateMachine : MonoBehaviour
 
     private void Update()
     {
-        if (m_GunBehaviour.HasAimTarget())
+        if (m_GunBehaviour.HasGunTarget())
         {
             m_MeleeAttack.blockAttack = true;
             m_GunBehaviour.blockAttack = false;

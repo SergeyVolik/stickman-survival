@@ -7,5 +7,7 @@ namespace Prototype
     {
         public Button showTargetButton;
         public abstract void Bind(IQuest quest);
+
+        public abstract void UpdateDescription();
     }
 }

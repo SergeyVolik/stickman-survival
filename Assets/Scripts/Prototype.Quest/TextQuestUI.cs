@@ -1,15 +1,19 @@
 using Prototype;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
 
 public class TextQuestUI : BaseQuestUI
 {
    public TextMeshProUGUI questText;
+    private IQuest m_quest;
 
     public override void Bind(IQuest quest)
     {
-        questText.text = quest.QuestName;
+        m_quest = quest;
+        UpdateDescription();
+    }
+
+    public override void UpdateDescription()
+    {
+        questText.text = m_quest.QuestName;
     }
 }

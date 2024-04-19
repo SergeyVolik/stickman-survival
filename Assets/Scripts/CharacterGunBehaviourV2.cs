@@ -110,7 +110,7 @@ namespace Prototype
             bool isMoveing = m_Controller.MoveInput != Vector2.zero;
             float interval = isMoveing ? currentGun.moveShotInterval : currentGun.standingshotInterval;
 
-            if (HasTargetShot())
+            if (HasGunTarget())
             {              
                 m_ShotT += deltaTime;
 
@@ -132,7 +132,7 @@ namespace Prototype
             return m_Controller.HasTarget;
         }
 
-        public bool HasTargetShot()
+        public bool HasGunTarget()
         {
             if (m_Controller.HasTarget)
             {

@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageFeedback: {fileID: 1130640066498643047}
+  deathFeedback: {fileID: 0}
 --- !u!114 &1110967989422671854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +182,7 @@ MonoBehaviour:
     m_Bits: 64
   wallLayerMask:
     serializedVersion: 2
-    m_Bits: 51200
+    m_Bits: 116736
 --- !u!114 &8779009633079900590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,6 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <RequiredWeapon>k__BackingField: 0
+  <RequiredWeaponLevel>k__BackingField: 0
 --- !u!114 &1194683310575499144
 MonoBehaviour:
   m_ObjectHideFlags: 0

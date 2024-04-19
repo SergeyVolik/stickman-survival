@@ -12,5 +12,10 @@ namespace Prototype
         {
             
         }
+
+        public override bool IsFinished()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
