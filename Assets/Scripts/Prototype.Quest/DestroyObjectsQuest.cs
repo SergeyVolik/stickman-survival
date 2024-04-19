@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Prototype
 {
-    public class DestroyObjectsQuest : BaseQuest, IQuest
+    public class DestroyObjectsQuest : BaseQuest
     {
         public HealthData[] objectsToDestory;
         private int killed;
@@ -21,11 +21,6 @@ namespace Prototype
         {
             killed++;
             UpdateQuest();
-
-            if (IsFinished())
-            {
-                FinishQuest();
-            }
         }
 
         public int AlreadyKiller() => killed;

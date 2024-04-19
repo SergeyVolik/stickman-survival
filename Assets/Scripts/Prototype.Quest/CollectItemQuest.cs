@@ -35,7 +35,7 @@ namespace Prototype
 
         [field:SerializeField]
         public string QuestDescription { get; set; }
-        private GameObject m_CurrentQuestUI;
+        protected GameObject m_CurrentQuestUI;
 
         public virtual void FinishQuest()
         {
@@ -46,7 +46,13 @@ namespace Prototype
         public virtual void UpdateQuest()
         {
             onQuestChanged?.Invoke();
+
+            if (IsFinished())
+            {
+                FinishQuest();
+            }
         }
+
         [Inject]
         void Construct(CameraController cameraContr)
         {
@@ -60,9 +66,10 @@ namespace Prototype
             questUIItem.GetComponent<BaseQuestUI>().Bind(this); 
 
             questUIItem.showTargetButton.onClick.AddListener(() => {             
-                    m_cameraContr.PushTargetWithDuration(GetQuestTargetObject(), 2f);
-                
+                m_cameraContr.PushTargetWithDuration(GetQuestTargetObject(), 2f);  
             });
+
+            m_cameraContr.PushTargetWithDuration(GetQuestTargetObject(), 2f);
         }
 
         public virtual void Clear()
@@ -102,7 +109,7 @@ namespace Prototype
         private void CollectItemQuest_onCollected()
         {
             finished = true;
-            FinishQuest();
+            UpdateQuest();
         }
 
         public override bool IsFinished()

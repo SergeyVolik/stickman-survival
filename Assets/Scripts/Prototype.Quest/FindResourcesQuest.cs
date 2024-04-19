@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace Prototype
 {
@@ -7,15 +8,32 @@ namespace Prototype
     {
         public ResourceTypeSO resourcesToFind;
         public int toFind;
+        private PlayerResources m_resoruces;
 
-        public override void FinishQuest()
+        [Inject]
+        void Construct(PlayerResources resoruces)
         {
-            
+            m_resoruces = resoruces;      
+        }
+
+        public override void Setup(Transform questUISpawnPoint)
+        {
+            base.Setup(questUISpawnPoint);
+            m_resoruces.resources.onResourceChanged += Resources_onResourceChanged;
+            var findResUI = m_CurrentQuestUI.GetComponent<FindResourceQuestUI>();
+            findResUI.Construct(m_resoruces);
+            UpdateQuest();
+            findResUI.UpdateDescription();
+        }
+
+        private void Resources_onResourceChanged(ResourceTypeSO arg1, int arg2)
+        {
+            UpdateQuest();
         }
 
         public override bool IsFinished()
         {
-            throw new NotImplementedException();
+            return m_resoruces.resources.GetResource(resourcesToFind) >= toFind;
         }
     }
 }

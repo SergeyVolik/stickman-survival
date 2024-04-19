@@ -130,11 +130,17 @@ namespace Prototype
         private Stack<Transform> m_ForcedTargets = new Stack<Transform>();
         public void PushTarget(Transform newTarget)
         {
+            if (newTarget == null)
+                return;
+
             m_ForceCameraTarget = newTarget;
             m_ForcedTargets.Push(newTarget);
         }
         public void PushTargetWithDuration(Transform newTarget, float duration)
         {
+            if (newTarget == null)
+                return;
+
             m_ForceCameraTarget = newTarget;
             m_ForcedTargets.Push(newTarget);
 

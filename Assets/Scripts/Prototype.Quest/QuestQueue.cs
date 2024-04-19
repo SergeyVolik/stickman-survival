@@ -16,6 +16,7 @@ public class QuestQueue : MonoBehaviour
     {
         if (currentQuest == quests.Length)
             return;
+
         quests[currentQuest].Setup(questUISpawnPoint);
         quests[currentQuest].onQuestFinished += NextQuest;
     }
