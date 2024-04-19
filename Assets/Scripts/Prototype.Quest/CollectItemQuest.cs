@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 namespace Prototype
@@ -24,6 +25,7 @@ namespace Prototype
     {
         public event Action onQuestFinished;
         public event Action onQuestChanged;
+        public UnityEvent onQuestFinishedUE;
         [SerializeField]
         private GameObject questUI;
         private CameraController m_cameraContr;
@@ -38,6 +40,7 @@ namespace Prototype
         public virtual void FinishQuest()
         {
             onQuestFinished?.Invoke();
+            onQuestFinishedUE.Invoke();
         }
 
         public virtual void UpdateQuest()
