@@ -77,7 +77,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerResources:
     resources:
-      m_InitResources: []
+      m_InitResources:
+      - count: 100
+        resourceType: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a, type: 2}
+      - count: 100
+        resourceType: {fileID: 11400000, guid: 05f855fffb8cb5449aa06ca6e0028d8e, type: 2}
   m_ResourceTypesSO: {fileID: 11400000, guid: f2bd7ba2345ec5c41aa81beaa063359f, type: 2}
 --- !u!1 &6461089056158308130
 GameObject:

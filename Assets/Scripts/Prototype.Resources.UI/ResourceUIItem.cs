@@ -24,7 +24,10 @@ namespace Prototype
         {
             itemText.text = value;
         }
-
+        public void SetTextColor(Color color)
+        {
+            itemText.color = color;
+        }
         public void SetSprite(Sprite sprite, Color color)
         {
             spriteImage.color = color;

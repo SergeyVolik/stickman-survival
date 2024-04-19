@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Prototype
 {
@@ -15,6 +16,16 @@ namespace Prototype
         public Dictionary<ResourceTypeSO, RquiredResourceUIItem> uiItems = new Dictionary<ResourceTypeSO, RquiredResourceUIItem>();
 
         public event Action<ResourceTypeSO, RquiredResourceUIItem> onItemAdded = delegate { };
+
+        public Button finishButton;
+
+        private void Awake()
+        {
+            finishButton.gameObject.SetActive(false);
+            finishButton.onClick.AddListener(() => onFinished?.Invoke());
+        }
+
+        public event Action onFinished;
         public void Bind(ResourceContainer required, ResourceContainer current)
         {
             m_CurrentResources = current;
@@ -31,6 +42,11 @@ namespace Prototype
             var req = GetStringValue(m_RequiredResources.GetResource(arg1));
             var current = GetStringValue(m_CurrentResources.GetResource(arg1));
             item.SetText($"<size=100%>{current}<size=50%>/{req}");
+
+            if (m_CurrentResources.Equals(m_RequiredResources))
+            {
+                finishButton.gameObject.SetActive(true);
+            }
         }
 
         private string GetStringValue(int numberOfIntems)

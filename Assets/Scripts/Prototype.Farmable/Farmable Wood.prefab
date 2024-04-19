@@ -2408,6 +2408,11 @@ PrefabInstance:
       propertyPath: managedReferences[446011653118492692].RangeFalloff.m_Curve.Array.data[1].weightedMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2717815630387882281, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: FeedbacksList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2729490053079598857, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_LocalPosition.y

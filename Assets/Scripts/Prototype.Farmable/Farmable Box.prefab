@@ -1654,61 +1654,6 @@ PrefabInstance:
       propertyPath: managedReferences[446011814861078530].AttenuationCurve.m_Curve.Array.data[2].weightedMode
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2717815630387882281, guid: f570110e791cb8d42bb0bd7d4800e77a,
-        type: 3}
-      propertyPath: managedReferences[446011814861078528].Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2717815630387882281, guid: f570110e791cb8d42bb0bd7d4800e77a,
-        type: 3}
-      propertyPath: managedReferences[446011814861078528].RemapCurveOne
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2717815630387882281, guid: f570110e791cb8d42bb0bd7d4800e77a,
-        type: 3}
-      propertyPath: managedReferences[446011814861078528].RemapCurveZero
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2717815630387882281, guid: f570110e791cb8d42bb0bd7d4800e77a,
-        type: 3}
-      propertyPath: managedReferences[446011814861078528].DestinationScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2717815630387882281, guid: f570110e791cb8d42bb0bd7d4800e77a,
-        type: 3}
-      propertyPath: managedReferences[446011814861078528].DestinationScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2717815630387882281, guid: f570110e791cb8d42bb0bd7d4800e77a,
-        type: 3}
-      propertyPath: managedReferences[446011814861078528].DestinationScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2717815630387882281, guid: f570110e791cb8d42bb0bd7d4800e77a,
-        type: 3}
-      propertyPath: managedReferences[446011814861078528].AnimateScaleDuration
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2717815630387882281, guid: f570110e791cb8d42bb0bd7d4800e77a,
-        type: 3}
-      propertyPath: managedReferences[446011814861078528].DetermineScaleOnPlay
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2717815630387882281, guid: f570110e791cb8d42bb0bd7d4800e77a,
-        type: 3}
-      propertyPath: managedReferences[446011814861078528].AnimateScaleTweenX.MMTweenDefinitionType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2717815630387882281, guid: f570110e791cb8d42bb0bd7d4800e77a,
-        type: 3}
-      propertyPath: managedReferences[446011814861078528].AnimateScaleTweenY.MMTweenDefinitionType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2717815630387882281, guid: f570110e791cb8d42bb0bd7d4800e77a,
-        type: 3}
-      propertyPath: managedReferences[446011814861078528].AnimateScaleTweenZ.MMTweenDefinitionType
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_PartsParent
@@ -1771,7 +1716,7 @@ PrefabInstance:
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_StartResource.m_InitResources.Array.data[0].count
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}

@@ -40,8 +40,13 @@ PrefabInstance:
       objectReference: {fileID: 4376992587426471219}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
+      propertyPath: m_PartsParent
+      value: 
+      objectReference: {fileID: 3239529925925758556}
+    - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
       propertyPath: m_Parts.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
@@ -72,6 +77,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 878789172698261904, guid: 45cd8898d3a1af243800a66c6b87bafc,
         type: 3}
+    - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: <RequiredWeaponLevel>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_StartResource.m_InitResources.Array.size

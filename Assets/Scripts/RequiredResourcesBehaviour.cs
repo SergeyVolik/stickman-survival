@@ -39,12 +39,13 @@ namespace Prototype
         {
             openUiTrigger.onTriggerEnter += OpenUiTrigger_onTriggerEnter;
             openUiTrigger.onTriggerExit += OpenUiTrigger_onTriggerExit;
-
           
             m_RequiredCurrentResources = new ResourceContainer();
-            m_RequiredCurrentResources.onResourceChanged += RequiredResources_onResourceChanged;
+
+      
 
             m_requiredResourceUIViewInstance = GameObject.Instantiate(requiredResourceUIViewPrefab, m_wts.Root);
+            m_requiredResourceUIViewInstance.onFinished += Finish;
             m_requiredResourceUIViewInstance.transform.localScale = Vector3.zero;
 
             m_requiredResourceUIViewInstance.onItemAdded += M_requiredResourceUIViewInstance_onItemAdded;
@@ -67,14 +68,11 @@ namespace Prototype
             });
         }
 
-        private void RequiredResources_onResourceChanged(ResourceTypeSO arg1, int arg2)
+        private void Finish()
         {
-            if (Finished())
-            {
-                DeactuvateUI(() => { gameObject.SetActive(false); });
-                onFinished.Invoke();
-                onFinishedUI.Invoke();                
-            }
+            DeactuvateUI(() => { gameObject.SetActive(false); });
+            onFinished.Invoke();
+            onFinishedUI.Invoke();                       
         }
 
         private bool Finished()

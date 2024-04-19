@@ -2066,15 +2066,15 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 2717815630387882281}
         DebugActive: 0
-        Mode: 0
+        Mode: 2
         AnimateScaleTarget: {fileID: 6081868702796482396}
-        AnimateScaleDuration: 0.5
-        RemapCurveZero: 1
-        RemapCurveOne: 0
+        AnimateScaleDuration: 0.3
+        RemapCurveZero: 0
+        RemapCurveOne: 1
         Offset: 0
         AnimateX: 1
         AnimateScaleTweenX:
-          MMTweenDefinitionType: 1
+          MMTweenDefinitionType: 0
           MMTweenCurve: 4
           Curve:
             serializedVersion: 2
@@ -2112,7 +2112,7 @@ MonoBehaviour:
           Initialized: 0
         AnimateY: 1
         AnimateScaleTweenY:
-          MMTweenDefinitionType: 1
+          MMTweenDefinitionType: 0
           MMTweenCurve: 4
           Curve:
             serializedVersion: 2
@@ -2150,7 +2150,7 @@ MonoBehaviour:
           Initialized: 0
         AnimateZ: 1
         AnimateScaleTweenZ:
-          MMTweenDefinitionType: 1
+          MMTweenDefinitionType: 0
           MMTweenCurve: 4
           Curve:
             serializedVersion: 2
@@ -2188,8 +2188,8 @@ MonoBehaviour:
           Initialized: 0
         UniformScaling: 0
         AllowAdditivePlays: 0
-        DetermineScaleOnPlay: 0
-        DestinationScale: {x: 0.5, y: 0.5, z: 0.5}
+        DetermineScaleOnPlay: 1
+        DestinationScale: {x: 0, y: 0, z: 0}
         AnimateScaleX:
           serializedVersion: 2
           m_Curve: []
