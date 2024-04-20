@@ -34,7 +34,7 @@ namespace Prototype
                 _progressBar.gameObject.SetActive(true);
                 if (!showed)
                 {
-                    Debug.Log("Show HB", gameObject);
+                    //Debug.Log("Show HB", gameObject);
                     showed = true;
                     _progressBar.gameObject.SetActive(true);
                     m_Tween?.Kill();
@@ -48,8 +48,7 @@ namespace Prototype
             {
                 if (showed)
                 {
-                    Debug.Log("Hide HB", gameObject);
-
+                    //Debug.Log("Hide HB", gameObject);
                     showed = false;
                     m_Tween?.Kill();
                     m_Tween = m_FadeGroup.DOFade(0, hideDuration).SetEase(hideEase).OnComplete(() => {

@@ -912,7 +912,7 @@ MonoBehaviour:
   - rid: 446011653118492684
   - rid: 446011653118492685
   - rid: 446011653118492686
-  - rid: 446011653118492687
+  - rid: 446011855542419486
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -1573,12 +1573,12 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-    - rid: 446011653118492687
-      type: {class: MMF_ColorFadeFeedback2, ns: MoreMountains.Feedbacks, asm: Assembly-CSharp}
+    - rid: 446011855542419486
+      type: {class: MMF_HighlightFeedback, ns: MoreMountains.Feedbacks, asm: Assembly-CSharp}
       data:
         Active: 1
-        UniqueID: -486215768
-        Label: Flicker3
+        UniqueID: 824154853
+        Label: HighlightFeedback
         ChannelMode: 0
         Channel: 0
         MMChannelDefinition: {fileID: 0}
@@ -1641,20 +1641,42 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 2146437391686626598}
         DebugActive: 0
-        BoundRenderer: {fileID: 0}
-        Mode: 0
-        PropertyName: _Tint
-        FlickerDuration: 0.3
-        FlickerOctave: 0.3
-        FlickerColor: {r: 1, g: 1, b: 1, a: 1}
-        MaterialIndexes: 01000000
-        UseMaterialPropertyBlocks: 0
-        SpriteRendererTextureProperty: _MainTex
-        EaseType: 2
-        useAnimationCurve: 0
+        Renderer: {fileID: 0}
+        AdditionalRenderers: []
+        Duration: 0.3
+        highlightColor: {r: 1, g: 1, b: 1, a: 1}
+        EaseType: 0
+        useAnimationCurve: 1
         curve:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.9436336
+            value: 0.40118077
+            inSlope: 1.3380085
+            outSlope: 1.3380085
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.057814065
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4

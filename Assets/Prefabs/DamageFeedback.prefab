@@ -126,7 +126,7 @@ MonoBehaviour:
   - rid: 446011653118492701
   - rid: 446011653118492702
   - rid: 446011653118492703
-  - rid: 446011653118492704
+  - rid: 446011855542419484
   KeepPlayModeChanges: 0
   PerformanceMode: 0
   StopFeedbacksOnDisable: 0
@@ -442,12 +442,12 @@ MonoBehaviour:
         DeclaredDuration: 0
         ForceSimulationSpeed: 0
         ForcedSimulationSpeed: {x: 0.1, y: 1}
-    - rid: 446011653118492704
-      type: {class: MMF_ColorFadeFeedback2, ns: MoreMountains.Feedbacks, asm: Assembly-CSharp}
+    - rid: 446011855542419484
+      type: {class: MMF_HighlightFeedback, ns: MoreMountains.Feedbacks, asm: Assembly-CSharp}
       data:
         Active: 1
-        UniqueID: -185861747
-        Label: Flicker3
+        UniqueID: -584407174
+        Label: HighlightFeedback
         ChannelMode: 0
         Channel: 0
         MMChannelDefinition: {fileID: 0}
@@ -510,16 +510,45 @@ MonoBehaviour:
         RemapRangeFalloff: {x: 0, y: 1}
         Owner: {fileID: 4892848997862470234}
         DebugActive: 0
-        BoundRenderer: {fileID: 0}
-        Mode: 0
-        PropertyName: _Tint
-        FlickerDuration: 0.3
-        FlickerOctave: 0.3
-        FlickerColor: {r: 1, g: 1, b: 1, a: 1}
-        MaterialIndexes: 
-        UseMaterialPropertyBlocks: 0
-        SpriteRendererTextureProperty: _MainTex
+        Renderer: {fileID: 0}
+        AdditionalRenderers: []
+        Duration: 0.3
+        highlightColor: {r: 1, g: 1, b: 1, a: 1}
         EaseType: 0
+        useAnimationCurve: 1
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.9436336
+            value: 0.40118077
+            inSlope: 1.3380085
+            outSlope: 1.3380085
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.057814065
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
 --- !u!1 &1446794151909364606
 GameObject:
   m_ObjectHideFlags: 0
