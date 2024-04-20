@@ -30,14 +30,69 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1782858043616050393, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
+      propertyPath: managedReferences[446011653118492686].Active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782858043616050393, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492685].ShakeRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782858043616050393, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492685].ShakeSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782858043616050393, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492684].RemapCurveOne
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782858043616050393, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
       propertyPath: managedReferences[446011653118492687].BoundRenderer
       value: 
       objectReference: {fileID: 4376992587426471219}
+    - target: {fileID: 1782858043616050393, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492685].RandomizeDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782858043616050393, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492685].ShakeAltDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492686].Active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492684].RemapCurveOne
+      value: 0.95
+      objectReference: {fileID: 0}
     - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: managedReferences[446011653118492687].BoundRenderer
       value: 
       objectReference: {fileID: 4376992587426471219}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492685].AddDirectionalNoise
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492685].ShakeAltDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492685].ShakeMainDirection.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_PartsParent
@@ -103,55 +158,65 @@ PrefabInstance:
       propertyPath: m_Name
       value: Farmable Fridge
       objectReference: {fileID: 0}
+    - target: {fileID: 8131989018000346446, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8131989018000346446, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.938
+      objectReference: {fileID: 0}
     - target: {fileID: 8595475370808738081, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.46
+      value: 7.413
       objectReference: {fileID: 0}
     - target: {fileID: 8595475370808738081, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.065
       objectReference: {fileID: 0}
     - target: {fileID: 8595475370808738081, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.29
+      value: -22.901
       objectReference: {fileID: 0}
     - target: {fileID: 8595475370808738081, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.77234375
+      value: 0.2299743
       objectReference: {fileID: 0}
     - target: {fileID: 8595475370808738081, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.00075330236
       objectReference: {fileID: 0}
     - target: {fileID: 8595475370808738081, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.6352048
+      value: 0.973165
       objectReference: {fileID: 0}
     - target: {fileID: 8595475370808738081, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.007823645
       objectReference: {fileID: 0}
     - target: {fileID: 8595475370808738081, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 0.892
       objectReference: {fileID: 0}
     - target: {fileID: 8595475370808738081, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 78.87
+      value: 153.407
       objectReference: {fileID: 0}
     - target: {fileID: 8595475370808738081, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -0.122
       objectReference: {fileID: 0}
     - target: {fileID: 8657791506074185943, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
