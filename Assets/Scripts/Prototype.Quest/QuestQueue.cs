@@ -12,15 +12,20 @@ public class QuestQueue : MonoBehaviour
         SetupCurrentQuest();      
     }
 
+    private BaseQuest GetCurrentQuest() => currentQuest > quests.Length-1 ? null : quests[currentQuest];
     private void SetupCurrentQuest()
     {
-        if (currentQuest == quests.Length)
+        if (GetCurrentQuest() == null)
             return;
 
         quests[currentQuest].Setup(questUISpawnPoint);
         quests[currentQuest].onQuestFinished += NextQuest;
     }
 
+    public void ShowCurrentQuestTarget()
+    {
+        GetCurrentQuest()?.ShowTarget();
+    }
     private void ClearPrevQuest()
     {
         quests[currentQuest].Clear();

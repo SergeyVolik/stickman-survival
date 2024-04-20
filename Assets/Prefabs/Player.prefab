@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 6574410010503779108}
   - component: {fileID: 1170309407179146836}
   - component: {fileID: 6821031684393056125}
+  - component: {fileID: 948463060300344300}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -443,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62b0e51dad9af44e91b4c7a56436346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HealthBarPrefab: {fileID: 6557381891084118232, guid: 835c7e4b354dfca4481801526892f7fe,
+  m_HealthBarPrefab: {fileID: 8821616394053292206, guid: 835c7e4b354dfca4481801526892f7fe,
     type: 3}
   UIRoot: {fileID: 8782687350993032660}
 --- !u!114 &2494609800006719633
@@ -458,7 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9763b6558c0abbb4fbfbe02e7c32425c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 3.5
   accelerationSpeed: 200
   decelerationSpeed: 3
   canAim: 1
@@ -684,6 +685,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeedMult: 1
   meleeWeaponDamageMult: 1
+--- !u!114 &948463060300344300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8149694439717538947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b22094b55603106478f5376a57a409b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8899039506050042948
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,8 +9,9 @@ namespace Prototype
     public class CharacterHealthbar : MonoBehaviour
     {
         [SerializeField]
-        private MMHealthBar m_HealthBarPrefab;
+        private GameObject m_HealthBarPrefab;
         private MMHealthBar m_HealthBarInstance;
+
         [SerializeField]
         private Transform UIRoot;
 
@@ -27,18 +28,21 @@ namespace Prototype
         private void Awake()
         {
             m_Health = GetComponent<HealthData>();
-            m_Health.onHealthChanged += CharacterHealthbar_onHealthChanged;
+            m_Health.onHealthChanged += (evt) => UpdateHB();
 
             Assert.IsTrue(m_HealthBarPrefab != null);
             Assert.IsTrue(UIRoot != null);
 
-            m_HealthBarInstance = GameObject.Instantiate(m_HealthBarPrefab, m_worldToScreen.Root);
+            m_HealthBarInstance = GameObject.Instantiate(m_HealthBarPrefab, m_worldToScreen.Root).GetComponent<MMHealthBar>();
             m_HealthBarInstance.TargetProgressBar.TextValueMultiplier = m_Health.maxHealth;
             m_HealthBarInstance.UpdateBar(m_Health.currentHealth, 0, m_Health.maxHealth, false);
 
             m_WTSHandle = m_worldToScreen.Register(new WordlToScreenUIItem { item = m_HealthBarInstance.GetComponent<RectTransform>(), worldPositionTransform = UIRoot });
         }
-
+        private void Start()
+        {
+            UpdateHB();
+        }
         private void OnDestroy()
         {
             m_worldToScreen.Unregister(m_WTSHandle);
@@ -47,10 +51,25 @@ namespace Prototype
                 GameObject.Destroy(m_HealthBarInstance.gameObject);
         }
 
-        private void CharacterHealthbar_onHealthChanged(HealthChangeData obj)
+        private void UpdateHB()
         {
             bool show = m_Health.currentHealth != 0;
             m_HealthBarInstance.UpdateBar(m_Health.currentHealth, 0, m_Health.maxHealth, show);
+        }
+
+        public void AlwaysVisible(bool alwaysVisible)
+        {
+            m_HealthBarInstance.AlwaysVisible = alwaysVisible;
+        }
+
+        public void Show(bool show)
+        {          
+            m_HealthBarInstance.ShowBar(show);
+
+            if (show)
+            {
+                UpdateHB();
+            }
         }
     }
 }

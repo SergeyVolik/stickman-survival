@@ -473,7 +473,7 @@ namespace MoreMountains.Tools
 
 			if (_progressBar != null)
 			{
-				_progressBar.UpdateBar(currentHealth, minHealth, maxHealth)	;
+				_progressBar.UpdateBar(currentHealth, minHealth, maxHealth);
                 
 				if (HideBarAtZero && _progressBar.BarTarget <= 0)
 				{

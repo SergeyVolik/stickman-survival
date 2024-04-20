@@ -11,17 +11,14 @@ namespace Prototype
     {
         public string QuestName { get; }
         public string QuestDescription { get; }
-
         public event Action onQuestFinished;
         public event Action onQuestChanged;
-
         public bool IsFinished();
         public void UpdateQuest();
         public void FinishQuest();
 
         public Transform GetQuestTargetObject();
         public IEnumerable<Transform> GetQuestTargetObjects();
-
     }
 
     public abstract class BaseQuest : MonoBehaviour, IQuest
@@ -56,7 +53,7 @@ namespace Prototype
             }
         }
 
-        protected void ShowTarget()
+        public void ShowTarget()
         {
             var questTarget = GetQuestTargetObject();
             if (questTarget)
@@ -91,9 +88,7 @@ namespace Prototype
 
             questUIItem.showTargetButton.onClick.AddListener(() => {
                 ShowTarget();
-            });
-
-            DOVirtual.DelayedCall(1, () => ShowTarget());          
+            });        
         }
 
         public virtual void Clear()

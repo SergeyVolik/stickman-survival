@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3713148578902256691
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9212381244879810711}
-  m_Layer: 16
-  m_Name: HealthbarUI
-  m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9212381244879810711
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3713148578902256691}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.463, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2563876731102814614}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4523384178834559684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1823,19 +1792,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8595475370808738081, guid: f570110e791cb8d42bb0bd7d4800e77a,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9212381244879810711}
     - targetCorrespondingSourceObject: {fileID: 6081868702796482396, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2440806290701967921}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7325258845627080027, guid: f570110e791cb8d42bb0bd7d4800e77a,
-        type: 3}
-      insertIndex: 6
-      addedObject: {fileID: 4336631690893587848}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f570110e791cb8d42bb0bd7d4800e77a, type: 3}
 --- !u!4 &52592244530178027 stripped
 Transform:
@@ -1855,33 +1816,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a82a086afdc494db67a8b50f091d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &2563876731102814614 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8595475370808738081, guid: f570110e791cb8d42bb0bd7d4800e77a,
-    type: 3}
-  m_PrefabInstance: {fileID: 6115319857562607799}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3563885631011208684 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7325258845627080027, guid: f570110e791cb8d42bb0bd7d4800e77a,
-    type: 3}
-  m_PrefabInstance: {fileID: 6115319857562607799}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4336631690893587848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3563885631011208684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e62b0e51dad9af44e91b4c7a56436346, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HealthBarPrefab: {fileID: 6557381891084118232, guid: 4e2283bac0ce1ee4ea9debf30c213dd5,
-    type: 3}
-  UIRoot: {fileID: 9212381244879810711}
 --- !u!114 &3582149842562578465 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7308112181411747990, guid: f570110e791cb8d42bb0bd7d4800e77a,
