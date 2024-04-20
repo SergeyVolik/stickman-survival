@@ -1810,6 +1810,16 @@ PrefabInstance:
       propertyPath: managedReferences[446011653118492680].BoundRenderer
       value: 
       objectReference: {fileID: 3485184868941844151}
+    - target: {fileID: 9067504280699869109, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492687].BoundRenderer
+      value: 
+      objectReference: {fileID: 3485184868941844151}
+    - target: {fileID: 9067504280699869109, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011855542419466].NumberOfLoops
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

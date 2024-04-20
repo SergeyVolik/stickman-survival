@@ -233,6 +233,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1548660553385356664, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: FeedbacksList.Array.size

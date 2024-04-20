@@ -176,12 +176,12 @@ PrefabInstance:
     - target: {fileID: 3449025628562963600, guid: 67a9dac339e5a30438c05aaa42538f74,
         type: 3}
       propertyPath: level
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3449025628562963600, guid: 67a9dac339e5a30438c05aaa42538f74,
         type: 3}
       propertyPath: damage
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3449025628562963600, guid: 67a9dac339e5a30438c05aaa42538f74,
         type: 3}
@@ -281,7 +281,7 @@ PrefabInstance:
     - target: {fileID: 8215234346464827918, guid: 67a9dac339e5a30438c05aaa42538f74,
         type: 3}
       propertyPath: m_Name
-      value: Crutch Weapon 2
+      value: Crutch Weapon 3
       objectReference: {fileID: 0}
     - target: {fileID: 8215234346464827918, guid: 67a9dac339e5a30438c05aaa42538f74,
         type: 3}
@@ -319,7 +319,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f2e14ccc53df4174b9dc815515f78448, type: 2}
+      objectReference: {fileID: 2100000, guid: 1ec3abc85538e29448468beb91e3e172, type: 2}
     - target: {fileID: 801518709947046779, guid: 38202c3904c1618448e3213ffcb1711f,
         type: 3}
       propertyPath: m_Name

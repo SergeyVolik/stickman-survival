@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
@@ -19,6 +20,8 @@ namespace Prototype
         public void FinishQuest();
 
         public Transform GetQuestTargetObject();
+        public IEnumerable<Transform> GetQuestTargetObjects();
+
     }
 
     public abstract class BaseQuest : MonoBehaviour, IQuest
@@ -53,6 +56,27 @@ namespace Prototype
             }
         }
 
+        protected void ShowTarget()
+        {
+            var questTarget = GetQuestTargetObject();
+            if (questTarget)
+            {
+                m_cameraContr.PushTargetWithDuration(questTarget, 2f);
+
+
+                var targets = GetQuestTargetObjects();
+
+                foreach (var target in targets)
+                {
+                    var heighlight = target.GetComponentInChildren<HeighlightFeedback>();
+                    if (heighlight)
+                    {
+                        heighlight.Feedback.PlayFeedbacks();
+                    }
+                }              
+            }
+        }
+
         [Inject]
         void Construct(CameraController cameraContr)
         {
@@ -65,11 +89,11 @@ namespace Prototype
             var questUIItem = m_CurrentQuestUI.GetComponent<BaseQuestUI>();
             questUIItem.GetComponent<BaseQuestUI>().Bind(this); 
 
-            questUIItem.showTargetButton.onClick.AddListener(() => {             
-                m_cameraContr.PushTargetWithDuration(GetQuestTargetObject(), 2f);  
+            questUIItem.showTargetButton.onClick.AddListener(() => {
+                ShowTarget();
             });
 
-            m_cameraContr.PushTargetWithDuration(GetQuestTargetObject(), 2f);
+            DOVirtual.DelayedCall(1, () => ShowTarget());          
         }
 
         public virtual void Clear()
@@ -86,6 +110,11 @@ namespace Prototype
         }
 
         public abstract bool IsFinished();
+
+        public virtual IEnumerable<Transform> GetQuestTargetObjects()
+        {
+            return Array.Empty<Transform>();
+        }
     }
 
     public class CollectItemQuest : BaseQuest, IQuest
@@ -106,6 +135,10 @@ namespace Prototype
             return CollectableObjectInstance.transform;
         }
 
+        public override IEnumerable<Transform> GetQuestTargetObjects()
+        {
+           yield return CollectableObjectInstance.transform;
+        }
         private void CollectItemQuest_onCollected()
         {
             finished = true;

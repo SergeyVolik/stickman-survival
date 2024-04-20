@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Prototype
@@ -38,6 +39,20 @@ namespace Prototype
             return null;
         }
 
+        public override IEnumerable<Transform> GetQuestTargetObjects()
+        {
+            List<Transform> targets = new List<Transform>();
+
+            foreach (var obj in objectsToDestory)
+            {
+                if (!obj.IsDead)
+                {
+                    targets.Add(obj.transform);
+                }
+            }
+
+            return targets;
+        }
         public override bool IsFinished()
         {
             return killed == objectsToDestory.Length;

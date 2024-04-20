@@ -330,6 +330,11 @@ PrefabInstance:
       propertyPath: managedReferences[446011602199379972].RandomizeDirectionOnPlay
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9067504280699869109, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492687].BoundRenderer
+      value: 
+      objectReference: {fileID: 1243044670439834399}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
