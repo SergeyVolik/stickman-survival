@@ -13,7 +13,6 @@ namespace Prototype
         public bool IsDamage => CurrentValue < PrevValue;
     }
 
-
     public class HealthData : MonoBehaviour, IResurrectable, IKillable, IDamageable, IHealable
     {
         public int maxHealth = 10;

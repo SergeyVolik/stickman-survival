@@ -415,9 +415,10 @@ GameObject:
   - component: {fileID: 4454921134034323516}
   - component: {fileID: 4163425190508128530}
   - component: {fileID: 2194726275548808896}
+  - component: {fileID: 996443456448605036}
+  - component: {fileID: 6574410010503779108}
   - component: {fileID: 2494609800006719633}
   - component: {fileID: 8937531286367253963}
-  - component: {fileID: 996443456448605036}
   - component: {fileID: 817382752408674446}
   - component: {fileID: 1899397896299036655}
   - component: {fileID: 8682018990571089836}
@@ -426,7 +427,6 @@ GameObject:
   - component: {fileID: 6593962959880225077}
   - component: {fileID: 9111963927411729914}
   - component: {fileID: 1077552434872861827}
-  - component: {fileID: 6574410010503779108}
   - component: {fileID: 1170309407179146836}
   - component: {fileID: 6821031684393056125}
   - component: {fileID: 948463060300344300}
@@ -519,6 +519,41 @@ MonoBehaviour:
   m_HealthBarPrefab: {fileID: 8821616394053292206, guid: 835c7e4b354dfca4481801526892f7fe,
     type: 3}
   UIRoot: {fileID: 8782687350993032660}
+--- !u!114 &996443456448605036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8149694439717538947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081699e5f9adc4f47bb1df5517c1e77f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimDistance: 0
+  CastMask:
+    serializedVersion: 2
+    m_Bits: 8
+  WallMask:
+    serializedVersion: 2
+    m_Bits: 51200
+  criticalDistanceChangeTarget: 2
+  swithTargetInterval: 1
+  standingOnlyAim: 1
+  canAim: 1
+--- !u!114 &6574410010503779108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8149694439717538947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d48018fdd45c9429956b11fa4ea0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2494609800006719633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,22 +567,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3.5
-  accelerationSpeed: 200
-  decelerationSpeed: 3
-  canAim: 1
-  <HasTarget>k__BackingField: 0
-  CastMask:
-    serializedVersion: 2
-    m_Bits: 8
-  WallMask:
-    serializedVersion: 2
-    m_Bits: 51200
   AimVector: {x: 0, y: 0}
-  aimDistance: 5
   rotationSpeed: 10
-  criticalDistanceChangeTarget: 2
-  swithTargetInterval: 1
-  standingOnlyAim: 1
 --- !u!114 &8937531286367253963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,19 +586,6 @@ MonoBehaviour:
   destroyDelay: 2
   moveUndergroundOffset: -1
   moveDuration: 1
---- !u!114 &996443456448605036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8149694439717538947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081699e5f9adc4f47bb1df5517c1e77f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockAttack: 0
 --- !u!114 &817382752408674446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,19 +725,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 65544
   m_AttackRange: 1.2
-  blockAttack: 0
---- !u!114 &6574410010503779108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8149694439717538947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09d48018fdd45c9429956b11fa4ea0fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1170309407179146836
 MonoBehaviour:
   m_ObjectHideFlags: 0

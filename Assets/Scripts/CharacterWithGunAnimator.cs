@@ -51,7 +51,6 @@ namespace Prototype
                         return;
                     }
 
-                    m_CharacterInput.canAim = gun != null;
                     m_Animator.SetInteger(GunTypeHash, (int)gun.type);
                 };
             }
@@ -71,7 +70,7 @@ namespace Prototype
 
             Move(moveVec2d);
 
-            if (m_CharacterInput.canAim)
+            if (m_CharacterInput.IsAiming)
             {
                 m_Animator.SetBool(IsAimHash, m_CharacterInput.IsAiming);
 
