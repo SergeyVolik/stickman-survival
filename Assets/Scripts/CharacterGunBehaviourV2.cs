@@ -1,24 +1,40 @@
-using System;
 using UnityEngine;
 
 namespace Prototype
 {
-    public class CharacterGunBehaviourV2 : MonoBehaviour
-    { 
+    public interface IState
+    {
+        public bool IsActive { get; set; }
+        public void Awake() { }
+        public void Start() { }
+        public void OnEnable() { }
+        public void OnDisable() { }
+        public void Update() { }
+        public void FixedUpdate() { }
+    }
+
+    public abstract class MonoState : MonoBehaviour, IState
+    {
+        public bool IsActive { get => enabled; set => enabled = false; }
+    }
+
+    public class CharacterGunBehaviourV2 : MonoState
+    {
         private CharacterInventory m_Inventory;
         private CustomCharacterController m_Controller;
         private CharacterWithGunAnimator m_CharacterAnimator;
         private float m_ShotT;
-
-        float stunAfterDamageDur = 1f;
-        bool stunned = false;
-        float stunT;
+        private float stunAfterDamageDur = 1f;
+        private bool stunned = false;
+        private float stunT;
         private Transform m_Transform;
         private AimCirclerBehaviour m_AimCircle;
-        private CharacterCombatState m_CombatState;
+        private CharacterCombatState m_CombatState;    
+        private Transform m_LastTarget;
+
         public bool blockAttack;
 
-        private void Awake()
+        public void Awake()
         {
             m_Inventory = GetComponent<CharacterInventory>();
             m_Inventory.onGunChanged += M_Inventory_onMainWeaponChanged;
@@ -29,7 +45,7 @@ namespace Prototype
             health.onDeath += () => { enabled = false; };
             health.onHealthChanged += Health_onHealthChanged;
 
-            m_Transform = transform;
+            m_Transform = GetComponent<Transform>();
             m_AimCircle = GetComponent<AimCirclerBehaviour>();
             m_CombatState = GetComponent<CharacterCombatState>();
             m_CombatState.onCombatState += (value) =>
@@ -74,7 +90,7 @@ namespace Prototype
             }
         }
 
-        private void FixedUpdate()
+        public void FixedUpdate()
         {          
             var deltaTime = Time.fixedDeltaTime;
 
@@ -102,6 +118,7 @@ namespace Prototype
                 m_Inventory.ActiveLastGun();
                 m_AimCircle.Show();
             }
+
             currentGun = m_Inventory.CurrentGun;
 
             if (currentGun == null)
@@ -111,7 +128,14 @@ namespace Prototype
             float interval = isMoveing ? currentGun.moveShotInterval : currentGun.standingshotInterval;
 
             if (HasGunTarget())
-            {              
+            {
+                if (m_LastTarget != m_Controller.CurrentTarget)
+                {
+                    SelectTarget(false);
+                    m_LastTarget = m_Controller.CurrentTarget;
+                    SelectTarget(true);
+                }
+
                 m_ShotT += deltaTime;
 
                 if (m_ShotT > interval)
@@ -123,10 +147,25 @@ namespace Prototype
             }
             else
             {
-
                 m_ShotT = 0;
             }
         }
+
+        private void SelectTarget(bool activate)
+        {
+            if (m_LastTarget && m_LastTarget.TryGetComponent<SelectionTarget>(out var selection))
+            {
+                if (activate)
+                {
+                    selection.Activate();
+                }
+                else
+                {
+                    selection.Deactivate();
+                }
+            }
+        }
+
         public bool HasAimTarget()
         {
             return m_Controller.HasTarget;

@@ -2,34 +2,7 @@ using UnityEngine;
 
 namespace Prototype
 {
-    public interface IState
-    {
-        public bool IsActive { get; }
-        public void Enter();
-        public void Exit();
-    }
-
-    public abstract class BaseState : MonoBehaviour, IState
-    {
-        public bool IsActive { get; protected set; }
-
-        public virtual void Enter()
-        {
-            IsActive = true;
-        }
-
-        public virtual void Exit()
-        {
-            IsActive = false;
-        }
-
-        public void OnUpdate()
-        {
-            
-        }
-    }
-
-    public class MeleeAttackBehaviour : BaseState
+    public class MeleeAttackBehaviour : MonoState, IState
     {
         private Transform m_Transform;
         private CharacterInventory m_Inventory;
@@ -51,6 +24,8 @@ namespace Prototype
 
         public bool IsAttaking => m_Attaking;
         public bool HasTarget => m_HastTargetTime + 0.1f > Time.time;
+
+        public bool IsActive { get => enabled; set => enabled = false; }
 
         public bool blockAttack;
 

@@ -1,34 +1,62 @@
 using Prototype;
 using UnityEngine;
 
-public class MeleeRangeStateMachine : MonoBehaviour
+public interface IStateMachine
+{
+    public IState CurrentState { get; }
+    public void ChangeState(IState state);
+}
+
+public abstract class MonoStateMachine : MonoBehaviour, IStateMachine
+{
+    public IState CurrentState { get; private set; }
+
+    public void ChangeState(IState state)
+    {
+        if (CurrentState == state)
+            return;
+
+        if (CurrentState != null)
+        {
+            CurrentState.IsActive = false;
+        }
+        else
+        {
+            if (state != null)
+            {
+                state.IsActive = true;
+            }
+
+            CurrentState = state;
+        }
+    }
+}
+
+public class MeleeRangeStateMachine : MonoStateMachine
 {
     private MeleeAttackBehaviour m_MeleeAttack;
     private CustomCharacterController m_Controller;
-    private CharacterGunBehaviourV2 m_GunBehaviour;
-    private CharacterInventory m_Inventory;
+    private CharacterGunBehaviourV2 m_RangeState;
 
     private void Awake()
     {
         m_MeleeAttack = GetComponent<MeleeAttackBehaviour>();
         m_Controller = GetComponent<CustomCharacterController>();
-        m_GunBehaviour = GetComponent<CharacterGunBehaviourV2>();
-        m_Inventory = GetComponent<CharacterInventory>();
-        var m_Combat = GetComponent<CharacterCombatState>();
+        m_RangeState = GetComponent<CharacterGunBehaviourV2>();
 
+        ChangeState(m_MeleeAttack);
     }
 
-    private void Update()
+
+    protected void Update()
     {
-        if (m_GunBehaviour.HasGunTarget())
+        if (m_RangeState.HasGunTarget())
         {
-            m_MeleeAttack.blockAttack = true;
-            m_GunBehaviour.blockAttack = false;
+            ChangeState(m_MeleeAttack);
         }
         else if (m_MeleeAttack.HasTarget)
         {
-            m_MeleeAttack.blockAttack = false;
-            m_GunBehaviour.blockAttack = true;
+            ChangeState(m_RangeState);
         }
     }
 }
