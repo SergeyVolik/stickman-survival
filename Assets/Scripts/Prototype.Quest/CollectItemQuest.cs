@@ -58,7 +58,7 @@ namespace Prototype
             var questTarget = GetQuestTargetObject();
             if (questTarget)
             {
-                m_cameraContr.PushTargetWithDuration(questTarget, 2f);
+                m_cameraContr.PushTargetWithDuration(questTarget, 3.5f);
 
 
                 var targets = GetQuestTargetObjects();
@@ -70,7 +70,7 @@ namespace Prototype
                     {
                         heighlight.Feedback.PlayFeedbacks();
                     }
-                }              
+                }
             }
         }
 

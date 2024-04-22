@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 9023029212417317437}
   - component: {fileID: 1194683310575499144}
   m_Layer: 3
-  m_Name: Zombie Default
+  m_Name: Zombie Runner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8392177303643951077}
   - {fileID: 2453792856879661389}
@@ -114,6 +114,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 200
   currentHealth: 200
+  onDeathUE:
+    m_PersistentCalls:
+      m_Calls: []
   <IsDamageable>k__BackingField: 1
 --- !u!114 &2288049910505487483
 MonoBehaviour:
@@ -174,10 +177,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 6881351121733533180}
-  minSpeed: 2
-  maxSpeed: 4
+  delayBetweenAttacks: 0.5
+  delayAttatckT: 0
+  minSpeed: 3
+  maxSpeed: 5
   checkTargetDistance: 4
-  isTargetDetected: 0
   targetMask:
     serializedVersion: 2
     m_Bits: 64
@@ -198,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resources:
     m_InitResources:
-    - count: 5
+    - count: 3
       resourceType: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a, type: 2}
 --- !u!114 &9132971593662365141
 MonoBehaviour:
@@ -277,7 +281,7 @@ MonoBehaviour:
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
   acceleration: 5
-  rotationSpeed: 360
+  rotationSpeed: 270
   slowdownTime: 0.5
   endReachedDistance: 1
   wallForce: 3
@@ -528,6 +532,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 239331893331968742, guid: 176658e06a6cf3042961b53d4592a617,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.90000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 239331893331968742, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.90000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 239331893331968742, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.90000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 239331893331968742, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -575,6 +594,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 239331893331968742, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 239331893332336260, guid: 176658e06a6cf3042961b53d4592a617,
         type: 3}
@@ -1089,7 +1113,7 @@ PrefabInstance:
     - target: {fileID: 3532980471641024308, guid: 50ddd18413fa1854788c4c159c420c2e,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

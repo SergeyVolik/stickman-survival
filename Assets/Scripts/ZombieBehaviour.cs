@@ -5,19 +5,33 @@ using Zenject;
 
 namespace Prototype
 {
-    public class ZombieBehaviour : MonoBehaviour
+    public interface ITargetSeeker
+    {
+        public void SetTarget(Transform target);
+    }
+    public enum ZombiebehaviourState
+    {
+        Idle,
+        Chase,
+        Attacking
+    }
+
+    public class ZombieBehaviour : MonoBehaviour, ITargetSeeker
     {
         private CharacterZombieAnimator m_Animator;
         private IAstarAI m_AiMovement;
         private Transform m_TargetTransform;
         public CollisionDamageBehaviour attackCollider;
-        private bool m_Attaking;
-
+        private bool m_AttakingAnimation;
+        private bool m_IsAttaking;
+        public float delayBetweenAttacks;
+        public float delayAttatckT;
         public float minSpeed;
         public float maxSpeed;
+        private ZombiebehaviourState m_CurrentState;
 
         public float checkTargetDistance;
-        public bool isTargetDetected = false;
+        public bool IsTargetDetected => m_TargetTransform != null;
         private Transform m_Transfrom;
 
         RaycastHit[] m_RaycastHits;
@@ -72,62 +86,87 @@ namespace Prototype
 
         private void M_Animator_onAttackEnded()
         {
-            m_Attaking = false;
+            m_AttakingAnimation = false;
             m_AiMovement.canMove = true;
             m_AiMovement.destination = m_TargetTransform.position;
         }
 
         private void M_Animator_onAttackStarted()
         {
-            m_Attaking = true;
+            m_AttakingAnimation = true;
             m_AiMovement.canMove = false;
+        }
+
+        public void SetTarget(Transform target)
+        {
+            m_CurrentState = ZombiebehaviourState.Chase;
+            m_TargetTransform = target;
         }
 
         private void Update()
         {
             m_Animator.SetMove(!m_AiMovement.reachedDestination);
 
-            if (m_Attaking)
+            switch (m_CurrentState)
             {
-                AttackState();
-            }
-            else if (isTargetDetected)
-            {
-                ÑhasePlayerState();
-            }
-            else
-            {
-                FindTargetState();
+                case ZombiebehaviourState.Idle:
+                    IdleState();
+                    break;
+                case ZombiebehaviourState.Chase:
+                    ChaseState();
+                    break;
+                case ZombiebehaviourState.Attacking:
+                    AttackState();
+                    break;
+                default:
+                    break;
             }
         }
 
-        private void ÑhasePlayerState()
+        private void ChaseState()
         {            
             if (m_AiMovement.reachedDestination)
-            {          
-                m_Animator.Attack();
-                M_Animator_onAttackStarted();
+            {
+                m_CurrentState = ZombiebehaviourState.Attacking;              
                 return;
             }
-
           
             m_AiMovement.destination = m_TargetTransform.position;           
         }
 
         private void AttackState()
         {
-           
+            if (!m_IsAttaking)
+            {
+                m_Animator.Attack();
+                M_Animator_onAttackStarted();
+                m_IsAttaking = true;
+            }
+            else
+            {
+                if (!m_AttakingAnimation)
+                {
+                    delayAttatckT += Time.deltaTime;
+                    if (delayBetweenAttacks < delayAttatckT)
+                    {
+                        delayAttatckT = 0;
+                        m_IsAttaking = false;
+                        m_CurrentState = ZombiebehaviourState.Chase;
+                    }
+                }
+            }
         }
 
-        private void FindTargetState()
+        private void IdleState()
         {
             int targetsFinded = PhysicsHelper.GetAllTargetWithoutWalls(m_Transfrom, m_RaycastHits, checkTargetDistance, targetMask, wallLayerMask, 0.5f);
-            isTargetDetected = targetsFinded != 0;
+            var isTargetDetected = targetsFinded != 0;
 
             if (isTargetDetected)
             {
                 m_TargetTransform = m_RaycastHits[0].transform;
                 m_AiMovement.destination = m_TargetTransform.position;
+                m_CurrentState = ZombiebehaviourState.Chase;
             }
         }
     }

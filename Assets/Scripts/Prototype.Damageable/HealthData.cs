@@ -1,6 +1,7 @@
 using System;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Prototype
 {
@@ -20,6 +21,8 @@ namespace Prototype
 
         public event Action<HealthChangeData> onHealthChanged = delegate { };
         public event Action onDeath = delegate { };
+        public UnityEvent onDeathUE;
+
         public event Action onResurrected = delegate { };
 
         public bool IsDead => currentHealth == 0;
@@ -71,6 +74,7 @@ namespace Prototype
             {
                 m_KilledBy = source;
                 onDeath.Invoke();
+                onDeathUE.Invoke();
             }
         }
 

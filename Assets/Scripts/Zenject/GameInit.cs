@@ -29,16 +29,34 @@ namespace Prototype
     public class EnemySpawnFactory
     {
         GameObject _zombieEnemy;
+        GameObject _bigEnemy;
+        GameObject _slowZombieEnemy;
+
         private DiContainer m_Conteiner;
 
-        public void SpawnZombie(Vector3 spawnPos)
+        public GameObject SpawnDefaultZombie(Vector3 spawnPos)
         {
-            m_Conteiner.InstantiatePrefab(_zombieEnemy, spawnPos, Quaternion.identity, null);
+            var zombieInstance = m_Conteiner.InstantiatePrefab(_zombieEnemy, spawnPos, Quaternion.identity, null);
+            return zombieInstance;
         }
 
-        public EnemySpawnFactory(GameObject zombieEnemy, DiContainer container) {
+        public GameObject SpawnBigZombie(Vector3 spawnPos)
+        {
+            var zombieInstance = m_Conteiner.InstantiatePrefab(_bigEnemy, spawnPos, Quaternion.identity, null);
+            return zombieInstance;
+        }
+
+        public GameObject SpawnSlowZombie(Vector3 spawnPos)
+        {
+            var zombieInstance = m_Conteiner.InstantiatePrefab(_slowZombieEnemy, spawnPos, Quaternion.identity, null);
+            return zombieInstance;
+        }
+
+        public EnemySpawnFactory(GameObject zombieEnemy, GameObject bigZombie, GameObject slowZombieEnemy, DiContainer container) {
             m_Conteiner = container;
+            _slowZombieEnemy = slowZombieEnemy;
             _zombieEnemy = zombieEnemy;
+            _bigEnemy = bigZombie;
         }
     }
 
@@ -49,6 +67,8 @@ namespace Prototype
         public Joystick Joystick;
 
         public GameObject zombiePrefab;
+        public GameObject bigZombiePrefab;
+        public GameObject slowZombiePrefab;
 
         public Transform playerSpawnPoint;
         public PlayerResourcesView m_PlayerResourcesView;
@@ -60,7 +80,7 @@ namespace Prototype
         public AdsManager AdsManager;
         public override void InstallBindings()
         {
-            var spawnFactory = new EnemySpawnFactory(zombiePrefab, Container);
+            var spawnFactory = new EnemySpawnFactory(zombiePrefab, bigZombiePrefab, slowZombiePrefab, Container);
             var input = new PlayerInputReader(Joystick);
             m_playerSpawnFactory = new PlayerSpawnFactory(PlayerPrefab, Container);
             var wsm = new WorldSpaceMessageFactory(m_WSMPrefab);

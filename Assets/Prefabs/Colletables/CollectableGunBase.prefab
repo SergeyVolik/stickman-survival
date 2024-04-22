@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2197824975227612250}
   - component: {fileID: -8431560442093066479}
   - component: {fileID: 2659359369098604856}
+  - component: {fileID: 261329761511031381}
   m_Layer: 0
   m_Name: CollectableGunBase
   m_TagString: Untagged
@@ -110,6 +111,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &261329761511031381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3292892241396639055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3277f39711f251640af4f589535c4192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTriggerEnterUE:
+    m_PersistentCalls:
+      m_Calls: []
+  onTriggerExitUE:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6378613399236188918
 GameObject:
   m_ObjectHideFlags: 0
