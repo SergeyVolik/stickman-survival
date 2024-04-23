@@ -25,6 +25,7 @@ namespace Prototype
         public event Action onQuestFinished;
         public event Action onQuestChanged;
         public UnityEvent onQuestFinishedUE;
+        public bool showOnStart;
         [SerializeField]
         private GameObject questUI;
         private CameraController m_cameraContr;
@@ -91,6 +92,11 @@ namespace Prototype
             questUIItem.showTargetButton.onClick.AddListener(() => {
                 ShowTarget();
             });
+
+            if (showOnStart)
+            {
+                ShowTarget();
+            }
         }
 
         public virtual void Clear()

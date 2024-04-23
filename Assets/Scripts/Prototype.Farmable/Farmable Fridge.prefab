@@ -75,6 +75,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
+      propertyPath: managedReferences[446011855542419486].Renderer
+      value: 
+      objectReference: {fileID: 4376992587426471219}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
       propertyPath: managedReferences[446011653118492685].ShakeSpeed
       value: 15
       objectReference: {fileID: 0}

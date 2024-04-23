@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3816588757034210238}
   - component: {fileID: 4079876522610336585}
   m_Layer: 0
-  m_Name: 2SideDoors
+  m_Name: OpenableDoors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorAnimator: {fileID: 3816588757034210238}
-  physicsCallbacks: {fileID: 0}
   isOpened: 0
   doorOpenedFeedback: {fileID: 0}
 --- !u!1 &7300653712690571607
