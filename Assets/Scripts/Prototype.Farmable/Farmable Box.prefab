@@ -148,6 +148,11 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.009971024
       objectReference: {fileID: 0}
+    - target: {fileID: 1365004649518571838, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.605
+      objectReference: {fileID: 0}
     - target: {fileID: 1511491632532260699, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -253,6 +258,11 @@ PrefabInstance:
       propertyPath: managedReferences[446011653118492685].ShakeMainDirection.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4316624712208228878, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011923382665220].Renderer
+      value: 
+      objectReference: {fileID: 3485184868941844151}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_PartsParent
@@ -329,6 +339,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 05f855fffb8cb5449aa06ca6e0028d8e,
         type: 2}
+    - target: {fileID: 5824552608306387426, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.601
+      objectReference: {fileID: 0}
     - target: {fileID: 7325258845627080027, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_Name

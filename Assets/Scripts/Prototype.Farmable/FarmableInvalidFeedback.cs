@@ -18,7 +18,7 @@ public class FarmableInvalidFeedback : MonoBehaviour
     {
         var farmable = GetComponent<FarmableObject>();
         farmable.onMeleeWeaponFailed += () => {
-            m_factory.SpawnAtPosition(feedback.transform.position, $"Required Level {farmable.RequiredWeaponLevel}");
+            m_factory.SpawnAtPosition(feedback.transform.position, $"Required Weapon {farmable.RequiredWeaponLevel}");
             feedback.StopFeedbacks();
             feedback.PlayFeedbacks(feedback.transform.position);
         };

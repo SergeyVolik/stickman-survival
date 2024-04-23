@@ -5,11 +5,11 @@ namespace Prototype
 {
     public class PlayerInput : MonoBehaviour
     {
-        private PlayerInputReader m_reader;
+        private IPlayerInputReader m_reader;
         private CustomCharacterController m_Input;
 
         [Inject]
-        void Construct(PlayerInputReader reader)
+        void Construct(IPlayerInputReader reader)
         {
             m_reader = reader;
         }

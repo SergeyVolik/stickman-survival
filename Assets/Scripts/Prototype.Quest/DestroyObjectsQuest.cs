@@ -3,7 +3,13 @@ using UnityEngine;
 
 namespace Prototype
 {
-    public class DestroyObjectsQuest : BaseQuest
+    public interface IDestroyObjectsQuest
+    {
+        public int AlreadyKiller();
+        public int TargetKills();
+    }
+
+    public class DestroyObjectsQuest : BaseQuest, IDestroyObjectsQuest
     {
         public HealthData[] objectsToDestory;
         private int killed;

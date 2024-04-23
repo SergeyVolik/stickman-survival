@@ -39,7 +39,6 @@ namespace Prototype
         public void EnableHitBox(bool enable)
         {
             m_HitBox.enabled = enable;
-            ActivateTrail(enable);
         }
 
         public void HideWeapon(bool disable = true)

@@ -6,23 +6,36 @@ using Zenject;
 
 namespace Prototype
 {
-    public interface IInputReader
+    public interface IPlayerInputReader
     {
         public Vector2 ReadMoveInput();
+        public void Enable();
+        public void Disable();
+
     }
 
-    public class PlayerInputReader : IInputReader
+    public class PlayerInputReader : IPlayerInputReader
     {
+        private bool m_Enabled;
         public Joystick m_Stick;
+        public void Enable()
+        {
+            m_Enabled = true;
+        }
+        public void Disable()
+        {
+            m_Enabled = false;
+        }
 
         public PlayerInputReader(Joystick stick)
         {
+            m_Enabled = true;
             m_Stick = stick;
         }
 
         public Vector2 ReadMoveInput()
         {
-            return m_Stick.Direction;
+            return m_Enabled ? m_Stick.Direction : new Vector2();
         }
     }
 
@@ -93,7 +106,7 @@ namespace Prototype
             Container.Bind<WorldSpaceMessageFactory>().FromInstance(wsm);
             Container.Bind<ResourceTransferManager>().FromInstance(m_Transfer);
             Container.Bind<IPlayerFactory>().FromInstance(m_playerSpawnFactory);
-            Container.Bind<PlayerInputReader>().FromInstance(input);
+            Container.Bind<IPlayerInputReader>().FromInstance(input);
             Container.Bind<EnemySpawnFactory>().FromInstance(spawnFactory);
         }
 

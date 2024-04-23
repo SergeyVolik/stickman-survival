@@ -136,10 +136,14 @@ namespace Prototype
             m_ForceCameraTarget = newTarget;
             m_ForcedTargets.Push(newTarget);
         }
-        public void PushTargetWithDuration(Transform newTarget, float duration)
+
+        public void PushTargetWithDuration(Transform newTarget, float duration, Action onEnded = null)
         {
             if (newTarget == null)
+            {
+                onEnded?.Invoke();
                 return;
+            }
 
             m_ForceCameraTarget = newTarget;
             m_ForcedTargets.Push(newTarget);
@@ -147,8 +151,10 @@ namespace Prototype
             DOVirtual.DelayedCall(duration, () =>
             {
                 PopTarget();
+                onEnded?.Invoke();
             });
         }
+
         public void PopTarget()
         {
             m_ForcedTargets.Pop();

@@ -53,6 +53,9 @@ namespace Prototype
             m_Attaking = false;
             M_CharAnimator_onDisableHitBox();
             m_CharAnimator.ResetAttack();
+            if(m_CurrentWeapon)
+                m_CurrentWeapon.ActivateTrail(false);
+
             m_Inventory.HideMeleeWeapon();
         }
 
@@ -67,6 +70,7 @@ namespace Prototype
         private void M_CharAnimator_onEnableHitBox()
         {
             m_CurrentWeapon.EnableHitBox(true);
+            m_CurrentWeapon.ActivateTrail(true);
         }
 
         private MeleeWeapon ActivateWeapon(MeleeWeaponType type)

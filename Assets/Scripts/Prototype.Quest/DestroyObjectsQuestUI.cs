@@ -20,7 +20,7 @@ public class DestroyObjectsQuestUI : BaseQuestUI
 
     public override void UpdateDescription()
     {
-        if (m_quest is DestroyObjectsQuest data)
+        if (m_quest is IDestroyObjectsQuest data)
         {
             questText.text = $"{m_quest.QuestName} {data.AlreadyKiller()}/{data.TargetKills()}";
         }

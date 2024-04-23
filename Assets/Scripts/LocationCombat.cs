@@ -41,10 +41,24 @@ namespace Prototype
         private IPlayerFactory m_playerFactory;
         private int currentWaveIndex;
         private int currentSpawnIndex;
+        public event Action onSpawnFinished = delegate { };
+        public event Action onEnemyKilled = delegate { };
+        int toKill = 0;
+
+        public int AlreadyKilled => alreadyKilled;
+        public int TargetKills => toKill;
 
         private void Awake()
         {
             enabled = false;
+
+            foreach (var item in spawnWaves)
+            {
+                foreach (var item1 in item.Spawns)
+                {
+                    toKill++;
+                }
+            }
         }
 
         [Inject]
@@ -58,6 +72,7 @@ namespace Prototype
         private void Finish()
         {
             enabled = false;
+            onSpawnFinished.Invoke();
         }
 
         public void StartCombat()
@@ -69,6 +84,8 @@ namespace Prototype
         }
 
         float currentSpawnT = 0;
+        private int alreadyKilled;
+
         private void Update()
         {
             var deltaTime = Time.deltaTime;
@@ -120,6 +137,7 @@ namespace Prototype
             }
             instance.transform.forward = spawnPoint.forward;
 
+            instance.GetComponent<HealthData>().onDeath += LocationCombat_onDeath;
             switch (currentSpawn.dropMode)
             {
                 case EnemyDropMode.None:
@@ -133,7 +151,7 @@ namespace Prototype
                     
                     break;
                 case EnemyDropMode.Set:
-                     drop = instance.GetComponent<UnitDropOnDeath>();
+                    drop = instance.GetComponent<UnitDropOnDeath>();
                     drop.resources = currentSpawn.dropOverride;
 
                     break;
@@ -142,6 +160,12 @@ namespace Prototype
             }
 
             return instance;
+        }
+
+        private void LocationCombat_onDeath()
+        {
+            alreadyKilled++;
+            onEnemyKilled.Invoke();
         }
     }
 }
