@@ -491,6 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageFeedback: {fileID: 1279294226058806676}
+  critFeedback: {fileID: 0}
   deathFeedback: {fileID: 0}
 --- !u!114 &4163425190508128530
 MonoBehaviour:
@@ -539,7 +540,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 51200
   canAim: 1
-  aimSpeed: 20
+  aimSpeed: 15
 --- !u!114 &6574410010503779108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,6 +752,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeedMult: 1
   meleeWeaponDamageMult: 1
+  rangeWeaponDamageMult: 1
+  critChance: 0.2
+  critMult: 1.5
+  moveSpeedMult: 1
 --- !u!114 &948463060300344300
 MonoBehaviour:
   m_ObjectHideFlags: 0

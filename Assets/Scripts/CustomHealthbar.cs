@@ -39,8 +39,9 @@ namespace Prototype
                     _progressBar.gameObject.SetActive(true);
                     m_Tween?.Kill();
                     m_Tween = m_FadeGroup.DOFade(1f, showDuration).SetEase(showEase);
+
                     var currentVarTarget = _progressBar.BarTarget;
-                    _progressBar.BarTarget = 0.01f;
+                    _progressBar.BarTarget = currentVarTarget - 0.01f;
                     _progressBar.UpdateBar01(currentVarTarget);
                 }
             }

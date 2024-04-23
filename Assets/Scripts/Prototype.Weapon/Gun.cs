@@ -16,7 +16,12 @@ namespace Prototype
         public GameObject Owner { get; }
     }
 
-    public class Gun : BaseWeapon, IOwnable
+    public interface IDamageData
+    {
+        bool IsCrit { get; }
+    }
+
+    public class Gun : BaseWeapon, IOwnable, IDamageData
     {
         public GunType type = GunType.Handgun;
 
@@ -29,6 +34,9 @@ namespace Prototype
         public float moveShotInterval = 1;
 
         public int standingDamage;
+        public float critMult = 1.1f;
+        public float critChanse = 0.5f;
+
         public float standingshotInterval = 1;
 
         [SerializeField]
@@ -43,19 +51,40 @@ namespace Prototype
         public float aimDistance = 3;
 
         public LayerMask physicsPlayer;
+        public float damagMult = 1f;
+
+        public bool IsCrit { 
+            get;
+            private set;
+        }
+
+        public void TryCrit()
+        {
+            IsCrit = Random.Range(0f, 100f) < critChanse * 100;
+        }
 
         public override void SetupInHands(Transform hand)
         {
             base.SetupInHands(hand);
             m_EquipFeedback?.PlayFeedbacks();
         }
+
         public void ShotOnTarget(bool isMoving, Transform target)
         {
             m_ShotFeedback?.PlayFeedbacks();
 
             if (target.TryGetComponent<IDamageable>(out var damageable))
             {
-                damageable.DoDamage(isMoving ? moveDamage : standingDamage, gameObject);
+                var damage = isMoving ? moveDamage : standingDamage;
+                damage = (int)(damage * damagMult);
+                TryCrit();
+
+                if (IsCrit)
+                {
+                    damage = (int)(damage * critMult);
+                }
+
+                damageable.DoDamage(damage, gameObject);
             }
 
             if (target.TryGetComponent<IPushable>(out var rb))

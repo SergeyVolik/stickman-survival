@@ -6,12 +6,14 @@ namespace Prototype
     public class DamageFeedback : MonoBehaviour
     {
         public MMF_Player damageFeedback;
+        public MMF_Player critFeedback;
+
         public MMF_Player deathFeedback;
         private HealthData m_HealthData;
 
         private void Awake()
         {
-            m_HealthData = GetComponent<HealthData>();
+            m_HealthData = GetComponent<HealthData>();        
         }
 
         private void OnEnable()
@@ -30,9 +32,24 @@ namespace Prototype
             if (obj.IsDamage)
             {
                 var diff = obj.PrevValue - obj.CurrentValue;
-                damageFeedback.GetFeedbackOfType<MMF_FloatingText>().Value = diff.ToString();
-                damageFeedback.StopFeedbacks();
-                damageFeedback.PlayFeedbacks(damageFeedback.transform.position); 
+             
+                if (critFeedback && obj.Source && obj.Source.TryGetComponent<IDamageData>(out var data) && data.IsCrit)
+                {
+                    var sourceForward = obj.Source.transform.forward;
+                    critFeedback.transform.forward = -1 * sourceForward;
+                    var floatingText = critFeedback.GetFeedbackOfType<MMF_FloatingText>();
+                    floatingText.Value = $"{diff.ToString()}!";
+                    critFeedback.StopFeedbacks();
+                    critFeedback.PlayFeedbacks(damageFeedback.transform.position);
+                }
+                else if(damageFeedback)
+                {
+                    var floatingText = damageFeedback.GetFeedbackOfType<MMF_FloatingText>();
+                    floatingText.Value = diff.ToString();
+                    damageFeedback.StopFeedbacks();
+                    damageFeedback.PlayFeedbacks(damageFeedback.transform.position);
+                }
+
             }
         }
     }

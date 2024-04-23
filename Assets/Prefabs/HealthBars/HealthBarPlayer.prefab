@@ -772,7 +772,7 @@ MonoBehaviour:
   TextPrefix: 
   TextSuffix: 
   TextValueMultiplier: 1
-  TextFormat: 
+  TextFormat: 0
   DisplayTotal: 0
   TotalSeparator: ' / '
   DebugNewTargetValue: 0.54

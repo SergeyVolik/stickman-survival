@@ -742,10 +742,12 @@ MonoBehaviour:
   hideRotation: {x: -52.141, y: 0, z: 0}
   type: 2
   moveDamage: 4
-  pushForce: 5
+  pushForce: 7
   killPushForce: 10
   moveShotInterval: 0.15
   standingDamage: 25
+  critMult: 1.1
+  critChanse: 0.5
   standingshotInterval: 0.1
   m_ShotFeedback: {fileID: 3619861078487105805}
   m_EquipFeedback: {fileID: 3058504264451147335}
@@ -754,6 +756,7 @@ MonoBehaviour:
   physicsPlayer:
     serializedVersion: 2
     m_Bits: 72
+  damagMult: 1
 --- !u!1001 &1441080443240695578
 PrefabInstance:
   m_ObjectHideFlags: 0

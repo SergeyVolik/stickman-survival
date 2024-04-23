@@ -16,6 +16,7 @@ namespace Prototype
         private Transform m_Transform;
         private AimCirclerBehaviour m_AimCircle;
         private CharacterCombatState m_CombatState;
+        private CharacterStats m_Stats;
         private Transform m_LastTarget;
         public float aimDistance = 5f;
         public LayerMask CastMask;
@@ -65,7 +66,7 @@ namespace Prototype
 
             if (currentTargetHealth)
             {
-                Debug.Log("new target finded");
+                //Debug.Log("new target finded");
                 CurrentTargetHealth = currentTargetHealth;
                 CurrentTarget = targetNew;
             }
@@ -81,7 +82,7 @@ namespace Prototype
             m_Transform = GetComponent<Transform>();
             m_AimCircle = GetComponent<AimCirclerBehaviour>();
             m_CombatState = GetComponent<CharacterCombatState>();
-
+            m_Stats = GetComponent<CharacterStats>();
             m_Inventory.onGunChanged += M_Inventory_onMainWeaponChanged;
             m_CombatState.onCombatState += UpdateCombatState;
             results = new RaycastHit[10];
@@ -141,17 +142,16 @@ namespace Prototype
             }
         }
 
-        public void CheckRangeTarget()
+        public void FindTarget()
         {
             var currentPos = m_Transform.position;
-            var deltaTime = Time.deltaTime;
 
             if (canAim)
             {
-                Debug.Log("Need Aim");
+                //Debug.Log("Need Aim");
                 if (CurrentTargetHealth)
                 {
-                    Debug.Log("UpdateCurretn Target");
+                    //Debug.Log("UpdateCurretn Target");
                     var dist = Vector3.Distance(CurrentTargetHealth.transform.position, currentPos);
 
                     if (CurrentTargetHealth.IsDead || dist > aimDistance)
@@ -163,7 +163,7 @@ namespace Prototype
                 //change target
                 if (!HasTarget || m_Controller.IsMoving)
                 {
-                    Debug.Log("try find new target");
+                    //Debug.Log("try find new target");
                     var data = GetTargetWithClosestDistance();
                     if (data.body)
                     {
@@ -193,10 +193,13 @@ namespace Prototype
 
         public bool IsLookingOnTarget()
         {
-            var selfAimVector = m_Transform.forward;
+            if(m_Controller.AimVector == Vector2.zero)
+                return false;
+
+            var selfAimVector = m_Transform.forward;        
             var aimVec = new Vector3(m_Controller.AimVector.x, 0, m_Controller.AimVector.y);
             var dot = Vector3.Dot(selfAimVector.normalized, aimVec.normalized);
-            return dot >= 0.99f;
+            return dot >= 0.95f;
         }
 
         public void Update()
@@ -218,7 +221,7 @@ namespace Prototype
 
             var currentGun = m_Inventory.CurrentGun;
 
-            if (m_CombatState.InCombat && !currentGun && m_Inventory.HasGunInInventory())
+            if (!currentGun && m_Inventory.HasGunInInventory())
             {
                 m_Inventory.ActiveLastGun();
                 m_AimCircle.Show();
@@ -229,20 +232,23 @@ namespace Prototype
             if (currentGun == null)
                 return;
 
-            bool isMoveing = m_Controller.MoveInput != Vector2.zero;
+            bool isMoving = m_Controller.IsMoving;
             m_ShotT += deltaTime;
 
-            if (!isMoveing)
+            if (!isMoving)
             {
-                float interval = currentGun.standingshotInterval;
+                float interval = currentGun.standingshotInterval/ m_Stats.attackSpeedMult;
                 AimOnTarget();
 
-                if (CanAttack() && IsLookingOnTarget())
+                if (HasTarget && IsLookingOnTarget())
                 {
                     if (m_ShotT > interval)
                     {
                         m_ShotT = 0;
-                        currentGun.ShotOnTarget(isMoveing, CurrentTarget);
+                        currentGun.critChanse = m_Stats.critChance;
+                        currentGun.critMult = m_Stats.critMult;
+                        currentGun.damagMult = m_Stats.rangeWeaponDamageMult;
+                        currentGun.ShotOnTarget(isMoving, CurrentTarget);
                         m_CharacterAnimator.Shot();
                     }
                 }
@@ -278,34 +284,6 @@ namespace Prototype
                     selection.Deactivate();
                 }
             }
-        }
-
-        public bool HasAimTarget()
-        {
-            return CurrentTarget;
-        }
-
-        public bool CanAttack()
-        {
-            if (CurrentTarget)
-            {
-                var gun = m_Inventory.GetGun();
-
-                var targetPos = CurrentTarget.position;
-                var distance = Vector3.Distance(m_Transform.position, targetPos);
-
-                if (gun == null)
-                    return false;
-
-                if (distance > gun.aimDistance)
-                {
-                    return false;
-                }
-
-                return true;
-            }
-
-            return false;
         }
     }
 }

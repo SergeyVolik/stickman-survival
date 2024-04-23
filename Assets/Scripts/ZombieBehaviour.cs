@@ -13,7 +13,8 @@ namespace Prototype
     {
         Idle,
         Chase,
-        Attacking
+        Attacking,
+        RotateForAttack,
     }
 
     public class ZombieBehaviour : MonoBehaviour, ITargetSeeker
@@ -28,6 +29,7 @@ namespace Prototype
         public float delayAttatckT;
         public float minSpeed;
         public float maxSpeed;
+        public float rotationSpeed;
         private ZombiebehaviourState m_CurrentState;
 
         public float checkTargetDistance;
@@ -124,14 +126,14 @@ namespace Prototype
         }
 
         private void ChaseState()
-        {            
+        {
             if (m_AiMovement.reachedDestination)
             {
-                m_CurrentState = ZombiebehaviourState.Attacking;              
+                m_CurrentState = ZombiebehaviourState.Attacking;
                 return;
             }
-          
-            m_AiMovement.destination = m_TargetTransform.position;           
+
+            m_AiMovement.destination = m_TargetTransform.position;
         }
 
         private void AttackState()
@@ -142,17 +144,14 @@ namespace Prototype
                 M_Animator_onAttackStarted();
                 m_IsAttaking = true;
             }
-            else
+            else if (!m_AttakingAnimation)
             {
-                if (!m_AttakingAnimation)
+                delayAttatckT += Time.deltaTime;
+                if (delayBetweenAttacks < delayAttatckT)
                 {
-                    delayAttatckT += Time.deltaTime;
-                    if (delayBetweenAttacks < delayAttatckT)
-                    {
-                        delayAttatckT = 0;
-                        m_IsAttaking = false;
-                        m_CurrentState = ZombiebehaviourState.Chase;
-                    }
+                    delayAttatckT = 0;
+                    m_IsAttaking = false;
+                    m_CurrentState = ZombiebehaviourState.Chase;
                 }
             }
         }
