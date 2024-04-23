@@ -70,18 +70,18 @@ namespace Prototype
 
             Move(moveVec2d);
 
-            if (m_CharacterInput.IsAiming)
-            {
-                m_Animator.SetBool(IsAimHash, m_CharacterInput.IsAiming);
+            //if (m_CharacterInput.IsAiming)
+            //{
+            //    m_Animator.SetBool(IsAimHash, m_CharacterInput.IsAiming);
 
-                var vector = m_ControllerTrans.InverseTransformDirection(new Vector3(m_CharacterInput.MoveInput.x, 0, m_CharacterInput.MoveInput.y)).normalized;
+            //    var vector = m_ControllerTrans.InverseTransformDirection(new Vector3(m_CharacterInput.MoveInput.x, 0, m_CharacterInput.MoveInput.y)).normalized;
 
-                var forwardAmount = vector.z * 10;
-                var turnAmount = vector.x * 10;
+            //    var forwardAmount = vector.z * 10;
+            //    var turnAmount = vector.x * 10;
 
-                m_Animator.SetFloat(TurnHash, turnAmount, 0.1f, delta);
-                m_Animator.SetFloat(ForwardHash, forwardAmount, 0.1f, delta);
-            }
+            //    m_Animator.SetFloat(TurnHash, turnAmount, 0.1f, delta);
+            //    m_Animator.SetFloat(ForwardHash, forwardAmount, 0.1f, delta);
+            //}
         }
 
         internal void Shot()

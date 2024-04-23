@@ -8651,7 +8651,7 @@ MonoBehaviour:
   ease: 2
   m_feedback: {fileID: 232317976}
   redSprite: {fileID: 2116735323}
-  damageColor: {r: 1, g: 0, b: 0.08235294, a: 0.13333334}
+  damageColor: {r: 1, g: 0, b: 0.08235294, a: 0.21960784}
 --- !u!1 &232503652
 GameObject:
   m_ObjectHideFlags: 0

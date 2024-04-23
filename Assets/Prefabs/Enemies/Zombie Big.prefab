@@ -283,7 +283,7 @@ MonoBehaviour:
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
   acceleration: 5
-  rotationSpeed: 360
+  rotationSpeed: 160
   slowdownTime: 0.5
   endReachedDistance: 1
   wallForce: 3

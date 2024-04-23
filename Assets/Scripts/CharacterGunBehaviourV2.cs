@@ -15,25 +15,15 @@ namespace Prototype
         private float stunT;
         private Transform m_Transform;
         private AimCirclerBehaviour m_AimCircle;
-        private CharacterCombatState m_CombatState;    
+        private CharacterCombatState m_CombatState;
         private Transform m_LastTarget;
         public float aimDistance = 5f;
-        float noTargetT = 100;
-        float resetAimStateIfNoTarget = 1f;
         public LayerMask CastMask;
         public LayerMask WallMask;
-        public float criticalDistanceChangeTarget;
-        public float swithTargetInterval = 0.5f;
-        private float m_LastSwithTarget;
-        public bool standingOnlyAim = false;
         public bool canAim;
         RaycastHit[] results;
-
-        public bool HasTarget
-        {
-            get;
-            private set;
-        }
+        public float aimSpeed;
+        public bool HasTarget => CurrentTargetHealth != null;
 
         public HealthData CurrentTargetHealth
         {
@@ -71,19 +61,19 @@ namespace Prototype
 
         void UpdateTarget(Transform targetNew)
         {
-            CurrentTargetHealth = targetNew.GetComponent<HealthData>();
+            var currentTargetHealth = targetNew.GetComponent<HealthData>();
 
-            if (CurrentTargetHealth)
+            if (currentTargetHealth)
             {
+                Debug.Log("new target finded");
+                CurrentTargetHealth = currentTargetHealth;
                 CurrentTarget = targetNew;
             }
         }
 
-        public bool IsAiming { get; private set; }
-
         public void Awake()
         {
-            m_Inventory = GetComponent<CharacterInventory>();       
+            m_Inventory = GetComponent<CharacterInventory>();
             m_Controller = GetComponent<CustomCharacterController>();
             m_SM = GetComponent<MeleeRangeStateMachine>();
             m_CharacterAnimator = GetComponentInChildren<CharacterWithGunAnimator>();
@@ -94,12 +84,13 @@ namespace Prototype
 
             m_Inventory.onGunChanged += M_Inventory_onMainWeaponChanged;
             m_CombatState.onCombatState += UpdateCombatState;
+            results = new RaycastHit[10];
         }
 
         private void OnEnable()
-        {                    
+        {
             m_Health.onDeath += OnDeath;
-            m_Health.onHealthChanged += Health_onHealthChanged;           
+            m_Health.onHealthChanged += Health_onHealthChanged;
         }
 
         void OnDeath()
@@ -110,7 +101,9 @@ namespace Prototype
         private void OnDisable()
         {
             m_Health.onDeath -= OnDeath;
-            m_Health.onHealthChanged -= Health_onHealthChanged;         
+            m_Health.onHealthChanged -= Health_onHealthChanged;
+            m_Controller.AimVector = Vector2.zero;
+            m_Controller.ResetDefaultRotatonSpeed();
         }
 
         private void M_Inventory_onMainWeaponChanged(Gun obj)
@@ -153,73 +146,34 @@ namespace Prototype
             var currentPos = m_Transform.position;
             var deltaTime = Time.deltaTime;
 
-            noTargetT += deltaTime;
-            m_LastSwithTarget += deltaTime;
-            var MoveInput = m_Controller.MoveInput;
-
-            var needAim = standingOnlyAim && MoveInput == Vector2.zero || !standingOnlyAim;
-            m_Controller.AimVector = Vector2.zero;
-
-            if (canAim && needAim)
+            if (canAim)
             {
+                Debug.Log("Need Aim");
                 if (CurrentTargetHealth)
                 {
+                    Debug.Log("UpdateCurretn Target");
                     var dist = Vector3.Distance(CurrentTargetHealth.transform.position, currentPos);
 
-                    if (CurrentTargetHealth.IsDead)
+                    if (CurrentTargetHealth.IsDead || dist > aimDistance)
                     {
-                        CurrentTargetHealth = null;
+                        ResetTarget();
                     }
-                    else if (dist > aimDistance)
-                    {
-                        CurrentTargetHealth = null;
-                    }
-
-                    var data = GetTargetWithClosestDistance();
-
-                    Rigidbody newClosestUnit = null;
-                    if (data.closestDistance < criticalDistanceChangeTarget)
-                    {
-                        newClosestUnit = data.body;
-                    }
-
-                    if (newClosestUnit != null && m_LastSwithTarget > swithTargetInterval)
-                    {
-                        m_LastSwithTarget = 0;
-                        UpdateTarget(newClosestUnit.transform);
-                    }
-                    HasTarget = CurrentTargetHealth != null;
                 }
 
                 //change target
-                if (!HasTarget)
+                if (!HasTarget || m_Controller.IsMoving)
                 {
+                    Debug.Log("try find new target");
                     var data = GetTargetWithClosestDistance();
-                    HasTarget = data.body;
-
-                    if (HasTarget)
+                    if (data.body)
                     {
-                        noTargetT = 0;
-
                         UpdateTarget(data.body.transform);
                     }
-                }
-
-                //update aim data
-                if (HasTarget)
-                {
-                    var point = CurrentTargetHealth.transform.position;
-
-                    point.y = currentPos.y;
-                    var vector = point - currentPos;
-
-                    m_Controller.AimVector = new Vector2(vector.x, vector.z);
                 }
             }
             else
             {
-                HasTarget = false;
-                noTargetT = resetAimStateIfNoTarget + 1;
+                ResetTarget();
             }
 
             if (m_LastTarget != CurrentTarget)
@@ -228,14 +182,28 @@ namespace Prototype
                 m_LastTarget = CurrentTarget;
                 SelectTarget(true);
             }
-
-            IsAiming = HasTarget || noTargetT <= resetAimStateIfNoTarget;
         }
 
-        public void FixedUpdate()
-        {          
-            var deltaTime = Time.fixedDeltaTime;
+        private void ResetTarget()
+        {
+            m_Controller.AimVector = Vector2.zero;
+            CurrentTargetHealth = null;
+            CurrentTarget = null;
+        }
 
+        public bool IsLookingOnTarget()
+        {
+            var selfAimVector = m_Transform.forward;
+            var aimVec = new Vector3(m_Controller.AimVector.x, 0, m_Controller.AimVector.y);
+            var dot = Vector3.Dot(selfAimVector.normalized, aimVec.normalized);
+            return dot >= 0.99f;
+        }
+
+        public void Update()
+        {
+            var deltaTime = Time.deltaTime;
+
+            m_Controller.rotationSpeed = aimSpeed;
             if (stunned)
             {
                 stunT += deltaTime;
@@ -262,22 +230,38 @@ namespace Prototype
                 return;
 
             bool isMoveing = m_Controller.MoveInput != Vector2.zero;
-            float interval = isMoveing ? currentGun.moveShotInterval : currentGun.standingshotInterval;
+            m_ShotT += deltaTime;
 
-            if (CanAttack())
-            {           
-                m_ShotT += deltaTime;
+            if (!isMoveing)
+            {
+                float interval = currentGun.standingshotInterval;
+                AimOnTarget();
 
-                if (m_ShotT > interval)
+                if (CanAttack() && IsLookingOnTarget())
                 {
-                    m_ShotT = 0;
-                    currentGun.Shot(isMoveing);
-                    m_CharacterAnimator.Shot();
+                    if (m_ShotT > interval)
+                    {
+                        m_ShotT = 0;
+                        currentGun.ShotOnTarget(isMoveing, CurrentTarget);
+                        m_CharacterAnimator.Shot();
+                    }
                 }
             }
-            else
+        }
+
+        private void AimOnTarget()
+        {
+            if (HasTarget)
             {
-                m_ShotT = 0;
+                var point = CurrentTargetHealth.transform.position;
+                m_Controller.AimVector = Vector2.zero;
+                var currentPos = m_Transform.position;
+                point.y = currentPos.y;
+                var vector = point - currentPos;
+                m_Controller.AimVector = new Vector2(vector.x, vector.z);
+            }
+            else {
+                m_Controller.AimVector = new Vector2();
             }
         }
 
@@ -298,18 +282,17 @@ namespace Prototype
 
         public bool HasAimTarget()
         {
-            return m_Controller.HasTarget;
+            return CurrentTarget;
         }
 
         public bool CanAttack()
         {
-            if (m_Controller.HasTarget)
+            if (CurrentTarget)
             {
                 var gun = m_Inventory.GetGun();
 
                 var targetPos = CurrentTarget.position;
                 var distance = Vector3.Distance(m_Transform.position, targetPos);
-
 
                 if (gun == null)
                     return false;

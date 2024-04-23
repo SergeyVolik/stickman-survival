@@ -23,13 +23,10 @@ public class MeleeRangeStateMachine : MonoStateMachine
     protected void Update()
     {
         m_RangeState.CheckRangeTarget();
-        m_MeleeAttack.UpdateCondition();
-
-        var canMeleeAttack = m_MeleeAttack.CanAttack();
+        m_MeleeAttack.CheckMeleeTarget();
+        
         var canRangeAttack = m_RangeState.CanAttack();
-
-        Debug.Log($"canMeleeAttack {canMeleeAttack}");
-        Debug.Log($"canRangeAttack {canRangeAttack}");
+        var canMeleeAttack = !canRangeAttack && m_MeleeAttack.CanAttack();
 
         if (canRangeAttack)
         {

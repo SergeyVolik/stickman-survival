@@ -18,10 +18,14 @@ namespace Prototype
         public bool IsMoving => MoveInput != Vector2.zero;
         public Vector2 MoveInput { get => m_MoveInput; set => m_MoveInput = value; }
 
-        public bool HasTarget { get; private set; }
-
         public Vector2 AimVector;
         public float rotationSpeed;
+        public float defaultRotationSpeed;
+
+        public void ResetDefaultRotatonSpeed()
+        {
+            rotationSpeed = defaultRotationSpeed;
+        }
 
         private void Awake()
         {

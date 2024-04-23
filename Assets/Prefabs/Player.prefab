@@ -538,10 +538,8 @@ MonoBehaviour:
   WallMask:
     serializedVersion: 2
     m_Bits: 51200
-  criticalDistanceChangeTarget: 2
-  swithTargetInterval: 1
-  standingOnlyAim: 1
   canAim: 1
+  aimSpeed: 20
 --- !u!114 &6574410010503779108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,6 +567,7 @@ MonoBehaviour:
   speed: 3.5
   AimVector: {x: 0, y: 0}
   rotationSpeed: 10
+  defaultRotationSpeed: 10
 --- !u!114 &8937531286367253963
 MonoBehaviour:
   m_ObjectHideFlags: 0
