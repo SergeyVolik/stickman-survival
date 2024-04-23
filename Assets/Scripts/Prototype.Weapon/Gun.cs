@@ -49,6 +49,21 @@ namespace Prototype
             base.SetupInHands(hand);
             m_EquipFeedback?.PlayFeedbacks();
         }
+        public void ShotOnTarget(bool isMoving, Transform target)
+        {
+            m_ShotFeedback?.PlayFeedbacks();
+
+            if (target.TryGetComponent<IDamageable>(out var damageable))
+            {
+                damageable.DoDamage(isMoving ? moveDamage : standingDamage, gameObject);
+            }
+
+            if (target.TryGetComponent<IPushable>(out var rb))
+            {
+                var shotVector = owner.transform.forward;
+                rb.Push(shotVector * pushForce);
+            }
+        }
 
         public void Shot(bool isMoving)
         {
@@ -60,15 +75,7 @@ namespace Prototype
 
             if (Physics.Raycast(shotPos, shotVector, out RaycastHit hit, 100f, physicsPlayer))
             {
-                if (hit.collider.TryGetComponent<IDamageable>(out var damageable))
-                {
-                    damageable.DoDamage(isMoving ? moveDamage : standingDamage, gameObject);
-                }
-
-                if (hit.collider.TryGetComponent<IPushable>(out var rb))
-                {
-                    rb.Push(shotVector * pushForce);
-                }
+                ShotOnTarget(isMoving, hit.transform);
             }
         }
 
