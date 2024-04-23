@@ -280,6 +280,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9067504280699869109, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
+      propertyPath: managedReferences[446011855542419485].Renderer
+      value: 
+      objectReference: {fileID: 4376992587426471219}
+    - target: {fileID: 9067504280699869109, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
       propertyPath: managedReferences[446011653118492687].BoundRenderer
       value: 
       objectReference: {fileID: 4376992587426471219}
