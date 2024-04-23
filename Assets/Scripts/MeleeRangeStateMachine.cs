@@ -1,44 +1,45 @@
-using Prototype;
-using UnityEngine;
-
-public class EmptyState : IState
+namespace Prototype
 {
-    public bool IsActive { get; set; }
-}
-public class MeleeRangeStateMachine : MonoStateMachine
-{
-    private MeleeAttackBehaviour m_MeleeAttack;
-    private CharacterGunBehaviourV2 m_RangeState;
-    private EmptyState m_EmptyState;
-    private void Awake()
+    public class EmptyState : IState
     {
-        m_MeleeAttack = GetComponent<MeleeAttackBehaviour>();
-        m_RangeState = GetComponent<CharacterGunBehaviourV2>();
-        m_EmptyState = new EmptyState();
-
-        m_RangeState.IsActive = false;
-        ChangeState(m_MeleeAttack);
+        public bool IsActive { get; set; }
     }
 
-    protected void Update()
+    public class MeleeRangeStateMachine : MonoStateMachine
     {
-        m_RangeState.FindTarget();
-        m_MeleeAttack.CheckMeleeTarget();
-        
-        var canRangeAttack = m_RangeState.HasTarget;
-        var canMeleeAttack = !canRangeAttack && m_MeleeAttack.CanAttack();
+        private MeleeAttackBehaviour m_MeleeAttack;
+        private CharacterGunBehaviourV2 m_RangeState;
+        private EmptyState m_EmptyState;
+        private void Awake()
+        {
+            m_MeleeAttack = GetComponent<MeleeAttackBehaviour>();
+            m_RangeState = GetComponent<CharacterGunBehaviourV2>();
+            m_EmptyState = new EmptyState();
 
-        if (canRangeAttack)
-        {
-            ChangeState(m_RangeState);
-        }
-        else if (canMeleeAttack)
-        {
+            m_RangeState.IsActive = false;
             ChangeState(m_MeleeAttack);
         }
-        else
+
+        protected void Update()
         {
-            ChangeState(m_EmptyState);
+            m_RangeState.FindTarget();
+            m_MeleeAttack.FindTarget();
+
+            var canRangeAttack = m_RangeState.HasTarget;
+            var canMeleeAttack = !canRangeAttack && m_MeleeAttack.CanAttack();
+
+            if (canRangeAttack)
+            {
+                ChangeState(m_RangeState);
+            }
+            else if (canMeleeAttack)
+            {
+                ChangeState(m_MeleeAttack);
+            }
+            else
+            {
+                ChangeState(m_EmptyState);
+            }
         }
     }
 }

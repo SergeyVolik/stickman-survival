@@ -44,6 +44,8 @@ namespace Prototype
                 }
                 else if(damageFeedback)
                 {
+                    var sourceForward = obj.Source.transform.forward;
+                    damageFeedback.transform.forward = -1 * sourceForward;
                     var floatingText = damageFeedback.GetFeedbackOfType<MMF_FloatingText>();
                     floatingText.Value = diff.ToString();
                     damageFeedback.StopFeedbacks();

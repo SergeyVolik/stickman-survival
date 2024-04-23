@@ -25,14 +25,8 @@ namespace Prototype
     {
         public GunType type = GunType.Handgun;
 
-        [FormerlySerializedAs("damage")]
-        public int moveDamage;
-
         public float pushForce;
         public float killPushForce;
-        [FormerlySerializedAs("shotInterval")]
-        public float moveShotInterval = 1;
-
         public int standingDamage;
         public float critMult = 1.1f;
         public float critChanse = 0.5f;
@@ -69,13 +63,13 @@ namespace Prototype
             m_EquipFeedback?.PlayFeedbacks();
         }
 
-        public void ShotOnTarget(bool isMoving, Transform target)
+        public void ShotOnTarget(Transform target)
         {
             m_ShotFeedback?.PlayFeedbacks();
 
             if (target.TryGetComponent<IDamageable>(out var damageable))
             {
-                var damage = isMoving ? moveDamage : standingDamage;
+                var damage = standingDamage;
                 damage = (int)(damage * damagMult);
                 TryCrit();
 
@@ -94,7 +88,7 @@ namespace Prototype
             }
         }
 
-        public void Shot(bool isMoving)
+        public void ShotForward()
         {
             m_ShotFeedback?.PlayFeedbacks();
 
@@ -104,7 +98,7 @@ namespace Prototype
 
             if (Physics.Raycast(shotPos, shotVector, out RaycastHit hit, 100f, physicsPlayer))
             {
-                ShotOnTarget(isMoving, hit.transform);
+                ShotOnTarget(hit.transform);
             }
         }
 

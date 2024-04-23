@@ -20,7 +20,6 @@ GameObject:
   - component: {fileID: 9132971593662365141}
   - component: {fileID: 8506036965265844151}
   - component: {fileID: 7844103313989067654}
-  - component: {fileID: 9023029212417317437}
   - component: {fileID: 1194683310575499144}
   - component: {fileID: 916704268945490547}
   m_Layer: 3
@@ -193,6 +192,7 @@ MonoBehaviour:
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 116736
+  attackDistance: 1
 --- !u!114 &8779009633079900590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,20 +294,6 @@ MonoBehaviour:
   funnelSimplification: 0
   slowWhenNotFacingTarget: 1
   animCompatibility: {fileID: 0}
---- !u!114 &9023029212417317437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282675239167010970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a4862040c3e7741913cd9246ed094d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <RequiredWeapon>k__BackingField: 0
-  <RequiredWeaponLevel>k__BackingField: 0
 --- !u!114 &1194683310575499144
 MonoBehaviour:
   m_ObjectHideFlags: 0

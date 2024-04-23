@@ -39,7 +39,7 @@ namespace Prototype
         RaycastHit[] m_RaycastHits;
         public LayerMask targetMask;
         public LayerMask wallLayerMask;
-
+        public float attackDistance = 1f;
         private void Awake()
         {
             m_Animator = GetComponentInChildren<CharacterZombieAnimator>();
@@ -74,6 +74,7 @@ namespace Prototype
         private void ZombieBehaviour_onDeath()
         {
             m_AiMovement.canMove = false;
+            enabled = false;
         }
 
         private void M_Animator_onEnableCollider()
@@ -127,17 +128,20 @@ namespace Prototype
 
         private void ChaseState()
         {
-            if (m_AiMovement.reachedDestination)
+            if (Vector3.Distance(m_TargetTransform.position, m_Transfrom.position) < attackDistance && m_AiMovement.reachedDestination)
             {
                 m_CurrentState = ZombiebehaviourState.Attacking;
                 return;
             }
 
+            m_AiMovement.canMove = true;
             m_AiMovement.destination = m_TargetTransform.position;
         }
 
         private void AttackState()
         {
+            m_AiMovement.canMove = false;
+
             if (!m_IsAttaking)
             {
                 m_Animator.Attack();

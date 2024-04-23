@@ -95,7 +95,7 @@ namespace Prototype
             }
         }
 
-        public void CheckMeleeTarget()
+        public void FindTarget()
         {
             var currentPos = m_Transform.position;
             m_TargetCollider = null;

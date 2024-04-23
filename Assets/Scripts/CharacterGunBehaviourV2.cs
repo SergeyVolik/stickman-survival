@@ -237,7 +237,7 @@ namespace Prototype
 
             if (!isMoving)
             {
-                float interval = currentGun.standingshotInterval/ m_Stats.attackSpeedMult;
+                float interval = currentGun.standingshotInterval / m_Stats.attackSpeedMult;
                 AimOnTarget();
 
                 if (HasTarget && IsLookingOnTarget())
@@ -248,7 +248,7 @@ namespace Prototype
                         currentGun.critChanse = m_Stats.critChance;
                         currentGun.critMult = m_Stats.critMult;
                         currentGun.damagMult = m_Stats.rangeWeaponDamageMult;
-                        currentGun.ShotOnTarget(isMoving, CurrentTarget);
+                        currentGun.ShotOnTarget(CurrentTarget);
                         m_CharacterAnimator.Shot();
                     }
                 }
@@ -266,7 +266,8 @@ namespace Prototype
                 var vector = point - currentPos;
                 m_Controller.AimVector = new Vector2(vector.x, vector.z);
             }
-            else {
+            else 
+            {
                 m_Controller.AimVector = new Vector2();
             }
         }
