@@ -22,6 +22,7 @@ namespace Prototype
 
         public Button finishButton;
         public GameObject finishButtonHolder;
+
         private void Awake()
         {
             finishButtonHolder.SetActive(false);
@@ -51,6 +52,7 @@ namespace Prototype
             var current = GetStringValue(m_CurrentResources.GetResource(arg1));
             item.SetText($"<size=100%>{current}<size=50%>/{req}");
 
+            item.addResource.gameObject.SetActive(req != current);
             if (m_CurrentResources.Equals(m_RequiredResources))
             {
                 finishButtonHolder.SetActive(true);

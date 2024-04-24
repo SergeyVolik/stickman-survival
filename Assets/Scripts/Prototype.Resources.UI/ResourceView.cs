@@ -23,14 +23,16 @@ namespace Prototype
 
         private void UpdateResourceUI(ResourceTypeSO arg1, int arg2)
         {
+            bool activate = arg2 > 0;
             if (uiItems.TryGetValue(arg1, out var item))
             {
                 item.SetText(TextUtils.IntToText(arg2));
-                item.DoAnimation();
+                item.gameObject.SetActive(activate);
+                item.DoAnimation();              
             }
             else
             {
-                SetupUIItem(arg1, arg2);
+                SetupUIItem(arg1, arg2);               
             }
         }
 
@@ -44,12 +46,15 @@ namespace Prototype
 
         private ResourceUIItem SetupUIItem(ResourceTypeSO type, int count)
         {
+            bool activate = count > 0;
+
             var uiItem = GameObject
                 .Instantiate(type.ResourceUIItem, transform)
                 .GetComponent<ResourceUIItem>();
 
             uiItem.SetText(TextUtils.IntToText(count));
-
+            uiItem.gameObject.SetActive(activate);
+            uiItem.DoAnimation();
             uiItem.SetSprite(type.resourceIcon, type.resourceColor);
             uiItems.Add(type, uiItem);
 
