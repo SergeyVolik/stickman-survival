@@ -12,7 +12,7 @@ public class QuestQueue : MonoBehaviour
         SetupCurrentQuest();      
     }
 
-    private BaseQuest GetCurrentQuest() => currentQuest > quests.Length-1 ? null : quests[currentQuest];
+    public BaseQuest GetCurrentQuest() => currentQuest > quests.Length-1 ? null : quests[currentQuest];
     private void SetupCurrentQuest()
     {
         if (GetCurrentQuest() == null)
