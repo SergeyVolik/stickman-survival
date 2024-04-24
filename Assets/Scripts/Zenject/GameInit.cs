@@ -11,7 +11,6 @@ namespace Prototype
         public Vector2 ReadMoveInput();
         public void Enable();
         public void Disable();
-
     }
 
     public class PlayerInputReader : IPlayerInputReader
@@ -39,40 +38,6 @@ namespace Prototype
         }
     }
 
-    public class EnemySpawnFactory
-    {
-        GameObject _zombieEnemy;
-        GameObject _bigEnemy;
-        GameObject _slowZombieEnemy;
-
-        private DiContainer m_Conteiner;
-
-        public GameObject SpawnDefaultZombie(Vector3 spawnPos)
-        {
-            var zombieInstance = m_Conteiner.InstantiatePrefab(_zombieEnemy, spawnPos, Quaternion.identity, null);
-            return zombieInstance;
-        }
-
-        public GameObject SpawnBigZombie(Vector3 spawnPos)
-        {
-            var zombieInstance = m_Conteiner.InstantiatePrefab(_bigEnemy, spawnPos, Quaternion.identity, null);
-            return zombieInstance;
-        }
-
-        public GameObject SpawnSlowZombie(Vector3 spawnPos)
-        {
-            var zombieInstance = m_Conteiner.InstantiatePrefab(_slowZombieEnemy, spawnPos, Quaternion.identity, null);
-            return zombieInstance;
-        }
-
-        public EnemySpawnFactory(GameObject zombieEnemy, GameObject bigZombie, GameObject slowZombieEnemy, DiContainer container) {
-            m_Conteiner = container;
-            _slowZombieEnemy = slowZombieEnemy;
-            _zombieEnemy = zombieEnemy;
-            _bigEnemy = bigZombie;
-        }
-    }
-
     public class GameInit : MonoInstaller
     {
         public GameObject PlayerPrefab;
@@ -91,13 +56,15 @@ namespace Prototype
         public WorldToScreenUIManager WorldToScreenUIManager;
         public ActivateByDistanceToPlayerManager ActivateByDistanceToPlayerManager;
         public AdsManager AdsManager;
+        public HatFactory HatFactory;
+        public EnemySpawnFactory EnemySpawnFactory;
         public override void InstallBindings()
         {
-            var spawnFactory = new EnemySpawnFactory(zombiePrefab, bigZombiePrefab, slowZombiePrefab, Container);
             var input = new PlayerInputReader(Joystick);
             m_playerSpawnFactory = new PlayerSpawnFactory(PlayerPrefab, Container);
             var wsm = new WorldSpaceMessageFactory(m_WSMPrefab);
 
+            Container.Bind<HatFactory>().FromInstance(HatFactory);
             Container.Bind<IAdsPlayer>().FromInstance(AdsManager);
             Container.Bind<ActivateByDistanceToPlayerManager>().FromInstance(ActivateByDistanceToPlayerManager);
             Container.Bind<WorldToScreenUIManager>().FromInstance(WorldToScreenUIManager);
@@ -107,7 +74,7 @@ namespace Prototype
             Container.Bind<ResourceTransferManager>().FromInstance(m_Transfer);
             Container.Bind<IPlayerFactory>().FromInstance(m_playerSpawnFactory);
             Container.Bind<IPlayerInputReader>().FromInstance(input);
-            Container.Bind<EnemySpawnFactory>().FromInstance(spawnFactory);
+            Container.Bind<EnemySpawnFactory>().FromInstance(EnemySpawnFactory);
         }
 
         public override void Start()

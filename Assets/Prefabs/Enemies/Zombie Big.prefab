@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 7844103313989067654}
   - component: {fileID: 1194683310575499144}
   - component: {fileID: 6325295629963266499}
+  - component: {fileID: 8462203192556438557}
   m_Layer: 3
   m_Name: Zombie Big
   m_TagString: Untagged
@@ -318,6 +319,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Target: {fileID: 7361260954078715554}
+--- !u!114 &8462203192556438557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282675239167010970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e61f92c1f5bc0f469997f8874b1e9e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HatSpawnPoint: {fileID: 5763147721295815226}
+  hatType: 0
 --- !u!1 &6484363818494222209
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,6 +876,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c61da763b43c243ac1d337e867936a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &5763147721295815226 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5307853636891982010, guid: 176658e06a6cf3042961b53d4592a617,
+    type: 3}
+  m_PrefabInstance: {fileID: 455875748067433088}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5500640186294220349
 PrefabInstance:
   m_ObjectHideFlags: 0

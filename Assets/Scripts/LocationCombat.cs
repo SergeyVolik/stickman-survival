@@ -18,6 +18,8 @@ namespace Prototype
         public Transform spawnPoint;
         public EnemyDropMode dropMode;
         public ResourceContainer dropOverride;
+        public bool spawnHat;
+        public HatType hatType;
     }
 
     public enum EnemyDropMode
@@ -124,7 +126,7 @@ namespace Prototype
             switch (currentSpawn.enemyType)
             {
                 case EnemyType.RunnerZombie:
-                    instance = m_spawnFactory.SpawnDefaultZombie(spawnPoint.position);
+                    instance = m_spawnFactory.SpawnRunnerZombie(spawnPoint.position);
                     break;
                 case EnemyType.BigZombie:
                     instance = m_spawnFactory.SpawnBigZombie(spawnPoint.position);
@@ -157,6 +159,11 @@ namespace Prototype
                     break;
                 default:
                     break;
+            }
+
+            if (currentSpawn.spawnHat && instance.TryGetComponent<HatSetup>(out var hatSetup))
+            {
+                hatSetup.SpawnHat(currentSpawn.hatType);
             }
 
             return instance;
