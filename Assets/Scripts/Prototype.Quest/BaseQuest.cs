@@ -20,6 +20,13 @@ namespace Prototype
         public IEnumerable<Transform> GetQuestTargetObjects();
     }
 
+    public enum TargetPonterMode
+    {
+        None,
+        One,
+        All
+    }
+
     public abstract class BaseQuest : MonoBehaviour, IQuest
     {
         public event Action onQuestFinished;
@@ -30,7 +37,9 @@ namespace Prototype
         private GameObject questUI;
         private CameraController m_cameraContr;
         private IPlayerInputReader m_input;
-
+        public TargetPonterMode pointerMode;
+        public bool overridePointrColor;
+        public Color pointerColor;
         [field: SerializeField]
         public string QuestName { get; set; }
 

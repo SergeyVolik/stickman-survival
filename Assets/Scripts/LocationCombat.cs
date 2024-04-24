@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -110,13 +112,25 @@ namespace Prototype
                 var seeker = enemyInstance.GetComponent<ITargetSeeker>();
                 seeker.SetTarget(m_playerFactory.CurrentPlayerUnit.transform);
                 currentSpawnIndex++;
-
+              
                 if (currWave.Spawns.Length <= currentSpawnIndex)
                 {
                     currentWaveIndex++;
                     currentSpawnIndex = 0;
                 }
             }
+        }
+
+        List<Transform> aliveUnits = new List<Transform>();
+
+        public IEnumerable<Transform> GetAllAliveUnits()
+        {
+            return aliveUnits;
+        }
+
+        public Transform GetAliveUnit()
+        {
+            return aliveUnits.Count == 0 ? null : aliveUnits[0];
         }
 
         private GameObject ExecuteSpawn(SpawnData currentSpawn)
@@ -139,7 +153,12 @@ namespace Prototype
             }
             instance.transform.forward = spawnPoint.forward;
 
-            instance.GetComponent<HealthData>().onDeath += LocationCombat_onDeath;
+            aliveUnits.Add(instance.transform);
+            instance.GetComponent<HealthData>().onDeath += () => {
+                alreadyKilled++;
+                onEnemyKilled.Invoke();
+                aliveUnits.Remove(instance.transform);
+            };
             switch (currentSpawn.dropMode)
             {
                 case EnemyDropMode.None:
@@ -166,13 +185,8 @@ namespace Prototype
                 hatSetup.SpawnHat(currentSpawn.hatType);
             }
 
+          
             return instance;
-        }
-
-        private void LocationCombat_onDeath()
-        {
-            alreadyKilled++;
-            onEnemyKilled.Invoke();
         }
     }
 }

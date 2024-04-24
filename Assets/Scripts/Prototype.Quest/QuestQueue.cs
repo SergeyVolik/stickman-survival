@@ -6,7 +6,7 @@ public class QuestQueue : MonoBehaviour
     public BaseQuest[] quests;
     public int currentQuest;
     public Transform questUISpawnPoint;
-
+  
     private void Awake()
     {
         SetupCurrentQuest();      

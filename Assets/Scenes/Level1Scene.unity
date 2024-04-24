@@ -4484,7 +4484,7 @@ Transform:
   m_GameObject: {fileID: 171262869}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.84164804, z: -0, w: 0.5400264}
-  m_LocalPosition: {x: -15.05, y: 0, z: -24.34}
+  m_LocalPosition: {x: -10.55, y: 0, z: -11.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6242,6 +6242,9 @@ MonoBehaviour:
       m_Calls: []
   showOnStart: 0
   questUI: {fileID: 6932841070065927101, guid: 048c42f6b64808e4893d7554594947ec, type: 3}
+  pointerMode: 2
+  overridePointrColor: 1
+  pointerColor: {r: 1, g: 0, b: 0, a: 1}
   <QuestName>k__BackingField: Kill Zombies
   <QuestDescription>k__BackingField: 
   combat: {fileID: 146622016}
@@ -6882,7 +6885,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd1b4f2866d3ef04ea75eb7b4cbf2fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questPointer: {fileID: 416736421}
+  defaultPointerColor: {r: 1, g: 0.7607843, b: 0, a: 0.74509805}
+  questPointerPrefab: {fileID: 1324387361199348454, guid: 0989e4f7e16bd1d47b89207f41fd7fbe,
+    type: 3}
+  pointersRoot: {fileID: 1335896791}
 --- !u!1 &261682151
 GameObject:
   m_ObjectHideFlags: 0
@@ -8553,6 +8559,9 @@ MonoBehaviour:
       m_Calls: []
   showOnStart: 0
   questUI: {fileID: 6932841070065927101, guid: 9fd44da878f4e5f4db42dddd0faf762f, type: 3}
+  pointerMode: 0
+  overridePointrColor: 0
+  pointerColor: {r: 0, g: 0, b: 0, a: 0}
   <QuestName>k__BackingField: Find Wood
   <QuestDescription>k__BackingField: 
   resourcesToFind: {fileID: 11400000, guid: 05f855fffb8cb5449aa06ca6e0028d8e, type: 2}
@@ -11414,81 +11423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c0b2180a8dafa4b9eae244b1021013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &416736420
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 416736421}
-  - component: {fileID: 416736423}
-  - component: {fileID: 416736422}
-  m_Layer: 5
-  m_Name: QuestPointer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &416736421
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416736420}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 981773064}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 35, y: 35}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &416736422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416736420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.7607843, b: 0, a: 0.77254903}
-  m_RaycastTarget: 0
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 84487d73ca4b791498332d8f6858417f, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &416736423
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416736420}
-  m_CullTransparentMesh: 1
 --- !u!1001 &421104000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18694,6 +18628,9 @@ MonoBehaviour:
       m_Calls: []
   showOnStart: 0
   questUI: {fileID: 6932841070065927101, guid: 048c42f6b64808e4893d7554594947ec, type: 3}
+  pointerMode: 2
+  overridePointrColor: 1
+  pointerColor: {r: 1, g: 0, b: 0, a: 1}
   <QuestName>k__BackingField: Kill Zombies
   <QuestDescription>k__BackingField: 
   combat: {fileID: 119649356}
@@ -23038,6 +22975,9 @@ MonoBehaviour:
       m_Calls: []
   showOnStart: 0
   questUI: {fileID: 6932841070065927101, guid: 048c42f6b64808e4893d7554594947ec, type: 3}
+  pointerMode: 1
+  overridePointrColor: 0
+  pointerColor: {r: 0, g: 0, b: 0, a: 0}
   <QuestName>k__BackingField: Destory Objects
   <QuestDescription>k__BackingField: 
   objectsToDestory:
@@ -24889,7 +24829,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.415373, y: 0, z: 0, w: 0.9096512}
-  m_LocalPosition: {x: 0, y: 19.5, z: -16.9}
+  m_LocalPosition: {x: 0, y: 12.6, z: -10.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26851,7 +26791,7 @@ RectTransform:
   - {fileID: 2116735322}
   - {fileID: 2120823616}
   - {fileID: 1476599666}
-  - {fileID: 416736421}
+  - {fileID: 1335896791}
   m_Father: {fileID: 2016981001}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -33272,6 +33212,9 @@ MonoBehaviour:
       m_Calls: []
   showOnStart: 0
   questUI: {fileID: 6932841070065927101, guid: 17ffc9932f6eaf149aee5dd99a88b71e, type: 3}
+  pointerMode: 1
+  overridePointrColor: 0
+  pointerColor: {r: 0, g: 0, b: 0, a: 0}
   <QuestName>k__BackingField: Collect Uzi
   <QuestDescription>k__BackingField: 
   CollectableObjectInstance: {fileID: 1385098611}
@@ -35317,6 +35260,9 @@ MonoBehaviour:
       m_Calls: []
   showOnStart: 0
   questUI: {fileID: 6932841070065927101, guid: 17ffc9932f6eaf149aee5dd99a88b71e, type: 3}
+  pointerMode: 1
+  overridePointrColor: 0
+  pointerColor: {r: 0, g: 0, b: 0, a: 0}
   <QuestName>k__BackingField: Collect Handgun
   <QuestDescription>k__BackingField: 
   CollectableObjectInstance: {fileID: 1317441023}
@@ -35489,6 +35435,9 @@ MonoBehaviour:
         m_CallState: 2
   showOnStart: 0
   questUI: {fileID: 6932841070065927101, guid: 048c42f6b64808e4893d7554594947ec, type: 3}
+  pointerMode: 1
+  overridePointrColor: 0
+  pointerColor: {r: 0, g: 0, b: 0, a: 0}
   <QuestName>k__BackingField: Clear Path
   <QuestDescription>k__BackingField: 
   objectsToDestory:
@@ -35579,6 +35528,9 @@ MonoBehaviour:
         m_CallState: 2
   showOnStart: 0
   questUI: {fileID: 6932841070065927101, guid: 048c42f6b64808e4893d7554594947ec, type: 3}
+  pointerMode: 1
+  overridePointrColor: 0
+  pointerColor: {r: 0, g: 0, b: 0, a: 0}
   <QuestName>k__BackingField: Clear Path
   <QuestDescription>k__BackingField: 
   objectsToDestory:
@@ -35614,12 +35566,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1476599666}
+  m_Father: {fileID: 981773064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0.22216797}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1336438617
 PrefabInstance:
@@ -39252,7 +39204,6 @@ RectTransform:
   m_Children:
   - {fileID: 432517485}
   - {fileID: 495960548}
-  - {fileID: 1335896791}
   - {fileID: 1099397417}
   - {fileID: 1531809216}
   - {fileID: 489536822}
@@ -45346,6 +45297,9 @@ MonoBehaviour:
       m_Calls: []
   showOnStart: 0
   questUI: {fileID: 6932841070065927101, guid: 048c42f6b64808e4893d7554594947ec, type: 3}
+  pointerMode: 2
+  overridePointrColor: 1
+  pointerColor: {r: 1, g: 0, b: 0, a: 1}
   <QuestName>k__BackingField: Kill Zombies
   <QuestDescription>k__BackingField: 
   combat: {fileID: 1238308646}
@@ -46721,6 +46675,9 @@ MonoBehaviour:
       m_Calls: []
   showOnStart: 0
   questUI: {fileID: 6932841070065927101, guid: 17ffc9932f6eaf149aee5dd99a88b71e, type: 3}
+  pointerMode: 1
+  overridePointrColor: 0
+  pointerColor: {r: 0, g: 0, b: 0, a: 0}
   <QuestName>k__BackingField: Collect Melee Weapon
   <QuestDescription>k__BackingField: 
   CollectableObjectInstance: {fileID: 755420371}
@@ -46852,6 +46809,9 @@ MonoBehaviour:
       m_Calls: []
   showOnStart: 0
   questUI: {fileID: 6932841070065927101, guid: 9fd44da878f4e5f4db42dddd0faf762f, type: 3}
+  pointerMode: 0
+  overridePointrColor: 0
+  pointerColor: {r: 0, g: 0, b: 0, a: 0}
   <QuestName>k__BackingField: Find Wood
   <QuestDescription>k__BackingField: 
   resourcesToFind: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a, type: 2}
@@ -48452,6 +48412,9 @@ MonoBehaviour:
       m_Calls: []
   showOnStart: 0
   questUI: {fileID: 6932841070065927101, guid: 048c42f6b64808e4893d7554594947ec, type: 3}
+  pointerMode: 2
+  overridePointrColor: 1
+  pointerColor: {r: 1, g: 0, b: 0, a: 1}
   <QuestName>k__BackingField: Kill Zombies
   <QuestDescription>k__BackingField: 
   combat: {fileID: 500751169}
@@ -48975,6 +48938,9 @@ MonoBehaviour:
       m_Calls: []
   showOnStart: 1
   questUI: {fileID: 6932841070065927101, guid: 048c42f6b64808e4893d7554594947ec, type: 3}
+  pointerMode: 1
+  overridePointrColor: 0
+  pointerColor: {r: 0, g: 0, b: 0, a: 0}
   <QuestName>k__BackingField: Clear Path
   <QuestDescription>k__BackingField: 
   objectsToDestory:
@@ -50936,6 +50902,7 @@ SceneRoots:
   - {fileID: 1965904531}
   - {fileID: 829694069}
   - {fileID: 741318107}
+  - {fileID: 281479397}
   - {fileID: 475377383}
   - {fileID: 2001870048}
   - {fileID: 232317975}
@@ -50955,7 +50922,6 @@ SceneRoots:
   - {fileID: 1829001046}
   - {fileID: 1097912659}
   - {fileID: 705507995}
-  - {fileID: 281479397}
   - {fileID: 80628720}
   - {fileID: 324201979}
   - {fileID: 8153510158431092616}

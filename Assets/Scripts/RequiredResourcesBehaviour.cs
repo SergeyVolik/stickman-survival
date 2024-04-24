@@ -19,6 +19,7 @@ namespace Prototype
         public RequiredResourceView requiredResourceUIViewPrefab;
 
         private RequiredResourceView m_requiredResourceUIViewInstance;
+        private Vector3 m_InitUiScale;
         public Transform uiBindPoint;
         private WorldToScreenUIManager m_wts;
         private PlayerResources m_playerResources;
@@ -27,6 +28,7 @@ namespace Prototype
         public event Action onFinished = delegate { };
         public UnityEvent onFinishedUI;
         private TweenerCore<Vector3, Vector3, VectorOptions> m_HideUiTween;
+        private bool m_Finished;
 
         [Inject]
         void Construct(WorldToScreenUIManager wts, PlayerResources playerResources)
@@ -45,6 +47,7 @@ namespace Prototype
       
 
             m_requiredResourceUIViewInstance = GameObject.Instantiate(requiredResourceUIViewPrefab, m_wts.Root);
+            m_InitUiScale = m_requiredResourceUIViewInstance.transform.localScale;
             m_requiredResourceUIViewInstance.onFinished += Finish;
             m_requiredResourceUIViewInstance.transform.localScale = Vector3.zero;
 
@@ -70,6 +73,7 @@ namespace Prototype
 
         private void Finish()
         {
+            m_Finished = true;
             DeactuvateUI(() => { gameObject.SetActive(false); });
             onFinished.Invoke();
             onFinishedUI.Invoke();                       
@@ -77,7 +81,7 @@ namespace Prototype
 
         private bool Finished()
         {
-            return requiredResources.Equals(m_RequiredCurrentResources);
+            return m_Finished;
         }
 
         private void OpenUiTrigger_onTriggerExit(Collider obj)
@@ -114,7 +118,7 @@ namespace Prototype
                 });
             }
 
-            m_requiredResourceUIViewInstance.transform.DOScale(1, 0.5f).SetEase(Ease.OutBack);
+            m_requiredResourceUIViewInstance.transform.DOScale(m_InitUiScale, 0.5f).SetEase(Ease.OutBack);
         }
 
         private void OpenUiTrigger_onTriggerEnter(Collider obj)

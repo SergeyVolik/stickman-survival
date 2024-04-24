@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using UnityEngine;
+
 namespace Prototype
 {
     public class CompleteCombatQuest : BaseQuest, IDestroyObjectsQuest
@@ -29,6 +32,16 @@ namespace Prototype
         public int TargetKills()
         {
             return combat.TargetKills;
+        }
+
+        public override Transform GetQuestTargetObject()
+        {
+            return combat.GetAliveUnit();
+        }
+
+        public override IEnumerable<Transform> GetQuestTargetObjects()
+        {
+            return combat.GetAllAliveUnits();
         }
     }
 }

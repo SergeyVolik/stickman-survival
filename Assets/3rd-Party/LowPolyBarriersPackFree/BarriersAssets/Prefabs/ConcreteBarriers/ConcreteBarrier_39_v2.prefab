@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3647109984710332788}
   - component: {fileID: 3647109984710332789}
   - component: {fileID: 6039450493396793198}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ConcreteBarrier_39_v2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
