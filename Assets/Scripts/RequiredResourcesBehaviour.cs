@@ -13,11 +13,8 @@ namespace Prototype
     {
         public ResourceContainer requiredResources;
         private ResourceContainer m_RequiredCurrentResources;
-
-
         public PhysicsCallbacks openUiTrigger;
         public RequiredResourceView requiredResourceUIViewPrefab;
-
         private RequiredResourceView m_requiredResourceUIViewInstance;
         private Vector3 m_InitUiScale;
         public Transform uiBindPoint;
@@ -29,7 +26,7 @@ namespace Prototype
         public UnityEvent onFinishedUI;
         private TweenerCore<Vector3, Vector3, VectorOptions> m_HideUiTween;
         private bool m_Finished;
-
+        public string uiTitle;
         [Inject]
         void Construct(WorldToScreenUIManager wts, PlayerResources playerResources)
         {
@@ -44,13 +41,11 @@ namespace Prototype
           
             m_RequiredCurrentResources = new ResourceContainer();
 
-      
-
             m_requiredResourceUIViewInstance = GameObject.Instantiate(requiredResourceUIViewPrefab, m_wts.Root);
+            m_requiredResourceUIViewInstance.title.text = uiTitle;
             m_InitUiScale = m_requiredResourceUIViewInstance.transform.localScale;
             m_requiredResourceUIViewInstance.onFinished += Finish;
             m_requiredResourceUIViewInstance.transform.localScale = Vector3.zero;
-
             m_requiredResourceUIViewInstance.onItemAdded += M_requiredResourceUIViewInstance_onItemAdded;
             m_requiredResourceUIViewInstance.Bind(requiredResources, m_RequiredCurrentResources);
         }

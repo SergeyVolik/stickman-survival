@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ namespace Prototype
 {
     public class RequiredResourceView : MonoBehaviour
     {
+        public TextMeshProUGUI title;
+
         public Transform itemParent;
         private ResourceContainer m_CurrentResources;
         private ResourceContainer m_RequiredResources;
@@ -18,10 +21,10 @@ namespace Prototype
         public event Action<ResourceTypeSO, RquiredResourceUIItem> onItemAdded = delegate { };
 
         public Button finishButton;
-
+        public GameObject finishButtonHolder;
         private void Awake()
         {
-            finishButton.gameObject.SetActive(false);
+            finishButtonHolder.SetActive(false);
             finishButton.onClick.AddListener(() => onFinished?.Invoke());
         }
 
@@ -50,7 +53,7 @@ namespace Prototype
 
             if (m_CurrentResources.Equals(m_RequiredResources))
             {
-                finishButton.gameObject.SetActive(true);
+                finishButtonHolder.SetActive(true);
             }
         }
 
@@ -72,7 +75,7 @@ namespace Prototype
             var uiItem = GameObject
                 .Instantiate(m_ResourceUIItemPrefab, itemParent)
                 .GetComponent<RquiredResourceUIItem>();
-            uiItem.transform.SetAsFirstSibling();
+            finishButtonHolder.transform.SetAsLastSibling();
             uiItems.Add(type, uiItem);
             uiItem.SetSprite(type.resourceIcon, type.resourceColor);
             UpdateResourceUI(type, count);
