@@ -3,8 +3,6 @@ using Zenject;
 
 namespace Prototype
 {
-   
-
     public class ProjectContextInstaller : MonoInstaller
     {
         public PlayerResources m_PlayerResources;

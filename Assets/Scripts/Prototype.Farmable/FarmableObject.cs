@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -34,7 +35,8 @@ namespace Prototype
 
         [SerializeField]
         private ResourceContainer m_StartResource;
-
+        [Range(0, 1)]
+        public float partsVisualizationStartPercent = 1f;
         [SerializeField]
         private ResourceContainer m_OnDeathDrop;
 
@@ -55,7 +57,6 @@ namespace Prototype
             m_Health.onHealthChanged += M_Health_onHealthChaged;
             m_Health.onDeath += M_Health_onDeath;
             m_Health.onResurrected += M_Health_onResurrected;
-
             m_DropExecutor = GetComponent<DropExecutor>();
         }
 
@@ -123,8 +124,18 @@ namespace Prototype
             else
             {
                 var currentHealthPercent = m_Health.currentHealth / (float)m_Health.maxHealth;
+
+                float visualizationPercent = currentHealthPercent;
+                if (visualizationPercent >= partsVisualizationStartPercent)
+                {
+                    visualizationPercent = 1f;
+                }
+                else {
+                    visualizationPercent = math.remap(0, partsVisualizationStartPercent, 0, 1, visualizationPercent);
+                }
+
                 var lastIndex = m_Parts.Length - 1;
-                int ActiveParts = lastIndex - (int)(currentHealthPercent * lastIndex);
+                int ActiveParts = lastIndex - (int)(visualizationPercent * lastIndex);
                
                 bool partRemoved = false;
 

@@ -26,6 +26,18 @@ namespace Prototype
             findResUI.UpdateDescription();
         }
 
+        private void OnDestroy()
+        {
+            if(m_resoruces != null)
+            m_resoruces.resources.onResourceChanged -= Resources_onResourceChanged;
+        }
+
+        public override void FinishQuest()
+        {
+            m_resoruces.resources.onResourceChanged -= Resources_onResourceChanged;
+            base.FinishQuest();
+        }
+
         private void Resources_onResourceChanged(ResourceTypeSO arg1, int arg2)
         {
             UpdateQuest();

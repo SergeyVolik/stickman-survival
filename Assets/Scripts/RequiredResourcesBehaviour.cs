@@ -74,7 +74,12 @@ namespace Prototype
         private void Finish()
         {
             m_Finished = true;
-            DeactuvateUI(() => { gameObject.SetActive(false); });
+            DeactuvateUI();
+
+            transform.DOScale(0, 0.5f).OnComplete(() => {
+                gameObject.SetActive(false);
+            });
+
             onFinished.Invoke();
             onFinishedUI.Invoke();                       
         }

@@ -50,8 +50,28 @@ PrefabInstance:
       objectReference: {fileID: 9131004919786408386}
     - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
-      propertyPath: managedReferences[446011855542419486].Active
+      propertyPath: managedReferences[446011653118492685].Active
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492686].Active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011855542419486].Active
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492682].MaxPitch
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492682].MinPitch
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
@@ -68,6 +88,16 @@ PrefabInstance:
       propertyPath: managedReferences[446011855542419486].Renderer
       value: 
       objectReference: {fileID: 9131004919786408386}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492682].MaxVolume
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492682].MinVolume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: managedReferences[446011653118492681].ForceColor
@@ -110,9 +140,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
+      propertyPath: managedReferences[446011653118492682].RandomSfx.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
       propertyPath: managedReferences[446011653118492685].ShakeMainDirection.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2146437391686626598, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011653118492682].RandomSfx.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 56aadcd5a79dc5047a1fbb1f2d811c5a, type: 3}
     - target: {fileID: 4316624712208228878, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: managedReferences[446011923382665220].Renderer

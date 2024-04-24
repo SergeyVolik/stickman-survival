@@ -48,13 +48,13 @@ namespace Prototype
                     body.AddForce(vec * gun.killPushForce, mode: ForceMode.Impulse);
                 }
 
-                DOVirtual.DelayedCall(0.3f, () =>
+                DOVirtual.DelayedCall(Random.Range(0.1f, 0.3f) , () =>
                 {
                     if (hatSetup && hatSetup.CurrentHat)
                     {
                         hatSetup.CurrentHat.Drop();
                     }
-                });             
+                });
 
                 if (outline)
                 {

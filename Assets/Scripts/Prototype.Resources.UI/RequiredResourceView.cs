@@ -35,6 +35,11 @@ namespace Prototype
             m_RequiredResources.onResourceChanged += UpdateResourceUI;
         }
 
+        private void OnDisable()
+        {
+            m_CurrentResources.onResourceChanged -= UpdateResourceUI;
+            m_RequiredResources.onResourceChanged -= UpdateResourceUI;
+        }
         private void UpdateResourceUI(ResourceTypeSO arg1, int arg2)
         {
             uiItems.TryGetValue(arg1, out var item);
