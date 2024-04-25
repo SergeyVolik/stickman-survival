@@ -1,41 +1,68 @@
-using Prototype;
 using UnityEngine;
+using Zenject;
 
-public class QuestQueue : MonoBehaviour
+namespace Prototype
 {
-    public BaseQuest[] quests;
-    public int currentQuest;
-    public Transform questUISpawnPoint;
-  
-    private void Awake()
+    public class QuestQueue : MonoBehaviour
     {
-        SetupCurrentQuest();      
-    }
+        public BaseQuest[] quests;
+        public int currentQuest;
+        public Transform questUISpawnPoint;
+        private IPlayerFactory m_playerFactory;
 
-    public BaseQuest GetCurrentQuest() => currentQuest > quests.Length-1 ? null : quests[currentQuest];
-    private void SetupCurrentQuest()
-    {
-        if (GetCurrentQuest() == null)
-            return;
+        private void Awake()
+        {
+            questUISpawnPoint.gameObject.SetActive(false);
+        }
+        [Inject]
+        void Construct(IPlayerFactory playerFactory)
+        {
+            m_playerFactory = playerFactory;
+            m_playerFactory.onPlayerSpawned += M_playerFactory_onPlayerSpawned;
+        }
 
-        quests[currentQuest].Setup(questUISpawnPoint);
-        quests[currentQuest].onQuestFinished += NextQuest;
-    }
+        private void M_playerFactory_onPlayerSpawned(GameObject obj)
+        {
+            StartQuests();
+        }
 
-    public void ShowCurrentQuestTarget()
-    {
-        GetCurrentQuest()?.ShowTarget();
-    }
-    private void ClearPrevQuest()
-    {
-        quests[currentQuest].Clear();
-        quests[currentQuest].onQuestFinished-= NextQuest;
-    }
+        private void OnDestroy()
+        {
+            m_playerFactory.onPlayerSpawned -= M_playerFactory_onPlayerSpawned;
+        }
 
-    private void NextQuest()
-    {
-        ClearPrevQuest();
-        currentQuest++;
-        SetupCurrentQuest();
+        public void StartQuests()
+        {
+            questUISpawnPoint.gameObject.SetActive(true);
+            currentQuest = 0;
+            SetupCurrentQuest();
+        }
+
+        public BaseQuest GetCurrentQuest() => currentQuest > quests.Length - 1 ? null : quests[currentQuest];
+        private void SetupCurrentQuest()
+        {
+            if (GetCurrentQuest() == null)
+                return;
+
+            quests[currentQuest].Setup(questUISpawnPoint);
+            quests[currentQuest].onQuestFinished += NextQuest;
+        }
+
+        public void ShowCurrentQuestTarget()
+        {
+            GetCurrentQuest()?.ShowTarget();
+        }
+        private void ClearPrevQuest()
+        {
+            quests[currentQuest].Clear();
+            quests[currentQuest].onQuestFinished -= NextQuest;
+        }
+
+        private void NextQuest()
+        {
+            ClearPrevQuest();
+            currentQuest++;
+            SetupCurrentQuest();
+        }
     }
 }

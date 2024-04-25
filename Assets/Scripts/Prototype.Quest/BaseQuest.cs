@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,9 @@ namespace Prototype
         public event Action onQuestFinished;
         public event Action onQuestChanged;
         public UnityEvent onQuestFinishedUE;
-        public bool showOnStart;
+        public bool highlightOnStart;
+        public float highlightDelay;
+
         [SerializeField]
         private GameObject questUI;
         private CameraController m_cameraContr;
@@ -102,9 +105,13 @@ namespace Prototype
                 ShowTarget();
             });
 
-            if (showOnStart)
+            if (highlightOnStart)
             {
-                ShowTarget();
+                DOVirtual.DelayedCall(highlightDelay, () =>
+                {
+                    if(!IsFinished())
+                        ShowTarget();
+                });        
             }
         }
 

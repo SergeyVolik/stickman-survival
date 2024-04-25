@@ -46,21 +46,19 @@ namespace Prototype
 
         private void Update()
         {
-            if (m_PlayerFactory.CurrentPlayerUnit)
+            if (m_ForceCameraTarget)
             {
-                if (m_ForceCameraTarget)
-                {
-                    var unitPos = m_ForceCameraTarget.position;
-                    m_CameraTarget.position = Vector3.Lerp(m_CameraTarget.position, unitPos, Time.deltaTime * m_CurrentlookAheadSpeed);
-                }
-                else {
-                    var uniTrans = m_PlayerFactory.CurrentPlayerUnit.transform;
-                    var unitPos = uniTrans.position;
-                    var unitForward = uniTrans.forward;
-                    var offset = unitForward * m_CurrentlookAheadOffset;
+                var unitPos = m_ForceCameraTarget.position;
+                m_CameraTarget.position = Vector3.Lerp(m_CameraTarget.position, unitPos, Time.deltaTime * m_CurrentlookAheadSpeed);
+            }
+            else if (m_PlayerFactory.CurrentPlayerUnit)
+            {            
+                var uniTrans = m_PlayerFactory.CurrentPlayerUnit.transform;
+                var unitPos = uniTrans.position;
+                var unitForward = uniTrans.forward;
+                var offset = unitForward * m_CurrentlookAheadOffset;
 
-                    m_CameraTarget.position = Vector3.Lerp(m_CameraTarget.position, unitPos + offset, Time.deltaTime * m_CurrentlookAheadSpeed);
-                }             
+                m_CameraTarget.position = Vector3.Lerp(m_CameraTarget.position, unitPos + offset, Time.deltaTime * m_CurrentlookAheadSpeed);                         
             }
         }
 
@@ -128,10 +126,17 @@ namespace Prototype
         }
 
         private Stack<Transform> m_ForcedTargets = new Stack<Transform>();
-        public void PushTarget(Transform newTarget)
+        public void PushTarget(Transform newTarget, bool teleport = false)
         {
             if (newTarget == null)
                 return;
+
+            if (m_CurrentCamera && teleport)
+            {
+                m_CurrentCamera.SetActive(false);
+                m_CameraTarget.position = newTarget.position;
+                m_CurrentCamera.SetActive(true);
+            }
 
             m_ForceCameraTarget = newTarget;
             m_ForcedTargets.Push(newTarget);

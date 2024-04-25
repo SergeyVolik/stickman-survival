@@ -1,4 +1,5 @@
 using Prototype;
+using System;
 using UnityEngine;
 
 namespace Prototype
@@ -11,9 +12,16 @@ namespace Prototype
         public float steeringRange = 30;
         public float steeringRangeAtMaxSpeed = 10;
         public float centreOfGravityOffset = -1f;
-
+        public float vInput = 0;
+        public float hInput = 0;
+        public bool blockWheels;
         WheelControl[] wheels;
         Rigidbody rigidBody;
+
+        public void Freeze(bool freeze)
+        {
+            rigidBody.isKinematic = freeze;
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -27,16 +35,11 @@ namespace Prototype
             wheels = GetComponentsInChildren<WheelControl>();
         }
 
-        // Update is called once per frame
         void Update()
         {
-            float vInput = 0;//Input.GetAxis("Vertical");
-            float hInput = 0;// Input.GetAxis("Horizontal");
-
             // Calculate current speed in relation to the forward direction of the car
             // (this returns a negative number when traveling backwards)
             float forwardSpeed = Vector3.Dot(transform.forward, rigidBody.velocity);
-
 
             // Calculate how close the car is to top speed
             // as a number from zero to one
@@ -62,7 +65,7 @@ namespace Prototype
                     wheel.WheelCollider.steerAngle = hInput * currentSteerRange;
                 }
 
-                if (isAccelerating)
+                if (isAccelerating && !blockWheels)
                 {
                     // Apply torque to Wheel colliders that have "Motorized" enabled
                     if (wheel.motorized)

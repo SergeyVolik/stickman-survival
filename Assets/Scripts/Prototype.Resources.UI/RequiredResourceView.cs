@@ -23,6 +23,11 @@ namespace Prototype
         public Button finishButton;
         public GameObject finishButtonHolder;
 
+        public void SetButtonText(string text)
+        {
+            finishButton.GetComponentInChildren<TextMeshProUGUI>().text = text;
+        }
+
         private void Awake()
         {
             finishButtonHolder.SetActive(false);
@@ -37,6 +42,8 @@ namespace Prototype
             Setup();
             m_CurrentResources.onResourceChanged += UpdateResourceUI;
             m_RequiredResources.onResourceChanged += UpdateResourceUI;
+
+            CheckFinish();
         }
 
         private void OnDisable()
@@ -53,6 +60,11 @@ namespace Prototype
             item.SetText($"<size=100%>{current}<size=50%>/{req}");
 
             item.addResource.gameObject.SetActive(req != current);
+            CheckFinish();
+        }
+
+        private void CheckFinish()
+        {
             if (m_CurrentResources.Equals(m_RequiredResources))
             {
                 finishButtonHolder.SetActive(true);

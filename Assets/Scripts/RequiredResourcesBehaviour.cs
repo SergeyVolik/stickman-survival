@@ -27,6 +27,8 @@ namespace Prototype
         private TweenerCore<Vector3, Vector3, VectorOptions> m_HideUiTween;
         private bool m_Finished;
         public string uiTitle;
+        public string buttonText;
+
         [Inject]
         void Construct(WorldToScreenUIManager wts, PlayerResources playerResources)
         {
@@ -43,6 +45,10 @@ namespace Prototype
 
             m_requiredResourceUIViewInstance = GameObject.Instantiate(requiredResourceUIViewPrefab, m_wts.Root);
             m_requiredResourceUIViewInstance.title.text = uiTitle;
+
+            if(!string.IsNullOrEmpty(buttonText))
+                m_requiredResourceUIViewInstance.SetButtonText(buttonText);
+
             m_InitUiScale = m_requiredResourceUIViewInstance.transform.localScale;
             m_requiredResourceUIViewInstance.onFinished += Finish;
             m_requiredResourceUIViewInstance.transform.localScale = Vector3.zero;

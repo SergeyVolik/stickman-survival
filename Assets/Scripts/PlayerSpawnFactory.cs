@@ -1,4 +1,5 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using Zenject;
 
@@ -7,7 +8,7 @@ namespace Prototype
     public interface IPlayerFactory
     {
         public event Action<GameObject> onPlayerSpawned;
-        void SpawnAtPosition(Vector3 spawnPos);
+        GameObject SpawnAtPosition(Vector3 spawnPos);
         public GameObject CurrentPlayerUnit { get; }
     }
 
@@ -26,10 +27,12 @@ namespace Prototype
             m_container = container;
         }
 
-        public void SpawnAtPosition(Vector3 spawnPos)
+        public GameObject SpawnAtPosition(Vector3 spawnPos)
         {
             m_LastSpawnedPlayer = m_container.InstantiatePrefab(m_PlayerPrefab, spawnPos, Quaternion.identity, null);
             onPlayerSpawned.Invoke(m_LastSpawnedPlayer);
+            return m_LastSpawnedPlayer;
         }
+
     }
 }

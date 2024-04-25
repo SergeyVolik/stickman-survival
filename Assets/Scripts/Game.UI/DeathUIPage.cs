@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Prototype.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,10 +19,21 @@ namespace Prototype
             m_playerSpawner.onPlayerSpawned += M_playerSpawner_onPlayerSpawned;
         }
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            m_playerSpawner.onPlayerSpawned -= M_playerSpawner_onPlayerSpawned;
+        }
         private void M_playerSpawner_onPlayerSpawned(GameObject obj)
         {
+            Debug.Log("Player Spawned");
             obj.GetComponent<HealthData>().onDeath += () => {
-                Navigate();
+
+                DOVirtual.DelayedCall(1f, () =>
+                {
+                    Debug.Log("Player Death");
+                    Navigate();
+                });                
             };
         }
 

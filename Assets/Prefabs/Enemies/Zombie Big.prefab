@@ -18,11 +18,11 @@ GameObject:
   - component: {fileID: 784188471755786615}
   - component: {fileID: 8779009633079900590}
   - component: {fileID: 9132971593662365141}
-  - component: {fileID: 8506036965265844151}
   - component: {fileID: 7844103313989067654}
   - component: {fileID: 1194683310575499144}
   - component: {fileID: 6325295629963266499}
   - component: {fileID: 8462203192556438557}
+  - component: {fileID: -3994460400766206271}
   m_Layer: 3
   m_Name: Zombie Big
   m_TagString: Untagged
@@ -237,21 +237,6 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!114 &8506036965265844151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282675239167010970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f586f285b3847808d79083bd19ef1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  unwrap: 1
-  splitAtEveryPortal: 0
 --- !u!114 &7844103313989067654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,6 +318,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HatSpawnPoint: {fileID: 5763147721295815226}
   hatType: 0
+--- !u!114 &-3994460400766206271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282675239167010970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6a34d769a1e4ac7b0b30e433aa443c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  smoothType: 0
+  subdivisions: 2
+  iterations: 2
+  strength: 0.5
+  uniformLength: 1
+  maxSegmentLength: 2
+  bezierTangentLength: 0.4
+  offset: 0.2
+  factor: 0.1
 --- !u!1 &6484363818494222209
 GameObject:
   m_ObjectHideFlags: 0

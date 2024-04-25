@@ -48,7 +48,6 @@ namespace Prototype
         public GameObject bigZombiePrefab;
         public GameObject slowZombiePrefab;
 
-        public Transform playerSpawnPoint;
         public PlayerResourcesView m_PlayerResourcesView;
         public WorldSpaceMessage m_WSMPrefab;
         public ResourceTransferManager m_Transfer;
@@ -58,6 +57,7 @@ namespace Prototype
         public AdsManager AdsManager;
         public HatFactory HatFactory;
         public EnemySpawnFactory EnemySpawnFactory;
+
         public override void InstallBindings()
         {
             var input = new PlayerInputReader(Joystick);
@@ -80,11 +80,6 @@ namespace Prototype
         public override void Start()
         {
             base.Start();
-        }
-
-        private void OnEnable()
-        {
-            m_playerSpawnFactory.SpawnAtPosition(playerSpawnPoint.position);
         }
     }
 }
