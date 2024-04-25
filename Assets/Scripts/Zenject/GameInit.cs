@@ -57,13 +57,13 @@ namespace Prototype
         public AdsManager AdsManager;
         public HatFactory HatFactory;
         public EnemySpawnFactory EnemySpawnFactory;
-
+        public AudioListenerController AudioListenerController;
         public override void InstallBindings()
         {
             var input = new PlayerInputReader(Joystick);
             m_playerSpawnFactory = new PlayerSpawnFactory(PlayerPrefab, Container);
             var wsm = new WorldSpaceMessageFactory(m_WSMPrefab);
-
+            Container.Bind<AudioListenerController>().FromInstance(AudioListenerController);
             Container.Bind<HatFactory>().FromInstance(HatFactory);
             Container.Bind<IAdsPlayer>().FromInstance(AdsManager);
             Container.Bind<ActivateByDistanceToPlayerManager>().FromInstance(ActivateByDistanceToPlayerManager);

@@ -23,6 +23,7 @@ namespace Prototype
         public ResourceContainer dropOverride;
         public bool spawnHat;
         public HatType hatType;
+        public GameObject instance;
     }
 
     public enum EnemyDropMode
@@ -54,6 +55,7 @@ namespace Prototype
         public UnityEvent OnSpawnFinishedUE;
         public UnityEvent OnAllKilledUE;
 
+        public bool prepareEnemies;
 
         public int AlreadyKilled => alreadyKilled;
         public int TargetKills => toKill;
@@ -67,6 +69,13 @@ namespace Prototype
                 foreach (var item1 in item.Spawns)
                 {
                     toKill++;
+
+                    if (prepareEnemies)
+                    {
+                        var instance = ExecuteSpawn(item1);
+                        item1.instance = instance;
+                        instance.gameObject.SetActive(false);
+                    }
                 }
             }
         }
@@ -116,7 +125,8 @@ namespace Prototype
             if (currentSpawn.delay < currentSpawnT)
             {
                 currentSpawnT = 0;
-                var enemyInstance = ExecuteSpawn(currentSpawn);
+                var enemyInstance = currentSpawn.instance ? currentSpawn.instance : ExecuteSpawn(currentSpawn);
+                enemyInstance.SetActive(true);
                 var seeker = enemyInstance.GetComponent<ITargetSeeker>();
                 seeker.SetTarget(m_playerFactory.CurrentPlayerUnit.transform);
                 currentSpawnIndex++;
@@ -159,6 +169,7 @@ namespace Prototype
                 default:
                     break;
             }
+
             instance.transform.forward = spawnPoint.forward;
 
             aliveUnits.Add(instance.transform);
@@ -198,7 +209,6 @@ namespace Prototype
                 hatSetup.SpawnHat(currentSpawn.hatType);
             }
 
-          
             return instance;
         }
     }

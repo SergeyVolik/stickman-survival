@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using MoreMountains.Tools;
 using Prototype;
 using UnityEngine;
@@ -14,16 +15,21 @@ namespace Prototype
         private CameraController m_cameraController;
         public FadeScreenUI fader;
         private IPlayerFactory m_playerFactory;
+        private AudioListenerController m_audioListener;
         public float carEnterCarInput;
         public float carExitCarInput;
         public RequiredResourcesBehaviour requiredResourcesBehaviour;
         public PhysicsCallbacks stopCarTrigger;
+        public MMF_Player startEngineFeedback;
+        public MMF_Player openDoorFeedback;
+        public MMF_Player closeDoorFeedback;
 
         [Inject]
-        void Construct(CameraController cameraController, IPlayerFactory playerFactory)
+        void Construct(CameraController cameraController, IPlayerFactory playerFactory, AudioListenerController listenerCOntroller)
         {
             m_cameraController = cameraController;
             m_playerFactory = playerFactory;
+            m_audioListener = listenerCOntroller;
         }
 
         private void Start()
@@ -35,7 +41,7 @@ namespace Prototype
         {
             fader.ShowInstant();
             fader.Hide();
-
+            m_audioListener.audioListenerTarget = stopCarTrigger.transform;
             carControl.blockWheels = false;
             carControl.vInput = carEnterCarInput;
             m_cameraController.PushTarget(stopCarTrigger.transform, true);
@@ -54,10 +60,12 @@ namespace Prototype
             carControl.blockWheels = true;
             DOVirtual.DelayedCall(1.5f, () =>
             {
+                openDoorFeedback?.PlayFeedbacks();
                 requiredResourcesBehaviour.gameObject.SetActive(true);
                 carControl.Freeze(true);
-                var instance = m_playerFactory.SpawnAtPosition(playerSpawnPoint.position);
-                instance.transform.forward = playerSpawnPoint.forward;
+                var m_Playerinstance = m_playerFactory.SpawnAtPosition(playerSpawnPoint.position);
+                m_audioListener.audioListenerTarget = m_Playerinstance.transform;
+                m_Playerinstance.transform.forward = playerSpawnPoint.forward;
                 m_cameraController.PopTarget();
             });
         }
@@ -66,9 +74,11 @@ namespace Prototype
         {
             m_cameraController.PushTarget(stopCarTrigger.transform);
             m_playerFactory.CurrentPlayerUnit.SetActive(false);
-
+            startEngineFeedback?.PlayFeedbacks();
+            closeDoorFeedback?.PlayFeedbacks();
             DOVirtual.DelayedCall(1f, () =>
             {
+              
                 carControl.Freeze(false);
                 carControl.blockWheels = false;
                 carControl.vInput = carExitCarInput;

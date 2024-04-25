@@ -34,8 +34,8 @@ namespace Prototype
 
         public override void FinishQuest()
         {
-            m_resoruces.resources.onResourceChanged -= Resources_onResourceChanged;
             base.FinishQuest();
+            m_resoruces.resources.onResourceChanged -= Resources_onResourceChanged;          
         }
 
         private void Resources_onResourceChanged(ResourceTypeSO arg1, int arg2)
