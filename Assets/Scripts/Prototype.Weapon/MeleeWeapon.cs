@@ -19,6 +19,8 @@ namespace Prototype
         private Collider m_HitBox;
         public float pushForce;
 
+        public bool ignoreHighLevelObjects;
+
         private void Awake()
         {
             m_HitBox = GetComponent<Collider>();
@@ -67,7 +69,12 @@ namespace Prototype
             {
                 return;
             }
-               
+
+            if (required.RequiredWeaponLevel > level && ignoreHighLevelObjects)
+            {
+                return;
+            }
+
             if (required.Validate(level, Type))
             {
                 other.GetComponent<IDamageable>().DoDamage((int)(damage * damageMult), gameObject);

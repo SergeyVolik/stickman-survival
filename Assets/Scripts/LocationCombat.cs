@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 namespace Prototype
@@ -49,6 +50,11 @@ namespace Prototype
         public event Action onEnemyKilled = delegate { };
         int toKill = 0;
 
+        public UnityEvent OnStartedUE;
+        public UnityEvent OnSpawnFinishedUE;
+        public UnityEvent OnAllKilledUE;
+
+
         public int AlreadyKilled => alreadyKilled;
         public int TargetKills => toKill;
 
@@ -77,6 +83,7 @@ namespace Prototype
         {
             enabled = false;
             onSpawnFinished.Invoke();
+            OnSpawnFinishedUE.Invoke();
         }
 
         public void StartCombat()
@@ -84,6 +91,7 @@ namespace Prototype
             if (enabled)
                 return;
 
+            OnStartedUE.Invoke();
             enabled = true;
         }
 
@@ -158,6 +166,11 @@ namespace Prototype
                 alreadyKilled++;
                 onEnemyKilled.Invoke();
                 aliveUnits.Remove(instance.transform);
+
+                if (alreadyKilled == TargetKills)
+                {
+                    OnAllKilledUE.Invoke();
+                }
             };
             switch (currentSpawn.dropMode)
             {
