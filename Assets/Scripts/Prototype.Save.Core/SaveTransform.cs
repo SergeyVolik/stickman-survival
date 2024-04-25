@@ -9,15 +9,12 @@ namespace Prototype
         public Vector3S position;
         public QuaternionS rotation;
         public Vector3S localScale;
-        public SerializableGuid Id { get; set; }
+        public SerializableGuid SaveId { get; set; }
     }
 
     [DisallowMultipleComponent]
     public class SaveTransform : SaveableObject, ISceneSaveComponent<TransformSave>
     {
-        [field: SerializeField]
-        public SerializableGuid Id { get; set; } = SerializeableGuidHelper.NewGuid();
-
         public bool savePosition = true;
         public bool saveRotation = true;
         public bool saveScale = true;

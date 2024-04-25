@@ -11,7 +11,7 @@ namespace Prototype
         public int itemToRecycle;
         public DateTime startTime;
         public DateTime endTime;
-        public SerializableGuid Id { get; set; }
+        public SerializableGuid SaveId { get; set; }
 
         public override string ToString()
         {

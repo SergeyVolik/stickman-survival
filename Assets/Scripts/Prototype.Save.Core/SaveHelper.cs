@@ -10,7 +10,7 @@ namespace Prototype
         {
             IEnumerable<ISceneSaveComponent<T>> components = GameObject.FindObjectsByType<T2>(FindObjectsInactive.Include, FindObjectsSortMode.None);
            
-            var comp = components.FirstOrDefault((item) => loadCompData.Id == item.Id);
+            var comp = components.FirstOrDefault((item) => loadCompData.SaveId == item.SaveId);
 
             if (comp != null)
             {
@@ -25,7 +25,7 @@ namespace Prototype
             {
                 var comp = components.FirstOrDefault((item) => {
                     //Debug.Log($"{loadCompData.Id.ToString()} == {item.Id.ToString()}");
-                    return loadCompData.Id == item.Id; 
+                    return loadCompData.SaveId == item.SaveId; 
                 });
 
                 if (comp != null)
@@ -44,7 +44,7 @@ namespace Prototype
             foreach (var item in components)
             {
                 var save = item.SaveComponent();
-                save.Id = item.Id;
+                save.SaveId = item.SaveId;
                 saves.Add(save);
             }
 
@@ -55,7 +55,7 @@ namespace Prototype
         {
             ISceneSaveComponent<T> components = GameObject.FindObjectOfType<T2>(true);
             var save = components.SaveComponent();
-            save.Id = components.Id;
+            save.SaveId = components.SaveId;
             return save;
         }
     }

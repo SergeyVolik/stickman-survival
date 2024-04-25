@@ -7,11 +7,11 @@ namespace Prototype
     public abstract class SaveableObject : MonoBehaviour, ISaveGuid
     {
         [field: SerializeField]
-        public SerializableGuid Id { get; set; } = SerializeableGuidHelper.NewGuid();
+        public SerializableGuid SaveId { get; set; } = SerializeableGuidHelper.NewGuid();
 
         private void OnValidate()
         {
-            HasConflicts(Id, gameObject);
+            HasConflicts(SaveId, gameObject);
         }
 
         public static bool HasConflicts(SerializableGuid guid, GameObject go)
@@ -21,7 +21,7 @@ namespace Prototype
             int count = 0;
             foreach (var item in allItems)
             {
-                if (item.Id == guid)
+                if (item.SaveId == guid)
                 {
                     count++;
                 }
@@ -38,7 +38,7 @@ namespace Prototype
 
         public void GenGuid()
         {
-            Id = System.Guid.NewGuid();
+            SaveId = System.Guid.NewGuid();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Prototype
             bool hasConflicts = false;
             foreach (var obj in objs)
             {
-                if (SaveableObject.HasConflicts(obj.Id, obj.gameObject))
+                if (SaveableObject.HasConflicts(obj.SaveId, obj.gameObject))
                 {
                     hasConflicts = true;
                 }

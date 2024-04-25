@@ -5,7 +5,7 @@ namespace Prototype
 
     public interface ISaveGuid
     {
-        public SerializableGuid Id { get; set; }
+        public SerializableGuid SaveId { get; set; }
     }
 
     public interface ISceneSaveComponent<T> : ISaveGuid where T : ISaveComponentData

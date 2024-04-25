@@ -4,7 +4,7 @@ namespace Prototype
     public class GameObjectSave : ISaveComponentData
     {
         public bool activeSelf;
-        public SerializableGuid Id { get; set; }
+        public SerializableGuid SaveId { get; set; }
     }
 
     public class SaveGameObjectState : SaveableObject, ISceneSaveComponent<GameObjectSave>
