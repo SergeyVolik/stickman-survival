@@ -11,7 +11,7 @@ namespace Prototype
         public Wall[] doDeactivateAfterEnterRoom;
         public bool activateWithRoomTrigger;
         private Renderer[] m_RoomRender;
-
+        public GameObject[] hideRoomObjects;
         public event Action<Collider> onEnterRoom = delegate { };
         public event Action<Collider> onExitRoom = delegate { };
 
@@ -49,6 +49,11 @@ namespace Prototype
 
         private void OnEnterRoom(Collider obj)
         {
+            foreach (var item in hideRoomObjects)
+            {
+                item.gameObject.SetActive(false);
+            }
+
             RoomItems.Add(obj);
             onEnterRoom.Invoke(obj);
 

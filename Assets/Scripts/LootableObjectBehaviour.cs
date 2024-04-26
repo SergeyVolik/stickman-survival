@@ -1,5 +1,6 @@
 using MoreMountains.Feedbacks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Prototype
@@ -28,22 +29,23 @@ namespace Prototype
         public MMF_Player lootTickFeedback;
         public MMF_Player lootEndedFeedback;
 
-        private CharacterWithGunAnimator m_CharAnimator;
-        private Outline[] m_Outlines;
+        public UnityEvent onLooted;
 
         private void Awake()
         {
             m_Drop = GetComponent<DropExecutor>();
+        }
 
+        private void OnEnable()
+        {
             trigger.onTriggerEnter += Trigger_onTriggerEnter;
             trigger.onTriggerExit += Trigger_onTriggerExit;
+        }
 
-            m_Outlines = GetComponentsInChildren<Outline>();
-
-            foreach (var item in m_Outlines)
-            {
-                item.enabled = false;
-            }
+        private void OnDisable()
+        {
+            trigger.onTriggerEnter -= Trigger_onTriggerEnter;
+            trigger.onTriggerExit -= Trigger_onTriggerExit;
         }
 
         private void Trigger_onTriggerExit(Collider obj)
@@ -57,18 +59,7 @@ namespace Prototype
 
         private void ResetCharacterData()
         {
-            foreach (var item in m_Outlines)
-            {
-                item.enabled = false;
-            }
-
             m_triggerdObject = null;
-
-            if (m_CharAnimator)
-            {
-                m_CharAnimator.EndLooting();
-            }
-
             endLootingFeedback?.PlayFeedbacks();
         }
 
@@ -83,13 +74,6 @@ namespace Prototype
                     return;
             }
 
-            m_CharAnimator = obj.GetComponentInChildren<CharacterWithGunAnimator>();
-
-            if (m_CharAnimator)
-            {
-                m_CharAnimator.StartLooting();
-            }
-
             m_ResHolder = obj.GetComponent<IResourceHolder>();
             startLootingFeedback?.PlayFeedbacks();
 
@@ -100,11 +84,6 @@ namespace Prototype
 
             m_triggerdObject = obj;
             continueOpening = true;
-
-            foreach (var item in m_Outlines)
-            {
-                item.enabled = true;
-            }
         }
 
         private void Update()
@@ -137,6 +116,8 @@ namespace Prototype
                 isOpened = true;
                 ResetCharacterData();
                 lootEndedFeedback?.PlayFeedbacks();
+                onLooted.Invoke();
+                enabled = false;
             }
         }
     }

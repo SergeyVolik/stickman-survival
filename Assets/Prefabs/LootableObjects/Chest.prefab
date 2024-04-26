@@ -672,7 +672,6 @@ GameObject:
   - component: {fileID: 3264773916421427340}
   - component: {fileID: 4548999986989777591}
   - component: {fileID: 2929882055840050013}
-  - component: {fileID: 337740902199568932}
   m_Layer: 0
   m_Name: ChestV3_Loot
   m_TagString: Untagged
@@ -745,24 +744,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &337740902199568932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5558924297201646362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &5867089567496022912
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +755,6 @@ GameObject:
   - component: {fileID: 2365171876810115}
   - component: {fileID: 5541133728930816499}
   - component: {fileID: 7937809656222841664}
-  - component: {fileID: 5471137341469625369}
   m_Layer: 0
   m_Name: ChestV3_Top
   m_TagString: Untagged
@@ -847,24 +827,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5471137341469625369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5867089567496022912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &7321414960829157255
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,7 +838,6 @@ GameObject:
   - component: {fileID: 6880230025735151761}
   - component: {fileID: 5972646794679285937}
   - component: {fileID: 81629614726764078}
-  - component: {fileID: 1665012304560117846}
   m_Layer: 0
   m_Name: ChestV3
   m_TagString: Untagged
@@ -952,24 +913,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1665012304560117846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7321414960829157255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &7601397859163043201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,7 +1612,6 @@ GameObject:
   - component: {fileID: 4438217651741542218}
   - component: {fileID: 1862661298294251660}
   - component: {fileID: 9051782789509003923}
-  - component: {fileID: 2003730859760756446}
   m_Layer: 0
   m_Name: ChestV3_Lock
   m_TagString: Untagged
@@ -1742,24 +1684,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2003730859760756446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8506460627737838815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &8887735297107178945
 GameObject:
   m_ObjectHideFlags: 0
