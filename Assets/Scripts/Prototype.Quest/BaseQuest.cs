@@ -35,7 +35,7 @@ namespace Prototype
         public UnityEvent onQuestFinishedUE;
         public bool highlightOnStart;
         public float highlightDelay;
-
+        public bool highlightMoveCamera = true;
         [SerializeField]
         private GameObject questUI;
         private CameraController m_cameraContr;
@@ -71,10 +71,16 @@ namespace Prototype
             var questTarget = GetQuestTargetObject();
             if (questTarget)
             {
-                m_input.Disable();
-                m_cameraContr.PushTargetWithDuration(questTarget, 3.5f, () => {
-                    m_input.Enable();
-                });
+                if (highlightMoveCamera)
+                {
+                    m_input.Disable();
+
+                    m_cameraContr.PushTargetWithDuration(questTarget, 3.5f, () =>
+                    {
+                        m_input.Enable();
+                    });
+                }
+
                 var targets = GetQuestTargetObjects();
 
                 foreach (var target in targets)

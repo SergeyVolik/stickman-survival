@@ -1,3 +1,5 @@
+using System;
+
 namespace Prototype
 {
     public static class TextUtils
@@ -12,6 +14,24 @@ namespace Prototype
             }
 
             return numberOfIntems.ToString();
+        }
+
+        public static string TimeFormat(TimeSpan time)
+        {
+            if (time.Hours != 0)
+            {
+                return $"{time.Hours}h {time.Minutes}m ";
+            }
+            else if (time.Minutes != 0)
+            {
+                return $"{time.Minutes}m {time.Seconds}s ";
+            }
+            else if (time.Seconds != 0)
+            {
+                return $"{time.Seconds}s ";
+            }
+
+            return "0s";
         }
     }
 }

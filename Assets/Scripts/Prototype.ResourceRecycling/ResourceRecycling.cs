@@ -57,23 +57,9 @@ namespace Prototype
         public string GetTimerText()
         {
             var timeToEnd = m_EndRecyclingTime - DateTime.Now;
-
-            if (timeToEnd.Hours != 0)
-            {
-                return $"{timeToEnd.Hours}h {timeToEnd.Minutes}m ";
-            }
-            else if (timeToEnd.Minutes != 0)
-            {
-                return $"{timeToEnd.Minutes}m {timeToEnd.Seconds}s ";
-            }
-            else if (timeToEnd.Seconds != 0)
-            {
-                return $"{timeToEnd.Seconds}s ";
-            }
-            
-            return "0s";
+            return TextUtils.TimeFormat(timeToEnd);
         }
-
+        
         public float GetProgress01()
         {
             var totalDuration = m_EndRecyclingTime - m_StartRecyclingTime;

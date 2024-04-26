@@ -12,28 +12,40 @@ namespace Prototype
         public float steeringRange = 30;
         public float steeringRangeAtMaxSpeed = 10;
         public float centreOfGravityOffset = -1f;
+
+        [Range(0, 1f)]
         public float vInput = 0;
+        [Range(0, 1f)]
         public float hInput = 0;
+
         public bool blockWheels;
         WheelControl[] wheels;
         Rigidbody rigidBody;
 
-        public void Freeze(bool freeze)
-        {
-            rigidBody.isKinematic = freeze;
-        }
+        [SerializeField]
+        private Collider m_FreezeCarCollider;
 
-        // Start is called before the first frame update
-        void Start()
+        private void Awake()
         {
             rigidBody = GetComponent<Rigidbody>();
-
+            // Find all child GameObjects that have the WheelControl script attached       
+            wheels = GetComponentsInChildren<WheelControl>();
             // Adjust center of mass vertically, to help prevent the car from rolling
             rigidBody.centerOfMass += Vector3.up * centreOfGravityOffset;
 
-            // Find all child GameObjects that have the WheelControl script attached
-            wheels = GetComponentsInChildren<WheelControl>();
+            Freeze(false);
         }
+
+        public void Freeze(bool freeze)
+        {
+            rigidBody.isKinematic = freeze;
+            if(m_FreezeCarCollider)
+            m_FreezeCarCollider.enabled = freeze;
+        }
+
+        public float CurrentMotorTorque => currentMotorTorque;
+
+        float currentMotorTorque;
 
         void Update()
         {
@@ -47,7 +59,7 @@ namespace Prototype
 
             // Use that to calculate how much torque is available 
             // (zero torque at top speed)
-            float currentMotorTorque = Mathf.Lerp(motorTorque, 0, speedFactor);
+            currentMotorTorque = Mathf.Lerp(motorTorque, 0, speedFactor);
 
             // …and to calculate how much to steer 
             // (the car steers more gently at top speed)
@@ -65,7 +77,14 @@ namespace Prototype
                     wheel.WheelCollider.steerAngle = hInput * currentSteerRange;
                 }
 
-                if (isAccelerating && !blockWheels)
+                if (blockWheels)
+                {
+                    // If the user is trying to go in the opposite direction
+                    // apply brakes to all wheels
+                    wheel.WheelCollider.brakeTorque = Mathf.Abs(1f) * brakeTorque;
+                    wheel.WheelCollider.motorTorque = 0;
+                }
+                else if (isAccelerating)
                 {
                     // Apply torque to Wheel colliders that have "Motorized" enabled
                     if (wheel.motorized)

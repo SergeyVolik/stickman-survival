@@ -58,6 +58,7 @@ namespace Prototype
 
             stopCarTrigger.gameObject.SetActive(false);
             carControl.blockWheels = true;
+            carControl.vInput = 0;
             DOVirtual.DelayedCall(1.5f, () =>
             {
                 openDoorFeedback?.PlayFeedbacks();

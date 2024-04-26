@@ -26,12 +26,10 @@ namespace Prototype
         }
         private void M_playerSpawner_onPlayerSpawned(GameObject obj)
         {
-            Debug.Log("Player Spawned");
             obj.GetComponent<HealthData>().onDeath += () => {
 
                 DOVirtual.DelayedCall(1f, () =>
                 {
-                    Debug.Log("Player Death");
                     Navigate();
                 });                
             };

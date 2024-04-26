@@ -11,6 +11,7 @@ namespace Prototype
 
         [System.NonSerialized]
         public List<Collider> HouseObjects = new List<Collider>();
+        private int m_LastPlayerFloorEnterIndex;
 
         public void EnableRender(bool enable)
         {
@@ -29,9 +30,9 @@ namespace Prototype
         {
             Debug.Log("Exit House");
 
-            if (IsPlayer(collider))
-            {
-                EnableRender(true);
+            if (!HouseObjects.Exists(e => IsPlayer(e)))
+            {               
+                EnableRender(true);              
             }
         }
 
@@ -49,14 +50,21 @@ namespace Prototype
                 {
                     HouseObjects.Remove(col);
 
-                    if (!HouseObjects.Contains(col))
+                    if (m_LastPlayerFloorEnterIndex != currentFloorIndex)
                     {
-                        OnExitHouse(col);
+                        if (IsPlayer(col))
+                        {
+                            UpdateFloorsRender(m_LastPlayerFloorEnterIndex);
+                        }
                     }
+
+                    
+                    OnExitHouse(col);
+                    
                 };
 
-                floors[i].onFloorEntered += (collider) => {
-
+                floors[i].onFloorEntered += (collider) =>
+                { 
                     if (!HouseObjects.Contains(collider))
                     {
                         OnEnterHouse(collider);
@@ -66,23 +74,29 @@ namespace Prototype
 
                     if (IsPlayer(collider))
                     {
-                        for (int j = 0; j < floors.Length; j++)
-                        {
-                            if (j > currentFloorIndex)
-                            {
-                                floors[j].EnableRender(false);
-                            }
-                            else if (j == currentFloorIndex)
-                            {
-                                floors[j].EnableTopDownRender(true);
-                            }
-                            else if (j < currentFloorIndex)
-                            {
-                                floors[j].EnableRender(true);
-                            }
-                        }
+                        m_LastPlayerFloorEnterIndex = currentFloorIndex;
+                        UpdateFloorsRender(currentFloorIndex);
                     }
-                };                   
+                };
+            }
+        }
+
+        private void UpdateFloorsRender(int currentFloorIndex)
+        {
+            for (int j = 0; j < floors.Length; j++)
+            {
+                if (j > currentFloorIndex)
+                {
+                    floors[j].EnableRender(false);
+                }
+                else if (j == currentFloorIndex)
+                {
+                    floors[j].EnableTopDownRender(true);
+                }
+                else if (j < currentFloorIndex)
+                {
+                    floors[j].EnableRender(true);
+                }
             }
         }
 

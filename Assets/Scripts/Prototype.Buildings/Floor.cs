@@ -19,6 +19,7 @@ namespace Prototype
         {
             rooms = GetComponentsInChildren<Room>();
         }
+
         public void Setup()
         {
             foreach (Room room in rooms)
