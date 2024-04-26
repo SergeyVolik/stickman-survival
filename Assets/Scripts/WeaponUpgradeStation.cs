@@ -8,7 +8,7 @@ namespace Prototype
     {
         public ResourceItem item1;
         public ResourceItem item2;
-
+        public GameObject visualItem;
         public MeleeWeapon weaponPrefab;
     }
 
@@ -43,11 +43,21 @@ namespace Prototype
             m_UIInstance.upgradeButton.onClick.AddListener(() =>
             {
                 TryUpgrade();
-
             });
            
             SetupTrigger();
+            m_UIInstance.gameObject.SetActive(false);
             m_UIInstance.Deactivate();
+            ShowNextItem();
+        }
+
+        public void ShowNextItem()
+        {
+            foreach (var item in upgradesList)
+            {
+                item.visualItem.SetActive(false);
+            }
+            upgradesList[currentUpgradeLevel].visualItem.SetActive(true);
         }
 
         private void TryUpgrade()
@@ -62,9 +72,11 @@ namespace Prototype
 
             if (current1 >= res1 && current2 >= res2)
             {
+              
                 m_PlayerResources.resources.RemoveResource(upgradeRes.item1.resourceType, res1);
                 m_PlayerResources.resources.RemoveResource(upgradeRes.item2.resourceType, res2);
                 currentUpgradeLevel++;
+                ShowNextItem();
                 m_UIInstance.Deactivate();
                 m_playerFactory.CurrentPlayerUnit.GetComponent<CharacterInventory>().SetupMeleeWeapon(upgradeRes.weaponPrefab);
             }
@@ -104,7 +116,7 @@ namespace Prototype
                 var upgradeRes = upgradesList[currentUpgradeLevel];
 
                var res1 = m_PlayerResources.resources.GetResource(upgradeRes.item1.resourceType);
-                m_UIInstance.title.text = $"Upgrade to level {currentUpgradeLevel+2}";
+                m_UIInstance.title.text = $"Craft level {currentUpgradeLevel+2} weapon";
                 UpdateResourceItem(m_UIInstance.resource1, upgradeRes.item1);
                 UpdateResourceItem(m_UIInstance.resource2, upgradeRes.item2);
 

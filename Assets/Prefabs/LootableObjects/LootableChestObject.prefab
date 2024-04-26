@@ -1977,6 +1977,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6021692294179997030, guid: 0cb1bd66b36305746b02124c3614ecc4,
         type: 3}
+      propertyPath: lootTicksItems.Array.data[3].m_InitResources.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6021692294179997030, guid: 0cb1bd66b36305746b02124c3614ecc4,
+        type: 3}
       propertyPath: onLooted.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
       objectReference: {fileID: 0}
@@ -2039,6 +2044,11 @@ PrefabInstance:
         type: 3}
       propertyPath: lootTicksItems.Array.data[2].m_InitResources.Array.data[0].count
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6021692294179997030, guid: 0cb1bd66b36305746b02124c3614ecc4,
+        type: 3}
+      propertyPath: lootTicksItems.Array.data[3].m_InitResources.Array.data[0].count
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6021692294179997030, guid: 0cb1bd66b36305746b02124c3614ecc4,
         type: 3}
@@ -2265,6 +2275,11 @@ PrefabInstance:
       propertyPath: managedReferences[446011855542419486].AdditionalRenderers.Array.data[2]
       value: 
       objectReference: {fileID: 7774699810873278816}
+    - target: {fileID: 2717815630387882281, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: managedReferences[446011814861078528].AnimateScaleTarget
+      value: 
+      objectReference: {fileID: 110954841670484751}
     - target: {fileID: 3099893729316655136, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_LocalPosition.y
