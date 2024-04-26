@@ -38,24 +38,27 @@ namespace MoreMountains.Feedbacks
             IsPlaying = true;
 
             var easeFunction = useAnimationCurve ? AnimCurveFunction : EaseManager.ToEaseFunction(EaseType);
-            StoreSpriteRendererTexture();
             float currentTime = 0;
 
             float t = easeFunction(currentTime, flickerDuration, 0, 0);
-            var color = Color.Lerp(flickerColor, initialColor, t);
+            var color = Color.Lerp(initialColor, flickerColor, t);
             SetColor(materialIndex, color);
             
             while (FeedbackTime < flickerStop)
             {
                 currentTime += Time.deltaTime;
                 t = easeFunction(currentTime, flickerDuration, 0, 0);
-                color = Color.Lerp(flickerColor, initialColor, t);
+                color = Color.Lerp(initialColor, flickerColor, t);
                 SetColor(materialIndex, color);
                 yield return null;
             }
 
-            SetColor(materialIndex, initialColor);
             IsPlaying = false;
+        }
+
+        protected override void CustomReset()
+        {
+           
         }
     }
 }

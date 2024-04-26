@@ -520,6 +520,11 @@ PrefabInstance:
       propertyPath: managedReferences[446011450872823810].Renderer
       value: 
       objectReference: {fileID: 360815207974963562}
+    - target: {fileID: 4466256271181872999, guid: 3386de6bf26b0b54395b67689b47db12,
+        type: 3}
+      propertyPath: managedReferences[446012001710768128].BoundRenderer
+      value: 
+      objectReference: {fileID: 360815207974963562}
     - target: {fileID: 6252821136214152286, guid: 3386de6bf26b0b54395b67689b47db12,
         type: 3}
       propertyPath: m_Name

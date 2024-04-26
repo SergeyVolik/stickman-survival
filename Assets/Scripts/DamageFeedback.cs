@@ -22,6 +22,12 @@ namespace Prototype
             m_HealthData.onDeath += M_HealthData_onDeath;
         }
 
+        private void OnDisable()
+        {
+            m_HealthData.onHealthChanged -= M_HealthData_onHealthChanged;
+            m_HealthData.onDeath -= M_HealthData_onDeath;
+        }
+
         private void M_HealthData_onDeath()
         {
             deathFeedback?.PlayFeedbacks();
