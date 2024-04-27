@@ -8,11 +8,12 @@ namespace Prototype
         private List<Effect> effects = new List<Effect>();
         private List<Effect> toRemove= new List<Effect>();
         public Transform effectHolder;
-        public void AddEffect(Effect effectPrefab)
+        public Effect AddEffect(Effect effectPrefab)
         {
             var effect = GameObject.Instantiate(effectPrefab, effectHolder);
             effect.Setup(gameObject);
             effects.Add(effect);
+            return effect;
         }
 
         private void Update()
