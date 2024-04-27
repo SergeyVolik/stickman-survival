@@ -23,6 +23,7 @@ namespace Prototype
         public ResourceContainer dropOverride;
         public bool spawnHat;
         public HatType hatType;
+        [System.NonSerialized]
         public GameObject instance;
     }
 

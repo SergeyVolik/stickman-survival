@@ -11,7 +11,7 @@ namespace Prototype
     }
     public enum ZombiebehaviourState
     {
-        Idle,
+        Patrol,
         Chase,
         Attacking,
         RotateForAttack,
@@ -19,6 +19,7 @@ namespace Prototype
 
     public class ZombieBehaviour : MonoBehaviour, ITargetSeeker
     {
+        private Patrol m_Patrol;
         private CharacterZombieAnimator m_Animator;
         private IAstarAI m_AiMovement;
         private Transform m_TargetTransform;
@@ -29,19 +30,21 @@ namespace Prototype
         public float delayAttatckT;
         public float minSpeed;
         public float maxSpeed;
-        public float rotationSpeed;
         private ZombiebehaviourState m_CurrentState;
 
         public float checkTargetDistance;
         public bool IsTargetDetected => m_TargetTransform != null;
         private Transform m_Transfrom;
-
+        public float patrolSpeed;
         RaycastHit[] m_RaycastHits;
         public LayerMask targetMask;
         public LayerMask wallLayerMask;
         public float attackDistance = 1f;
+        private float m_ChaseSpeed;
+
         private void Awake()
         {
+            m_Patrol = GetComponent<Patrol>();
             m_Animator = GetComponentInChildren<CharacterZombieAnimator>();
             m_AiMovement = GetComponent<IAstarAI>();
 
@@ -53,9 +56,8 @@ namespace Prototype
 
             health.onDeath += ZombieBehaviour_onDeath;
             health.onHealthChanged += Health_onHealthChanged;
-            m_AiMovement.maxSpeed = Random.Range(minSpeed, maxSpeed);
-
-            m_Animator.SetMoveSpeed(m_AiMovement.maxSpeed);
+            m_ChaseSpeed = Random.Range(minSpeed, maxSpeed);
+          
             attackCollider.Deactivate();
             m_RaycastHits = new RaycastHit[5];
             m_Transfrom = transform;
@@ -109,13 +111,16 @@ namespace Prototype
         private void Update()
         {
             m_Animator.SetMove(!m_AiMovement.reachedDestination);
+            m_Animator.SetMoveSpeed(m_AiMovement.maxSpeed);
 
             switch (m_CurrentState)
             {
-                case ZombiebehaviourState.Idle:
-                    IdleState();
+                case ZombiebehaviourState.Patrol:                   
+                    PatrolState();
+
                     break;
                 case ZombiebehaviourState.Chase:
+                   
                     ChaseState();
                     break;
                 case ZombiebehaviourState.Attacking:
@@ -133,7 +138,7 @@ namespace Prototype
                 m_CurrentState = ZombiebehaviourState.Attacking;
                 return;
             }
-
+            m_AiMovement.maxSpeed = m_ChaseSpeed;
             m_AiMovement.canMove = true;
             m_AiMovement.destination = m_TargetTransform.position;
         }
@@ -160,8 +165,9 @@ namespace Prototype
             }
         }
 
-        private void IdleState()
+        private void PatrolState()
         {
+            m_AiMovement.maxSpeed = patrolSpeed;
             int targetsFinded = PhysicsHelper.GetAllTargetWithoutWalls(m_Transfrom, m_RaycastHits, checkTargetDistance, targetMask, wallLayerMask, 0.5f);
             var isTargetDetected = targetsFinded != 0;
 
@@ -170,6 +176,9 @@ namespace Prototype
                 m_TargetTransform = m_RaycastHits[0].transform;
                 m_AiMovement.destination = m_TargetTransform.position;
                 m_CurrentState = ZombiebehaviourState.Chase;
+
+                if (m_Patrol)
+                    m_Patrol.enabled = false;
             }
         }
     }

@@ -51,8 +51,9 @@ namespace Prototype
             });
 
             SetupTrigger();
-            m_UIInstance.gameObject.SetActive(false);
             m_UIInstance.Deactivate();
+            m_UIInstance.gameObject.SetActive(false);
+          
             ShowNextItem();
         }
 
@@ -62,7 +63,11 @@ namespace Prototype
             {
                 item.visualItem.SetActive(false);
             }
-            upgradesList[currentUpgradeLevel].visualItem.SetActive(true);
+
+            if (currentUpgradeLevel < upgradesList.Length)
+            {
+                upgradesList[currentUpgradeLevel].visualItem.SetActive(true);
+            }
         }
 
         private void TryUpgrade()
@@ -119,6 +124,7 @@ namespace Prototype
                 {
                     return;
                 }
+
                 var upgradeRes = upgradesList[currentUpgradeLevel];
 
                 var res1 = m_PlayerResources.resources.GetResource(upgradeRes.item1.resourceType);

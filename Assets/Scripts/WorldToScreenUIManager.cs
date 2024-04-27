@@ -6,6 +6,7 @@ public class WordlToScreenUIItem
     public RectTransform item;
     public Transform worldPositionTransform;
 }
+
 public class WorldToScreenUIManager : MonoBehaviour
 {
     private List<WordlToScreenUIItem> m_Items = new List<WordlToScreenUIItem>(10);
@@ -40,6 +41,9 @@ public class WorldToScreenUIManager : MonoBehaviour
     {
         foreach (var item in m_Items)
         {
+            if (!item.item.gameObject.activeSelf)
+                continue;
+
             var pos = item.worldPositionTransform.position;
             var speenPos = m_Camera.WorldToScreenPoint(pos);
             RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)item.item.parent, speenPos, null, out var anchorPos);

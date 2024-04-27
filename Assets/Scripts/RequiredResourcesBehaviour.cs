@@ -54,6 +54,7 @@ namespace Prototype
             m_requiredResourceUIViewInstance.transform.localScale = Vector3.zero;
             m_requiredResourceUIViewInstance.onItemAdded += M_requiredResourceUIViewInstance_onItemAdded;
             m_requiredResourceUIViewInstance.Bind(requiredResources, m_RequiredCurrentResources);
+            m_requiredResourceUIViewInstance.gameObject.SetActive(false);
         }
 
         private void M_requiredResourceUIViewInstance_onItemAdded(ResourceTypeSO resourceType, RquiredResourceUIItem arg2)
@@ -85,7 +86,7 @@ namespace Prototype
             onFinishedUI.Invoke();                       
         }
 
-        private bool Finished()
+        public bool Finished()
         {
             return m_Finished;
         }
@@ -109,12 +110,14 @@ namespace Prototype
                     m_wts.Unregister(m_BindHandle);
                     m_BindHandle = null;
                     callback?.Invoke();
+                    m_requiredResourceUIViewInstance.gameObject.SetActive(false);
                 });
         }
 
         private void ActuvateUI()
         {
             m_HideUiTween?.Kill();
+            m_requiredResourceUIViewInstance.gameObject.SetActive(true);
             if (m_BindHandle == null)
             {
                 m_BindHandle = m_wts.Register(new WordlToScreenUIItem

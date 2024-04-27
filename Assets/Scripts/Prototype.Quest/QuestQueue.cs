@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -10,10 +11,12 @@ namespace Prototype
         public Transform questUISpawnPoint;
         private IPlayerFactory m_playerFactory;
 
+        public event Action onQuestInited = delegate { };
         private void Awake()
         {
             questUISpawnPoint.gameObject.SetActive(false);
         }
+
         [Inject]
         void Construct(IPlayerFactory playerFactory)
         {

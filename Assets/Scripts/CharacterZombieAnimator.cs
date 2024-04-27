@@ -10,6 +10,8 @@ namespace Prototype
         private static readonly int DamageHash = Animator.StringToHash("Damage");
 
         private static readonly int AttackHash = Animator.StringToHash("Attack");
+        private static readonly int MoveSpeedHash = Animator.StringToHash("MoveSpeed");
+
 
         private Animator m_Animator;
 
@@ -23,12 +25,9 @@ namespace Prototype
             }
         }
 
-        private IAstarAI m_Path;
-
         private void Awake()
         {
             m_Animator = GetComponent<Animator>();
-            m_Path = GetComponentInParent<IAstarAI>();
             var Health = GetComponentInParent<HealthData>();
 
             if (Health)
@@ -80,7 +79,7 @@ namespace Prototype
 
         internal void SetMoveSpeed(float speed)
         {
-            Animator.SetFloat("MoveSpeed", speed);
+            Animator.SetFloat(MoveSpeedHash, speed);
         }
     }
 }

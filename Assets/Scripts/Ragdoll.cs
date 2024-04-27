@@ -28,6 +28,7 @@ namespace Prototype
             foreach (var item in RagdollBodies)
             {
                 item.isKinematic = true;
+                item.interpolation = RigidbodyInterpolation.None;
             }
         }
 

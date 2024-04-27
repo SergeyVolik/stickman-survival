@@ -34,15 +34,9 @@ namespace Prototype
             int resourceNumber = 1
            )
         {
-            var resourceObjectInstance = GameObject.Instantiate(resourceType.Resource3dItem);
-
-            resourceObjectInstance.transform.position = startPosition;
-
+            var resourceObjectInstance = GameObject.Instantiate(resourceType.Resource3dItem, startPosition, Quaternion.identity);
             resourceObjectInstance.SetActive(true);
-
             var rb = resourceObjectInstance.GetComponent<Rigidbody>();
-
-            rb.transform.position = startPosition;
 
             //rotate RigidBody vector by angles
             var angle1 = quaternion.AxisAngle(math.forward(), UnityEngine.Random.Range(math.radians(-maxVectorAngleOffset), math.radians(maxVectorAngleOffset)));

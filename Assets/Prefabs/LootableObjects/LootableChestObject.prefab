@@ -1952,8 +1952,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6021692294179997030, guid: 0cb1bd66b36305746b02124c3614ecc4,
         type: 3}
+      propertyPath: openDuration
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6021692294179997030, guid: 0cb1bd66b36305746b02124c3614ecc4,
+        type: 3}
       propertyPath: lootTicksItems.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6021692294179997030, guid: 0cb1bd66b36305746b02124c3614ecc4,
         type: 3}
@@ -1978,7 +1983,7 @@ PrefabInstance:
     - target: {fileID: 6021692294179997030, guid: 0cb1bd66b36305746b02124c3614ecc4,
         type: 3}
       propertyPath: lootTicksItems.Array.data[3].m_InitResources.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6021692294179997030, guid: 0cb1bd66b36305746b02124c3614ecc4,
         type: 3}
@@ -2079,6 +2084,12 @@ PrefabInstance:
       propertyPath: lootTicksItems.Array.data[2].m_InitResources.Array.data[0].resourceType
       value: 
       objectReference: {fileID: 11400000, guid: eb92e56b144fe2242bb62f042340baa3,
+        type: 2}
+    - target: {fileID: 6021692294179997030, guid: 0cb1bd66b36305746b02124c3614ecc4,
+        type: 3}
+      propertyPath: lootTicksItems.Array.data[3].m_InitResources.Array.data[0].resourceType
+      value: 
+      objectReference: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a,
         type: 2}
     - target: {fileID: 6021692294179997030, guid: 0cb1bd66b36305746b02124c3614ecc4,
         type: 3}

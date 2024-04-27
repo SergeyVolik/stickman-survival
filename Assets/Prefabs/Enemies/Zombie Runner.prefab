@@ -185,8 +185,8 @@ MonoBehaviour:
   delayAttatckT: 0
   minSpeed: 3
   maxSpeed: 5
-  rotationSpeed: 0
   checkTargetDistance: 4
+  patrolSpeed: 0
   targetMask:
     serializedVersion: 2
     m_Bits: 64

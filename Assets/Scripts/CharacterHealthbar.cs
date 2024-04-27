@@ -10,7 +10,7 @@ namespace Prototype
     {
         [SerializeField]
         private GameObject m_HealthBarPrefab;
-        private MMHealthBar m_HealthBarInstance;
+        private CustomHealthbar m_HealthBarInstance;
 
         [SerializeField]
         private Transform UIRoot;
@@ -29,26 +29,69 @@ namespace Prototype
         {
             m_Health = GetComponent<HealthData>();
             m_Health.onHealthChanged += (evt) => UpdateHB();
-
+            m_Health.onDeath += M_Health_onDeath;
             Assert.IsTrue(m_HealthBarPrefab != null);
             Assert.IsTrue(UIRoot != null);
 
-            m_HealthBarInstance = GameObject.Instantiate(m_HealthBarPrefab, m_worldToScreen.Root).GetComponent<MMHealthBar>();
+            SetupUI();
+            
+        }
+
+        private void SetupUI()
+        {
+            m_HealthBarInstance = GameObject.Instantiate(m_HealthBarPrefab, m_worldToScreen.Root).GetComponent<CustomHealthbar>();
             m_HealthBarInstance.TargetProgressBar.TextValueMultiplier = m_Health.maxHealth;
             m_HealthBarInstance.UpdateBar(m_Health.currentHealth, 0, m_Health.maxHealth, false);
-
-            m_WTSHandle = m_worldToScreen.Register(new WordlToScreenUIItem { item = m_HealthBarInstance.GetComponent<RectTransform>(), worldPositionTransform = UIRoot });
+            m_HealthBarInstance.onEnabled += M_HealthBarInstance_onEnabled;
+            m_HealthBarInstance.HideHealthbar();
         }
+
+        private void M_HealthBarInstance_onEnabled(bool obj)
+        {
+            if (obj)
+            {
+                RegisterCanvas();
+            }
+            else {
+                UnregisterCanvas();
+            }
+        }
+
+        void RegisterCanvas()
+        {
+            m_WTSHandle = m_worldToScreen.Register(new WordlToScreenUIItem {
+                item = m_HealthBarInstance.GetComponent<RectTransform>(),
+                worldPositionTransform = UIRoot 
+            });
+        }
+
+        private void M_Health_onDeath()
+        {
+            m_HealthBarInstance.gameObject.SetActive(false);
+            m_worldToScreen.Unregister(m_WTSHandle);
+        }
+
+        private void OnDisable()
+        {
+           
+        }
+       
         private void Start()
         {
             UpdateHB();
         }
+
         private void OnDestroy()
         {
-            m_worldToScreen.Unregister(m_WTSHandle);
+            UnregisterCanvas();
 
-            if(m_HealthBarInstance)
+            if (m_HealthBarInstance)
                 GameObject.Destroy(m_HealthBarInstance.gameObject);
+        }
+
+        private void UnregisterCanvas()
+        {
+            m_worldToScreen.Unregister(m_WTSHandle);
         }
 
         private void UpdateHB()

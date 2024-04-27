@@ -46,6 +46,15 @@ namespace Prototype
             CheckFinish();
         }
 
+        private void OnEnable()
+        {
+            if (m_CurrentResources != null)
+            {
+                m_CurrentResources.onResourceChanged += UpdateResourceUI;
+                m_RequiredResources.onResourceChanged += UpdateResourceUI;
+            }
+        }
+
         private void OnDisable()
         {
             m_CurrentResources.onResourceChanged -= UpdateResourceUI;

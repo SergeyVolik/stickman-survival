@@ -184,8 +184,8 @@ MonoBehaviour:
   delayAttatckT: 0
   minSpeed: 1
   maxSpeed: 1.5
-  rotationSpeed: 0
   checkTargetDistance: 4
+  patrolSpeed: 0
   targetMask:
     serializedVersion: 2
     m_Bits: 64
@@ -272,7 +272,7 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   acceleration: 5
   rotationSpeed: 160
-  slowdownTime: 0.5
+  slowdownTime: 0.1
   endReachedDistance: 1
   wallForce: 3
   wallDist: 1
@@ -671,6 +671,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 20385b3d7e729a24c8246690e178e20c, type: 2}
+    - target: {fileID: 239331893339729194, guid: 176658e06a6cf3042961b53d4592a617,
+        type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 239331893339729194, guid: 176658e06a6cf3042961b53d4592a617,
         type: 3}
       propertyPath: m_ApplyRootMotion

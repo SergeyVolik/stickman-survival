@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6733760882363959028}
   - component: {fileID: 8833784906156438078}
   - component: {fileID: 2489903854142817148}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: SandBarrier_28_v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

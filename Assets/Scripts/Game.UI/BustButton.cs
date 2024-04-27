@@ -1,4 +1,3 @@
-using Prototype;
 using Prototype.Ads;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +17,7 @@ namespace Prototype
 
         float noBuffTimerT;
         public float activateButtonTimer;
+
         [Inject]
         void Construct(IPlayerFactory factory, IAdsPlayer adsManager)
         {
@@ -43,7 +43,6 @@ namespace Prototype
 
         private void Update()
         {
-
             if (m_CurrentEffect != null)
             {
                 timerHolder.gameObject.SetActive(true);
@@ -51,6 +50,7 @@ namespace Prototype
                 timerImage.fillAmount = 1f - m_CurrentEffect.currentTime / m_CurrentEffect.duration;
             }
             else {
+                timerHolder.gameObject.SetActive(false);
                 noBuffTimerT += Time.deltaTime;
 
                 if (noBuffTimerT > activateButtonTimer)

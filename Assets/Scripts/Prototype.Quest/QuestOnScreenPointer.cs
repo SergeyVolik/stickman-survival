@@ -26,7 +26,20 @@ namespace Prototype
             m_Camera = Camera.main;
             m_QuestQueue = GetComponent<QuestQueue>();
             CreateNewPointer();
+
+            m_QuestQueue.onQuestInited += DisableAllPointers;
+
+            DisableAllPointers();
         }
+
+        private void DisableAllPointers()
+        {
+            foreach (var item in pointers)
+            {
+                item.go.SetActive(false);
+            }
+        }
+
         void CreateNewPointer()
         {
             var instance = GameObject.Instantiate(questPointerPrefab, pointersRoot);
@@ -41,11 +54,6 @@ namespace Prototype
         private void Update()
         {
             var quest = m_QuestQueue.GetCurrentQuest();
-
-            foreach (var item in pointers)
-            {
-                item.go.SetActive(false);
-            }
 
             if (quest == null)
                 return;
@@ -89,8 +97,6 @@ namespace Prototype
                 default:
                     break;
             }
-
-
         }
 
         private void UpdateQuestPointer(PointerData questPointerData, Transform questObject, Color color)
