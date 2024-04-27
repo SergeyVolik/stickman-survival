@@ -43,9 +43,10 @@ namespace Prototype
         {
             if (GetCurrentQuest() == null)
                 return;
-
+         
             quests[currentQuest].Setup(questUISpawnPoint);
             quests[currentQuest].onQuestFinished += NextQuest;
+            quests[currentQuest].UpdateQuest();
         }
 
         public void ShowCurrentQuestTarget()

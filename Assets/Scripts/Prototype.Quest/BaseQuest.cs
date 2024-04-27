@@ -111,13 +111,16 @@ namespace Prototype
                 ShowTarget();
             });
 
-            if (highlightOnStart)
+            if (!IsFinished())
             {
-                DOVirtual.DelayedCall(highlightDelay, () =>
+                if (highlightOnStart)
                 {
-                    if(!IsFinished())
-                        ShowTarget();
-                });        
+                    DOVirtual.DelayedCall(highlightDelay, () =>
+                    {
+                        if (!IsFinished())
+                            ShowTarget();
+                    });
+                }
             }
         }
 

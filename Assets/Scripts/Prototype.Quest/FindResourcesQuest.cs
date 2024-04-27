@@ -22,8 +22,6 @@ namespace Prototype
             m_resoruces.resources.onResourceChanged += Resources_onResourceChanged;
             var findResUI = m_CurrentQuestUI.GetComponent<FindResourceQuestUI>();
             findResUI.Construct(m_resoruces);
-            UpdateQuest();
-            findResUI.UpdateDescription();
         }
 
         private void OnDestroy()

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -23,8 +24,12 @@ namespace Prototype
         private IPlayerFactory m_playerFactory;
         private UpgradeWeaponUI m_UIInstance;
         public PhysicsCallbacks playerTrigger;
-        private bool m_PlayerInside;
         private WordlToScreenUIItem m_WorldToScreenHandle;
+
+        public event Action<WeaponLevelUpgrade> onWeaponCrafted = delegate { };
+
+        public WeaponLevelUpgrade GetCurrentCraftItem() => upgradesList[currentUpgradeLevel];
+        public WeaponLevelUpgrade GetLastCraftedItem() => currentUpgradeLevel == 0 ? null : upgradesList[currentUpgradeLevel - 1];
 
         [Inject]
         public void Construct(
@@ -44,7 +49,7 @@ namespace Prototype
             {
                 TryUpgrade();
             });
-           
+
             SetupTrigger();
             m_UIInstance.gameObject.SetActive(false);
             m_UIInstance.Deactivate();
@@ -72,13 +77,14 @@ namespace Prototype
 
             if (current1 >= res1 && current2 >= res2)
             {
-              
+
                 m_PlayerResources.resources.RemoveResource(upgradeRes.item1.resourceType, res1);
                 m_PlayerResources.resources.RemoveResource(upgradeRes.item2.resourceType, res2);
                 currentUpgradeLevel++;
                 ShowNextItem();
                 m_UIInstance.Deactivate();
                 m_playerFactory.CurrentPlayerUnit.GetComponent<CharacterInventory>().SetupMeleeWeapon(upgradeRes.weaponPrefab);
+                onWeaponCrafted.Invoke(upgradeRes);
             }
         }
 
@@ -115,18 +121,16 @@ namespace Prototype
                 }
                 var upgradeRes = upgradesList[currentUpgradeLevel];
 
-               var res1 = m_PlayerResources.resources.GetResource(upgradeRes.item1.resourceType);
-                m_UIInstance.title.text = $"Craft level {currentUpgradeLevel+2} weapon";
+                var res1 = m_PlayerResources.resources.GetResource(upgradeRes.item1.resourceType);
+                m_UIInstance.title.text = $"Craft level {upgradeRes.weaponPrefab.GetComponent<MeleeWeapon>().level} weapon";
                 UpdateResourceItem(m_UIInstance.resource1, upgradeRes.item1);
                 UpdateResourceItem(m_UIInstance.resource2, upgradeRes.item2);
 
-                m_PlayerInside = true;
-                    m_UIInstance.Activate();
+                m_UIInstance.Activate();
             };
 
             playerTrigger.onTriggerExit += (col) =>
             {
-                m_PlayerInside = false;
                 m_UIInstance.Deactivate();
             };
         }
