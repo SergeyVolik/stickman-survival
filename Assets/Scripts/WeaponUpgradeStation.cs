@@ -31,7 +31,7 @@ namespace Prototype
 
         public event Action<WeaponLevelUpgrade> onWeaponCrafted = delegate { };
 
-        public WeaponLevelUpgrade GetCurrentCraftItem() => upgradesList[currentUpgradeLevel];
+        public WeaponLevelUpgrade GetCurrentCraftItem() => currentUpgradeLevel > upgradesList.Length -1 ? null : upgradesList[currentUpgradeLevel];
         public WeaponLevelUpgrade GetLastCraftedItem() => currentUpgradeLevel == 0 ? null : upgradesList[currentUpgradeLevel - 1];
 
         [Inject]
@@ -64,7 +64,6 @@ namespace Prototype
         private void SetupNextRequiredResources()
         {
             var currentCraftItem = GetCurrentCraftItem();
-
           
             requiredResources.Clear();
 
