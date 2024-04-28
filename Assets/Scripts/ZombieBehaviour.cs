@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using Pathfinding;
 using Prototype;
 using UnityEngine;
@@ -41,6 +42,8 @@ namespace Prototype
         public LayerMask wallLayerMask;
         public float attackDistance = 1f;
         private float m_ChaseSpeed;
+        public MMF_Player zombieIdleFeedback;
+        public MMF_Player zombieChaseFeedback;
 
         private void Awake()
         {
@@ -63,6 +66,8 @@ namespace Prototype
             m_Transfrom = transform;
 
             m_AiMovement.destination = m_Transfrom.position;
+
+            zombieIdleFeedback?.PlayFeedbacks();
         }
 
         private void Health_onHealthChanged(HealthChangeData obj)
@@ -77,6 +82,9 @@ namespace Prototype
         {
             m_AiMovement.canMove = false;
             enabled = false;
+
+            zombieIdleFeedback?.StopFeedbacks();
+            zombieChaseFeedback?.StopFeedbacks();
         }
 
         private void M_Animator_onEnableCollider()
@@ -104,6 +112,9 @@ namespace Prototype
 
         public void SetTarget(Transform target)
         {
+            zombieIdleFeedback?.StopFeedbacks();
+            zombieChaseFeedback?.PlayFeedbacks();
+
             m_CurrentState = ZombiebehaviourState.Chase;
             m_TargetTransform = target;
         }
@@ -174,9 +185,8 @@ namespace Prototype
             if (isTargetDetected)
             {
                 m_TargetTransform = m_RaycastHits[0].transform;
-                m_AiMovement.destination = m_TargetTransform.position;
-                m_CurrentState = ZombiebehaviourState.Chase;
-
+                m_AiMovement.destination = m_TargetTransform.position;              
+                SetTarget(m_TargetTransform);
                 if (m_Patrol)
                     m_Patrol.enabled = false;
             }

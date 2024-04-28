@@ -13,7 +13,7 @@ namespace Prototype
         public MeleeWeapon weaponPrefab;
     }
 
-    public class WeaponUpgradeStation : MonoBehaviour
+    public class WeaponUpgradeStation : MonoBehaviour, IRequiredResourceContainer
     {
         public WeaponLevelUpgrade[] upgradesList;
         public int currentUpgradeLevel;
@@ -25,6 +25,9 @@ namespace Prototype
         private UpgradeWeaponUI m_UIInstance;
         public PhysicsCallbacks playerTrigger;
         private WordlToScreenUIItem m_WorldToScreenHandle;
+
+        private ResourceContainer requiredResources = new ResourceContainer();
+        public ResourceContainer RequiredResources => requiredResources;
 
         public event Action<WeaponLevelUpgrade> onWeaponCrafted = delegate { };
 
@@ -53,8 +56,23 @@ namespace Prototype
             SetupTrigger();
             m_UIInstance.Deactivate();
             m_UIInstance.gameObject.SetActive(false);
-          
+
             ShowNextItem();
+            SetupNextRequiredResources();
+        }
+
+        private void SetupNextRequiredResources()
+        {
+            var currentCraftItem = GetCurrentCraftItem();
+
+          
+            requiredResources.Clear();
+
+            if (currentCraftItem == null)
+                return;
+            
+            requiredResources.AddResource(currentCraftItem.item1.resourceType, currentCraftItem.item1.count);
+            requiredResources.AddResource(currentCraftItem.item2.resourceType, currentCraftItem.item2.count);
         }
 
         public void ShowNextItem()
@@ -87,6 +105,7 @@ namespace Prototype
                 m_PlayerResources.resources.RemoveResource(upgradeRes.item2.resourceType, res2);
                 currentUpgradeLevel++;
                 ShowNextItem();
+                SetupNextRequiredResources();
                 m_UIInstance.Deactivate();
                 m_playerFactory.CurrentPlayerUnit.GetComponent<CharacterInventory>().SetupMeleeWeapon(upgradeRes.weaponPrefab);
                 onWeaponCrafted.Invoke(upgradeRes);

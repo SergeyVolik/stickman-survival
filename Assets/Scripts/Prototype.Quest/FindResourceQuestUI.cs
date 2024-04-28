@@ -1,44 +1,51 @@
-using Prototype;
-using System;
 using TMPro;
 using UnityEngine.UI;
 
-public class FindResourceQuestUI : BaseQuestUI
+namespace Prototype
 {
-    public TextMeshProUGUI questText;
-    public Image resourceSprite;
-
-    private IQuest m_quest;
-    private PlayerResources m_resoruces;
-
-    public override void Bind(IQuest quest)
+    public class FindResourceQuestUI : BaseQuestUI
     {
-        m_quest = quest;
-        quest.onQuestChanged += Quest_onQuestChanged;
-        UpdateDescription();
-    }
+        public TextMeshProUGUI questText;
+        public Image resourceSprite;
 
-    private void Quest_onQuestChanged()
-    {
-        UpdateDescription();
-    }
+        private IQuest m_quest;
+        private PlayerResources m_playerResoruces;
+        private IRequiredResourceContainer m_requiredResources;
 
-    public override void UpdateDescription()
-    {
-        if (m_resoruces == null)
+        public override void Bind(IQuest quest)
         {
-            return;
+            m_quest = quest;
+            quest.onQuestChanged += Quest_onQuestChanged;
+            UpdateDescription();
         }
 
-        if (m_quest is FindResourcesQuest data)
+        private void Quest_onQuestChanged()
         {
-            resourceSprite.sprite = data.resourcesToFind.resourceIcon;
-            questText.text = $"Find {data.toFind - m_resoruces.resources.GetResource(data.resourcesToFind)}";
+            UpdateDescription();
         }
-    }
 
-    internal void Construct(PlayerResources resoruces)
-    {
-        m_resoruces = resoruces;
+        public override void UpdateDescription()
+        {
+            if (m_playerResoruces == null)
+            {
+                return;
+            }
+
+            foreach (var item in m_requiredResources.RequiredResources.ResourceIterator())
+            {
+                var playerReosurce = m_playerResoruces.resources.GetResource(item.Key);
+                if (item.Value != 0 && playerReosurce < item.Value)
+                {
+                    resourceSprite.sprite = item.Key.resourceIcon;
+                    questText.text = $"Find {item.Value - playerReosurce,0}";
+                }
+            }
+        }
+
+        internal void Construct(PlayerResources playerResources, IRequiredResourceContainer requiredResources)
+        {
+            m_playerResoruces = playerResources;
+            m_requiredResources = requiredResources;
+        }
     }
 }

@@ -42,17 +42,22 @@ namespace Prototype
             }
         }
 
-        private void Init()
+        public void Init(ResourceItem[] initResources)
         {
             m_Inited = true;
             m_ResourceDic.Clear();
-            if (m_InitResources != null)
+            if (initResources != null)
             {
-                foreach (ResourceItem item in m_InitResources)
+                foreach (ResourceItem item in initResources)
                 {
                     m_ResourceDic.Add(item.resourceType, item.count);
                 }
             }
+        }
+
+        private void Init()
+        {
+            Init(m_InitResources);
         }
 
         public void SetResource(ResourceTypeSO resourceType, int count)

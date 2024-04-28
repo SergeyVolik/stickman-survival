@@ -340,20 +340,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradesList:
   - item1:
-      count: 30
-      resourceType: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a, type: 2}
-    item2:
       count: 300
       resourceType: {fileID: 11400000, guid: 05f855fffb8cb5449aa06ca6e0028d8e, type: 2}
+    item2:
+      count: 30
+      resourceType: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a, type: 2}
     visualItem: {fileID: 3263160118807594586}
     weaponPrefab: {fileID: 4983514561438256645, guid: fd1710391729c2f4eb32c601de693279,
       type: 3}
   - item1:
-      count: 50
-      resourceType: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a, type: 2}
-    item2:
       count: 100
       resourceType: {fileID: 11400000, guid: b29b69d0f34232545a3226e7428d72e8, type: 2}
+    item2:
+      count: 50
+      resourceType: {fileID: 11400000, guid: 4dcbd497c9cf6b041b93fbc5025e8c4a, type: 2}
     visualItem: {fileID: 3250694948118161335}
     weaponPrefab: {fileID: 4983514561438256645, guid: e40140e9d42e3d24a9672cff33ccf579,
       type: 3}

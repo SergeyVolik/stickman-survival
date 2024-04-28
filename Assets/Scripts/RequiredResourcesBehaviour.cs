@@ -9,7 +9,12 @@ using Zenject;
 
 namespace Prototype
 {
-    public class RequiredResourcesBehaviour : MonoBehaviour
+    public interface IRequiredResourceContainer
+    {
+        public ResourceContainer RequiredResources { get; }
+    }
+
+    public class RequiredResourcesBehaviour : MonoBehaviour, IRequiredResourceContainer
     {
         public ResourceContainer requiredResources;
         private ResourceContainer m_RequiredCurrentResources;
@@ -28,6 +33,8 @@ namespace Prototype
         private bool m_Finished;
         public string uiTitle;
         public string buttonText;
+
+        public ResourceContainer RequiredResources => requiredResources;
 
         [Inject]
         void Construct(WorldToScreenUIManager wts, PlayerResources playerResources)
