@@ -11,7 +11,7 @@ namespace Prototype
         public Transform questUISpawnPoint;
         private IPlayerFactory m_playerFactory;
 
-        public event Action onQuestInited = delegate { };
+        public event Action<BaseQuest> onQuestInited = delegate { };
         private void Awake()
         {
             questUISpawnPoint.gameObject.SetActive(false);
@@ -66,6 +66,7 @@ namespace Prototype
         {
             ClearPrevQuest();
             currentQuest++;
+            onQuestInited.Invoke(GetCurrentQuest());
             SetupCurrentQuest();
         }
     }

@@ -27,7 +27,7 @@ namespace Prototype
             m_QuestQueue = GetComponent<QuestQueue>();
             CreateNewPointer();
 
-            m_QuestQueue.onQuestInited += DisableAllPointers;
+            m_QuestQueue.onQuestInited += (quest) => { DisableAllPointers(); };
 
             DisableAllPointers();
         }
@@ -62,9 +62,9 @@ namespace Prototype
 
             switch (quest.pointerMode)
             {
-                case Prototype.TargetPonterMode.None:
+                case Prototype.TargetPointerMode.None:
                     break;
-                case Prototype.TargetPonterMode.One:
+                case Prototype.TargetPointerMode.One:
                     var questPointer = pointers[0];
 
                     if (quest)
@@ -73,7 +73,7 @@ namespace Prototype
                         UpdateQuestPointer(questPointer, questObject, pointerColor);
                     }
                     break;
-                case Prototype.TargetPonterMode.All:
+                case Prototype.TargetPointerMode.All:
                     if (quest)
                     {
                         var questObjects = quest.GetQuestTargetObjects();

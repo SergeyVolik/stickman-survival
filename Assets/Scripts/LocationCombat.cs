@@ -43,6 +43,7 @@ namespace Prototype
 
     public class LocationCombat : MonoBehaviour
     {
+        public PhysicsCallbacks startCombatCollider;
         public WaveData[] spawnWaves;
         private EnemySpawnFactory m_spawnFactory;
         private IPlayerFactory m_playerFactory;
@@ -78,6 +79,15 @@ namespace Prototype
                         instance.gameObject.SetActive(false);
                     }
                 }
+            }
+
+            if (startCombatCollider)
+            {
+                startCombatCollider.onTriggerEnter += (col) =>
+                {
+                    startCombatCollider.gameObject.SetActive(false);
+                    StartCombat();
+                };
             }
         }
 

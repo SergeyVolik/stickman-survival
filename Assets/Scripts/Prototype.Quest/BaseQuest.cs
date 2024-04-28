@@ -21,7 +21,7 @@ namespace Prototype
         public IEnumerable<Transform> GetQuestTargetObjects();
     }
 
-    public enum TargetPonterMode
+    public enum TargetPointerMode
     {
         None,
         One,
@@ -40,7 +40,7 @@ namespace Prototype
         private GameObject questUI;
         private CameraController m_cameraContr;
         private IPlayerInputReader m_input;
-        public TargetPonterMode pointerMode;
+        public TargetPointerMode pointerMode;
         public bool overridePointrColor;
         public Color pointerColor;
         [field: SerializeField]
