@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Prototype
     public class CollectableWeapon : MonoBehaviour, ICollectable
     {
         public GameObject GunPrefab;
-
+        public MMF_Player collectFeedback;
         public event Action onCollected;
 
         public void Collect(GameObject collecteBy)
@@ -21,6 +22,8 @@ namespace Prototype
                 {
                     behaviour.SetupMeleeWeapon(GunPrefab.GetComponent<MeleeWeapon>());
                 }
+
+                collectFeedback?.PlayFeedbacks();
                 onCollected?.Invoke();
                 gameObject.SetActive(false);
             }

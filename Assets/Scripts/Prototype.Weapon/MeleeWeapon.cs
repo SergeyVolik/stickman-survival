@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace Prototype
         public float pushForce;
 
         public bool ignoreHighLevelObjects;
-
+        public MMF_Player hitFeedback;
         private void Awake()
         {
             m_HitBox = GetComponent<Collider>();
@@ -78,7 +79,7 @@ namespace Prototype
             if (required.Validate(level, Type))
             {
                 other.GetComponent<IDamageable>().DoDamage((int)(damage * damageMult), gameObject);
-
+                hitFeedback?.PlayFeedbacks();
                 if (other.TryGetComponent<IPushable>(out var rb))
                 {
                     var vector = other.transform.position - Owner.transform.position;
