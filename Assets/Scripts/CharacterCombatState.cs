@@ -48,6 +48,7 @@ namespace Prototype
 
         [SerializeField]
         float m_NoEnemiesT;
+        internal bool forceCombat;
 
         private void FixedUpdate()
         {
@@ -64,7 +65,7 @@ namespace Prototype
       
             bool noEnemiesFinished = m_NoEnemiesT < timeToEndCombat;
 
-            InCombat = noEnemiesFinished;
+            InCombat = noEnemiesFinished || forceCombat;
         }
     }
 }

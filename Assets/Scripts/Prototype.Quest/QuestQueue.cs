@@ -8,13 +8,13 @@ namespace Prototype
     {
         public BaseQuest[] quests;
         public int currentQuest;
-        public Transform questUISpawnPoint;
+        public QuestPanel questPanel;
         private IPlayerFactory m_playerFactory;
 
         public event Action<BaseQuest> onQuestInited = delegate { };
         private void Awake()
         {
-            questUISpawnPoint.gameObject.SetActive(false);
+            questPanel.gameObject.SetActive(false);
         }
 
         [Inject]
@@ -36,7 +36,7 @@ namespace Prototype
 
         public void StartQuests()
         {
-            questUISpawnPoint.gameObject.SetActive(true);
+            questPanel.gameObject.SetActive(true);
             currentQuest = 0;
             SetupCurrentQuest();
         }
@@ -46,8 +46,10 @@ namespace Prototype
         {
             if (GetCurrentQuest() == null)
                 return;
-         
-            quests[currentQuest].Setup(questUISpawnPoint);
+
+            questPanel.Show();
+
+            quests[currentQuest].Setup(questPanel.transform);
             quests[currentQuest].onQuestFinished += NextQuest;
             quests[currentQuest].UpdateQuest();
         }
@@ -64,10 +66,12 @@ namespace Prototype
 
         private void NextQuest()
         {
-            ClearPrevQuest();
-            currentQuest++;
-            onQuestInited.Invoke(GetCurrentQuest());
-            SetupCurrentQuest();
+            questPanel.Hide(() => {
+                ClearPrevQuest();
+                currentQuest++;
+                onQuestInited.Invoke(GetCurrentQuest());
+                SetupCurrentQuest();
+            });          
         }
     }
 }

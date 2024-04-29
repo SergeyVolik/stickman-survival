@@ -70,8 +70,12 @@ namespace Prototype
                     if (quest)
                     {
                         var questObject = quest.GetQuestTargetObject();
-                        UpdateQuestPointer(questPointer, questObject, pointerColor);
+                        if (questObject != null)
+                        {
+                            UpdateQuestPointer(questPointer, questObject, pointerColor);
+                        }
                     }
+
                     break;
                 case Prototype.TargetPointerMode.All:
                     if (quest)

@@ -62,6 +62,9 @@ namespace Prototype
         public int AlreadyKilled => alreadyKilled;
         public int TargetKills => toKill;
 
+        List<Transform> aliveUnits = new List<Transform>();
+        float currentSpawnT = 0;
+        private int alreadyKilled;
         private void Awake()
         {
             enabled = false;
@@ -111,12 +114,11 @@ namespace Prototype
             if (enabled)
                 return;
 
+
             OnStartedUE.Invoke();
+            m_playerFactory.CurrentPlayerUnit.GetComponent<CharacterCombatState>().forceCombat = true;
             enabled = true;
         }
-
-        float currentSpawnT = 0;
-        private int alreadyKilled;
 
         private void Update()
         {
@@ -131,6 +133,14 @@ namespace Prototype
             currentSpawnT += deltaTime;
 
             var currWave = spawnWaves[currentWaveIndex];
+
+            if (currWave.Spawns.Length == 0)
+            {
+                currentWaveIndex++;
+                currentSpawnIndex = 0;
+                return;
+            }
+
             var currentSpawn = currWave.Spawns[currentSpawnIndex];
 
             if (currentSpawn.delay < currentSpawnT)
@@ -141,7 +151,7 @@ namespace Prototype
                 var seeker = enemyInstance.GetComponent<ITargetSeeker>();
                 seeker.SetTarget(m_playerFactory.CurrentPlayerUnit.transform);
                 currentSpawnIndex++;
-              
+
                 if (currWave.Spawns.Length <= currentSpawnIndex)
                 {
                     currentWaveIndex++;
@@ -149,8 +159,6 @@ namespace Prototype
                 }
             }
         }
-
-        List<Transform> aliveUnits = new List<Transform>();
 
         public IEnumerable<Transform> GetAllAliveUnits()
         {
@@ -191,6 +199,7 @@ namespace Prototype
 
                 if (alreadyKilled == TargetKills)
                 {
+                    m_playerFactory.CurrentPlayerUnit.GetComponent<CharacterCombatState>().forceCombat = false;
                     OnAllKilledUE.Invoke();
                 }
             };
