@@ -3609,7 +3609,7 @@ MonoBehaviour:
   FollowOffset: {x: 0, y: 12.6, z: -10.92}
   TrackerSettings:
     BindingMode: 4
-    PositionDamping: {x: 1, y: 1, z: 1}
+    PositionDamping: {x: 0, y: 0, z: 0}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
@@ -10535,7 +10535,7 @@ MonoBehaviour:
     items:
     - {fileID: 453744085}
     moveVector: {x: 1, y: 0, z: 0}
-    teleportOffset: 45
+    teleportOffset: 90
 --- !u!1001 &351303561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35243,10 +35243,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CameraTarget: {fileID: 1009796887}
-  lookAheadSpeed: 3
+  lookAheadSpeed: 5
   lookAheadOffset: 1.5
-  lookAheadSpeedIdle: 2
+  lookAheadSpeedIdle: 4
   lookAheadOffsetIdle: 1
+  m_CurrentlookAheadSpeed: 0
+  m_CurrentlookAheadOffset: 0
   combatVCamera: {fileID: 2031736883}
   idleVCamera: {fileID: 97384384}
 --- !u!4 &1234772971
@@ -55075,7 +55077,7 @@ MonoBehaviour:
   FollowOffset: {x: 0, y: 19.5, z: -16.9}
   TrackerSettings:
     BindingMode: 4
-    PositionDamping: {x: 1, y: 1, z: 1}
+    PositionDamping: {x: 0, y: 0, z: 0}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1

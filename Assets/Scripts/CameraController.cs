@@ -23,7 +23,10 @@ namespace Prototype
         public float lookAheadSpeedIdle;
         public float lookAheadOffsetIdle;
 
+        [SerializeField]
         private float m_CurrentlookAheadSpeed;
+
+        [SerializeField]
         private float m_CurrentlookAheadOffset;
 
         public GameObject combatVCamera;

@@ -32,11 +32,11 @@ namespace Prototype
 
                 foreach (var item in layer.items)
                 {
-                    item.transform.position += moveVector * layer.speedRation * moveSpeed * deltaTime;
+                    item.transform.localPosition += moveVector * layer.speedRation * moveSpeed * deltaTime;
 
-                    if (item.transform.position.x > layer.teleportOffset)
+                    if (item.transform.localPosition.x > layer.teleportOffset)
                     {
-                        item.transform.position -= new Vector3(layer.teleportOffset, 0, 0);
+                        item.transform.localPosition -= new Vector3(layer.teleportOffset, 0, 0);
                     }
                 }
             }
