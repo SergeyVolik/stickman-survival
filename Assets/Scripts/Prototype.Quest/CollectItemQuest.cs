@@ -1,9 +1,5 @@
-using DG.Tweening;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using Zenject;
 
 namespace Prototype
 {

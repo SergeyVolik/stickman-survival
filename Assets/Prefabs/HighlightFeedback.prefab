@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3745262845183926026}
   - component: {fileID: 1799728259849340725}
   m_Layer: 16
-  m_Name: HeighlightFeedback
+  m_Name: HighlightFeedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,7 +283,7 @@ MonoBehaviour:
         DebugActive: 0
         Renderer: {fileID: 0}
         AdditionalRenderers: []
-        Duration: 0.7
+        Duration: 0.5
         highlightColor: {r: 1, g: 1, b: 1, a: 1}
         EaseType: 0
         useAnimationCurve: 1

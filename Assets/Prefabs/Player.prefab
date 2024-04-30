@@ -784,7 +784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HatSpawnPoint: {fileID: 4623296049146870813}
-  hatType: 1
+  hatType: 0
 --- !u!114 &2937311492120454795
 MonoBehaviour:
   m_ObjectHideFlags: 0

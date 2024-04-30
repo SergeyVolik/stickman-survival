@@ -32,7 +32,7 @@ PrefabInstance:
         type: 3}
       propertyPath: managedReferences[446011855542419485].Renderer
       value: 
-      objectReference: {fileID: 3874011540093932234}
+      objectReference: {fileID: 0}
     - target: {fileID: 2197824975227612250, guid: 317d5c0c554b3704aa23f109cca956ce,
         type: 3}
       propertyPath: GunPrefab
@@ -201,17 +201,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: G_MachinePistol
       objectReference: {fileID: 0}
+    - target: {fileID: 8738680731933113353, guid: ad2751ffb61348e4e925854981f4f437,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.089834705
+      objectReference: {fileID: 0}
+    - target: {fileID: 8738680731933113353, guid: ad2751ffb61348e4e925854981f4f437,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.10100581
+      objectReference: {fileID: 0}
+    - target: {fileID: 8738680731933113353, guid: ad2751ffb61348e4e925854981f4f437,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.97638255
+      objectReference: {fileID: 0}
+    - target: {fileID: 8738680731933113353, guid: ad2751ffb61348e4e925854981f4f437,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.16853686
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad2751ffb61348e4e925854981f4f437, type: 3}
---- !u!23 &3874011540093932234 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8106982871372924130, guid: ad2751ffb61348e4e925854981f4f437,
-    type: 3}
-  m_PrefabInstance: {fileID: 4990701972040193576}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7942897945744872708 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3132357553133028140, guid: ad2751ffb61348e4e925854981f4f437,

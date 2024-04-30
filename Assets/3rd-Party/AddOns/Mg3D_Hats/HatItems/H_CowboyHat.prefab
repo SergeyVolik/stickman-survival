@@ -85,7 +85,7 @@ PrefabInstance:
     - target: {fileID: 6296888346948051595, guid: 5e9ba6523064bbf498a24ae073064fac,
         type: 3}
       propertyPath: m_Name
-      value: H_Cowboy
+      value: H_CowboyHat
       objectReference: {fileID: 0}
     - target: {fileID: 7801470168723145994, guid: 5e9ba6523064bbf498a24ae073064fac,
         type: 3}
@@ -144,7 +144,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3985291007640504214}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6296888346948051595, guid: 5e9ba6523064bbf498a24ae073064fac,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4245662483640100362}
   m_SourcePrefab: {fileID: 100100000, guid: 5e9ba6523064bbf498a24ae073064fac, type: 3}
 --- !u!4 &1226531378240415249 stripped
 Transform:
@@ -152,3 +156,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9025741429928829723}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3036247021306347920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6296888346948051595, guid: 5e9ba6523064bbf498a24ae073064fac,
+    type: 3}
+  m_PrefabInstance: {fileID: 9025741429928829723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-4245662483640100362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036247021306347920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f5f99a403324842b72d7bb5d781405, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -491,7 +491,7 @@ MonoBehaviour:
   minSpeed: 1.5
   maxSpeed: 2
   checkTargetDistance: 4
-  patrolSpeed: 0
+  patrolSpeed: 1
   targetMask:
     serializedVersion: 2
     m_Bits: 64
@@ -580,7 +580,7 @@ MonoBehaviour:
   targetCompatibility: {fileID: 0}
   acceleration: 5
   rotationSpeed: 180
-  slowdownTime: 0.5
+  slowdownTime: 0.1
   endReachedDistance: 1
   wallForce: 3
   wallDist: 1

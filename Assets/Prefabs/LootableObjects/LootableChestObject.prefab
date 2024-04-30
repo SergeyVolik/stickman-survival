@@ -2889,12 +2889,12 @@ PrefabInstance:
     - target: {fileID: 6916772092100488436, guid: 0cb1bd66b36305746b02124c3614ecc4,
         type: 3}
       propertyPath: managedReferences[446012085630140418].MaxVolume
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6916772092100488436, guid: 0cb1bd66b36305746b02124c3614ecc4,
         type: 3}
       propertyPath: managedReferences[446012085630140418].MinVolume
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6916772092100488436, guid: 0cb1bd66b36305746b02124c3614ecc4,
         type: 3}

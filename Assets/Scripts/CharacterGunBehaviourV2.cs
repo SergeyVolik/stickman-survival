@@ -18,7 +18,7 @@ namespace Prototype
         private CharacterCombatState m_CombatState;
         private CharacterStats m_Stats;
         private Transform m_LastTarget;
-        public float aimDistance = 5f;
+        public float AimDistance => m_Inventory.HasGun() ? m_Inventory.GetGun().aimDistance : 0;
         public LayerMask CastMask;
         public LayerMask WallMask;
         public bool canAim;
@@ -41,7 +41,7 @@ namespace Prototype
         {
             Vector3 currentPos = m_Transform.position;
 
-            int count = PhysicsHelper.GetAllTargetWithoutWalls(m_Transform, results, aimDistance, CastMask, WallMask, 0.5f);
+            int count = PhysicsHelper.GetAllTargetWithoutWalls(m_Transform, results, AimDistance, CastMask, WallMask, 0.5f);
 
             RaycastHit closest = default;
             float closestDistance = float.MaxValue;
@@ -83,7 +83,6 @@ namespace Prototype
             m_AimCircle = GetComponent<AimCirclerBehaviour>();
             m_CombatState = GetComponent<CharacterCombatState>();
             m_Stats = GetComponent<CharacterStats>();
-            m_Inventory.onGunChanged += M_Inventory_onMainWeaponChanged;
             m_CombatState.onCombatState += UpdateCombatState;
             results = new RaycastHit[10];
         }
@@ -105,15 +104,6 @@ namespace Prototype
             m_Health.onHealthChanged -= Health_onHealthChanged;
             m_Controller.AimVector = Vector2.zero;
             m_Controller.ResetDefaultRotatonSpeed();
-        }
-
-        private void M_Inventory_onMainWeaponChanged(Gun obj)
-        {
-            if (obj)
-            {
-                aimDistance = obj.aimDistance;
-            }
-            else aimDistance = 0;
         }
 
         private void UpdateCombatState(bool value)
@@ -154,7 +144,7 @@ namespace Prototype
                     //Debug.Log("UpdateCurretn Target");
                     var dist = Vector3.Distance(CurrentTargetHealth.transform.position, currentPos);
 
-                    if (CurrentTargetHealth.IsDead || dist > aimDistance)
+                    if (CurrentTargetHealth.IsDead || dist > AimDistance)
                     {
                         ResetTarget();
                     }
