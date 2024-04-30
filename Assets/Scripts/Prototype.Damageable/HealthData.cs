@@ -49,6 +49,9 @@ namespace Prototype
 
         public void DoHeal(int heal, GameObject source)
         {
+            if (maxHealth == currentHealth)
+                return;
+
             ChangeHealth(heal, source);
         }
 
