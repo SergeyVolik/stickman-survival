@@ -34,6 +34,7 @@ namespace Prototype
         private void Awake()
         {
             m_Drop = GetComponent<DropExecutor>();
+            m_OpenStateImage.transform.parent.gameObject.SetActive(false);
         }
 
         private void OnEnable()
@@ -68,6 +69,7 @@ namespace Prototype
             if (isOpened)
                 return;
 
+            m_OpenStateImage.transform.parent.gameObject.SetActive(true);
             if (obj.TryGetComponent<CharacterCombatState>(out var combat))
             {
                 if (combat.InCombat)
@@ -111,7 +113,7 @@ namespace Prototype
 
             if (executedLootTicks == lootTicks)
             {
-                m_OpenStateImage.gameObject.SetActive(false);
+                m_OpenStateImage.transform.parent.gameObject.SetActive(false);
                 continueOpening = false;
                 isOpened = true;
                 ResetCharacterData();
