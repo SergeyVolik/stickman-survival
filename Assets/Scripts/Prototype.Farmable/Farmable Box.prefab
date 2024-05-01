@@ -315,7 +315,7 @@ PrefabInstance:
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
       propertyPath: m_StartResource.m_InitResources.Array.data[0].count
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5729490904841968019, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}
@@ -333,6 +333,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.601
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062716019281163421, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: maxHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062716019281163421, guid: f570110e791cb8d42bb0bd7d4800e77a,
+        type: 3}
+      propertyPath: currentHealth
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7325258845627080027, guid: f570110e791cb8d42bb0bd7d4800e77a,
         type: 3}

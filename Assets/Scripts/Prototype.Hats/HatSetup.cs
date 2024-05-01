@@ -32,6 +32,7 @@ namespace Prototype
                 m_CurrentHat.gameObject.SetActive(false);
             }
         }
+
         private void OnEnable()
         {
             if (m_CurrentHat)

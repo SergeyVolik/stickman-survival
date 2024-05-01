@@ -117,6 +117,11 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 8419742710895534685, guid: 0e9c3edded58dd047ae5209dac3c77e3,
         type: 3}
+      propertyPath: recycleItemDuration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419742710895534685, guid: 0e9c3edded58dd047ae5209dac3c77e3,
+        type: 3}
       propertyPath: <Id>k__BackingField.Part1
       value: 1194758185
       objectReference: {fileID: 0}

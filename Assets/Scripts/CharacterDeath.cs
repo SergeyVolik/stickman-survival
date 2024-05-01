@@ -48,11 +48,11 @@ namespace Prototype
                     body.AddForce(vec * gun.killPushForce, mode: ForceMode.Impulse);
                 }
 
-                DOVirtual.DelayedCall(Random.Range(0.3f, 0.5f), () =>
+                DOVirtual.DelayedCall(Random.Range(0.1f, 0.2f), () =>
                 {
-                    if (hatSetup && hatSetup.CurrentHat)
+                    if (hatSetup && hatSetup.CurrentHat && !hatSetup.CurrentHat.IsDropped)
                     {
-                        hatSetup.CurrentHat.Drop();
+                        hatSetup.CurrentHat.DropWithVelocity(mMRagdoller.Head.velocity);
                     }
                 });
 

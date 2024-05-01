@@ -1,3 +1,4 @@
+using Prototype.Ads;
 using System;
 using Unity.Mathematics;
 using UnityEngine;
@@ -26,7 +27,7 @@ namespace Prototype
 
         [Min(1)]
         public int itemsToDestResource = 1;
-
+        private IAdsPlayer m_adsManager;
         private PlayerResources m_PlayerResources;
         private WorldToScreenUIManager m_wtsManager;
 
@@ -71,8 +72,10 @@ namespace Prototype
         [Inject]
         public void Construct(
              PlayerResources resources,
-             WorldToScreenUIManager wtsManager)
+             WorldToScreenUIManager wtsManager,
+             IAdsPlayer adsManager)
         {
+            m_adsManager = adsManager;
             m_PlayerResources = resources;
             m_wtsManager = wtsManager;
         }
@@ -88,7 +91,7 @@ namespace Prototype
             m_UIRecycleViewInstance.Deactivate();
             m_UIInstance.Deactivate();
 
-            m_UIRecycleViewInstance.Bind(this);
+            m_UIRecycleViewInstance.Bind(this, m_adsManager);
 
             SetupTrigger();
 
@@ -224,6 +227,11 @@ namespace Prototype
                 m_UIInstance.Deactivate();
                 m_UIRecycleViewInstance.Activate();
             }
+        }
+
+        internal void FinishTimer()
+        {
+            m_EndRecyclingTime = m_StartRecyclingTime;
         }
     }
 }

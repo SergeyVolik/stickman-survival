@@ -74,4 +74,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   increaseAttackSpeedMult: 0
-  increaseMeleeWeaponDamageMult: 2
+  increaseMeleeWeaponDamageMult: 1
