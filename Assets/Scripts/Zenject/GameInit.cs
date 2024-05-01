@@ -58,12 +58,16 @@ namespace Prototype
         public HatFactory HatFactory;
         public EnemySpawnFactory EnemySpawnFactory;
         public AudioListenerController AudioListenerController;
+        public ItemPreviewUIPage ItemPreviewUIPage;
+        public ItemPreviewCamera ItemPreviewCamera;
         public override void InstallBindings()
         {
             var input = new PlayerInputReader(Joystick);
             m_playerSpawnFactory = new PlayerSpawnFactory(PlayerPrefab, Container);
             var wsm = new WorldSpaceMessageFactory(m_WSMPrefab);
             Container.Bind<AudioListenerController>().FromInstance(AudioListenerController);
+            Container.Bind<ItemPreviewUIPage>().FromInstance(ItemPreviewUIPage);
+            Container.Bind<ItemPreviewCamera>().FromInstance(ItemPreviewCamera);
             Container.Bind<HatFactory>().FromInstance(HatFactory);
             Container.Bind<IAdsPlayer>().FromInstance(AdsManager);
             Container.Bind<ActivateByDistanceToPlayerManager>().FromInstance(ActivateByDistanceToPlayerManager);

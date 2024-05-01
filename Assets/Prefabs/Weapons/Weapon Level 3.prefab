@@ -477,6 +477,12 @@ PrefabInstance:
       propertyPath: hideRotation.z
       value: -46.799
       objectReference: {fileID: 0}
+    - target: {fileID: 5133948523457347064, guid: 67a9dac339e5a30438c05aaa42538f74,
+        type: 3}
+      propertyPath: previewSetting
+      value: 
+      objectReference: {fileID: 11400000, guid: 098f04f563212994c859ab074ec7dd00,
+        type: 2}
     - target: {fileID: 7976098121809810362, guid: 67a9dac339e5a30438c05aaa42538f74,
         type: 3}
       propertyPath: m_Size.x
@@ -510,7 +516,7 @@ PrefabInstance:
     - target: {fileID: 8215234346464827918, guid: 67a9dac339e5a30438c05aaa42538f74,
         type: 3}
       propertyPath: m_Name
-      value: Weapon level 2
+      value: Weapon Level 3
       objectReference: {fileID: 0}
     - target: {fileID: 8215234346464827918, guid: 67a9dac339e5a30438c05aaa42538f74,
         type: 3}

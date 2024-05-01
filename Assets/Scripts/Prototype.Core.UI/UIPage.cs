@@ -41,7 +41,7 @@ namespace Prototype.UI
                 UINavigationManager.GetInstance().Navigate(this);
         }
        
-        public virtual void Hide(bool onlyDosableInput = false)
+        public virtual void Hide(bool onlyDisableRaycast = false)
         {         
             if(EventSystem.current && firstHideExecuted && EventSystem.current.currentSelectedGameObject != null)
                 lastFocusedElement = EventSystem.current.currentSelectedGameObject;
@@ -57,7 +57,7 @@ namespace Prototype.UI
 
             firstHideExecuted = true;
 
-            if (onlyDosableInput)
+            if (onlyDisableRaycast)
             {
                 m_GraphicRaycaster.enabled = false;
             }

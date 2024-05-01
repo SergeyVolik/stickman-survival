@@ -360,6 +360,12 @@ PrefabInstance:
       propertyPath: hideRotation.z
       value: -46.799
       objectReference: {fileID: 0}
+    - target: {fileID: 5133948523457347064, guid: 67a9dac339e5a30438c05aaa42538f74,
+        type: 3}
+      propertyPath: previewSetting
+      value: 
+      objectReference: {fileID: 11400000, guid: c444e442e9746314cba4b0110798d93d,
+        type: 2}
     - target: {fileID: 7976098121809810362, guid: 67a9dac339e5a30438c05aaa42538f74,
         type: 3}
       propertyPath: m_Size.x

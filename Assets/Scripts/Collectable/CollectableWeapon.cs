@@ -1,6 +1,7 @@
 using MoreMountains.Feedbacks;
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace Prototype
 {
@@ -8,7 +9,15 @@ namespace Prototype
     {
         public GameObject GunPrefab;
         public MMF_Player collectFeedback;
+        private ItemPreviewUIPage m_itemPreview;
+
         public event Action onCollected;
+
+        [Inject]
+        void Construct(ItemPreviewUIPage itemPreview)
+        {
+            m_itemPreview = itemPreview;
+        }
 
         public void Collect(GameObject collecteBy)
         {
@@ -26,6 +35,11 @@ namespace Prototype
                 collectFeedback?.PlayFeedbacks();
                 onCollected?.Invoke();
                 gameObject.SetActive(false);
+
+                if (GunPrefab.TryGetComponent<NeedPreviewItem>(out var previewData))
+                {
+                    m_itemPreview.ShowPreview(previewData.previewSetting);
+                }
             }
         }
     }

@@ -772,6 +772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3132357553133028140}
   - component: {fileID: 8232601012485863562}
+  - component: {fileID: 6965396930127296022}
   m_Layer: 0
   m_Name: G_HandGun
   m_TagString: Untagged
@@ -833,6 +834,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   damagMult: 1
+--- !u!114 &6965396930127296022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7329773849400430372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27a30b5f497b0ab48af22df8dd480208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previewSetting: {fileID: 11400000, guid: 0bc88ea520e5bc9498d9ed75ce45afec, type: 2}
 --- !u!1001 &2731153939663909547
 PrefabInstance:
   m_ObjectHideFlags: 0

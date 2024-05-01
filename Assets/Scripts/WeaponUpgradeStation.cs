@@ -22,6 +22,7 @@ namespace Prototype
         private PlayerResources m_PlayerResources;
         private WorldToScreenUIManager m_wtsManager;
         private IPlayerFactory m_playerFactory;
+        private ItemPreviewUIPage m_ItemPreview;
         private UpgradeWeaponUI m_UIInstance;
         public PhysicsCallbacks playerTrigger;
         private WordlToScreenUIItem m_WorldToScreenHandle;
@@ -38,11 +39,13 @@ namespace Prototype
         public void Construct(
          PlayerResources resources,
          WorldToScreenUIManager wtsManager,
-         IPlayerFactory playerFactory)
+         IPlayerFactory playerFactory,
+         ItemPreviewUIPage itemPreview)
         {
             m_PlayerResources = resources;
             m_wtsManager = wtsManager;
             m_playerFactory = playerFactory;
+            m_ItemPreview = itemPreview;
         }
 
         private void Awake()
@@ -99,7 +102,6 @@ namespace Prototype
 
             if (current1 >= res1 && current2 >= res2)
             {
-
                 m_PlayerResources.resources.RemoveResource(upgradeRes.item1.resourceType, res1);
                 m_PlayerResources.resources.RemoveResource(upgradeRes.item2.resourceType, res2);
                 currentUpgradeLevel++;
@@ -108,6 +110,11 @@ namespace Prototype
                 m_UIInstance.Deactivate();
                 m_playerFactory.CurrentPlayerUnit.GetComponent<CharacterInventory>().SetupMeleeWeapon(upgradeRes.weaponPrefab);
                 onWeaponCrafted.Invoke(upgradeRes);
+
+                if (upgradeRes.weaponPrefab.TryGetComponent<NeedPreviewItem>(out var needPreview))
+                {
+                    m_ItemPreview.ShowPreview(needPreview.previewSetting);
+                }
             }
         }
 
