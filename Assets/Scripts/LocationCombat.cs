@@ -43,6 +43,8 @@ namespace Prototype
 
     public class LocationCombat : MonoBehaviour
     {
+        public GameObject[] externalEnemies;
+
         public PhysicsCallbacks startCombatCollider;
         public WaveData[] spawnWaves;
         private EnemySpawnFactory m_spawnFactory;
@@ -84,6 +86,8 @@ namespace Prototype
                 }
             }
 
+            toKill += externalEnemies.Length;
+
             if (startCombatCollider)
             {
                 startCombatCollider.onTriggerEnter += (col) =>
@@ -114,10 +118,24 @@ namespace Prototype
             if (enabled)
                 return;
 
+            SetupExternalEnemies();
 
             OnStartedUE.Invoke();
             m_playerFactory.CurrentPlayerUnit.GetComponent<CharacterCombatState>().forceCombat = true;
             enabled = true;
+        }
+
+        private void SetupExternalEnemies()
+        {
+            foreach (var item in externalEnemies)
+            {
+                var seeker = item.GetComponent<ITargetSeeker>();
+                seeker.SetTarget(m_playerFactory.CurrentPlayerUnit.transform);
+                item.GetComponent<HealthData>().onDeath += () => {
+                    OnEnemyDeath(item.transform);
+                };
+                aliveUnits.Add(item.transform);
+            }
         }
 
         private void Update()
@@ -170,6 +188,18 @@ namespace Prototype
             return aliveUnits.Count == 0 ? null : aliveUnits[0];
         }
 
+        void OnEnemyDeath(Transform enemyInstance)
+        {
+            alreadyKilled++;
+            onEnemyKilled.Invoke();
+            aliveUnits.Remove(enemyInstance);
+
+            if (alreadyKilled == TargetKills)
+            {
+                m_playerFactory.CurrentPlayerUnit.GetComponent<CharacterCombatState>().forceCombat = false;
+                OnAllKilledUE.Invoke();
+            }
+        }
         private GameObject ExecuteSpawn(SpawnData currentSpawn)
         {
             GameObject instance = null;
@@ -193,15 +223,7 @@ namespace Prototype
 
             aliveUnits.Add(instance.transform);
             instance.GetComponent<HealthData>().onDeath += () => {
-                alreadyKilled++;
-                onEnemyKilled.Invoke();
-                aliveUnits.Remove(instance.transform);
-
-                if (alreadyKilled == TargetKills)
-                {
-                    m_playerFactory.CurrentPlayerUnit.GetComponent<CharacterCombatState>().forceCombat = false;
-                    OnAllKilledUE.Invoke();
-                }
+                OnEnemyDeath(instance.transform);              
             };
             switch (currentSpawn.dropMode)
             {

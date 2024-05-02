@@ -36,10 +36,6 @@ namespace Prototype
                 onCollected?.Invoke();
                 gameObject.SetActive(false);
 
-                if (GunPrefab.TryGetComponent<NeedPreviewItem>(out var previewData))
-                {
-                    m_itemPreview.ShowPreview(previewData.previewSetting);
-                }
             }
         }
     }

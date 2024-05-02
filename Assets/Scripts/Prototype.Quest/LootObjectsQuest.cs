@@ -3,41 +3,35 @@ using UnityEngine;
 
 namespace Prototype
 {
-    public interface IFinishObjectsQuest
+    public class LootObjectsQuest : BaseQuest, IFinishObjectsQuest
     {
-        public int CurrentValue();
-        public int TargetValue();
-    }
-
-    public class DestroyObjectsQuest : BaseQuest, IFinishObjectsQuest
-    {
-        public HealthData[] objectsToDestory;
-        private int killed;
+        public LootableObjectBehaviour[] objectsToLoot;
+        private int looted;
 
         protected override void Awake()
         {
             base.Awake();
 
-            foreach (var obj in objectsToDestory)
+            foreach (var obj in objectsToLoot)
             {
-                obj.onDeath += Obj_onDeath;
+                obj.onLooted.AddListener(OnLooted);
             }
         }
 
-        private void Obj_onDeath()
+        private void OnLooted()
         {
-            killed++;
+            looted++;
             UpdateQuest();
         }
 
-        public int CurrentValue() => killed;
-        public int TargetValue() => objectsToDestory.Length;
+        public int CurrentValue() => looted;
+        public int TargetValue() => objectsToLoot.Length;
 
         public override Transform GetQuestTargetObject()
         {
-            foreach (var obj in objectsToDestory)
+            foreach (var obj in objectsToLoot)
             {
-                if (!obj.IsDead)
+                if (!obj.IsOpened)
                 {
                     return obj.transform;
                 }
@@ -49,9 +43,9 @@ namespace Prototype
         {
             List<Transform> targets = new List<Transform>();
 
-            foreach (var obj in objectsToDestory)
+            foreach (var obj in objectsToLoot)
             {
-                if (!obj.IsDead)
+                if (!obj.IsOpened)
                 {
                     targets.Add(obj.transform);
                 }
@@ -61,7 +55,7 @@ namespace Prototype
         }
         public override bool IsFinished()
         {
-            return killed == objectsToDestory.Length;
+            return looted == objectsToLoot.Length;
         }
     }
 }

@@ -110,11 +110,6 @@ namespace Prototype
                 m_UIInstance.Deactivate();
                 m_playerFactory.CurrentPlayerUnit.GetComponent<CharacterInventory>().SetupMeleeWeapon(upgradeRes.weaponPrefab);
                 onWeaponCrafted.Invoke(upgradeRes);
-
-                if (upgradeRes.weaponPrefab.TryGetComponent<NeedPreviewItem>(out var needPreview))
-                {
-                    m_ItemPreview.ShowPreview(needPreview.previewSetting);
-                }
             }
         }
 

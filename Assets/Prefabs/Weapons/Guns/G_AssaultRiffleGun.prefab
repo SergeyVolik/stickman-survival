@@ -819,7 +819,7 @@ MonoBehaviour:
   hideOffset: {x: -0.115, y: -0.052, z: -0.04}
   hideRotation: {x: -52.141, y: 0, z: 0}
   type: 2
-  pushForce: 10
+  pushForce: 8
   killPushForce: 10
   standingDamage: 20
   critMult: 1.1

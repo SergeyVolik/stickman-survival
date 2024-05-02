@@ -15,7 +15,7 @@ namespace Prototype
         private Collider m_triggerdObject;
         bool continueOpening;
         bool isOpened;
-
+        public bool IsOpened => isOpened;
         public int lootTicks => lootTicksItems.Length;
         public int executedLootTicks;
         public float finalDropDelay;

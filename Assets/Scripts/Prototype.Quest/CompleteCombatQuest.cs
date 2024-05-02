@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Prototype
 {
-    public class CompleteCombatQuest : BaseQuest, IDestroyObjectsQuest
+    public class CompleteCombatQuest : BaseQuest, IFinishObjectsQuest
     {
         public LocationCombat combat;
  
@@ -24,12 +24,12 @@ namespace Prototype
             return combat.TargetKills == combat.AlreadyKilled;
         }
 
-        public int AlreadyKiller()
+        public int CurrentValue()
         {
             return combat.AlreadyKilled;
         }
 
-        public int TargetKills()
+        public int TargetValue()
         {
             return combat.TargetKills;
         }

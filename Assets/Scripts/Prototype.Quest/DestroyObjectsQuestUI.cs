@@ -20,9 +20,9 @@ public class DestroyObjectsQuestUI : BaseQuestUI
 
     public override void UpdateDescription()
     {
-        if (m_quest is IDestroyObjectsQuest data)
+        if (m_quest is IFinishObjectsQuest data)
         {
-            questText.text = $"{m_quest.QuestName} {data.AlreadyKiller()}/{data.TargetKills()}";
+            questText.text = $"{m_quest.QuestName} {data.CurrentValue()}/{data.TargetValue()}";
         }
     }
 }
