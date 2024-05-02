@@ -1,6 +1,7 @@
 ## stickman-zombie-shooter
 Game reference: [Idle Breaker](https://play.google.com/store/apps/details?id=com.idle.breaker.game&hl=en_US)
-
+# Gameplay
+[Gameplay Video](https://youtu.be/MmwUtW_bMHo)
 # Implemented features:
 1. Destructuable objects.
 2. Lootable objects (chests).
