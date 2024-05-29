@@ -6,43 +6,10 @@ using Zenject;
 
 namespace Prototype
 {
-    public interface IPlayerInputReader
-    {
-        public Vector2 ReadMoveInput();
-        public void Enable();
-        public void Disable();
-    }
-
-    public class PlayerInputReader : IPlayerInputReader
-    {
-        private bool m_Enabled;
-        public Joystick m_Stick;
-        public void Enable()
-        {
-            m_Enabled = true;
-        }
-        public void Disable()
-        {
-            m_Enabled = false;
-        }
-
-        public PlayerInputReader(Joystick stick)
-        {
-            m_Enabled = true;
-            m_Stick = stick;
-        }
-
-        public Vector2 ReadMoveInput()
-        {
-            return m_Enabled ? m_Stick.Direction : new Vector2();
-        }
-    }
-
     public class GameInit : MonoInstaller
     {
         public GameObject PlayerPrefab;
         private PlayerSpawnFactory m_playerSpawnFactory;
-        public Joystick Joystick;
 
         public GameObject zombiePrefab;
         public GameObject bigZombiePrefab;
@@ -62,7 +29,6 @@ namespace Prototype
         public ItemPreviewCamera ItemPreviewCamera;
         public override void InstallBindings()
         {
-            var input = new PlayerInputReader(Joystick);
             m_playerSpawnFactory = new PlayerSpawnFactory(PlayerPrefab, Container);
             var wsm = new WorldSpaceMessageFactory(m_WSMPrefab);
             Container.Bind<AudioListenerController>().FromInstance(AudioListenerController);
@@ -77,7 +43,6 @@ namespace Prototype
             Container.Bind<WorldSpaceMessageFactory>().FromInstance(wsm);
             Container.Bind<ResourceTransferManager>().FromInstance(m_Transfer);
             Container.Bind<IPlayerFactory>().FromInstance(m_playerSpawnFactory);
-            Container.Bind<IPlayerInputReader>().FromInstance(input);
             Container.Bind<EnemySpawnFactory>().FromInstance(EnemySpawnFactory);
         }
 

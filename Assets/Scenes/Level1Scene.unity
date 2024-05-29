@@ -18783,6 +18783,7 @@ GameObject:
   - component: {fileID: 674712990}
   - component: {fileID: 674712989}
   - component: {fileID: 674712992}
+  - component: {fileID: 674712993}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -18804,7 +18805,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 8149694439717538947, guid: a4abdc533bc5d0148bffe83fca16f327,
     type: 3}
-  Joystick: {fileID: 2120823617}
   zombiePrefab: {fileID: 1282675239167010970, guid: 845dbd43db7d3b540af43d925531686d,
     type: 3}
   bigZombiePrefab: {fileID: 1282675239167010970, guid: 680817688e593054ab31adee6a2c2448,
@@ -18838,6 +18838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: 674712993}
   - {fileID: 674712989}
   - {fileID: 674712992}
   _installerPrefabs: []
@@ -18887,6 +18888,19 @@ MonoBehaviour:
   m_PlayerResources:
     resources:
       m_InitResources: []
+--- !u!114 &674712993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674712988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50fa3f12add86f84488fa32d5527ce23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Joystick: {fileID: 2120823617}
 --- !u!1 &674738678
 GameObject:
   m_ObjectHideFlags: 0
@@ -25809,7 +25823,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.415373, y: 0, z: 0, w: 0.9096512}
-  m_LocalPosition: {x: 0, y: 19.5, z: -16.9}
+  m_LocalPosition: {x: 0, y: 12.6, z: -10.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
