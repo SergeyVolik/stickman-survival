@@ -25823,7 +25823,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.415373, y: 0, z: 0, w: 0.9096512}
-  m_LocalPosition: {x: 0, y: 12.6, z: -10.92}
+  m_LocalPosition: {x: 0, y: 19.5, z: -16.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34392,53 +34392,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1269258704}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1275833839
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1275833841}
-  - component: {fileID: 1275833842}
-  m_Layer: 0
-  m_Name: LightningManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1275833841
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275833839}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1275833842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275833839}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3e19583adb36134fb163260018f7590, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DirectionalLight: {fileID: 705507994}
-  Preset: {fileID: 11400000, guid: 95cb06131f11c61479087feb6abd2d26, type: 2}
-  TimeOfDay: 0
 --- !u!1001 &1276084616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55671,7 +55624,6 @@ SceneRoots:
   - {fileID: 674712991}
   - {fileID: 7254959336181064068}
   - {fileID: 793886073}
-  - {fileID: 1275833841}
   - {fileID: 1416188091}
   - {fileID: 1294862123}
   - {fileID: 1965904531}

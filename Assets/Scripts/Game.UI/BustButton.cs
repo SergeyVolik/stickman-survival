@@ -9,7 +9,7 @@ namespace Prototype
     {
         public Effect effectPrefab;
         private IPlayerFactory m_factory;
-        private IAdsPlayer m_adsManager;
+        private IAdsService m_adsManager;
         public Button button;
         public Image timerImage;
         public RectTransform timerHolder;
@@ -19,7 +19,7 @@ namespace Prototype
         public float activateButtonTimer;
 
         [Inject]
-        void Construct(IPlayerFactory factory, IAdsPlayer adsManager)
+        void Construct(IPlayerFactory factory, IAdsService adsManager)
         {
             m_factory = factory;
             m_adsManager = adsManager;

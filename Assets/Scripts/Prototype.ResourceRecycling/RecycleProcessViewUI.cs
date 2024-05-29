@@ -13,7 +13,7 @@ namespace Prototype
         [SerializeField] private TextMeshProUGUI m_TimerText;
         [SerializeField] private Button m_CalimResourcesButton;
         [SerializeField] private Button m_SkipButton;
-        private IAdsPlayer m_adsPlayer;
+        private IAdsService m_adsPlayer;
 
         protected override void Awake()
         {
@@ -33,7 +33,7 @@ namespace Prototype
             });
         }
 
-        public void Bind(ResourceRecycling recicling, IAdsPlayer adsPlayer)
+        public void Bind(ResourceRecycling recicling, IAdsService adsPlayer)
         {
             m_adsPlayer = adsPlayer;
             m_ResourceImage.sprite = recicling.destinationResource.resourceIcon;

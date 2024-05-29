@@ -175,12 +175,12 @@ namespace Prototype.Ads
         public bool InterstitialIsReady { get; }
     }
 
-    public interface IAdsPlayer : IInterstitialAdPlayer, IRewardAdPlayer
+    public interface IAdsService : IInterstitialAdPlayer, IRewardAdPlayer
     { 
 
     }
 
-    public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IAdsPlayer
+    public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IAdsService
     {
         [SerializeField] string _androidGameId;
         [SerializeField] string _iOSGameId;

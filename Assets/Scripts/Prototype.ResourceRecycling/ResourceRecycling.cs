@@ -27,7 +27,7 @@ namespace Prototype
 
         [Min(1)]
         public int itemsToDestResource = 1;
-        private IAdsPlayer m_adsManager;
+        private IAdsService m_adsManager;
         private PlayerResources m_PlayerResources;
         private WorldToScreenUIManager m_wtsManager;
 
@@ -73,7 +73,7 @@ namespace Prototype
         public void Construct(
              PlayerResources resources,
              WorldToScreenUIManager wtsManager,
-             IAdsPlayer adsManager)
+             IAdsService adsManager)
         {
             m_adsManager = adsManager;
             m_PlayerResources = resources;

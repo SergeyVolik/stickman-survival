@@ -35,7 +35,7 @@ namespace Prototype
             Container.Bind<ItemPreviewUIPage>().FromInstance(ItemPreviewUIPage);
             Container.Bind<ItemPreviewCamera>().FromInstance(ItemPreviewCamera);
             Container.Bind<HatFactory>().FromInstance(HatFactory);
-            Container.Bind<IAdsPlayer>().FromInstance(AdsManager);
+            Container.Bind<IAdsService>().FromInstance(AdsManager);
             Container.Bind<ActivateByDistanceToPlayerManager>().FromInstance(ActivateByDistanceToPlayerManager);
             Container.Bind<WorldToScreenUIManager>().FromInstance(WorldToScreenUIManager);
             Container.Bind<CameraController>().FromInstance(CameraController);

@@ -1,5 +1,5 @@
 {
-    "name": "Prototype.Ads",
+    "name": "Prototype.AdsService",
     "rootNamespace": "",
     "references": [
         "GUID:ff6de30450f3748908ff580f6ec64d9a"
