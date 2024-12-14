@@ -23,7 +23,5 @@ Game reference: [Idle Breaker](https://play.google.com/store/apps/details?id=com
 ![image](https://github.com/user-attachments/assets/8dedf8af-3381-4be0-b334-ecb2dd3af38b)
 ![image](https://github.com/user-attachments/assets/c43b7c17-dae3-4b47-acf3-1f789ed22058)
 ![image](https://github.com/user-attachments/assets/65b8eca3-0c5e-4f44-93c7-505472805b60)
-![image](https://github.com/user-attachments/assets/7435881e-b162-4094-96bb-90088969d504)
-![image](https://github.com/user-attachments/assets/f6e38f1d-3357-428a-8f0e-33a9e2438523)
 ![image](https://github.com/user-attachments/assets/1bd32cf0-ef0b-4fc6-bb46-30338a1f31d5)
-
+![image](https://github.com/user-attachments/assets/f6e38f1d-3357-428a-8f0e-33a9e2438523)
